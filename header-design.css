@@ -1,0 +1,4 @@
+/* Optional demo-only content styles. Header and footer styles live in common.css. */
+.header-demo-content { width: min(1340px, calc(100% - 2.5rem)); margin: 0 auto; padding: 4rem 0; }
+.header-demo-content h1 { color: var(--text-main); font-size: 2rem; }
+.header-demo-content p { max-width: 60ch; color: var(--text-muted); line-height: 1.6; }

@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en" data-page="career">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Government Job Portal — live notifications from Railway, Banking, UPSC, SSC, Defence and more.">
+    <title>Venkat Insights — Government Job Portal | Career Dashboard</title>
+
+    <!-- Inter font (used by header design system) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../common.css">
+    <link rel="stylesheet" href="career.css">
+    <script src="careerdata.js"></script>
+</head>
+<body>
+
+<!-- ============================================================
+     JOB DATA — single source of truth
+     Shared by: header ticker (window.__VI_ALL_JOBS) + dashboard.
+     NOTE: must load BEFORE header.js so the ticker picks it up.
+     Demo entries use dates relative to "today" so badges & stats
+     always look live — replace with your real data.
+     ============================================================ -->
+
+
+
+
+<!-- ============================================================
+     HEADER — Venkat Insights Premium Header (shared site shell)
+     ============================================================ -->
+
+<!-- Shared shell is injected by common.js; page-local duplicate markup is intentionally removed -->
+
+<!-- ============================================================
+     PAGE — Redesigned Career Dashboard
+     ============================================================ -->
+<main class="page-wrap">
+
+    <!-- Hero + Live Stats -->
+    <section class="hero-card">
+        <div class="hero-top">
+            <div class="hero-text">
+                <span class="hero-eyebrow">⚡ Career Dashboard</span>
+                <h2>Government Job <span class="hero-grad">Portal</span></h2>
+                <p>Live notifications from Railway, Banking, UPSC, SSC, Defence &amp; more — track last dates and apply before they close.</p>
+            </div>
+            <button class="btn-latest" id="latestUpdatesBtn" type="button">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                <span class="btn-label">Latest Updates</span>
+            </button>
+        </div>
+        <div class="hero-stats">
+            <div class="stat-item">
+                <div class="stat-icon"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg></div>
+                <div><div class="stat-value" id="statTotal">0</div><div class="stat-label">Active Jobs</div></div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-icon"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z"/></svg></div>
+                <div><div class="stat-value" id="statCats">0</div><div class="stat-label">Categories</div></div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-icon"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 7v5l3 3"/></svg></div>
+                <div><div class="stat-value" id="statClosing">0</div><div class="stat-label">Closing This Week</div></div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-icon"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9L12 3z"/></svg></div>
+                <div><div class="stat-value" id="statFresh">0</div><div class="stat-label">New This Week</div></div>
+            </div>
+        </div>
+    </section>
+
+    <div class="main-layout">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-head">
+                <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h10"/></svg>
+                <h3>Browse Categories</h3>
+            </div>
+            <ul class="category-list" id="categoryList">
+                <li class="category-item active" data-category="All Government Jobs">
+                    <span class="cat-left"><span class="cat-emoji">▦</span>All Jobs</span>
+                    <span class="badge-count" id="count-all">0</span>
+                </li>
+                <li class="category-item" data-category="Railway">
+                    <span class="cat-left"><span class="cat-emoji">🚆</span>Railway</span>
+                    <span class="badge-count">0</span>
+                </li>
+                <li class="category-item" data-category="Banking">
+                    <span class="cat-left"><span class="cat-emoji">🏦</span>Banking</span>
+                    <span class="badge-count">0</span>
+                </li>
+                <li class="category-item" data-category="Defence">
+                    <span class="cat-left"><span class="cat-emoji">🛡</span>Defence</span>
+                    <span class="badge-count">0</span>
+                </li>
+                <li class="category-item" data-category="DRDO">
+                    <span class="cat-left"><span class="cat-emoji">🔬</span>DRDO</span>
+                    <span class="badge-count">0</span>
+                </li>
+                <li class="category-item" data-category="PSU">
+                    <span class="cat-left"><span class="cat-emoji">🏭</span>PSU</span>
+                    <span class="badge-count">0</span>
+                </li>
+                <li class="category-item" data-category="Mining">
+                    <span class="cat-left"><span class="cat-emoji">⛏️</span>Mining</span>
+                    <span class="badge-count">0</span>
+                </li>
+                <li class="category-item" data-category="Teaching">
+                    <span class="cat-left"><span class="cat-emoji">🎓</span>Teaching</span>
+                    <span class="badge-count">0</span>
+                </li>
+                <li class="category-item" data-category="UPSC">
+                    <span class="cat-left"><span class="cat-emoji">★</span>UPSC</span>
+                    <span class="badge-count">0</span>
+                </li>
+                <li class="category-item" data-category="SSC">
+                    <span class="cat-left"><span class="cat-emoji">▣</span>SSC</span>
+                    <span class="badge-count">0</span>
+                </li>
+                <li class="category-item" data-category="Police">
+                    <span class="cat-left"><span class="cat-emoji">👮</span>Police</span>
+                    <span class="badge-count">0</span>
+                </li>
+                <li class="category-item" data-category="Judiciary">
+                    <span class="cat-left"><span class="cat-emoji">⚖️</span>Judiciary</span>
+                    <span class="badge-count">0</span>
+                </li>
+                <li class="category-item" data-category="Healthcare">
+                    <span class="cat-left"><span class="cat-emoji">🏥</span>Medical</span>
+                    <span class="badge-count">0</span>
+                </li>
+                <li class="category-item" data-category="Technical Jobs">
+                    <span class="cat-left"><span class="cat-emoji">💻</span>IT &amp; Tech</span>
+                    <span class="badge-count">0</span>
+                </li>
+                <li class="category-item" data-category="venkatinsights">
+                    <span class="cat-left"><span class="cat-emoji">💻</span>venkatinsights</span>
+                    <span class="badge-count">0</span>
+                </li>
+
+
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <!-- Toolbar (persistent) -->
+            <div class="content-toolbar">
+                <nav class="breadcrumb" aria-label="Breadcrumb">
+                    <a href="index.html">Home</a><span>/</span>
+                    <a href="../career/career.html">Career</a><span>/</span>
+                    <strong id="crumbCurrent">All Jobs</strong>
+                </nav>
+                <div class="toolbar-right">
+                    <span class="result-count" id="resultCount">—</span>
+                    <select id="sortSelect" class="sort-select" aria-label="Sort jobs">
+                        <option value="posted">Sort: Latest Posted</option>
+                        <option value="closing">Sort: Closing Soon</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Dynamically injected job tables -->
+            <div class="tables-area" id="jobTablesContainer"></div>
+        </main>
+    </div>
+</main>
+
+<!-- ============================================================
+     FOOTER — Venkat Insights (new, matches the premium header)
+     ============================================================ -->
+<footer class="vi-footer">
+
+    <!-- Newsletter CTA strip -->
+    <div class="footer-cta">
+        <div class="footer-cta-inner">
+            <div class="footer-cta-text">
+                <h3>⚡ Never Miss a Job Update</h3>
+                <p>Subscribe for free alerts on government jobs, admit cards, results &amp; exam notices.</p>
+            </div>
+            <form class="footer-newsletter" id="newsletterForm" novalidate>
+                <input type="email" id="newsletterEmail" placeholder="Enter your email address" required aria-label="Email address">
+                <button type="submit">Subscribe</button>
+            </form>
+        </div>
+        <p class="nl-msg" id="newsletterMsg" role="status"></p>
+    </div>
+
+    <!-- Main footer columns -->
+    <div class="footer-main">
+        <div class="footer-container footer-grid">
+
+            <!-- Brand -->
+            <div class="footer-brand">
+                <a href="index.html" class="footer-brand-link">
+                    <div class="logo-box">
+                        <img src="https://yt3.googleusercontent.com/4v1xmWtq6zF97zQKTMasxeUMAxjrAPD5cNlwp3bGLHzhPl82FtsydTCYlYoa2S2Ezmxjc5ckq0I=s88-c-k-c0x00ffffff-no-rj" alt="Vi Logo" onerror="this.onerror=null; this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 42 42%22><rect width=%2242%22 height=%2242%22 rx=%2210%22 fill=%22%234f46e5%22/><text x=%2221%22 y=%2228%22 text-anchor=%22middle%22 fill=%22white%22 font-size=%2218%22 font-weight=%22bold%22>Vi</text></svg>';">
+                    </div>
+                    <div class="brand-text">
+                        <h1>Venkat Insights</h1>
+                        <p class="tagline">Jobs &bull; Education &bull; Services &bull; Insights</p>
+                    </div>
+                </a>
+                <p class="footer-desc">
+                    Your one-stop destination for government job notifications, exam updates,
+                    education resources, career tools and 80+ curated AI tools — all in one place.
+                </p>
+                <div class="footer-socials">
+                    <a href="#" class="social-btn" aria-label="YouTube" title="YouTube">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 00-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 00.5 6.2 31.3 31.3 0 000 12a31.3 31.3 0 00.5 5.8 3 3 0 002.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 002.1-2.1A31.3 31.3 0 0024 12a31.3 31.3 0 00-.5-5.8zM9.6 15.6V8.4L15.8 12l-6.2 3.6z"/></svg>
+                    </a>
+                    <a href="#" class="social-btn" aria-label="Telegram" title="Telegram">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.9 4.6l-3.1 14.7c-.2 1-.8 1.2-1.7.8l-4.7-3.5-2.3 2.2c-.3.3-.5.5-1 .5l.4-4.8L18.2 6.9c.4-.3-.1-.5-.6-.2L6.9 13l-4.6-1.4c-1-.3-1-1 .2-1.5l18-7c.8-.3 1.6.2 1.4 1.5z"/></svg>
+                    </a>
+                    <a href="#" class="social-btn" aria-label="X (Twitter)" title="X (Twitter)">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 2H22l-6.8 7.8L23.3 22h-6.3l-4.9-6.4L6.5 22H3.4l7.3-8.3L1 2h6.5l4.4 5.9L18.9 2zm-1.1 18h1.7L7.6 3.8H5.7L17.8 20z"/></svg>
+                    </a>
+                    <a href="#" class="social-btn" aria-label="Instagram" title="Instagram">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2.5" y="2.5" width="19" height="19" rx="5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.5" cy="6.5" r="1.3" fill="currentColor" stroke="none"/></svg>
+                    </a>
+                    <a href="#" class="social-btn" aria-label="WhatsApp" title="WhatsApp">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 00-8.6 15.1L2 22l5-1.3A10 10 0 1012 2zm5.4 14.1c-.2.7-1.3 1.3-1.9 1.4-.5.1-1.1.1-1.8-.1-.4-.1-.9-.3-1.6-.6-2.9-1.2-4.7-4.1-4.9-4.3-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.4.2.5.7 1.8.8 1.9.1.1.1.3 0 .5-.3.6-.7.9-.5 1.2.7 1.2 1.6 2 2.8 2.6.3.2.5.1.7-.1l.9-1c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.5.4.1.1.1.7-.2 1.3z"/></svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Quick Links -->
+            <!-- Quick Links -->
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a class="footer-link" href="../index.html">Home</a></li>
+                    <li><a class="footer-link" href="../governmentservices/governmentservices.html">Govt Services</a></li>
+                    <li><a class="footer-link" href="../education/education.html">Education</a></li>
+                    <li><a class="footer-link" href="../Newsandarticles/newsandarticles.html">News &amp; Articles</a></li>
+                    <li><a class="footer-link" href="career.html">Career / Jobs</a></li>
+                    <li><a class="footer-link" href="../tools.html">Tools</a></li>
+                    <li><a class="footer-link" href="../aitools.html">80+ AI Tools</a></li>
+                </ul>
+            </div>
+
+            <!-- Job Categories -->
+            <div class="footer-col">
+                <h4>Job Categories</h4>
+                <ul>
+                    <li><a class="footer-link" href="#svc-job-RRB-NTPC-2026">Railway Jobs</a></li>
+                    <li><a class="footer-link" href="#svc-job-IBPS-PO-2026">Banking Jobs</a></li>
+                    <li><a class="footer-link" href="#svc-job-ARMY-AGNI-2026">Defence Jobs</a></li>
+                    <li><a class="footer-link" href="#svc-job-UPSC-CSE-2026">UPSC</a></li>
+                    <li><a class="footer-link" href="#svc-job-SSC-CGL-2026">SSC</a></li>
+                    <li><a class="footer-link" href="#svc-job-TSLPRB-CONST">Police</a></li>
+                    <li><a class="footer-link" href="#svc-job-DRDO-SCI-2026">DRDO Jobs</a></li>
+                </ul>
+            </div>
+
+            <!-- Resources -->
+            <div class="footer-col">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a class="footer-link" href="#">Admit Cards</a></li>
+                    <li><a class="footer-link" href="#">Results</a></li>
+                    <li><a class="footer-link" href="#">Answer Keys</a></li>
+                    <li><a class="footer-link" href="#">Syllabus</a></li>
+                    <li><a class="footer-link" href="#">Previous Papers</a></li>
+                    <li><a class="footer-link" href="#">Admission Notices</a></li>
+                    <li><a class="footer-link" href="../about.html">About Us</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom bar -->
+    <div class="footer-bottom">
+        <div class="footer-container footer-bottom-inner">
+            <p>&copy; <span id="footerYear">2026</span> Venkat Insights. All rights reserved.</p>
+            <div class="footer-legal">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Use</a>
+                <a href="#">Disclaimer</a>
+                <a href="../about.html">Contact</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Back to Top -->
+<button class="back-to-top" id="backToTop" aria-label="Back to top" title="Back to top">
+    <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7"/></svg>
+</button>
+
+<!-- Scripts -->
+<script src="careerdata.js"></script>
+<script src="../searchdata.js"></script>
+<script src="../common.js"></script>
+<script src="career.js"></script>
+</body>
+</html>

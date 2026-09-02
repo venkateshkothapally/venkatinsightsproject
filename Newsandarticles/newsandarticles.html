@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en" data-page="news">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Venkat Insights — Newspapers, ePapers & Published Articles</title>
+<meta name="description" content="Venkat Insights newspaper, e-paper and published article portal.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../common.css">
+<style>
+:root {
+    --primary-teal: #4f46e5;
+    --primary-teal-hover: #4338ca;
+    --primary-teal-light: rgba(79, 70, 229, 0.12);
+    --bg-page: #f8fafc;
+    --bg-card: #ffffff;
+    --bg-pill-container: #edf2f7;
+    --border-color: #e2e8f0;
+    --text-dark: #1e293b;
+    --text-muted: #64748b;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,.05);
+    --shadow-md: 0 4px 6px -1px rgba(0,0,0,.08);
+    --radius-lg: 14px;
+    --radius-md: 10px;
+    --radius-pill: 9999px;
+    --font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+[data-theme="dark"], html.dark {
+    --primary-teal:#6366f1;
+    --primary-teal-hover:#4f46e5;
+    --primary-teal-light:rgba(99,102,241,.2);
+    --bg-page:#0b1120;
+    --bg-card:#111b31;
+    --bg-pill-container:#1e293b;
+    --border-color:#334155;
+    --text-dark:#f8fafc;
+    --text-muted:#94a3b8;
+    --shadow-sm:0 1px 3px rgba(0,0,0,.3);
+    --shadow-md:0 4px 6px -1px rgba(0,0,0,.2);
+}
+.app-container{max-width:1540px;margin:0 auto;padding:24px;display:grid;grid-template-columns:280px 1fr;gap:24px;width:100%;flex:1}
+aside.sidebar{background-color:var(--bg-card);border:1px solid var(--border-color);border-radius:var(--radius-lg);padding:20px 16px;height:fit-content;box-shadow:var(--shadow-sm)}
+.sidebar-title{font-size:.75rem;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.8px;margin-bottom:12px;padding-left:12px}
+.sidebar-menu{display:flex;flex-direction:column;gap:4px}
+.menu-item{display:flex;align-items:center;gap:12px;padding:10px 14px;border-radius:var(--radius-md);font-size:.92rem;font-weight:600;color:var(--text-dark);text-decoration:none;cursor:pointer;transition:all .2s ease;border:none;background:transparent;width:100%;text-align:left}
+.menu-item:hover{background-color:var(--primary-teal-light);color:var(--primary-teal)}
+.menu-item.active{background-color:var(--primary-teal);color:#fff}
+main.content-area{display:flex;flex-direction:column;gap:20px}
+.content-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:4px;flex-wrap:wrap;gap:16px}
+.header-title-group{display:flex;align-items:center;gap:16px}
+.header-icon-box{display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.header-icon-box.has-svg,.header-icon-box{background-color:var(--primary-teal-light);color:var(--primary-teal);width:48px;height:48px;border-radius:12px}
+.header-icon-box svg{width:26px;height:26px}
+.header-text h2{font-size:1.5rem;font-weight:800;color:var(--text-dark);line-height:1.2}
+.header-text p{font-size:.9rem;color:var(--text-muted);margin-top:2px}
+.sub-filter-pills{display:flex;gap:8px;flex-wrap:wrap;background-color:var(--bg-card);padding:6px;border-radius:var(--radius-md);border:1px solid var(--border-color)}
+.sub-pill{padding:6px 14px;border-radius:6px;font-size:.82rem;font-weight:600;color:var(--text-muted);background:transparent;border:none;cursor:pointer;transition:all .2s}
+.sub-pill:hover,.sub-pill.active{background-color:var(--primary-teal);color:#fff}
+.services-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.service-card{background-color:var(--bg-card);border:1px solid var(--border-color);border-radius:var(--radius-md);padding:16px 18px;text-decoration:none;display:flex;flex-direction:column;justify-content:space-between;min-height:95px;transition:all .2s ease;box-shadow:var(--shadow-sm);cursor:pointer}
+.service-card:hover{border-color:var(--primary-teal);transform:translateY(-2px);box-shadow:var(--shadow-md)}
+.card-header-left{display:flex;align-items:center;gap:10px}
+.card-logo{width:28px;height:28px;object-fit:contain;border-radius:4px;flex-shrink:0;background:#fff;padding:2px;border:1px solid var(--border-color)}
+.card-title{font-size:.95rem;font-weight:700;color:var(--text-dark);line-height:1.3}
+.card-desc{font-size:.82rem;color:var(--text-muted);margin-top:8px;line-height:1.4}
+.newspapers-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.newspaper-card{background-color:var(--bg-card);border:1px solid var(--border-color);border-radius:var(--radius-lg);overflow:hidden;display:flex;flex-direction:column;transition:all .25s ease;box-shadow:var(--shadow-sm);text-decoration:none;color:inherit}
+.newspaper-card:hover{transform:translateY(-4px);border-color:var(--primary-teal);box-shadow:var(--shadow-md)}
+.newspaper-img-wrapper{height:150px;width:100%;background-color:#f1f5f9;display:flex;align-items:center;justify-content:center;position:relative;padding:16px;border-bottom:1px solid var(--border-color)}
+[data-theme="dark"] .newspaper-img-wrapper{background-color:#0b1120}
+.newspaper-img-wrapper img{max-height:100%;max-width:100%;object-fit:contain;transition:transform .3s ease}
+.newspaper-card:hover .newspaper-img-wrapper img{transform:scale(1.05)}
+.newspaper-fallback{display:flex;width:100%;height:100%;background:linear-gradient(135deg,var(--primary-teal),#312e81);color:#fff;flex-direction:column;align-items:center;justify-content:center;padding:16px;text-align:center;border-radius:8px}
+.newspaper-fallback-title{font-size:1.15rem;font-weight:800;line-height:1.3}
+.newspaper-body{padding:16px;display:flex;flex-direction:column;justify-content:space-between;flex-grow:1;gap:12px}
+.newspaper-meta{display:flex;align-items:center;justify-content:space-between}
+.newspaper-name{font-size:1.05rem;font-weight:700;color:var(--text-dark)}
+.newspaper-badge{font-size:.7rem;font-weight:700;padding:3px 8px;border-radius:4px;text-transform:uppercase}
+.badge-epaper{background-color:#eff6ff;color:#2563eb}
+.badge-news{background-color:#f0fdf4;color:#16a34a}
+.badge-paper{background-color:#fef3c7;color:#d97706}
+.newspaper-action-btn{display:inline-flex;align-items:center;justify-content:center;padding:8px 14px;border-radius:8px;background-color:var(--primary-teal-light);color:var(--primary-teal);font-size:.85rem;font-weight:600;text-decoration:none;transition:all .2s ease;margin-top:auto}
+.newspaper-card:hover .newspaper-action-btn{background-color:var(--primary-teal);color:#fff}
+.articles-section{display:flex;flex-direction:column;gap:24px}
+.featured-news-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.featured-card{background-color:var(--bg-card);border:1px solid var(--border-color);border-radius:var(--radius-lg);padding:0;display:flex;flex-direction:column;overflow:hidden;box-shadow:var(--shadow-sm);position:relative;border-left:4px solid var(--primary-teal)}
+.featured-image{height:185px;background:var(--bg-pill-container);overflow:hidden}
+.featured-image img{width:100%;height:100%;object-fit:cover;transition:transform .3s ease}
+.featured-card:hover .featured-image img{transform:scale(1.04)}
+.featured-content{padding:18px}
+.featured-tag{font-size:.72rem;font-weight:800;color:var(--primary-teal);text-transform:uppercase;letter-spacing:.6px}
+.featured-title{font-size:1.05rem;font-weight:800;color:var(--text-dark);line-height:1.35;margin:8px 0}
+.featured-snippet{font-size:.85rem;color:var(--text-muted);line-height:1.4;margin:0 0 10px}
+.article-tools{display:flex;align-items:center;gap:10px;flex-wrap:wrap;background:var(--bg-card);border:1px solid var(--border-color);border-radius:var(--radius-lg);padding:14px;box-shadow:var(--shadow-sm)}
+.article-search{flex:1;min-width:230px;background:var(--bg-page);border:1px solid var(--border-color);border-radius:var(--radius-pill);padding:9px 15px;color:var(--text-dark);outline:none}
+.article-tools select{background:var(--bg-page);border:1px solid var(--border-color);border-radius:10px;padding:9px 12px;color:var(--text-dark)}
+.calendar-control-bar{background-color:var(--bg-card);border:1px solid var(--border-color);border-radius:var(--radius-lg);padding:16px 20px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;box-shadow:var(--shadow-sm)}
+.calendar-picker-group{display:flex;align-items:center;gap:12px}
+.calendar-picker-group label{font-size:.9rem;font-weight:700;color:var(--text-dark)}
+.calendar-input{background-color:var(--bg-page);border:1px solid var(--border-color);border-radius:8px;padding:8px 12px;font-size:.9rem;color:var(--text-dark);outline:none;cursor:pointer}
+.quick-dates{display:flex;gap:6px;overflow:auto}
+.date-pill{padding:6px 12px;border-radius:6px;font-size:.8rem;font-weight:600;background-color:var(--bg-pill-container);color:var(--text-muted);border:none;cursor:pointer;transition:all .2s;white-space:nowrap}
+.date-pill:hover,.date-pill.active{background-color:var(--primary-teal);color:#fff}
+.articles-feed-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.article-feed-card{background-color:var(--bg-card);border:1px solid var(--border-color);border-radius:var(--radius-lg);padding:0;display:flex;flex-direction:column;overflow:hidden;transition:all .2s;box-shadow:var(--shadow-sm);cursor:pointer}
+.article-feed-card:hover{border-color:var(--primary-teal);transform:translateY(-2px);box-shadow:var(--shadow-md)}
+.article-thumb{height:190px;background:var(--bg-pill-container);overflow:hidden}
+.article-thumb img{width:100%;height:100%;object-fit:cover;transition:transform .3s}
+.article-feed-title{font-size:1.1rem;font-weight:800;color:var(--text-dark);line-height:1.35}
+.article-feed-excerpt{font-size:.86rem;color:var(--text-muted);line-height:1.5}
+.article-card-footer{display:flex;align-items:center;justify-content:space-between;padding-top:10px;border-top:1px solid var(--border-color);font-size:.8rem;color:var(--text-muted);margin-top:auto}
+.read-article-link{font-weight:700;color:var(--primary-teal);display:flex;align-items:center;gap:4px}
+.empty-state{grid-column:1/-1;background-color:var(--bg-card);border:1px solid var(--border-color);border-radius:var(--radius-lg);padding:48px;text-align:center;color:var(--text-muted)}
+.modal-overlay{position:fixed;inset:0;background-color:rgba(0,0,0,.6);backdrop-filter:blur(5px);display:none;align-items:center;justify-content:center;z-index:1000;padding:20px}
+.modal-overlay.active{display:flex}
+.article-reader-modal,.article-modal{background-color:var(--bg-card);border-radius:var(--radius-lg);max-width:900px;width:100%;max-height:92vh;overflow-y:auto;position:relative;box-shadow:0 20px 45px rgba(0,0,0,.3);display:flex;flex-direction:column}
+.article-reader-image-wrapper{height:300px;background:var(--bg-pill-container);overflow:hidden;flex-shrink:0}
+.article-reader-image-wrapper img{width:100%;height:100%;object-fit:cover}
+.article-reader-body{padding:32px}
+.article-source-box{padding:12px 14px;border:1px solid var(--border-color);border-radius:10px;color:var(--text-muted);font-size:.85rem}
+.article-action-buttons,.article-navigation{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:16px}
+.article-action-btn,.article-navigation button{border:1px solid var(--border-color);background:var(--bg-pill-container);color:var(--text-dark);padding:9px 13px;border-radius:9px;cursor:pointer;font-weight:700;text-decoration:none}
+.article-action-btn.primary{background:var(--primary-teal);border-color:var(--primary-teal);color:#fff}
+.article-action-btn:hover,.article-navigation button:hover{background:var(--primary-teal);border-color:var(--primary-teal);color:#fff}
+.article-navigation{justify-content:space-between}
+@media(max-width:1200px){.services-grid{grid-template-columns:repeat(3,1fr)}.newspapers-grid{grid-template-columns:repeat(2,1fr)}.featured-news-grid{grid-template-columns:1fr}}
+@media(max-width:992px){.app-container{grid-template-columns:1fr}.services-grid{grid-template-columns:repeat(2,1fr)}.articles-feed-grid{grid-template-columns:1fr}}
+@media(max-width:576px){.services-grid,.newspapers-grid{grid-template-columns:1fr}}
+</style>
+<script src="../career/careerdata.js"></script>
+</head>
+<body>
+
+
+<div class="app-container">
+  <aside class="sidebar">
+    <div class="sidebar-title" id="sidebarSectionTitle">Newspaper Types</div>
+    <div class="sidebar-menu" id="sidebarMenu"></div>
+  </aside>
+
+  <main class="content-area">
+    <div class="content-header">
+      <div class="header-title-group">
+        <div class="header-icon-box"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"/></svg></div>
+        <div class="header-text"><h2 id="viewMainTitle">Newspapers & ePapers Directory</h2><p id="viewSubtitle">Browse live e-Papers, news channels & English news websites</p></div>
+      </div>
+      <div class="sub-filter-pills" id="subFilterContainer"></div>
+    </div>
+
+    <div id="servicesViewContainer" class="services-grid" style="display:none"></div>
+
+    <div id="newspapersViewContainer" class="newspapers-grid"></div>
+
+    <div id="articlesViewContainer" class="articles-section" style="display:none">
+      <div class="featured-news-grid" id="featuredArticlesGrid"></div>
+
+      <div class="article-tools">
+        <input class="article-search" id="articleSearchInput" placeholder="Search published articles..." oninput="renderArticlesView()">
+        <select id="articleCategoryFilter" onchange="renderArticlesView()"><option value="All">All Categories</option></select>
+        <select id="articleSort" onchange="renderArticlesView()"><option value="newest">Newest First</option><option value="oldest">Oldest First</option><option value="az">A–Z</option><option value="za">Z–A</option></select>
+      </div>
+
+      <div class="calendar-control-bar">
+        <div class="calendar-picker-group"><label for="articleDatePicker">📅 Select Article Date:</label><input type="date" id="articleDatePicker" class="calendar-input" onchange="handleDateSelect(this.value)"></div>
+        <div class="quick-dates" id="quickDatesContainer"></div>
+      </div>
+
+      <div class="articles-feed-grid" id="dailyArticlesGrid"></div>
+      <button id="loadMoreBtn" class="article-action-btn primary" style="align-self:center;display:none" onclick="loadMoreArticles()">Load More Articles →</button>
+    </div>
+  </main>
+</div>
+
+<div class="modal-overlay" id="articleModalOverlay" onclick="overlayClose(event)">
+  <article class="article-reader-modal">
+    <button class="close-modal-btn" onclick="closeArticleModal()" aria-label="Close article">✕</button>
+    <div class="article-reader-image-wrapper"><img id="modalArticleImage" src="" alt=""></div>
+    <div class="article-reader-body">
+      <div class="article-reader-top-meta"><span id="modalCategory" class="article-category"></span><span id="modalDate"></span></div>
+      <h1 id="modalTitle" class="modal-article-title"></h1>
+      <div class="modal-author-row"><span id="modalAuthor"></span> • <span id="modalReadingTime"></span></div>
+      <p id="modalExcerpt" class="modal-article-excerpt"></p>
+      <div id="modalContent" class="modal-article-content"></div>
+      <div id="modalTags" class="modal-article-tags"></div>
+      <div class="article-source-box"><strong>Source:</strong> <span id="modalSource"></span></div>
+      <div class="article-action-buttons">
+        <a id="modalOriginalLink" class="article-action-btn primary" href="#" target="_blank" rel="noopener noreferrer">🔗 Open Original Article</a>
+        <button class="article-action-btn" onclick="shareCurrentArticle()">↗ Share Article</button>
+        <button class="article-action-btn" onclick="copyArticleLink()">📋 Copy Link</button>
+      </div>
+      <div class="article-navigation"><button id="previousArticleBtn" onclick="openPreviousArticle()">← Previous Article</button><button id="nextArticleBtn" onclick="openNextArticle()">Next Article →</button></div>
+    </div>
+  </article>
+</div>
+
+<script src="../common.js"></script>
+<script>
+
+  
+const newspapersData=[
+{name:"Eenadu",
+type:"EPAPER",
+language:"Telugu",
+subcat:"Telugu ePapers",
+description:"Telugu daily newspaper and digital e-paper edition.",
+link:"https://epaper.eenadu.net/",
+logo:"https://epaper.eenadu.net//img/logo.png"},
+
+
+
+
+{name:"Sakshi",
+type:"EPAPER",
+language:"Telugu",
+subcat:"Telugu ePapers",
+description:"Telugu news, latest updates and e-paper.",
+link:"https://epaper.sakshi.com/",
+logo:"https://www.sakshi.com/themes/custom/sakshi/assets/images/logo.png"},
+
+{name:"Dinakaran",
+type:"EPAPER",
+language:"Tamil",
+subcat:"Tamil ePapers",
+description:"Tamil daily newspaper and digital e-paper edition.",
+link:"https://epaper.dinakaran.com/",
+logo:"https://epaper.dinakaran.com//img/logo.png"},
+
+{name:"Dinamalar",
+type:"EPAPER",
+language:"Tamil",
+subcat:"Tamil ePapers",
+description:"Tamil daily newspaper and digital e-paper edition.",
+link:"https://epaper.dinamalar.com/",
+logo:"https://epaper.dinamalar.com//img/logo.png"},
+
+{name:"The Hindu",
+type:"NEWSPAPER",
+language:"English",
+subcat:"English News Papers",
+description:"The Hindu is a daily Indian English-language newspaper published in Chennai, Mumbai, New Delhi, Bengaluru, Kolkata, Hyderabad, Pune, Ahmedabad, Lucknow, Chandigarh, Patna, Indore, Jaipur, Surat, Ludhiana, Nagpur, Varanasi, Gurugram, Chandigarh, and Vishakapatnam.",
+link:"https://www.thehindu.com/",
+logo:"https://www.thehindu.com/static/theme/default/base/images/logo.png"},
+
+{name:"The Times of India",type:"NEWSPAPER",language:"English",subcat:"English News Papers",description:"The Times of India is an Indian English-language daily newspaper owned by The Times Group, the largest media conglomerate in India.",link:"https://timesofindia.indiatimes.com/",logo:"https://static.toiimg.com/photo/72975551.cms"}, {name:"Dinamalar",type:"EPAPER",language:"Tamil",subcat:"Tamil ePapers",description:"Tamil daily newspaper and digital e-paper edition.",link:"https://epaper.dinamalar.com/",logo:"https://epaper.dinamalar.com//img/logo.png"},     
+{name:"Andhra Jyothi",type:"EPAPER",language:"Telugu",subcat:"Telugu ePapers",description:"Telugu newspaper and online edition.",link:"https://epaper.andhrajyothy.com/",logo:"https://static.andhrajyothy.com/assets/images/logo.png"},
+{name:"Namasthe Telangana",type:"EPAPER",language:"Telugu",subcat:"Telugu ePapers",description:"Telangana-focused Telugu daily e-paper.",link:"https://epaper.ntnews.com/",logo:"https://epaper.ntnews.com//img/logo.png"},
+{name:"Nava Telangana",type:"EPAPER",language:"Telugu",subcat:"Telugu ePapers",description:"Telugu daily newspaper digital edition.",link:"https://epaper.navatelangana.com/",logo:"https://epaper.navatelangana.com//img/logo/logo.png"},
+{name:"Mana Telangana",type:"EPAPER",language:"Telugu",subcat:"Telugu ePapers",description:"Telugu news and digital newspaper.",link:"https://epaper.manatelangana.news/",logo:"https://cache.epapr.in/wlconfiguploads/masthead682c82d93b4d9.jpeg"},
+{name:"The Hindu",type:"EPAPER",language:"English",subcat:"English ePapers",description:"English national daily digital newspaper.",link:"https://epaper.thehindu.com/",logo:"https://epaper.thehindu.com/logo/th_ep_logo.svg"},
+{name:"Times of India",type:"EPAPER",language:"English",subcat:"English ePapers",description:"English daily e-paper edition.",link:"https://epaper.timesgroup.com/",logo:"https://img.etimg.com/photo/105474636.cms"},
+{name:"Deccan Chronicle",type:"EPAPER",language:"English",subcat:"English ePapers",description:"English newspaper digital edition.",link:"https://epaper.deccanchronicle.com/",logo:""},
+{name:"The Hindu",type:"NEWS",language:"English",subcat:"English Websites",description:"Latest national and international news.",link:"https://www.thehindu.com/",logo:""},
+{name:"Indian Express",type:"NEWS",language:"English",subcat:"English Websites",description:"Breaking news, explainers and analysis.",link:"https://indianexpress.com/",logo:""},
+{name:"Hindustan Times",type:"NEWS",language:"English",subcat:"English Websites",description:"Latest news, business, sports and more.",link:"https://www.hindustantimes.com/",logo:""},
+{name:"BBC News",type:"NEWS",language:"English",subcat:"English Websites",description:"International news and analysis.",link:"https://www.bbc.com/news",logo:""},
+{name:"NDTV",type:"NEWS",language:"English",subcat:"English Websites",description:"Latest India and world news.",link:"https://www.ndtv.com/",logo:""}
+];
+
+const servicesCategories=[{id:"all",title:"All Services",icon:"▦",services:[{name:"Aadhaar Services",desc:"UIDAI identity and Aadhaar services",url:"https://uidai.gov.in/",logo:"https://beta.uidai.gov.in/assets/logo/logoWithTitle.svg"},{name:"PAN Services",desc:"Income Tax PAN related services",url:"https://www.incometax.gov.in/",logo:""},{name:"Voter Services",desc:"Election Commission voter services",url:"https://voters.eci.gov.in/",logo:""}]}];
+
+const publishedArticles=[
+{id:1,date:"2026-08-10",
+featured:true,
+category:"Technology",
+title:"How Artificial Intelligence Is Changing Everyday Digital Services",
+image:"https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=1200&q=80",
+excerpt:"Artificial intelligence is transforming government services, education, productivity and everyday digital experiences.",
+author:"Venkat Insights",
+readingTime:"6 min read",
+tags:["AI","Technology","Digital Services"],
+source:"Venkat Insights",
+link:"https://example.com",
+content:`<p>Artificial intelligence is becoming an important part of modern digital services. Governments, educational institutions and private organizations are increasingly using intelligent systems to improve accessibility, automation and user experience.</p><h3>AI in Government Services</h3><p>Digital platforms can use AI-assisted systems to help citizens find information, understand application requirements and navigate online services more efficiently.</p><h3>AI in Education</h3><p>Students can use AI-powered tools for research, translation, writing assistance and productivity while continuing to verify important information through trusted sources.</p><h3>What Users Should Know</h3><p>AI can make digital services easier to use, but users should review important information and rely on official sources before submitting applications or making important decisions.</p>`},
+
+
+
+
+{id:2,date:"2026-08-10",featured:true,category:"Government Services",title:"Complete Guide to Online Government Services in Telangana",image:"https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?auto=format&fit=crop&w=1200&q=80",excerpt:"A practical overview of finding government portals, documents and citizen services online.",author:"Venkat News Desk",readingTime:"7 min read",tags:["Telangana","Government","Services"],source:"Venkat Insights",link:"https://example.com",content:`<p>Online government portals have made many citizen services easier to access. Users can locate official departments, application forms, status tracking and digital document services from their respective portals.</p><h3>Use Official Portals</h3><p>Always verify the web address and department before entering personal information. Avoid unofficial websites that request unnecessary credentials.</p><h3>Keep Documents Ready</h3><p>Depending on the service, applicants may need identity documents, certificates, photographs or application references.</p>`},
+{id:3,date:"2026-08-10",featured:true,category:"Education",title:"How Students Can Prepare for Competitive Entrance Exams",image:"https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=1200&q=80",excerpt:"Build a realistic preparation plan using syllabus mapping, revision and mock tests.",author:"Education Bureau",readingTime:"5 min read",tags:["Education","Exams","Students"],source:"Venkat Insights",link:"https://example.com",content:`<p>Competitive examinations require consistent preparation rather than last-minute study. Start by understanding the syllabus and examination pattern.</p><h3>Create a Study Calendar</h3><p>Divide topics into manageable weekly targets and reserve time for revision and practice tests.</p><h3>Analyze Mock Tests</h3><p>Mock tests are most useful when students review mistakes and identify topics that need additional practice.</p>`},
+{id:4,date:"2026-08-09",category:"Digital Services",title:"Digital Documents: How to Store and Access Important Certificates",image:"https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1200&q=80",excerpt:"Organize certificates and important digital documents securely for faster access.",author:"Digital Desk",readingTime:"4 min read",tags:["Documents","Digital","Security"],source:"Venkat Insights",link:"https://example.com",content:`<p>Digital copies of certificates can save time when applying for education, employment and government services. Keep files organized with clear names and dates.</p><h3>Use Secure Storage</h3><p>Choose trusted storage services and enable strong authentication wherever available.</p>`},
+{id:5,date:"2026-08-09",category:"Cybersecurity",title:"Best Practices for Protecting Your Personal Information Online",image:"https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=1200&q=80",excerpt:"Simple cybersecurity practices can reduce the risk of account compromise and online fraud.",author:"Tech Insights",readingTime:"5 min read",tags:["Cybersecurity","Privacy","Safety"],source:"Venkat Insights",link:"https://example.com",content:`<p>Protecting personal information starts with basic security habits. Use unique passwords, enable multi-factor authentication and be cautious with unexpected links.</p><h3>Check Before You Click</h3><p>Look at the domain name and context before entering credentials or downloading files.</p>`},
+{id:6,date:"2026-08-08",category:"News",title:"Understanding E-Papers and Digital News Platforms",image:"https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=1200&q=80",excerpt:"Learn how digital newspaper editions and online news platforms differ.",author:"News Desk",readingTime:"4 min read",tags:["Newspapers","ePaper","News"],source:"Venkat Insights",link:"https://example.com",content:`<p>Digital newspapers provide readers with access to newspaper editions through web and mobile platforms, while news websites can publish continuously throughout the day.</p><h3>ePaper vs News Website</h3><p>An ePaper generally follows the structure of a printed edition. A news website is designed for continuously updated stories and multimedia content.</p>`},
+{id:7,date:"2026-08-07",category:"Career",title:"How to Apply for Government Services Online",image:"https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=1200&q=80",excerpt:"A simple workflow for finding official application pages and tracking submissions.",author:"Career Desk",readingTime:"5 min read",tags:["Career","Government","Applications"],source:"Venkat Insights",link:"https://example.com",content:`<p>Before applying online, identify the official department and read eligibility requirements carefully. Prepare the required documents before starting the application.</p>`},
+{id:8,date:"2026-08-06",category:"Tutorials",title:"Essential Cybersecurity Tips for Students",image:"https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80",excerpt:"Practical habits for protecting college accounts, devices and personal files.",author:"Tech Insights",readingTime:"4 min read",tags:["Students","Cybersecurity"],source:"Venkat Insights",link:"https://example.com",content:`<p>Students use many online accounts for education, banking and communication. Keeping those accounts secure should be part of everyday digital hygiene.</p>`},
+{id:9,date:"2026-08-05",category:"Travel",title:"How Technology Is Changing Travel Planning in India",image:"https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1200&q=80",excerpt:"Maps, digital tickets and online services are making trip planning easier.",author:"Travel Desk",readingTime:"5 min read",tags:["Travel","Technology"],source:"Venkat Insights",link:"https://example.com",content:`<p>Travel planning has become increasingly digital. Travelers can compare routes, manage bookings, store tickets and discover destinations through online platforms.</p>`},
+{id:10,date:"2026-08-04",category:"General Information",title:"A Beginner's Guide to Digital Productivity Tools",image:"https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=1200&q=80",excerpt:"A practical introduction to digital tools for notes, documents, planning and collaboration.",author:"Venkat Insights",readingTime:"5 min read",tags:["Productivity","Tools"],source:"Venkat Insights",link:"https://example.com",content:`<p>Digital productivity tools can help users organize tasks, notes, files and projects. The best setup is one that remains simple enough to use consistently.</p>`}
+];
+
+let currentMainView="newspapers",activeNewspaperSubcat="All",selectedArticleDate="2026-08-10",articleLimit=9,currentArticleIndex=-1;
+
+function switchMainView(view){
+ currentMainView=view;
+ document.querySelectorAll(".vi-view-switcher .nav-pill").forEach(x=>x.classList.remove("active"));
+ const pill=document.getElementById("pill-"+view);if(pill)pill.classList.add("active");
+ ["services","newspapers","articles"].forEach(v=>document.getElementById(v+"ViewContainer").style.display="none");
+ document.getElementById("subFilterContainer").style.display=view==="newspapers"?"flex":"none";
+ document.getElementById(view+"ViewContainer").style.display=view==="services"?"grid":view==="newspapers"?"grid":"flex";
+ if(view==="services"){viewMainTitle.innerText="Government Digital Portals";viewSubtitle.innerText="Access official government schemes, documents and utilities";renderSidebarForServices();renderServices();}
+ if(view==="newspapers"){viewMainTitle.innerText="Newspapers & ePapers Directory";viewSubtitle.innerText="Browse live e-Papers, news channels & English news websites";renderSidebarForNewspapers();renderSubFiltersForNewspapers();renderNewspapers();}
+ if(view==="articles"){viewMainTitle.innerText="Published Articles & Daily News Archive";viewSubtitle.innerText="Explore detailed articles, guides, announcements and daily news";renderSidebarForArticles();renderArticlesView();}
+ window.scrollTo({top:0,behavior:"smooth"});
+}
+function renderSidebarForServices(){sidebarSectionTitle.innerText="Service Categories";sidebarMenu.innerHTML=servicesCategories.map(c=>`<button class="menu-item">▦ <span>${c.title}</span></button>`).join("")}
+function renderSidebarForNewspapers(){sidebarSectionTitle.innerText="Newspaper Types";const cats=["All","Telugu ePapers","Telugu Websites","English ePapers","English Websites"];sidebarMenu.innerHTML=cats.map(x=>`<button class="menu-item ${x===activeNewspaperSubcat?"active":""}" onclick="activeNewspaperSubcat='${x}';renderSidebarForNewspapers();renderSubFiltersForNewspapers();renderNewspapers()">📰 <span>${x}</span></button>`).join("")}
+function renderSidebarForArticles(){sidebarSectionTitle.innerText="Article Topics";const cats=["All Topics","Technology","Education","Government Services","Digital Services","Career","Exams","News","Tutorials","Travel","General Information"];sidebarMenu.innerHTML=cats.map(x=>`<button class="menu-item" onclick="filterArticleTopic('${x}')">▤ <span>${x}</span></button>`).join("")}
+function renderSubFiltersForNewspapers(){const cats=["All","Telugu ePapers","Telugu Websites","English ePapers","English Websites"];subFilterContainer.innerHTML=cats.map(x=>`<button class="sub-pill ${x===activeNewspaperSubcat?"active":""}" onclick="activeNewspaperSubcat='${x}';renderSidebarForNewspapers();renderSubFiltersForNewspapers();renderNewspapers()">${x}</button>`).join("")}
+function renderNewspapers(search=""){
+  let list=newspapersData.filter(n=>activeNewspaperSubcat==="All"||n.subcat===activeNewspaperSubcat);
+  const q=search.toLowerCase().trim();
+  if(q)list=list.filter(n=>(n.name+" "+n.language+" "+n.type+" "+n.subcat+" "+n.description).toLowerCase().includes(q));
+  newspapersViewContainer.innerHTML=list.length?list.map(n=>{
+    const badge=n.type==="EPAPER"?"badge-epaper":n.type==="NEWS"?"badge-news":"badge-paper";
+    const slug='svc-news-'+n.name.toLowerCase().replace(/[^a-z0-9]+/g,'-');
+    return `<a class="newspaper-card" id="${slug}" data-target="${slug}" href="${n.link}" target="_blank" rel="noopener"><div class="newspaper-img-wrapper">${n.logo?`<img src="${n.logo}" alt="${n.name}" loading="lazy" onerror="this.parentElement.innerHTML='<div class=\\'newspaper-fallback\\'><div class=\\'newspaper-fallback-title\\'>${n.name}</div></div>'">`:`<div class="newspaper-fallback"><div class="newspaper-fallback-title">${n.name}</div></div>`}</div><div class="newspaper-body"><div class="newspaper-meta"><span class="newspaper-name">${n.name}</span><span class="newspaper-badge ${badge}">${n.type}</span></div><div style="font-size:.78rem;color:var(--text-muted);margin-top:4px">${n.language} • ${n.subcat}</div><p style="font-size:.86rem;color:var(--text-muted);margin:10px 0">${n.description}</p><div class="newspaper-action-btn">${n.type==="EPAPER"?"Read ePaper →":"Read News Online →"}</div></div></a>`
+  }).join(""):`<div class="empty-state"><h3>No newspapers found</h3><p>Try another search or category.</p></div>`
+}
+function renderServices(){servicesViewContainer.innerHTML=servicesCategories[0].services.map(s=>`<a class="service-card" href="${s.url}" target="_blank"><div class="card-header-left"><div class="card-logo">${s.logo?`<img src="${s.logo}" style="width:100%;height:100%;object-fit:contain" alt="">`:""}</div><span class="card-title">${s.name}</span></div><div class="card-desc">${s.desc}</div></a>`).join("")}
+function renderArticlesView(){
+ const search=(articleSearchInput.value||"").toLowerCase().trim(),cat=articleCategoryFilter.value,sort=articleSort.value;
+ if(!articleCategoryFilter.dataset.ready){[...new Set(publishedArticles.map(a=>a.category))].sort().forEach(c=>articleCategoryFilter.add(new Option(c,c)));articleCategoryFilter.dataset.ready="1"}
+ let list=publishedArticles.filter(a=>{const hay=(a.title+" "+a.category+" "+a.author+" "+a.excerpt+" "+a.tags.join(" ")+" "+a.date).toLowerCase();return(!search||hay.includes(search))&&(cat==="All"||a.category===cat)&&(selectedArticleDate==="ALL"||a.date===selectedArticleDate)});
+ if(sort==="newest")list.sort((a,b)=>b.date.localeCompare(a.date));if(sort==="oldest")list.sort((a,b)=>a.date.localeCompare(b.date));if(sort==="az")list.sort((a,b)=>a.title.localeCompare(b.title));if(sort==="za")list.sort((a,b)=>b.title.localeCompare(a.title));
+ document.getElementById("featuredArticlesGrid").innerHTML=publishedArticles.filter(a=>a.featured).slice(0,3).map(a=>featuredCard(a)).join("");
+ const dates=[...new Set(publishedArticles.map(a=>a.date))].sort().reverse();quickDatesContainer.innerHTML=`<button class="date-pill ${selectedArticleDate==="ALL"?"active":""}" onclick="selectedArticleDate='ALL';renderArticlesView()">All Articles</button>`+dates.map(d=>`<button class="date-pill ${d===selectedArticleDate?"active":""}" onclick="handleDateSelect('${d}')">${d==="2026-08-10"?"Today":formatDate(d)}</button>`).join("");
+ articleDatePicker.value=selectedArticleDate==="ALL"?"":selectedArticleDate;
+ dailyArticlesGrid.innerHTML=list.length?list.slice(0,articleLimit).map(articleCard).join(""):`<div class="empty-state"><h3>No articles found</h3><p>Try another keyword, date or category.</p></div>`;
+ loadMoreBtn.style.display=list.length>articleLimit?"block":"none";
+}
+function featuredCard(a){return `<div class="featured-card"><div class="featured-image"><img src="${a.image}" alt="${a.title}" loading="lazy" onerror="this.style.display='none'"></div><div class="featured-content"><span class="featured-tag">Featured • ${a.category}</span><h3 class="featured-title">${a.title}</h3><p class="featured-snippet">${a.excerpt}</p><small style="color:var(--text-muted)">${formatDate(a.date)} • ${a.readingTime}</small><br><button class="featured-read" style="border:0;margin-top:12px;cursor:pointer" onclick="openArticleById(${a.id})">Read Full Article →</button></div></div>`}
+function articleCard(a){return `<article class="article-feed-card" id="svc-art-${a.id}" data-target="svc-art-${a.id}" onclick="openArticleById(${a.id})"><div class="article-thumb"><img src="${a.image}" alt="${a.title}" loading="lazy" onerror="this.parentElement.innerHTML='<div class=\\'newspaper-fallback\\'><div class=\\'newspaper-fallback-title\\'>${a.category}</div></div>'"></div><div class="article-feed-body"><div class="article-card-header"><span class="article-category">${a.category}</span><span style="font-size:.72rem;color:var(--text-muted)">📅 ${formatDate(a.date)}</span></div><h3 class="article-feed-title">${a.title}</h3><p class="article-feed-excerpt">${a.excerpt}</p><div class="article-card-footer"><span>By ${a.author} • ${a.readingTime}</span><span class="read-article-link">Read Article →</span></div></div></article>`}
+function formatDate(d){return new Date(d+"T00:00:00").toLocaleDateString("en-IN",{day:"2-digit",month:"short",year:"numeric"})}
+function handleDateSelect(d){selectedArticleDate=d||"ALL";articleLimit=9;renderArticlesView()}
+function loadMoreArticles(){articleLimit+=9;renderArticlesView()}
+function filterArticleTopic(t){articleCategoryFilter.value=t==="All Topics"?"All":t;selectedArticleDate="ALL";renderArticlesView()}
+function openArticleById(id){const i=publishedArticles.findIndex(a=>a.id===id);if(i<0)return;currentArticleIndex=i;const a=publishedArticles[i];modalArticleImage.src=a.image;modalArticleImage.alt=a.title;modalCategory.textContent=a.category;modalDate.textContent=formatDate(a.date);modalTitle.textContent=a.title;modalAuthor.textContent="By "+a.author;modalReadingTime.textContent=a.readingTime;modalExcerpt.textContent=a.excerpt;modalContent.innerHTML=a.content;modalTags.innerHTML=a.tags.map(t=>`<span class="tag">#${t}</span>`).join("");modalSource.textContent=a.source||a.author;modalOriginalLink.href=a.link||"#";articleModalOverlay.classList.add("active");document.body.style.overflow="hidden";updateArticleNav()}
+function closeArticleModal(){articleModalOverlay.classList.remove("active");document.body.style.overflow=""}
+function overlayClose(e){if(e.target===articleModalOverlay)closeArticleModal()}
+function updateArticleNav(){previousArticleBtn.disabled=currentArticleIndex<=0;nextArticleBtn.disabled=currentArticleIndex>=publishedArticles.length-1;previousArticleBtn.style.opacity=previousArticleBtn.disabled?".45":"1";nextArticleBtn.style.opacity=nextArticleBtn.disabled?".45":"1"}
+function openPreviousArticle(){if(currentArticleIndex>0)openArticleById(publishedArticles[currentArticleIndex-1].id)}
+function openNextArticle(){if(currentArticleIndex<publishedArticles.length-1)openArticleById(publishedArticles[currentArticleIndex+1].id)}
+async function shareCurrentArticle(){const a=publishedArticles[currentArticleIndex];if(navigator.share){try{await navigator.share({title:a.title,text:a.excerpt,url:a.link||location.href})}catch(e){}}else copyArticleLink()}
+async function copyArticleLink(){const a=publishedArticles[currentArticleIndex];const url=a.link||location.href;try{await navigator.clipboard.writeText(url);alert("Article link copied.")}catch(e){alert("Copy failed. Please copy the link manually.")}}
+function handleGlobalSearch(){const q=(document.getElementById("searchInput")||{}).value||"";const clearBtn=document.getElementById("clearSearchBtn");if(clearBtn)clearBtn.style.display=q?"block":"none";if(currentMainView==="newspapers")renderNewspapers(q);else if(currentMainView==="articles"){articleSearchInput.value=q;renderArticlesView()}else renderServices()}
+function clearSearch(){const s=document.getElementById("searchInput");if(s)s.value="";handleGlobalSearch()}
+window.filterServices = handleGlobalSearch;
+
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeArticleModal();if(e.key==="ArrowLeft"&&!articleModalOverlay.classList.contains("active"))return;if(e.key==="ArrowLeft"&&currentArticleIndex>0)openPreviousArticle();if(e.key==="ArrowRight"&&articleModalOverlay.classList.contains("active")&&currentArticleIndex<publishedArticles.length-1)openNextArticle()});
+
+switchMainView("newspapers");
+
+// Universal search index registration
+if (window.VI_SEARCH) {
+  const items = [
+    ...newspapersData.map(n => ({
+      id: 'svc-news-' + n.name.toLowerCase().replace(/[^a-z0-9]+/g, '-'),
+      title: `${n.name} (${n.language} ${n.type})`,
+      cat: 'News & Articles',
+      page: 'Newsandarticles/newsandarticles.html',
+      target: 'svc-news-' + n.name.toLowerCase().replace(/[^a-z0-9]+/g, '-'),
+      desc: `${n.language} ${n.subcat} • ${n.description}`
+    })),
+    ...publishedArticles.map(a => ({
+      id: 'svc-art-' + a.id,
+      title: a.title,
+      cat: 'News & Articles',
+      page: 'Newsandarticles/newsandarticles.html',
+      target: 'svc-art-' + a.id,
+      desc: `${a.category} • By ${a.author} • ${a.excerpt}`
+    }))
+  ];
+  window.VI_SEARCH.register(items);
+}
+
+// Deep-link target resolution
+function resolveNewsTarget() {
+  const params = new URLSearchParams(window.location.search);
+  const target = params.get('target') || (window.location.hash ? window.location.hash.replace('#', '') : '');
+  if (!target) return;
+  if (target.startsWith('svc-art-')) {
+    switchMainView('articles');
+    setTimeout(() => {
+      const el = document.getElementById(target);
+      if (el && typeof window.pulseAndScrollToElement === 'function') {
+        window.pulseAndScrollToElement(el);
+      }
+    }, 350);
+  } else if (target.startsWith('svc-news-')) {
+    switchMainView('newspapers');
+    setTimeout(() => {
+      const el = document.getElementById(target);
+      if (el && typeof window.pulseAndScrollToElement === 'function') {
+        window.pulseAndScrollToElement(el);
+      }
+    }, 350);
+  }
+}
+setTimeout(resolveNewsTarget, 250);
+</script>
+
+<!-- ===== Footer Section (Adjustable in-page) ===== -->
+<footer class="vi-footer" role="contentinfo">
+    <div class="footer-main">
+        <div class="footer-container footer-grid">
+            <!-- Brand -->
+            <div class="footer-brand-col">
+                <a href="../index.html" class="footer-brand-link" aria-label="Venkat Insights Home">
+                    <div class="logo-box">
+                        <img src="https://yt3.googleusercontent.com/4v1xmWtq6zF97zQKTMasxeUMAxjrAPD5cNlwp3bGLHzhPl82FtsydTCYlYoa2S2Ezmxjc5ckq0I=s88-c-k-c0x00ffffff-no-rj" alt="Vi Logo" onerror="this.onerror=null; this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 42 42%22><rect width=%2242%22 height=%2242%22 rx=%2210%22 fill=%22%234f46e5%22/><text x=%2221%22 y=%2228%22 text-anchor=%22middle%22 fill=%22white%22 font-size=%2218%22 font-weight=%22bold%22>Vi</text></svg>';">
+                    </div>
+                    <div class="brand-text">
+                        <h1>Venkat Insights</h1>
+                        <p class="tagline">Jobs &bull; Education &bull; Services &bull; Insights</p>
+                    </div>
+                </a>
+                <p class="footer-desc">
+                    Your one-stop destination for government notifications, exam updates, education resources, news &amp; articles and 80+ curated AI tools.
+                </p>
+                <div class="footer-socials">
+                    <a href="#" class="social-btn" aria-label="YouTube" title="YouTube">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 00-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 00.5 6.2 31.3 31.3 0 000 12a31.3 31.3 0 00.5 5.8 3 3 0 002.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 002.1-2.1A31.3 31.3 0 0024 12a31.3 31.3 0 00-.5-5.8zM9.6 15.6V8.4L15.8 12l-6.2 3.6z"/></svg>
+                    </a>
+                    <a href="#" class="social-btn" aria-label="Telegram" title="Telegram">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.9 4.6l-3.1 14.7c-.2 1-.8 1.2-1.7.8l-4.7-3.5-2.3 2.2c-.3.3-.5.5-1 .5l.4-4.8L18.2 6.9c.4-.3-.1-.5-.6-.2L6.9 13l-4.6-1.4c-1-.3-1-1 .2-1.5l18-7c.8-.3 1.6.2 1.4 1.5z"/></svg>
+                    </a>
+                    <a href="#" class="social-btn" aria-label="X (Twitter)" title="X (Twitter)">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 2H22l-6.8 7.8L23.3 22h-6.3l-4.9-6.4L6.5 22H3.4l7.3-8.3L1 2h6.5l4.4 5.9L18.9 2zm-1.1 18h1.7L7.6 3.8H5.7L17.8 20z"/></svg>
+                    </a>
+                    <a href="#" class="social-btn" aria-label="Instagram" title="Instagram">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2.5" y="2.5" width="19" height="19" rx="5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.5" cy="6.5" r="1.3" fill="currentColor" stroke="none"/></svg>
+                    </a>
+                    <a href="#" class="social-btn" aria-label="WhatsApp" title="WhatsApp">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 00-8.6 15.1L2 22l5-1.3A10 10 0 1012 2zm5.4 14.1c-.2.7-1.3 1.3-1.9 1.4-.5.1-1.1.1-1.8-.1-.4-.1-.9-.3-1.6-.6-2.9-1.2-4.7-4.1-4.9-4.3-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.4.2.5.7 1.8.8 1.9.1.1.1.3 0 .5-.3.6-.7.9-.5 1.2.7 1.2 1.6 2 2.8 2.6.3.2.5.1.7-.1l.9-1c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.5.4.1.1.1.7-.2 1.3z"/></svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a class="footer-link" href="../index.html">Home</a></li>
+                    <li><a class="footer-link" href="../governmentservices/governmentservices.html">Govt Services</a></li>
+                    <li><a class="footer-link" href="../education/education.html">Education</a></li>
+                    <li><a class="footer-link" href="newsandarticles.html">News &amp; Articles</a></li>
+                    <li><a class="footer-link" href="../career/career.html">Career / Jobs</a></li>
+                    <li><a class="footer-link" href="../tools.html">Tools</a></li>
+                    <li><a class="footer-link" href="../aitools.html">80+ AI Tools</a></li>
+                </ul>
+            </div>
+
+            <!-- News Topics -->
+            <div class="footer-col">
+                <h4>News &amp; ePapers</h4>
+                <ul>
+                    <li><a class="footer-link" href="javascript:void(0)" onclick="switchMainView('newspapers')">Telugu ePapers</a></li>
+                    <li><a class="footer-link" href="javascript:void(0)" onclick="switchMainView('newspapers')">English ePapers</a></li>
+                    <li><a class="footer-link" href="javascript:void(0)" onclick="switchMainView('articles')">Featured Articles</a></li>
+                    <li><a class="footer-link" href="javascript:void(0)" onclick="filterArticleTopic('Technology')">Technology</a></li>
+                    <li><a class="footer-link" href="javascript:void(0)" onclick="filterArticleTopic('Education')">Education Guides</a></li>
+                    <li><a class="footer-link" href="javascript:void(0)" onclick="filterArticleTopic('Government Services')">Govt Portals</a></li>
+                </ul>
+            </div>
+
+            <!-- Resources -->
+            <div class="footer-col">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a class="footer-link" href="../career/career.html">Admit Cards</a></li>
+                    <li><a class="footer-link" href="../education/education.html">Exam Results</a></li>
+                    <li><a class="footer-link" href="../education/education.html">Entrance Keys</a></li>
+                    <li><a class="footer-link" href="../career/career.html">Job Syllabus</a></li>
+                    <li><a class="footer-link" href="../about.html">About Us</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom bar -->
+    <div class="footer-bottom">
+        <div class="footer-container footer-bottom-inner">
+            <p>&copy; <span id="footerYear">2026</span> Venkat Insights. All rights reserved.</p>
+            <div class="footer-legal">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Use</a>
+                <a href="#">Disclaimer</a>
+                <a href="../about.html">Contact</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Back to Top Button -->
+<button class="back-to-top" id="backToTop" aria-label="Back to top" title="Back to top">
+    <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7"/></svg>
+</button>
+
+<script src="../career/careerdata.js"></script>
+<script src="../searchdata.js"></script>
+<script src="../common.js"></script>
+</body>
+</html>

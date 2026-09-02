@@ -1,0 +1,756 @@
+<!doctype html>
+<html lang="en" data-page="about">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>About Venkatesh Kothapally &amp; Venkat Insights</title>
+    <meta name="description" content="Learn about Venkatesh Kothapally, developer and creator of Venkat Insights. Supporting students and citizens with free government services, job updates, exam guides, and AI tools.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="common.css">
+
+    <style>
+        .about-main {
+            flex: 1;
+            max-width: 1180px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 2.5rem 1.5rem 5rem;
+        }
+
+        /* Hero section */
+        .about-hero {
+            text-align: center;
+            margin-bottom: 3.5rem;
+        }
+
+        .about-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.4rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.82rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--vi-primary, #4f46e5);
+            background: rgba(79, 70, 229, 0.1);
+            margin-bottom: 1.25rem;
+            border: 1px solid rgba(79, 70, 229, 0.2);
+        }
+
+        .about-hero h1 {
+            font-size: clamp(2.2rem, 4.5vw, 3.25rem);
+            font-weight: 900;
+            color: var(--vi-text, #0f172a);
+            letter-spacing: -0.025em;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        .about-hero h1 span.highlight {
+            background: linear-gradient(135deg, #4f46e5, #06b6d4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .about-hero p.lead {
+            font-size: 1.15rem;
+            line-height: 1.7;
+            color: var(--vi-text-muted, #64748b);
+            max-width: 780px;
+            margin: 0 auto;
+        }
+
+        /* Developer Spotlight Card */
+        .developer-card {
+            background: var(--vi-card-bg, #ffffff);
+            border: 1px solid var(--vi-border, #e2e8f0);
+            border-radius: 24px;
+            padding: 2.5rem;
+            box-shadow: var(--vi-shadow, 0 10px 30px rgba(0,0,0,0.04));
+            margin-bottom: 2.5rem;
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .dev-photo-col {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .dev-avatar-wrapper {
+            width: 220px;
+            height: 220px;
+            border-radius: 24px;
+            overflow: hidden;
+            background: linear-gradient(135deg, rgba(79, 70, 229, 0.1), rgba(6, 182, 212, 0.15));
+            border: 3px solid var(--vi-border, #e2e8f0);
+            box-shadow: 0 8px 24px rgba(79, 70, 229, 0.12);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .dev-avatar-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .dev-avatar-fallback {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #4f46e5, #4338ca);
+            color: #ffffff;
+            padding: 1rem;
+        }
+
+        .dev-avatar-fallback .initials {
+            font-size: 3.5rem;
+            font-weight: 900;
+            letter-spacing: -0.05em;
+        }
+
+        .dev-avatar-fallback .label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            opacity: 0.9;
+            margin-top: 0.25rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .dev-photo-note {
+            font-size: 0.76rem;
+            color: var(--vi-text-muted, #64748b);
+            margin-top: 0.75rem;
+            text-align: center;
+            max-width: 210px;
+        }
+
+        .dev-bio-col h2 {
+            font-size: 1.85rem;
+            font-weight: 900;
+            color: var(--vi-text, #0f172a);
+            margin-bottom: 0.35rem;
+        }
+
+        .dev-role-badge {
+            display: inline-block;
+            font-size: 0.92rem;
+            font-weight: 700;
+            color: var(--vi-primary, #4f46e5);
+            margin-bottom: 1.25rem;
+        }
+
+        .dev-bio-col p {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: var(--vi-text-muted, #64748b);
+            margin-bottom: 1rem;
+        }
+
+        .dev-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.85rem;
+            margin-top: 1.5rem;
+        }
+
+        .btn-action-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.8rem 1.4rem;
+            border-radius: 12px;
+            background: var(--vi-primary, #4f46e5);
+            color: #ffffff;
+            font-weight: 700;
+            font-size: 0.95rem;
+            text-decoration: none;
+            transition: all 0.2s;
+            box-shadow: 0 4px 14px rgba(79, 70, 229, 0.3);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-action-primary:hover {
+            background: var(--vi-primary-hover, #4338ca);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(79, 70, 229, 0.4);
+            color: #ffffff;
+        }
+
+        .btn-action-outline {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.8rem 1.4rem;
+            border-radius: 12px;
+            background: var(--vi-card-bg, #ffffff);
+            color: var(--vi-text, #0f172a);
+            font-weight: 700;
+            font-size: 0.95rem;
+            text-decoration: none;
+            border: 1px solid var(--vi-border, #cbd5e1);
+            transition: all 0.2s;
+        }
+
+        .btn-action-outline:hover {
+            border-color: var(--vi-primary, #4f46e5);
+            color: var(--vi-primary, #4f46e5);
+            transform: translateY(-2px);
+        }
+
+        /* Buy Me a Coffee & Support Showcase */
+        .support-card {
+            background: linear-gradient(135deg, rgba(79, 70, 229, 0.03), rgba(245, 158, 11, 0.05));
+            border: 2px solid rgba(245, 158, 11, 0.25);
+            border-radius: 24px;
+            padding: 2.75rem 2.25rem;
+            box-shadow: var(--vi-shadow, 0 10px 30px rgba(0,0,0,0.03));
+            margin-bottom: 2.5rem;
+        }
+
+        .support-header {
+            text-align: center;
+            max-width: 680px;
+            margin: 0 auto 2.25rem;
+        }
+
+        .support-header h2 {
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--vi-text, #0f172a);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
+            margin-bottom: 0.6rem;
+        }
+
+        .support-header p {
+            color: var(--vi-text-muted, #64748b);
+            font-size: 1rem;
+            line-height: 1.65;
+        }
+
+        .support-grid {
+            display: grid;
+            grid-template-columns: 290px 1fr;
+            gap: 2.5rem;
+            align-items: center;
+            max-width: 860px;
+            margin: 0 auto;
+        }
+
+        .qr-box-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: var(--vi-card-bg, #ffffff);
+            border: 1px solid var(--vi-border, #e2e8f0);
+            border-radius: 20px;
+            padding: 1.5rem;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+            text-align: center;
+        }
+
+        .qr-image-frame {
+            width: 220px;
+            height: 220px;
+            border-radius: 14px;
+            background: #ffffff;
+            border: 2px dashed rgba(245, 158, 11, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .qr-image-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+        }
+
+        .qr-fallback {
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #b45309;
+            text-align: center;
+        }
+
+        .qr-fallback svg {
+            width: 48px;
+            height: 48px;
+            margin-bottom: 0.5rem;
+            color: #d97706;
+        }
+
+        .qr-fallback span {
+            font-size: 0.78rem;
+            font-weight: 700;
+            line-height: 1.35;
+        }
+
+        .qr-tag {
+            margin-top: 0.85rem;
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: #b45309;
+            background: rgba(245, 158, 11, 0.12);
+            padding: 0.3rem 0.75rem;
+            border-radius: 9999px;
+            display: inline-block;
+        }
+
+        .support-info-col {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+
+        .support-perk {
+            display: flex;
+            gap: 0.9rem;
+            align-items: flex-start;
+        }
+
+        .perk-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            background: rgba(79, 70, 229, 0.1);
+            color: var(--vi-primary, #4f46e5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.15rem;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .perk-text h4 {
+            font-size: 1.05rem;
+            font-weight: 800;
+            color: var(--vi-text, #0f172a);
+            margin-bottom: 0.2rem;
+        }
+
+        .perk-text p {
+            font-size: 0.9rem;
+            line-height: 1.5;
+            color: var(--vi-text-muted, #64748b);
+            margin: 0;
+        }
+
+        /* UPI Copy Bar */
+        .upi-copy-container {
+            margin-top: 0.5rem;
+            background: var(--vi-card-bg, #ffffff);
+            border: 1px solid var(--vi-border, #cbd5e1);
+            border-radius: 14px;
+            padding: 0.85rem 1.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+        }
+
+        .upi-label-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .upi-label-group small {
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 800;
+            color: var(--vi-text-muted, #64748b);
+        }
+
+        .upi-label-group span.upi-id {
+            font-size: 1.05rem;
+            font-weight: 800;
+            color: var(--vi-text, #0f172a);
+            font-family: monospace;
+            letter-spacing: 0.02em;
+        }
+
+        .btn-copy-upi {
+            background: #f59e0b;
+            color: #ffffff;
+            border: none;
+            border-radius: 10px;
+            padding: 0.65rem 1.25rem;
+            font-weight: 700;
+            font-size: 0.88rem;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+
+        .btn-copy-upi:hover {
+            background: #d97706;
+            transform: translateY(-1px);
+        }
+
+        .btn-copy-upi.copied {
+            background: #10b981 !important;
+            color: #ffffff !important;
+        }
+
+        /* Portal Principles & Features */
+        .info-cards-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .info-box {
+            background: var(--vi-card-bg, #ffffff);
+            border: 1px solid var(--vi-border, #e2e8f0);
+            border-radius: 18px;
+            padding: 1.75rem;
+            box-shadow: var(--vi-shadow, 0 4px 16px rgba(0,0,0,0.03));
+        }
+
+        .info-box h3 {
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: var(--vi-text, #0f172a);
+            margin-bottom: 0.6rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .info-box p {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: var(--vi-text-muted, #64748b);
+            margin: 0;
+        }
+
+        /* Disclaimer & Authenticity Notice */
+        .disclaimer-card {
+            background: rgba(234, 179, 8, 0.06);
+            border: 1px solid rgba(234, 179, 8, 0.3);
+            border-radius: 18px;
+            padding: 1.75rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .disclaimer-card h3 {
+            color: #b45309;
+            font-size: 1.1rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .disclaimer-card p {
+            color: #78350f;
+            font-size: 0.9rem;
+            line-height: 1.65;
+            margin: 0;
+        }
+
+        @media (max-width: 900px) {
+            .developer-card { grid-template-columns: 1fr; text-align: center; justify-items: center; }
+            .dev-actions { justify-content: center; }
+            .support-grid { grid-template-columns: 1fr; }
+            .info-cards-grid { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 600px) {
+            .developer-card { padding: 1.5rem; }
+            .support-card { padding: 1.75rem 1.25rem; }
+            .upi-copy-container { flex-direction: column; align-items: stretch; text-align: center; }
+            .btn-copy-upi { justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <main class="about-main">
+        <!-- Hero Section -->
+        <section class="about-hero">
+            <div class="about-badge">
+                <span>⚡</span> Built for Citizens &amp; Students 
+            </div>
+            <h1>About <span class="highlight">Venkat Insights</span></h1>
+            <p class="lead">Dedicated to making government services, entrance examinations, active job notifications, and digital tools effortless, verified, and accessible for everyone.</p>
+        </section>
+
+        <!-- Developer Profile Card -->
+        <article class="developer-card">
+            <div class="dev-photo-col">
+                <div class="dev-avatar-wrapper">
+                    <!-- Developer Photo (Drop photo into logos/venkatesh_kothapally.jpg) -->
+                    <img id="devProfilePic" src="logos/venkatesh_kothapally.png" alt="Venkatesh Kothapally" onerror="this.style.display='none'; document.getElementById('devFallbackAvatar').style.display='flex';">
+                    <div class="dev-avatar-fallback" id="devFallbackAvatar" style="display:none;">
+                        <span class="initials">VK</span>
+                        <span class="label">Venkatesh Kothapally</span>
+                    </div>
+                </div>
+                <div class="dev-photo-note">
+                    Venkatesh Kothapally<br>
+                   <!-- <small style="opacity:0.8;">(Add your photo at <code>logos/venkatesh_kothapally.png</code>)</small> -->
+                </div>
+            </div>
+
+            <div class="dev-bio-col">
+                <h2>Venkatesh Kothapally</h2>
+                <div class="dev-role-badge">Founder &amp; Lead Developer &bull; Venkat Insights (venkatinsights)</div>
+                <p>Hello! I am <strong>Venkatesh Kothapally</strong>, the creator and developer of <strong>Venkat Insights</strong>. I designed and engineered this platform with a clear mission: to eliminate the hassle of navigating scattered departmental websites, unverified links, and confusing notification portals.</p>
+                <p>Whether you are a student preparing for TS EAMCET, a job seeker waiting for Railway or Banking notifications, or a citizen needing an Aadhaar or MeeSeva certificate, Venkat Insights provides direct, verified, and official gateways in seconds.</p>
+                
+                <div class="dev-actions">
+                    <!-- Mail Button with backend mailto -->
+                    <a href="mailto:venkateshkothapally308@gmail.com?subject=Inquiry%20from%20Venkat%20Insights%20Visitor" class="btn-action-primary" aria-label="Send email to Venkatesh Kothapally">
+                        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                        <span>Mail Venkat</span>
+                    </a>
+                    <a href="https://www.youtube.com/venkyvenkat" target="_blank" rel="noopener" class="btn-action-outline">
+                        <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 00-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 00.5 6.2 31.3 31.3 0 000 12a31.3 31.3 0 00.5 5.8 3 3 0 002.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 002.1-2.1A31.3 31.3 0 0024 12a31.3 31.3 0 00-.5-5.8zM9.6 15.6V8.4L15.8 12l-6.2 3.6z"/></svg>
+                        <span>YouTube Channel</span>
+                    </a>
+                </div>
+            </div>
+        </article>
+
+        <!-- Buy Me a Coffee & Support Section -->
+        <section class="support-card">
+            <div class="support-header">
+                <h2>☕ Support Venkat Insights &bull; Buy Me a Coffee</h2>
+                <p>Venkat Insights is completely free, ad-free, and independently hosted. If this website helped you download a certificate, find an exam update, or secure an official portal link, consider supporting future development!</p>
+            </div>
+
+            <div class="support-grid">
+                <!-- PhonePe / UPI QR Frame -->
+                <div class="qr-box-container">
+                    <div class="qr-image-frame">
+                        <!-- PhonePe QR Code (Drop your image into logos/phonepe_qr.png) -->
+                        <img id="phonepeQrImg" src="logos/phonepe_qr.png" alt="PhonePe UPI QR Code" onerror="this.style.display='none'; document.getElementById('qrFallbackBox').style.display='flex';">
+                        <div class="qr-fallback" id="qrFallbackBox" style="display:none;">
+                            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"/></svg>
+                            <span>PhonePe / UPI QR Code</span>
+                            <small style="margin-top:6px; opacity:0.85;">(Drop QR at <code>logos/phonepe_qr.png</code>)</small>
+                        </div>
+                    </div>
+                    <span class="qr-tag">Scan to Pay via PhonePe / GPay / Paytm</span>
+                </div>
+
+                <!-- Support Info & Copy Button -->
+                <div class="support-info-col">
+                    <div class="support-perk">
+                        <div class="perk-icon">⚡</div>
+                        <div class="perk-text">
+                            <h4>Fast &amp; Server Maintenance</h4>
+                            <p>Contributions help maintain real-time search indexing, CDN speed, and continuous link verification.</p>
+                        </div>
+                    </div>
+
+                    <div class="support-perk">
+                        <div class="perk-icon">🛡️</div>
+                        <div class="perk-text">
+                            <h4>100% Free &amp; Ad-Free Forever</h4>
+                            <p>No pop-ups, no spam redirects, and no invasive tracking. Pure, high-speed utility.</p>
+                        </div>
+                    </div>
+
+                    <!-- UPI ID Box with Copy Button -->
+                    <div class="upi-copy-container">
+                        <div class="upi-label-group">
+                            <small>UPI ID for Direct Support</small>
+                            <span class="upi-id" id="upiIdText">venkatinsights@ybl</span>
+                        </div>
+                        <button class="btn-copy-upi" id="copyUpiBtn" onclick="copyUpiId()" aria-label="Copy UPI ID to clipboard">
+                            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"/></svg>
+                            <span id="copyBtnLabel">Copy UPI ID</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- What Makes Venkat Insights Better -->
+        <section class="info-cards-grid">
+            <div class="info-box">
+                <h3>🏛️ 100+ Govt Portals</h3>
+                <p>Curated and tested links to UIDAI Aadhaar, Income Tax PAN, Passport Seva, Ration Card, Prajavani, MeeSeva, and Land Records.</p>
+            </div>
+            <div class="info-box">
+                <h3>🎓 140+ Entrance Exams</h3>
+                <p>Complete directory for TS EAMCET, POLYCET, DOST, SSC, Intermediate, university admission portals, and ePASS scholarships.</p>
+            </div>
+            <div class="info-box">
+                <h3>🤖 85+ Curated AI Tools</h3>
+                <p>Categorized directory of artificial intelligence tools for writing, software development, video synthesis, and study research.</p>
+            </div>
+        </section>
+
+        <!-- Authenticity & Disclaimer -->
+        <section class="disclaimer-card">
+            <h3>🛡️ Independent Public Information Directory</h3>
+            <p><strong>Venkat Insights (venkatinsights)</strong> is an independent educational and public utility website developed by <strong>Venkatesh Kothapally</strong>. Every external link on this website redirects directly to authentic government domains (<code>.gov.in</code>, <code>.nic.in</code>) or verified official boards. We do not collect private citizen credentials.</p>
+        </section>
+    </main>
+
+    <!-- ===== Footer Section (Adjustable in-page) ===== -->
+    <footer class="vi-footer" role="contentinfo">
+        <div class="footer-main">
+            <div class="footer-container footer-grid">
+                <!-- Brand -->
+                <div class="footer-brand-col">
+                    <a href="index.html" class="footer-brand-link" aria-label="Venkat Insights Home">
+                        <div class="logo-box">
+                            <img src="https://yt3.googleusercontent.com/4v1xmWtq6zF97zQKTMasxeUMAxjrAPD5cNlwp3bGLHzhPl82FtsydTCYlYoa2S2Ezmxjc5ckq0I=s88-c-k-c0x00ffffff-no-rj" alt="Vi Logo" onerror="this.onerror=null; this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 42 42%22><rect width=%2242%22 height=%2242%22 rx=%2210%22 fill=%22%234f46e5%22/><text x=%2221%22 y=%2228%22 text-anchor=%22middle%22 fill=%22white%22 font-size=%2218%22 font-weight=%22bold%22>Vi</text></svg>';">
+                        </div>
+                        <div class="brand-text">
+                            <h1>Venkat Insights</h1>
+                            <p class="tagline">Jobs &bull; Education &bull; Services &bull; Insights</p>
+                        </div>
+                    </a>
+                    <p class="footer-desc">
+                        Created by Venkatesh Kothapally &bull; Official government schemes, exam schedules, recruitment updates, and digital tools.
+                    </p>
+                    <div class="footer-socials">
+                        <a href="https://www.youtube.com/venkyvenkat" target="_blank" rel="noopener" class="social-btn" aria-label="YouTube" title="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 00-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 00.5 6.2 31.3 31.3 0 000 12a31.3 31.3 0 00.5 5.8 3 3 0 002.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 002.1-2.1A31.3 31.3 0 0024 12a31.3 31.3 0 00-.5-5.8zM9.6 15.6V8.4L15.8 12l-6.2 3.6z"/></svg></a>
+                        <a href="mailto:venkateshkothapally308@gmail.com" class="social-btn" aria-label="Email" title="Email Venkatesh Kothapally"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></a>
+                        <a href="#" class="social-btn" aria-label="Telegram" title="Telegram"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.9 4.6l-3.1 14.7c-.2 1-.8 1.2-1.7.8l-4.7-3.5-2.3 2.2c-.3.3-.5.5-1 .5l.4-4.8L18.2 6.9c.4-.3-.1-.5-.6-.2L6.9 13l-4.6-1.4c-1-.3-1-1 .2-1.5l18-7c.8-.3 1.6.2 1.4 1.5z"/></svg></a>
+                        <a href="#" class="social-btn" aria-label="X (Twitter)" title="X (Twitter)"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 2H22l-6.8 7.8L23.3 22h-6.3l-4.9-6.4L6.5 22H3.4l7.3-8.3L1 2h6.5l4.4 5.9L18.9 2zm-1.1 18h1.7L7.6 3.8H5.7L17.8 20z"/></svg></a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a class="footer-link" href="index.html">Home</a></li>
+                        <li><a class="footer-link" href="governmentservices/governmentservices.html">Govt Services</a></li>
+                        <li><a class="footer-link" href="education/education.html">Education</a></li>
+                        <li><a class="footer-link" href="Newsandarticles/newsandarticles.html">News &amp; Articles</a></li>
+                        <li><a class="footer-link" href="career/career.html">Career / Jobs</a></li>
+                        <li><a class="footer-link" href="tools.html">Tools</a></li>
+                        <li><a class="footer-link" href="aitools.html">80+ AI Tools</a></li>
+                    </ul>
+                </div>
+
+                <!-- Job Categories -->
+                <div class="footer-col">
+                    <h4>Job Categories</h4>
+                    <ul>
+                        <li><a class="footer-link" href="career/career.html">Railway Jobs</a></li>
+                        <li><a class="footer-link" href="career/career.html">Banking Jobs</a></li>
+                        <li><a class="footer-link" href="career/career.html">Defence Jobs</a></li>
+                        <li><a class="footer-link" href="career/career.html">UPSC</a></li>
+                        <li><a class="footer-link" href="career/career.html">SSC</a></li>
+                        <li><a class="footer-link" href="career/career.html">Teaching</a></li>
+                    </ul>
+                </div>
+
+                <!-- Developer & Contact -->
+                <div class="footer-col">
+                    <h4>Creator &amp; Support</h4>
+                    <ul>
+                        <li><a class="footer-link" href="about.html">About Venkatesh</a></li>
+                        <li><a class="footer-link" href="mailto:venkateshkothapally308@gmail.com">venkateshkothapally308@gmail.com</a></li>
+                        <li><a class="footer-link" href="about.html#upiIdText">Buy Me a Coffee</a></li>
+                        <li><a class="footer-link" href="tools.html">Online Utilities</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom bar -->
+        <div class="footer-bottom">
+            <div class="footer-container footer-bottom-inner">
+                <p>&copy; <span id="footerYear">2026</span> Venkat Insights &bull; Developed by Venkatesh Kothapally</p>
+                <div class="footer-legal">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Use</a>
+                    <a href="#">Disclaimer</a>
+                    <a href="mailto:venkateshkothapally308@gmail.com">Contact</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" aria-label="Back to top" title="Back to top">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7"/></svg>
+    </button>
+
+    <script>
+        function copyUpiId() {
+            const upiId = document.getElementById('upiIdText').innerText.trim();
+            const btn = document.getElementById('copyUpiBtn');
+            const label = document.getElementById('copyBtnLabel');
+
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(upiId).then(onCopied).catch(fallbackCopy);
+            } else {
+                fallbackCopy();
+            }
+
+            function fallbackCopy() {
+                const ta = document.createElement('textarea');
+                ta.value = upiId;
+                ta.style.position = 'fixed';
+                ta.style.left = '-9999px';
+                document.body.appendChild(ta);
+                ta.focus();
+                ta.select();
+                try {
+                    document.execCommand('copy');
+                    onCopied();
+                } catch (e) {
+                    alert('Could not copy automatically. Please copy: ' + upiId);
+                }
+                document.body.removeChild(ta);
+            }
+
+            function onCopied() {
+                btn.classList.add('copied');
+                label.textContent = 'Copied to Clipboard!';
+                setTimeout(() => {
+                    btn.classList.remove('copied');
+                    label.textContent = 'Copy UPI ID';
+                }, 2500);
+            }
+        }
+    </script>
+    <script src="career/careerdata.js"></script>
+    <script src="searchdata.js"></script>
+    <script src="common.js"></script>
+</body>
+</html>

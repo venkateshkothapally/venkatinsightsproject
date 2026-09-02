@@ -1,0 +1,52 @@
+Attached Element Context from Integrated Browser
+
+Element: div.nav-pills-container
+
+URL: file:///c%3A/Users/venka/Desktop/New%20folder%20%286%29/index.html
+
+HTML Path: header#navbarWrapper.navbar-wrapper > nav#navPillsContainer.nav-pills-wrapper > div.nav-pills-container
+
+Outer HTML:
+```html
+<div class="nav-pills-container"><a href="index.html" class="nav-pill active" data-page="home">Home</a><a href="governmentservices/governmentservices.html" class="nav-pill " data-page="government">Government Services</a><a href="education/education.html" class="nav-pill " data-page="education">Education</a><a href="Newsandarticles/newsandarticles.html" class="nav-pill " data-page="news">News</a><a href="career/career.html" class="nav-pill " data-page="career">Career</a><a href="tools.html" class="nav-pill " data-page="tools">Tools</a><a href="aitools.html" class="nav-pill " data-page="ai">80+ AI Tools</a><a href="about.html" class="nav-pill " data-page="about">About</a></div>
+```
+
+Dimensions:
+- top: 70px
+- left: 8px
+- width: 1167px
+- height: 44px
+
+CSS:
+```css
+*, *::before, *::after { box-sizing: border-box; }
+.nav-pills-container { max-width: 1340px;
+    margin: 0 auto;
+    padding: .45rem 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: .35rem; }
+
+/* Inherited */
+body { font-family: var(--font-family); color: var(--text-main) !important }
+html[data-theme='light'] body { color: #0f172a !important }
+
+/* Resolved values */
+margin: 0px;
+padding: 7.2px 20px;
+align-items: center;
+box-sizing: border-box;
+color: rgb(15, 23, 42);
+column-gap: 5.6px;
+display: flex;
+font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+height: 43.8333px;
+max-width: 1340px;
+row-gap: 5.6px;
+unicode-bidi: isolate /*UA*/;
+width: 1167.33px;
+
+/* CSS variables */
+--text-main: #0f172a;
+--font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+```
