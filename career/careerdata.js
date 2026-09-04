@@ -13,7 +13,7 @@
         qualification: "12th / Degree", 
         advertisement: "CEN 01/2026", 
         lastDate: "25-09-2026", 
-        detailsUrl: "../rrb1.html" },
+        detailsUrl: "../careerpages/rrbntpc.html" },
 
         { id: "venkatinsights", 
         category: "venkatinsights", 
@@ -24,6 +24,17 @@
         advertisement: "not available", 
         lastDate: "26-08-2026", 
         detailsUrl: "https://www.youtube.com/venkyvenkat" },
+
+
+        { id: "Apprantice-Recruitment", 
+        category: "Apprentice Recruitment", 
+        board: "Rashtriya Chemicals and Fertilizers Limited (RCFL) Apprentice Recruitment 2026", 
+        postDate: "04/09/2026", 
+        postName: "Category of Trade Apprentices", 
+        qualification: "10+2, Diploma  and B.Sc", 
+        advertisement: "rcfltd 2026-27", 
+        lastDate: "20-09-2026", 
+        detailsUrl: "https://nats.education.gov.in/" },
         
 
 

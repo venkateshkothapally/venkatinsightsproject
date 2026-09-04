@@ -2120,6 +2120,20 @@ window.VI_MASTER_SEARCH_INDEX = [
     "desc": "venkatinsights | Qualification: editing | Last Date: 26-08-2026"
   },
   {
+    "id": "svc-job-Apprentice-Recruitment",
+    "title": "Rashtriya Chemicals and Fertilizers Limited (RCFL) Apprentice Recruitment 2026",
+    "cat": "Career",
+    "page": "career/career.html",
+    "target": "svc-job-Apprentice-Recruitment",
+    "desc": "Apprentice Recruitment | Qualification: 10+2, Diploma  and B.Sc | Last Date: 20-09-2026"
+  },
+
+
+
+
+
+
+  {
     "id": "svc-job-RRB-JE-2026",
     "title": "RRB Junior Engineer – 4029 Posts",
     "cat": "Career",
@@ -2374,5 +2388,29 @@ window.VI_MASTER_SEARCH_INDEX = [
     "page": "Newsandarticles/newsandarticles.html",
     "target": "svc-art-4",
     "desc": "Curated list of AI tools for literature review, presentations & math"
+  },
+  {
+    "id": "svc-privacy-policy",
+    "title": "Privacy Policy & Data Security",
+    "cat": "Legal & Transparency",
+    "page": "privacypolicy.html",
+    "target": "svc-privacy-policy",
+    "desc": "Venkat Insights official privacy policy, data practices & user rights"
+  },
+  {
+    "id": "svc-terms-of-use",
+    "title": "Terms of Use & User Agreement",
+    "cat": "Legal & Transparency",
+    "page": "termsofuse.html",
+    "target": "svc-terms-of-use",
+    "desc": "Venkat Insights terms of service, user conduct & intellectual property rights"
+  },
+  {
+    "id": "svc-disclaimer",
+    "title": "Disclaimer & Official Notice",
+    "cat": "Legal & Transparency",
+    "page": "disclaimer.html",
+    "target": "svc-disclaimer",
+    "desc": "Venkat Insights non-government entity notice, public verification & liability disclaimer"
   }
 ];

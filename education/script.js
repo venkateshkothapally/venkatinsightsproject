@@ -423,6 +423,7 @@
     `;
 
     modal.hidden = false;
+    document.body.classList.add('modal-open');
     document.body.style.overflow = 'hidden';
     renderIcons();
 
@@ -436,7 +437,8 @@
 
   function closeModal() {
     const modal = document.getElementById('modal');
-    modal.hidden = true;
+    if (modal) modal.hidden = true;
+    document.body.classList.remove('modal-open');
     document.body.style.overflow = '';
     document.removeEventListener('keydown', onEscClose);
   }

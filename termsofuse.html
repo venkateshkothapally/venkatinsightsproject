@@ -1,0 +1,497 @@
+<!doctype html>
+<html lang="en" data-page="terms">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Terms of Use — Venkat Insights</title>
+    <meta name="description" content="Terms of Use for Venkat Insights. Understand your rights and responsibilities when using our public information directory and educational portals.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="common.css">
+
+    <style>
+        .terms-main {
+            flex: 1;
+            max-width: 960px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 2rem 1.25rem 4.5rem;
+        }
+
+        /* Top Navigation Bar with Back Button */
+        .top-nav-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.6rem 1.1rem;
+            border-radius: 12px;
+            background: var(--vi-card-bg, #ffffff);
+            color: var(--vi-text, #0f172a);
+            border: 1px solid var(--vi-border, #cbd5e1);
+            font-size: 0.92rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: var(--vi-shadow, 0 2px 8px rgba(0,0,0,0.04));
+            text-decoration: none;
+        }
+
+        .back-btn:hover {
+            border-color: var(--vi-primary, #4f46e5);
+            color: var(--vi-primary, #4f46e5);
+            transform: translateX(-3px);
+            box-shadow: 0 4px 14px rgba(79, 70, 229, 0.12);
+        }
+
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.88rem;
+            color: var(--vi-text-muted, #64748b);
+        }
+
+        .breadcrumb a {
+            color: var(--vi-primary, #4f46e5);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        /* Hero header */
+        .terms-hero {
+            text-align: center;
+            margin-bottom: 2.75rem;
+        }
+
+        .terms-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.35rem 0.95rem;
+            border-radius: 9999px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--vi-primary, #4f46e5);
+            background: rgba(79, 70, 229, 0.1);
+            margin-bottom: 1rem;
+            border: 1px solid rgba(79, 70, 229, 0.2);
+        }
+
+        .terms-hero h1 {
+            font-size: clamp(2.2rem, 4.5vw, 3rem);
+            font-weight: 900;
+            color: var(--vi-text, #0f172a);
+            letter-spacing: -0.025em;
+            line-height: 1.2;
+            margin-bottom: 0.6rem;
+        }
+
+        .terms-hero .effective-date {
+            font-size: 0.98rem;
+            color: var(--vi-text-muted, #64748b);
+            font-weight: 600;
+        }
+
+        /* Policy / Terms Card Content */
+        .policy-card {
+            background: var(--vi-card-bg, #ffffff);
+            border: 1px solid var(--vi-border, #e2e8f0);
+            border-radius: 24px;
+            padding: 2.75rem 2.5rem;
+            box-shadow: var(--vi-shadow, 0 10px 30px rgba(0,0,0,0.03));
+            display: flex;
+            flex-direction: column;
+            gap: 2.25rem;
+        }
+
+        .policy-section {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            position: relative;
+        }
+
+        .policy-section:not(:last-child) {
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--vi-border, #f1f5f9);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 0.85rem;
+        }
+
+        .section-num {
+            width: 32px;
+            height: 32px;
+            border-radius: 10px;
+            background: rgba(79, 70, 229, 0.1);
+            color: var(--vi-primary, #4f46e5);
+            font-weight: 800;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .policy-section h2 {
+            font-size: 1.35rem;
+            font-weight: 800;
+            color: var(--vi-text, #0f172a);
+            margin: 0;
+            line-height: 1.3;
+        }
+
+        .policy-section p {
+            font-size: 1.02rem;
+            line-height: 1.75;
+            color: var(--vi-text-muted, #475569);
+            margin: 0;
+        }
+
+        .policy-list {
+            list-style: none;
+            padding: 0;
+            margin: 0.35rem 0 0 0;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .policy-list li {
+            font-size: 1.02rem;
+            line-height: 1.65;
+            color: var(--vi-text-muted, #475569);
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+        }
+
+        .policy-list li::before {
+            content: "•";
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: rgba(79, 70, 229, 0.12);
+            color: var(--vi-primary, #4f46e5);
+            font-weight: 900;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+            margin-top: 3px;
+        }
+
+        /* Contact Box inside terms */
+        .contact-box {
+            background: linear-gradient(135deg, rgba(79, 70, 229, 0.05), rgba(6, 182, 212, 0.05));
+            border: 1px solid rgba(79, 70, 229, 0.25);
+            border-radius: 18px;
+            padding: 1.75rem;
+            margin-top: 0.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.85rem;
+        }
+
+        .contact-box h3 {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: var(--vi-text, #0f172a);
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .contact-box p {
+            font-size: 0.98rem;
+            line-height: 1.6;
+            color: var(--vi-text-muted, #64748b);
+            margin: 0;
+        }
+
+        .contact-actions {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .contact-email-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.75rem 1.35rem;
+            border-radius: 12px;
+            background: var(--vi-primary, #4f46e5);
+            color: #ffffff;
+            font-weight: 700;
+            font-size: 0.95rem;
+            text-decoration: none;
+            transition: all 0.2s;
+            box-shadow: 0 4px 14px rgba(79, 70, 229, 0.25);
+        }
+
+        .contact-email-link:hover {
+            background: var(--vi-primary-hover, #4338ca);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(79, 70, 229, 0.35);
+            color: #ffffff;
+        }
+
+        @media (max-width: 768px) {
+            .policy-card {
+                padding: 1.75rem 1.25rem;
+                border-radius: 18px;
+            }
+            .policy-section h2 {
+                font-size: 1.2rem;
+            }
+            .policy-section p, .policy-list li {
+                font-size: 0.95rem;
+            }
+            .contact-box {
+                padding: 1.25rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <main class="terms-main">
+        <!-- Top Navigation Bar with Back Button & Breadcrumbs -->
+        <div class="top-nav-bar">
+            <button type="button" class="back-btn" onclick="smartGoBack()" aria-label="Go back to previous page" title="Go back">
+                <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
+                <span>Back</span>
+            </button>
+            <div class="breadcrumb">
+                <a href="index.html">Home</a>
+                <span>&rsaquo;</span>
+                <span>Terms of Use</span>
+            </div>
+        </div>
+
+        <!-- Hero Header -->
+        <section class="terms-hero">
+            <div class="terms-badge">
+                <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+                <span>User Agreement</span>
+            </div>
+            <h1>Terms of Use</h1>
+            <p class="effective-date">Effective Date: August 2026 &bull; Venkat Insights</p>
+        </section>
+
+        <!-- Terms Content Card -->
+        <article class="policy-card">
+            <!-- 1. Acceptance of Terms -->
+            <section class="policy-section">
+                <div class="section-header">
+                    <span class="section-num">1</span>
+                    <h2>Acceptance of Terms</h2>
+                </div>
+                <p>By accessing and using Venkat Insights (the &ldquo;Portal&rdquo;), you agree to comply with and be bound by these Terms of Use. If you do not agree with any part of these terms, please discontinue use of the portal immediately.</p>
+            </section>
+
+            <!-- 2. Purpose of the Portal -->
+            <section class="policy-section">
+                <div class="section-header">
+                    <span class="section-num">2</span>
+                    <h2>Purpose of the Portal</h2>
+                </div>
+                <p>Venkat Insights is an informational platform designed to aggregate Indian and Telangana state government services, educational portals, job recruitment notifications, utility links, and news updates for public convenience. We act solely as an informational aggregator and do not represent any government entity.</p>
+            </section>
+
+            <!-- 3. Intellectual Property Rights -->
+            <section class="policy-section">
+                <div class="section-header">
+                    <span class="section-num">3</span>
+                    <h2>Intellectual Property Rights</h2>
+                </div>
+                <p>All original source code, layout designs, UI components, graphics, and curated content on this portal are the intellectual property of Venkat Insights unless otherwise stated. You may not copy, reproduce, distribute, or exploit any portal assets for commercial gain without prior written consent.</p>
+            </section>
+
+            <!-- 4. External Links and Third-Party Content -->
+            <section class="policy-section">
+                <div class="section-header">
+                    <span class="section-num">4</span>
+                    <h2>External Links and Third-Party Content</h2>
+                </div>
+                <p>Our portal provides links to external government websites, official exam boards, and third-party news outlets.</p>
+                <ul class="policy-list">
+                    <li>We do not endorse, control, or guarantee the accuracy of content on external sites.</li>
+                    <li>Users are advised to verify official notifications directly on respective government or institutional portals before taking action.</li>
+                </ul>
+            </section>
+
+            <!-- 5. User Conduct and Responsibilities -->
+            <section class="policy-section">
+                <div class="section-header">
+                    <span class="section-num">5</span>
+                    <h2>User Conduct and Responsibilities</h2>
+                </div>
+                <p>When using our platform, you agree not to:</p>
+                <ul class="policy-list">
+                    <li>Engage in any automated scraping, data mining, or malicious activity that disrupts portal availability.</li>
+                    <li>Misuse subscription services or provide fraudulent contact details.</li>
+                    <li>Attempt to bypass security measures or tamper with the underlying code.</li>
+                </ul>
+            </section>
+
+            <!-- 6. Limitation of Liability -->
+            <section class="policy-section">
+                <div class="section-header">
+                    <span class="section-num">6</span>
+                    <h2>Limitation of Liability</h2>
+                </div>
+                <p>Venkat Insights and its creators shall not be held liable for any direct, indirect, incidental, or consequential damages arising from the use of&mdash;or inability to use&mdash;the portal, including delays in job notifications, broken external links, or reliance on aggregated information.</p>
+            </section>
+
+            <!-- 7. Modifications to Terms -->
+            <section class="policy-section">
+                <div class="section-header">
+                    <span class="section-num">7</span>
+                    <h2>Modifications to Terms</h2>
+                </div>
+                <p>We reserve the right to modify, suspend, or update these Terms of Use at any time without prior notice. Continued use of the portal following any changes constitutes your formal acceptance of the updated terms.</p>
+            </section>
+
+            <!-- Contact Us -->
+            <div class="contact-box">
+                <h3>
+                    <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                    Contact Us
+                </h3>
+                <p>For any questions, feedback, or concerns regarding these Terms of Use, please contact us at:</p>
+                <div class="contact-actions">
+                    <a href="mailto:venkateshkothapally308@gmail.com?subject=Terms%20of%20Use%20Inquiry%20-%20Venkat%20Insights" class="contact-email-link">
+                        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                        <span>venkateshkothapally308@gmail.com</span>
+                    </a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <!-- ===== Footer Section (Adjustable in-page) ===== -->
+    <footer class="vi-footer" role="contentinfo">
+        <div class="footer-main">
+            <div class="footer-container footer-grid">
+                <!-- Brand -->
+                <div class="footer-brand-col">
+                    <a href="index.html" class="footer-brand-link" aria-label="Venkat Insights Home">
+                        <div class="logo-box">
+                            <img src="https://yt3.googleusercontent.com/4v1xmWtq6zF97zQKTMasxeUMAxjrAPD5cNlwp3bGLHzhPl82FtsydTCYlYoa2S2Ezmxjc5ckq0I=s88-c-k-c0x00ffffff-no-rj" alt="Vi Logo" onerror="this.onerror=null; this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 42 42%22><rect width=%2242%22 height=%2242%22 rx=%2210%22 fill=%22%234f46e5%22/><text x=%2221%22 y=%2228%22 text-anchor=%22middle%22 fill=%22white%22 font-size=%2218%22 font-weight=%22bold%22>Vi</text></svg>';">
+                        </div>
+                        <div class="brand-text">
+                            <h1>Venkat Insights</h1>
+                            <p class="tagline">Jobs &bull; Education &bull; Services &bull; Insights</p>
+                        </div>
+                    </a>
+                    <p class="footer-desc">
+                        Official government schemes, exam schedules, recruitment updates, and digital tools. Built by Venkatesh Kothapally.
+                    </p>
+                    <div class="footer-socials">
+                        <a href="https://www.youtube.com/venkyvenkat" target="_blank" rel="noopener" class="social-btn" aria-label="YouTube" title="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 00-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 00.5 6.2 31.3 31.3 0 000 12a31.3 31.3 0 00.5 5.8 3 3 0 002.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 002.1-2.1A31.3 31.3 0 0024 12a31.3 31.3 0 00-.5-5.8zM9.6 15.6V8.4L15.8 12l-6.2 3.6z"/></svg></a>
+                        <a href="mailto:venkateshkothapally308@gmail.com" class="social-btn" aria-label="Email" title="Email Venkatesh Kothapally"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></a>
+                        <a href="#" class="social-btn" aria-label="Telegram" title="Telegram"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.9 4.6l-3.1 14.7c-.2 1-.8 1.2-1.7.8l-4.7-3.5-2.3 2.2c-.3.3-.5.5-1 .5l.4-4.8L18.2 6.9c.4-.3-.1-.5-.6-.2L6.9 13l-4.6-1.4c-1-.3-1-1 .2-1.5l18-7c.8-.3 1.6.2 1.4 1.5z"/></svg></a>
+                        <a href="#" class="social-btn" aria-label="X (Twitter)" title="X (Twitter)"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 2H22l-6.8 7.8L23.3 22h-6.3l-4.9-6.4L6.5 22H3.4l7.3-8.3L1 2h6.5l4.4 5.9L18.9 2zm-1.1 18h1.7L7.6 3.8H5.7L17.8 20z"/></svg></a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a class="footer-link" href="index.html">Home</a></li>
+                        <li><a class="footer-link" href="governmentservices/governmentservices.html">Govt Services</a></li>
+                        <li><a class="footer-link" href="education/education.html">Education</a></li>
+                        <li><a class="footer-link" href="Newsandarticles/newsandarticles.html">News &amp; Articles</a></li>
+                        <li><a class="footer-link" href="career/career.html">Career / Jobs</a></li>
+                        <li><a class="footer-link" href="tools.html">Tools</a></li>
+                        <li><a class="footer-link" href="aitools.html">80+ AI Tools</a></li>
+                    </ul>
+                </div>
+
+                <!-- Job Categories -->
+                <div class="footer-col">
+                    <h4>Job Categories</h4>
+                    <ul>
+                        <li><a class="footer-link" href="career/career.html">Railway Jobs</a></li>
+                        <li><a class="footer-link" href="career/career.html">Banking Jobs</a></li>
+                        <li><a class="footer-link" href="career/career.html">Defence Jobs</a></li>
+                        <li><a class="footer-link" href="career/career.html">UPSC</a></li>
+                        <li><a class="footer-link" href="career/career.html">SSC</a></li>
+                        <li><a class="footer-link" href="career/career.html">Teaching</a></li>
+                    </ul>
+                </div>
+
+                <!-- Resources & Legal -->
+                <div class="footer-col">
+                    <h4>Resources &amp; Legal</h4>
+                    <ul>
+                        <li><a class="footer-link" href="about.html">About Us</a></li>
+                        <li><a class="footer-link" href="privacypolicy.html">Privacy Policy</a></li>
+                        <li><a class="footer-link" href="termsofuse.html">Terms of Use</a></li>
+                        <li><a class="footer-link" href="disclaimer.html">Disclaimer</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom bar -->
+        <div class="footer-bottom">
+            <div class="footer-container footer-bottom-inner">
+                <p>&copy; <span id="footerYear">2026</span> Venkat Insights. All rights reserved.</p>
+                <div class="footer-legal">
+                    <a href="privacypolicy.html">Privacy Policy</a>
+                    <a href="termsofuse.html">Terms of Use</a>
+                    <a href="disclaimer.html">Disclaimer</a>
+                    <a href="mailto:venkateshkothapally308@gmail.com">Contact</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" aria-label="Back to top" title="Back to top">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7"/></svg>
+    </button>
+
+    <script>
+        // Smart Back Button: navigates back in browser history if referrer is from the same site, else goes home
+        function smartGoBack() {
+            if (document.referrer && document.referrer.indexOf(window.location.host) !== -1) {
+                history.back();
+            } else {
+                window.location.href = 'index.html';
+            }
+        }
+    </script>
+    <script src="career/careerdata.js"></script>
+    <script src="searchdata.js"></script>
+    <script src="common.js"></script>
+</body>
+</html>
+

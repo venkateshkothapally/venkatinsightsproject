@@ -93,6 +93,9 @@
         if (path.includes('aitools')) return 'ai';
         if (path.includes('tools')) return 'tools';
         if (path.includes('about')) return 'about';
+        if (path.includes('privacy')) return 'privacy';
+        if (path.includes('terms')) return 'terms';
+        if (path.includes('disclaimer')) return 'disclaimer';
         return 'home';
     }
 
