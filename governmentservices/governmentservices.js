@@ -153,7 +153,13 @@
             let list = [];
             categoriesData.forEach(cat => {
                 if (cat.services) {
-                    list = list.concat(cat.services);
+                    cat.services.forEach(s => {
+                        list.push({
+                            ...s,
+                            catId: cat.id,
+                            catTitle: cat.title
+                        });
+                    });
                 }
             });
             return list;
@@ -182,10 +188,27 @@
             }
 
             if (trimmedQuery !== '') {
-                listToDisplay = allServicesList.filter(s => 
-                    s.name.toLowerCase().includes(trimmedQuery) || 
-                    s.desc.toLowerCase().includes(trimmedQuery)
-                );
+                const normQuery = trimmedQuery.replace(/adhar/g, 'aadhaar');
+                const qTokens = normQuery.split(/\s+/).filter(Boolean);
+                const qCore = normQuery.replace(/\b(services?|portal|online|govt|government)\b/g, '').trim();
+
+                listToDisplay = allServicesList.filter(s => {
+                    const sName = s.name.toLowerCase();
+                    const sDesc = s.desc.toLowerCase();
+                    const sCatTitle = (s.catTitle || '').toLowerCase();
+                    const sCatId = (s.catId || '').toLowerCase();
+
+                    // 1. Direct match on name, description, or category title
+                    if (sName.includes(normQuery) || sDesc.includes(normQuery) || sCatTitle.includes(normQuery)) return true;
+
+                    // 2. Core category match (e.g. "pan" in "pan services", "aadhaar" in "aadhaar services")
+                    if (qCore && (sCatTitle.includes(qCore) || sCatId.includes(qCore))) return true;
+
+                    // 3. Keyword / token match across name, description, and category title
+                    return qTokens.length > 0 && qTokens.every(t =>
+                        sName.includes(t) || sDesc.includes(t) || sCatTitle.includes(t) || sCatId.includes(t)
+                    );
+                });
 
                 if (titleElem) titleElem.innerText = `Search Results for "${raw.trim()}"`;
                 if (subtitleElem) subtitleElem.innerText = `Found ${listToDisplay.length} service${listToDisplay.length === 1 ? '' : 's'} across all categories`;
@@ -303,34 +326,68 @@
             window.VI_SEARCH.register(govItems);
         }
 
-        // Deep-link target resolution: If loaded with ?target=... or #...
-        function resolveGovTarget() {
+        // Deep-link target resolution: If loaded with ?target=... or #... or clicked from universal search
+        function resolveGovTarget(targetParam) {
+            // Remove any previous active pulse animations immediately across the entire page
+            document.querySelectorAll('.vi-highlight-pulse').forEach(el => el.classList.remove('vi-highlight-pulse'));
+
             const params = new URLSearchParams(window.location.search);
-            const target = params.get('target') || (window.location.hash ? window.location.hash.replace('#', '') : '');
+            const target = targetParam || params.get('target') || (window.location.hash ? window.location.hash.replace('#', '') : '');
             if (!target) return;
 
-            // Find matching service across categories
+            // Sync URL history state so subsequent queries don't stay locked onto old target
+            try {
+                const currentUrl = new URL(window.location.href);
+                if (targetParam) {
+                    currentUrl.searchParams.set('target', targetParam);
+                }
+                window.history.replaceState({}, '', currentUrl.toString());
+            } catch (e) {}
+
+            // 1. Check if target is a category direct selector (e.g. cat-aadhaar, cat-pan, or aadhaar)
+            const catClean = target.replace(/^cat-/, '').replace(/^svc-gov-/, '').toLowerCase();
+            const matchedCategory = categoriesData.find(c =>
+                c.id.toLowerCase() === catClean ||
+                c.title.toLowerCase().replace(/[^a-z0-9]+/g, '-') === catClean ||
+                (catClean.length >= 3 && c.id.toLowerCase().includes(catClean))
+            );
+
+            if (matchedCategory && matchedCategory.id !== 'all') {
+                activeCategoryId = matchedCategory.id;
+                const searchInput = document.getElementById('searchInput');
+                if (searchInput) searchInput.value = '';
+                renderSidebar();
+                renderServices();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                return;
+            }
+
+            // 2. Find matching service across categories
             for (const cat of categoriesData) {
                 if (cat.services) {
                     const match = cat.services.find(s => {
                         const slug = `svc-gov-${(s.id || s.name).toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
-                        return slug === target || target.includes(s.name.toLowerCase());
+                        return slug === target || target.includes((s.id || s.name).toLowerCase().replace(/[^a-z0-9]+/g, '-'));
                     });
                     if (match) {
                         activeCategoryId = cat.id;
+                        const searchInput = document.getElementById('searchInput');
+                        if (searchInput) searchInput.value = '';
                         renderSidebar();
                         renderServices();
                         setTimeout(() => {
-                            const el = document.getElementById(target) || document.querySelector(`[data-target="${target}"]`);
+                            const targetSlug = `svc-gov-${(match.id || match.name).toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
+                            const el = document.getElementById(target) || document.getElementById(targetSlug) || document.querySelector(`[data-target="${target}"]`) || document.querySelector(`[data-target="${targetSlug}"]`);
                             if (el && typeof window.pulseAndScrollToElement === 'function') {
                                 window.pulseAndScrollToElement(el);
                             }
                         }, 250);
-                        break;
+                        return;
                     }
                 }
             }
         }
+        window.resolveGovTarget = resolveGovTarget;
 
         renderSidebar();
         renderServices();

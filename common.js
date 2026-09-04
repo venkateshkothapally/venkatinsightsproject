@@ -120,7 +120,17 @@
     // ============================================================
     // High-coverage built-in index across Govt Services, Education, Career, AI Tools & News
     const DEFAULT_SEARCH_INDEX = [
-        // --- Government Services ---
+        // --- Government Services Categories & Portals ---
+        { id: 'cat-gov-aadhaar', title: 'Aadhaar Services (All Services)', cat: 'Government Services', page: 'governmentservices/governmentservices.html', target: 'cat-aadhaar', desc: 'UIDAI, My Aadhaar, Download e-Aadhaar, Check Status, Lock/Unlock' },
+        { id: 'cat-gov-pan', title: 'PAN Services (All Services)', cat: 'Government Services', page: 'governmentservices/governmentservices.html', target: 'cat-pan', desc: 'Apply New PAN, Download e-PAN, Reprint PAN, PAN Status Track' },
+        { id: 'cat-gov-passport', title: 'Passport Services (All Services)', cat: 'Government Services', page: 'governmentservices/governmentservices.html', target: 'cat-passport', desc: 'Passport Seva, Tatkaal Passport, Police Clearance, Book Appointment' },
+        { id: 'cat-gov-food', title: 'Food & Civil Supplies (Ration Card)', cat: 'Government Services', page: 'governmentservices/governmentservices.html', target: 'cat-food', desc: 'Ration card search, FSC application, Civil supplies portal' },
+        { id: 'cat-gov-transport', title: 'Transport & RTA Services', cat: 'Government Services', page: 'governmentservices/governmentservices.html', target: 'cat-transport', desc: 'Driving Licence, LLR, Vehicle Registration, RTA Telangana' },
+        { id: 'cat-gov-health', title: 'Health & Medical Services', cat: 'Government Services', page: 'governmentservices/governmentservices.html', target: 'cat-health', desc: 'eSanjeevani teleconsultation, Aarogyasri health scheme' },
+        { id: 'cat-gov-electricity', title: 'Electricity & Utilities', cat: 'Government Services', page: 'governmentservices/governmentservices.html', target: 'cat-electricity', desc: 'TGSPDCI, TSSPDCL electricity bill payment & new connection' },
+        { id: 'svc-gov-myaadhaar', title: 'My Aadhaar Portal', cat: 'Government Services', page: 'governmentservices/governmentservices.html', target: 'svc-gov-my-aadhaar', desc: 'Aadhaar online services, download e-Aadhaar & update' },
+
+        // --- Government Services Individual Services ---
         { id: 'svc-gov-aadhaar-uidai', title: 'UIDAI Aadhaar Portal', cat: 'Government Services', page: 'governmentservices/governmentservices.html', target: 'svc-gov-aadhaar-uidai', desc: 'Official Aadhaar portal, enrollment & digital services' },
         { id: 'svc-gov-aadhaar-download', title: 'Download e-Aadhaar', cat: 'Government Services', page: 'governmentservices/governmentservices.html', target: 'svc-gov-aadhaar-download', desc: 'Download official digital copy of Aadhaar card' },
         { id: 'svc-gov-aadhaar-status', title: 'Check Aadhaar Status', cat: 'Government Services', page: 'governmentservices/governmentservices.html', target: 'svc-gov-aadhaar-status', desc: 'Track Aadhaar enrollment and update status' },
@@ -194,12 +204,12 @@
         },
         query: function (q, maxResults = 12) {
             if (!q || !q.trim()) return [];
-            const term = q.toLowerCase().trim();
-            const words = term.split(/\s+/);
+            const term = q.toLowerCase().trim().replace(/adhar/g, 'aadhaar');
+            const words = term.split(/\s+/).filter(Boolean);
 
             return this.index
                 .map(item => {
-                    const text = `${item.title} ${item.cat} ${item.desc || ''}`.toLowerCase();
+                    const text = `${item.title} ${item.cat} ${item.desc || ''}`.toLowerCase().replace(/adhar/g, 'aadhaar');
                     let score = 0;
                     if (item.title.toLowerCase().startsWith(term)) score += 100;
                     else if (item.title.toLowerCase().includes(term)) score += 50;
@@ -474,6 +484,9 @@
     // ============================================================
     function pulseAndScrollToElement(el) {
         if (!el) return;
+        // Clean up any previously pulsing elements across the page
+        document.querySelectorAll('.vi-highlight-pulse').forEach(n => n.classList.remove('vi-highlight-pulse'));
+
         // If element is inside a collapsed section or requires category tab switch, try to make visible
         if (el.style.display === 'none') {
             el.style.display = '';
@@ -490,8 +503,6 @@
         });
 
         // Trigger pulse highlight
-        el.classList.remove('vi-highlight-pulse');
-        // Force reflow
         void el.offsetWidth;
         el.classList.add('vi-highlight-pulse');
 
@@ -620,6 +631,9 @@
                 if (isCur && target) {
                     e.preventDefault();
                     dropdown.classList.remove('active');
+
+                    // Clear any lingering pulse animations across the entire page
+                    document.querySelectorAll('.vi-highlight-pulse').forEach(n => n.classList.remove('vi-highlight-pulse'));
 
                     // If target is in another category, switch tab first
                     if (typeof window.resolveGovTarget === 'function') window.resolveGovTarget(target);

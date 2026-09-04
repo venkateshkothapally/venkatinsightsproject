@@ -496,6 +496,77 @@
             .upi-copy-container { flex-direction: column; align-items: stretch; text-align: center; }
             .btn-copy-upi { justify-content: center; }
         }
+
+        /* Dark mode explicit overrides */
+        [data-theme='dark'] .developer-card,
+        html.dark .developer-card {
+            background: var(--vi-card-bg, #111b31);
+            border-color: var(--vi-border, #334155);
+        }
+        [data-theme='dark'] .dev-avatar-wrapper,
+        html.dark .dev-avatar-wrapper {
+            border-color: var(--vi-border, #334155);
+        }
+        [data-theme='dark'] .btn-action-outline,
+        html.dark .btn-action-outline {
+            background: var(--vi-card-bg, #111b31);
+            color: var(--vi-text, #f1f5f9);
+            border-color: var(--vi-border, #334155);
+        }
+        [data-theme='dark'] .support-card,
+        html.dark .support-card {
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.7), rgba(15, 23, 42, 0.9)) !important;
+            border-color: rgba(245, 158, 11, 0.35) !important;
+        }
+        [data-theme='dark'] .support-header h2,
+        html.dark .support-header h2 {
+            color: var(--vi-text, #f1f5f9);
+        }
+        [data-theme='dark'] .qr-box-container,
+        html.dark .qr-box-container {
+            background: var(--vi-card-bg, #111b31);
+            border-color: var(--vi-border, #334155);
+        }
+        [data-theme='dark'] .qr-tag,
+        html.dark .qr-tag {
+            color: #fbbf24;
+            background: rgba(245, 158, 11, 0.2);
+        }
+        [data-theme='dark'] .perk-text h4,
+        html.dark .perk-text h4 {
+            color: var(--vi-text, #f1f5f9);
+        }
+        [data-theme='dark'] .upi-copy-container,
+        html.dark .upi-copy-container {
+            background: var(--vi-card-bg, #111b31);
+            border-color: var(--vi-border, #334155);
+        }
+        [data-theme='dark'] .upi-label-group span.upi-id,
+        html.dark .upi-label-group span.upi-id {
+            color: var(--vi-text, #f1f5f9);
+        }
+        [data-theme='dark'] .info-box,
+        html.dark .info-box {
+            background: var(--vi-card-bg, #111b31);
+            border-color: var(--vi-border, #334155);
+        }
+        [data-theme='dark'] .info-box h3,
+        html.dark .info-box h3 {
+            color: var(--vi-text, #f1f5f9);
+        }
+        [data-theme='dark'] .disclaimer-card,
+        html.dark .disclaimer-card {
+            background: rgba(245, 158, 11, 0.1) !important;
+            border-color: rgba(245, 158, 11, 0.35) !important;
+        }
+        [data-theme='dark'] .disclaimer-card h3,
+        html.dark .disclaimer-card h3 {
+            color: #fbbf24 !important;
+        }
+        [data-theme='dark'] .disclaimer-card p,
+        html.dark .disclaimer-card p {
+            color: #fde68a !important;
+        }
     </style>
 </head>
 <body>

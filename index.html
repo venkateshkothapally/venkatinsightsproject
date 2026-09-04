@@ -288,6 +288,45 @@
             .portals-grid { grid-template-columns: 1fr; }
             .home-hero { padding: 2rem 1rem; }
         }
+
+        /* Dark mode explicit overrides */
+        [data-theme='dark'] .home-hero,
+        html.dark .home-hero {
+            background-color: var(--vi-card-bg, #111b31);
+            border-color: var(--vi-border, #334155);
+            background: radial-gradient(circle at 50% 0%, rgba(79, 70, 229, 0.25) 0%, transparent 70%), var(--vi-card-bg, #111b31);
+        }
+        [data-theme='dark'] .hero-badge,
+        html.dark .hero-badge {
+            background: rgba(99, 102, 241, 0.2);
+            color: #a5b4fc;
+        }
+        [data-theme='dark'] .btn-secondary,
+        html.dark .btn-secondary {
+            background: var(--vi-bg-alt, #1e293b);
+            color: var(--vi-text, #f1f5f9);
+            border-color: var(--vi-border, #334155);
+        }
+        [data-theme='dark'] .btn-secondary:hover,
+        html.dark .btn-secondary:hover {
+            background: #334155;
+            color: #ffffff;
+        }
+        [data-theme='dark'] .stat-card,
+        html.dark .stat-card {
+            background: var(--vi-card-bg, #111b31);
+            border-color: var(--vi-border, #334155);
+        }
+        [data-theme='dark'] .portal-card,
+        html.dark .portal-card {
+            background: var(--vi-card-bg, #111b31);
+            border-color: var(--vi-border, #334155);
+            color: var(--vi-text, #f1f5f9);
+        }
+        [data-theme='dark'] .portal-meta,
+        html.dark .portal-meta {
+            border-top-color: var(--vi-border, #334155);
+        }
     </style>
 </head>
 <body>

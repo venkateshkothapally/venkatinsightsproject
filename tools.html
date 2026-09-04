@@ -144,6 +144,39 @@
         @media (max-width: 640px) {
             .tools-grid { grid-template-columns: 1fr; }
         }
+
+        /* Dark mode explicit overrides */
+        [data-theme='dark'] .tool-widget-card,
+        html.dark .tool-widget-card {
+            background: var(--vi-card-bg, #111b31);
+            border-color: var(--vi-border, #334155);
+        }
+        [data-theme='dark'] .tool-widget-card h3,
+        html.dark .tool-widget-card h3 {
+            color: var(--vi-text, #f1f5f9);
+        }
+        [data-theme='dark'] .tool-form-group label,
+        html.dark .tool-form-group label {
+            color: var(--vi-text, #f1f5f9);
+        }
+        [data-theme='dark'] .tool-input,
+        html.dark .tool-input {
+            background: var(--vi-bg-alt, #1e293b);
+            border-color: var(--vi-border, #334155);
+            color: var(--vi-text, #f1f5f9);
+        }
+        [data-theme='dark'] .tool-input:focus,
+        html.dark .tool-input:focus {
+            background: #0f172a;
+            border-color: var(--vi-primary, #6366f1);
+            color: #ffffff;
+        }
+        [data-theme='dark'] .tool-result-box,
+        html.dark .tool-result-box {
+            background: var(--vi-bg-alt, #1e293b);
+            border-color: var(--vi-border, #334155);
+            color: var(--vi-text, #f1f5f9);
+        }
     </style>
 </head>
 <body>

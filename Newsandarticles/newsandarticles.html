@@ -91,8 +91,10 @@ main.content-area{display:flex;flex-direction:column;gap:20px}
 .featured-card:hover .featured-image img{transform:scale(1.04)}
 .featured-content{padding:18px}
 .featured-tag{font-size:.72rem;font-weight:800;color:var(--primary-teal);text-transform:uppercase;letter-spacing:.6px}
-.featured-title{font-size:1.05rem;font-weight:800;color:var(--text-dark);line-height:1.35;margin:8px 0}
 .featured-snippet{font-size:.85rem;color:var(--text-muted);line-height:1.4;margin:0 0 10px}
+.featured-read{display:inline-flex;align-items:center;justify-content:center;gap:8px;margin-top:14px;padding:9px 20px;background:linear-gradient(135deg,#0d9488 0%,#0f766e 100%);color:#ffffff !important;font-size:.88rem;font-weight:700;letter-spacing:.3px;border:none;border-radius:9999px;cursor:pointer;box-shadow:0 4px 14px rgba(13,148,136,.3);transition:all .25s cubic-bezier(0.4,0,0.2,1);outline:none;text-decoration:none;width:fit-content}
+.featured-read:hover{background:linear-gradient(135deg,#0f766e 0%,#115e59 100%);transform:translateY(-2px);box-shadow:0 6px 18px rgba(13,148,136,.45);color:#ffffff !important}
+.featured-read:active{transform:translateY(0);box-shadow:0 2px 6px rgba(13,148,136,.3)}
 .article-tools{display:flex;align-items:center;gap:10px;flex-wrap:wrap;background:var(--bg-card);border:1px solid var(--border-color);border-radius:var(--radius-lg);padding:14px;box-shadow:var(--shadow-sm)}
 .article-search{flex:1;min-width:230px;background:var(--bg-page);border:1px solid var(--border-color);border-radius:var(--radius-pill);padding:9px 15px;color:var(--text-dark);outline:none}
 .article-tools select{background:var(--bg-page);border:1px solid var(--border-color);border-radius:10px;padding:9px 12px;color:var(--text-dark)}
@@ -111,7 +113,8 @@ main.content-area{display:flex;flex-direction:column;gap:20px}
 .article-feed-title{font-size:1.1rem;font-weight:800;color:var(--text-dark);line-height:1.35}
 .article-feed-excerpt{font-size:.86rem;color:var(--text-muted);line-height:1.5}
 .article-card-footer{display:flex;align-items:center;justify-content:space-between;padding-top:10px;border-top:1px solid var(--border-color);font-size:.8rem;color:var(--text-muted);margin-top:auto}
-.read-article-link{font-weight:700;color:var(--primary-teal);display:flex;align-items:center;gap:4px}
+.read-article-link{font-weight:700;color:var(--primary-teal);display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border-radius:9999px;background:var(--primary-teal-light, rgba(13,148,136,0.1));transition:all .2s ease}
+.article-feed-card:hover .read-article-link{background:var(--primary-teal);color:#ffffff !important;transform:translateX(3px)}
 .empty-state{grid-column:1/-1;background-color:var(--bg-card);border:1px solid var(--border-color);border-radius:var(--radius-lg);padding:48px;text-align:center;color:var(--text-muted)}
 .modal-overlay{position:fixed;inset:0;background-color:rgba(0,0,0,.6);backdrop-filter:blur(5px);display:none;align-items:center;justify-content:center;z-index:1000;padding:20px}
 .modal-overlay.active{display:flex}
@@ -328,7 +331,7 @@ function renderArticlesView(){
  dailyArticlesGrid.innerHTML=list.length?list.slice(0,articleLimit).map(articleCard).join(""):`<div class="empty-state"><h3>No articles found</h3><p>Try another keyword, date or category.</p></div>`;
  loadMoreBtn.style.display=list.length>articleLimit?"block":"none";
 }
-function featuredCard(a){return `<div class="featured-card"><div class="featured-image"><img src="${a.image}" alt="${a.title}" loading="lazy" onerror="this.style.display='none'"></div><div class="featured-content"><span class="featured-tag">Featured • ${a.category}</span><h3 class="featured-title">${a.title}</h3><p class="featured-snippet">${a.excerpt}</p><small style="color:var(--text-muted)">${formatDate(a.date)} • ${a.readingTime}</small><br><button class="featured-read" style="border:0;margin-top:12px;cursor:pointer" onclick="openArticleById(${a.id})">Read Full Article →</button></div></div>`}
+function featuredCard(a){return `<div class="featured-card"><div class="featured-image"><img src="${a.image}" alt="${a.title}" loading="lazy" onerror="this.style.display='none'"></div><div class="featured-content"><span class="featured-tag">Featured • ${a.category}</span><h3 class="featured-title">${a.title}</h3><p class="featured-snippet">${a.excerpt}</p><small style="color:var(--text-muted)">${formatDate(a.date)} • ${a.readingTime}</small><br><button class="featured-read" onclick="openArticleById(${a.id})">Read Full Article →</button></div></div>`}
 function articleCard(a){return `<article class="article-feed-card" id="svc-art-${a.id}" data-target="svc-art-${a.id}" onclick="openArticleById(${a.id})"><div class="article-thumb"><img src="${a.image}" alt="${a.title}" loading="lazy" onerror="this.parentElement.innerHTML='<div class=\\'newspaper-fallback\\'><div class=\\'newspaper-fallback-title\\'>${a.category}</div></div>'"></div><div class="article-feed-body"><div class="article-card-header"><span class="article-category">${a.category}</span><span style="font-size:.72rem;color:var(--text-muted)">📅 ${formatDate(a.date)}</span></div><h3 class="article-feed-title">${a.title}</h3><p class="article-feed-excerpt">${a.excerpt}</p><div class="article-card-footer"><span>By ${a.author} • ${a.readingTime}</span><span class="read-article-link">Read Article →</span></div></div></article>`}
 function formatDate(d){return new Date(d+"T00:00:00").toLocaleDateString("en-IN",{day:"2-digit",month:"short",year:"numeric"})}
 function handleDateSelect(d){selectedArticleDate=d||"ALL";articleLimit=9;renderArticlesView()}

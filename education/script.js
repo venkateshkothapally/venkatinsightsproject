@@ -117,8 +117,9 @@
         state.activeCategory = el.dataset.cat;
         renderCategoryList();
         renderServices();
+        renderLatest();
         // close sidebar on mobile after pick
-        if (window.innerWidth <= 1024) closeSidebar();
+        if (window.innerWidth <= 880) closeSidebar();
       });
     });
     renderIcons();
@@ -264,9 +265,43 @@
   // ----- Latest updates strip -----
   function renderLatest() {
     const track = document.getElementById('latest-track');
-    // Sort by postDate desc (data is already sorted but be defensive)
-    const sorted = [...SERVICES].sort((a, b) => (b.postDate || '').localeCompare(a.postDate || ''));
+    if (!track) return;
+
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    // Dynamic filtering based on postDate and applicationLastDate:
+    // Only display services whose application last date has not expired (today <= lastDate).
+    // Once last date has passed, automatically hide it!
+    const isCatActive = state.activeCategory && state.activeCategory !== 'All';
+    let candidates = SERVICES.filter(s => {
+      if (isCatActive && s.category !== state.activeCategory) return false;
+      const end = parseDate(s.applicationLastDate);
+      if (end && today > end) return false; // Hide expired services!
+      return getStatus(s) !== 'closed';
+    });
+
+    // If specific category has no currently open announcements, show latest open across all categories
+    if (candidates.length === 0 && isCatActive) {
+      candidates = SERVICES.filter(s => {
+        const end = parseDate(s.applicationLastDate);
+        if (end && today > end) return false;
+        return getStatus(s) !== 'closed';
+      });
+    }
+
+    // Sort by postDate desc (latest added first)
+    const sorted = [...candidates].sort((a, b) => (b.postDate || '').localeCompare(a.postDate || ''));
     const top = sorted.slice(0, 12);
+
+    if (top.length === 0) {
+      track.innerHTML = `
+        <div style="padding: 18px; color: var(--text-muted); font-size: 14px;">
+          No active admission or entrance alerts currently open in this category.
+        </div>
+      `;
+      return;
+    }
 
     track.innerHTML = top.map((s) => {
       const meta = getMeta(s.category);
@@ -289,7 +324,7 @@
             <div class="row">
               <i data-lucide="calendar-x"></i>
               <span class="label">Last date:</span>
-              <span>${fmtDate(s.applicationLastDate)}</span>
+              <span style="font-weight: 700; color: ${status === 'open' ? 'var(--primary-dark)' : 'inherit'}">${fmtDate(s.applicationLastDate)}</span>
             </div>
           </div>
           <div class="latest-status ${status}">
@@ -550,17 +585,26 @@
       window.VI_SEARCH.register(eduSearchItems);
     }
 
-    // Deep-link target resolution: If loaded with ?target=... or #...
-    function resolveEduTarget() {
+    // Deep-link target resolution: If loaded with ?target=... or #... or called from search
+    function resolveEduTarget(targetParam) {
+      document.querySelectorAll('.vi-highlight-pulse').forEach(el => el.classList.remove('vi-highlight-pulse'));
       const params = new URLSearchParams(window.location.search);
-      const target = params.get('target') || (window.location.hash ? window.location.hash.replace('#', '') : '');
+      const target = targetParam || params.get('target') || (window.location.hash ? window.location.hash.replace('#', '') : '');
       if (!target) return;
+
+      try {
+        const currentUrl = new URL(window.location.href);
+        if (targetParam) currentUrl.searchParams.set('target', targetParam);
+        window.history.replaceState({}, '', currentUrl.toString());
+      } catch (e) {}
+
       const match = SERVICES.find(s => `svc-edu-${s.id}` === target || target.includes(String(s.id)));
       if (match) {
         state.activeCategory = match.category;
         state.query = '';
         renderCategoryList();
         renderServices();
+        renderLatest();
         setTimeout(() => {
           const cardEl = document.getElementById(`svc-edu-${match.id}`) || document.querySelector(`[data-id="${match.id}"]`);
           if (cardEl && typeof window.pulseAndScrollToElement === 'function') {
@@ -569,6 +613,7 @@
         }, 300);
       }
     }
+    window.resolveEduTarget = resolveEduTarget;
     setTimeout(resolveEduTarget, 200);
   }
 

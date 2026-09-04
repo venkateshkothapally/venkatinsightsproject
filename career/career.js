@@ -250,10 +250,17 @@
     }
 
     /* Deep-link target handler */
-    function resolveCareerTarget() {
+    function resolveCareerTarget(targetParam) {
+        document.querySelectorAll('.vi-highlight-pulse').forEach(el => el.classList.remove('vi-highlight-pulse'));
         const params = new URLSearchParams(window.location.search);
-        const target = params.get('target') || (window.location.hash ? window.location.hash.replace('#', '') : '');
+        const target = targetParam || params.get('target') || (window.location.hash ? window.location.hash.replace('#', '') : '');
         if (!target) return;
+
+        try {
+            const currentUrl = new URL(window.location.href);
+            if (targetParam) currentUrl.searchParams.set('target', targetParam);
+            window.history.replaceState({}, '', currentUrl.toString());
+        } catch (e) {}
 
         const match = jobs.find(j => {
             const safeId = 'svc-job-' + (j.id || j.postName).replace(/[^a-zA-Z0-9_-]/g, '-');
@@ -276,6 +283,7 @@
             }, 300);
         }
     }
+    window.resolveCareerTarget = resolveCareerTarget;
 
     /* ---------- DOM Event Listeners ---------- */
     const latestBtn = document.getElementById('latestUpdatesBtn');

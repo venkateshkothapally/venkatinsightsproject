@@ -4,6 +4,33 @@
 
 window.EDUCATION_SERVICES = [
   {
+    "id": 144,
+    "page": "Education & Exams Portal",
+    "category": "Telangana Entrance Exams",
+    "subCategory": "TS LAWCET & PGLCET",
+    "serviceName": "TS LAWCET Law Admissions & Counselling 2026",
+    "officialLink": "https://lawcet.tsche.ac.in/",
+    "shortDescription": "Telangana State Law Common Entrance Test for 3-Year / 5-Year LL.B & LL.M courses.",
+    "description": "TS LAWCET & PGLCET 2026 — Official portal for Telangana State Law Common Entrance Test conducted by Osmania University on behalf of TSCHE. Register online, verify eligibility, download hall tickets and access counselling notifications for admission into 3-year / 5-year LL.B and 2-year LL.M programs across Telangana.",
+    "logo": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2280%22%20height%3D%2280%22%20viewBox%3D%220%200%2080%2080%22%3E%0A%3Crect%20width%3D%2280%22%20height%3D%2280%22%20rx%3D%2214%22%20fill%3D%22%2310b981%22%2F%3E%0A%3Ctext%20x%3D%2250%25%22%20y%3D%2250%25%22%20font-family%3D%22Inter%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2226%22%20font-weight%3D%22700%22%20fill%3D%22white%22%20text-anchor%3D%22middle%22%20dominant-baseline%3D%22central%22%3ELAW%3C%2Ftext%3E%0A%3C%2Fsvg%3E",
+    "logoColor": "#10b981",
+    "logoSoft": "#d1fae5",
+    "icon": "scale",
+    "postDate": "2026-09-01",
+    "applicationStartDate": "2026-08-20",
+    "applicationLastDate": "2026-09-12",
+    "examDate": "2026-09-25",
+    "resultDate": "2026-10-15",
+    "actions": {
+      "notification": "https://lawcet.tsche.ac.in/",
+      "officialSite": "https://lawcet.tsche.ac.in/",
+      "webOptions": "https://lawcetadm.tsche.ac.in/",
+      "results": "https://lawcet.tsche.ac.in/",
+      "rankCard": "https://lawcet.tsche.ac.in/",
+      "hallTicket": "https://lawcet.tsche.ac.in/"
+    }
+  },
+  {
     "id": 50,
     "page": "Education & Exams Portal",
     "category": "Agriculture University",
