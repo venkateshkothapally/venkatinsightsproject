@@ -472,10 +472,14 @@ header.navbar > .nav-pills-container { max-width: none; }
     margin-top: auto;
     width: 100%;
     background: #0f172a !important;
-    color: #fff !important;
+    color: #ffffff !important;
     font-family: var(--font-family);
     position: relative;
     z-index: 40;
+    box-sizing: border-box;
+}
+.vi-footer *, .site-footer * {
+    box-sizing: border-box;
 }
 .vi-footer p, .vi-footer h1, .vi-footer h3, .vi-footer h4, .vi-footer ul {
     margin: 0;
@@ -483,7 +487,7 @@ header.navbar > .nav-pills-container { max-width: none; }
 }
 
 .footer-main {
-    background: #0f172a;
+    background: #0f172a !important;
     position: relative;
     border-top: 3px solid transparent;
     border-image: linear-gradient(90deg, #4f46e5, #7c3aed, #0d9488) 1;
@@ -491,91 +495,151 @@ header.navbar > .nav-pills-container { max-width: none; }
 .footer-container {
     max-width: 1340px;
     margin: 0 auto;
-    padding: 2.5rem 1.5rem;
+    padding: 2.75rem 1.5rem 2.25rem;
 }
 .footer-grid {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr;
-    gap: 2.5rem;
+    display: grid !important;
+    grid-template-columns: 2fr 1.1fr 1.1fr 1.1fr !important;
+    gap: 2.5rem !important;
+    align-items: start !important;
 }
 
-/* Brand Section */
+/* Brand Section - 100% Theme Safe */
+.footer-brand-col {
+    display: flex;
+    flex-direction: column;
+}
 .footer-brand-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.8rem;
-    text-decoration: none;
-    margin-bottom: 1rem;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 0.85rem !important;
+    text-decoration: none !important;
+    margin-bottom: 1.15rem !important;
 }
-.footer-brand .logo-box {
-    width: 40px;
-    height: 40px;
-    border-radius: 10px;
-    overflow: hidden;
-    background: #1e293b;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
+.vi-footer .logo-box,
+.footer-brand-col .logo-box {
+    width: 44px !important;
+    height: 44px !important;
+    border-radius: 12px !important;
+    overflow: hidden !important;
+    background: #1e293b !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex-shrink: 0 !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25) !important;
 }
-.footer-brand .logo-box img { width: 100%; height: 100%; object-fit: cover; }
-.footer-brand .brand-text h1 {
-    font-size: 1.2rem;
-    font-weight: 700;
-    color: #e0e7ff;
-    letter-spacing: -0.02em;
-    line-height: 1.2;
-}
-.footer-brand .brand-text .tagline {
-    color: #94a3b8;
-    font-size: 0.7rem;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    margin-top: 0.1rem;
-}
-.footer-desc {
-    color: #94a3b8;
-    font-size: 0.85rem;
-    line-height: 1.6;
-    margin-bottom: 1.25rem;
-    max-width: 340px;
+.vi-footer .logo-box img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
 }
 
-/* Social Buttons */
-.footer-socials { display: flex; gap: 0.6rem; }
+/* Brand Heading & Tagline: Crystal clear in BOTH Light and Dark Modes */
+.vi-footer h1,
+.vi-footer .brand-text h1,
+.vi-footer .footer-brand-link h1,
+.vi-footer .footer-brand-col h1,
+html[data-theme="light"] .vi-footer h1,
+html[data-theme="dark"] .vi-footer h1,
+body[data-theme="light"] .vi-footer h1,
+body[data-theme="dark"] .vi-footer h1,
+body.dark .vi-footer h1,
+html.dark .vi-footer h1 {
+    font-size: 1.32rem !important;
+    font-weight: 800 !important;
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+    letter-spacing: -0.02em !important;
+    line-height: 1.2 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: none !important;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3) !important;
+}
+
+.vi-footer .tagline,
+.vi-footer .brand-text .tagline,
+.vi-footer .footer-brand-link .tagline,
+.vi-footer .footer-brand-col .tagline,
+html[data-theme="light"] .vi-footer .tagline,
+html[data-theme="dark"] .vi-footer .tagline,
+body[data-theme="light"] .vi-footer .tagline,
+body[data-theme="dark"] .vi-footer .tagline,
+body.dark .vi-footer .tagline,
+html.dark .vi-footer .tagline {
+    color: #94a3b8 !important;
+    -webkit-text-fill-color: #94a3b8 !important;
+    font-size: 0.72rem !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.06em !important;
+    margin-top: 0.25rem !important;
+    display: block !important;
+    line-height: 1.3 !important;
+}
+
+.vi-footer .footer-desc {
+    color: #94a3b8 !important;
+    font-size: 0.88rem !important;
+    line-height: 1.65 !important;
+    margin-bottom: 1.35rem !important;
+    max-width: 380px !important;
+}
+
+/* Social Buttons - 6 Official Colors, Aligned & Elevated */
+.footer-socials {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    align-items: center !important;
+    gap: 0.65rem !important;
+}
 .social-btn {
-    width: 36px;
-    height: 36px;
-    border-radius: 8px;
-    background: rgba(255,255,255,0.06);
-    border: 1px solid rgba(255,255,255,0.1);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #94a3b8;
-    text-decoration: none;
-    transition: all 0.2s ease;
+    width: 38px !important;
+    height: 38px !important;
+    border-radius: 10px !important;
+    background: rgba(255, 255, 255, 0.08) !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-decoration: none !important;
+    transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    flex-shrink: 0 !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25) !important;
+    padding: 0 !important;
 }
 .social-btn:hover {
-    background: #1e293b;
-    color: #fff;
-    border-color: rgba(255,255,255,0.25);
-    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.18) !important;
+    border-color: rgba(255, 255, 255, 0.35) !important;
+    transform: translateY(-3px) scale(1.08) !important;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.38) !important;
 }
-.social-btn svg { width: 16px; height: 16px; fill: currentColor; }
+.social-btn svg {
+    width: 20px !important;
+    height: 20px !important;
+    display: block !important;
+    transition: transform 0.2s ease !important;
+}
+.social-btn:hover svg {
+    transform: scale(1.08) !important;
+}
+.social-btn.social-x svg path {
+    fill: #ffffff !important;
+}
 
 /* Columns and Links */
 .footer-col h4 {
-    color: #fff;
-    font-size: 0.8rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    margin-bottom: 1rem;
-    display: flex;
-    align-items: center;
-    gap: 0.4rem;
+    color: #ffffff !important;
+    font-size: 0.82rem !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.08em !important;
+    margin-bottom: 1.15rem !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.45rem !important;
 }
 .footer-col h4::before {
     content: "";
@@ -586,56 +650,89 @@ header.navbar > .nav-pills-container { max-width: none; }
     flex-shrink: 0;
 }
 .footer-col ul {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 0.55rem;
+    list-style: none !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.65rem !important;
 }
 .footer-link {
-    color: #94a3b8;
-    text-decoration: none;
-    font-size: 0.88rem;
-    display: inline-flex;
-    align-items: center;
-    transition: color 0.2s, transform 0.2s;
+    color: #94a3b8 !important;
+    text-decoration: none !important;
+    font-size: 0.9rem !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    transition: color 0.2s, transform 0.2s !important;
 }
 .footer-link::before {
     content: "›";
     color: #6366f1;
     font-weight: 700;
-    font-size: 1.1rem;
+    font-size: 1.15rem;
     margin-right: 0.4rem;
     transform: translateY(-1px);
 }
 .footer-link:hover {
-    color: #fff;
-    transform: translateX(3px);
+    color: #ffffff !important;
+    transform: translateX(4px) !important;
 }
 
 /* Bottom Bar */
 .footer-bottom {
-    background: #0b1222;
-    border-top: 1px solid rgba(255,255,255,0.06);
+    background: #0b1222 !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.07) !important;
 }
 .footer-bottom-inner {
     max-width: 1340px;
     margin: 0 auto;
-    padding: 1rem 1.5rem;
+    padding: 1.15rem 1.5rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
     gap: 1rem;
-    font-size: 0.8rem;
+    font-size: 0.82rem;
     color: #64748b;
 }
-.footer-legal { display: flex; gap: 1.25rem; }
-.footer-legal a {
-    color: #94a3b8;
-    text-decoration: none;
-    transition: color 0.2s;
+.footer-bottom-inner p {
+    color: #94a3b8 !important;
+    margin: 0;
 }
-.footer-legal a:hover { color: #fff; }
+.footer-legal {
+    display: flex;
+    gap: 1.35rem;
+}
+.footer-legal a {
+    color: #94a3b8 !important;
+    text-decoration: none !important;
+    transition: color 0.2s !important;
+    font-size: 0.82rem !important;
+}
+.footer-legal a:hover {
+    color: #ffffff !important;
+    text-decoration: underline !important;
+}
+
+@media (max-width: 992px) {
+    .footer-grid {
+        grid-template-columns: 1fr 1fr !important;
+        gap: 2.25rem !important;
+    }
+}
+@media (max-width: 600px) {
+    .footer-grid {
+        grid-template-columns: 1fr !important;
+        gap: 2rem !important;
+    }
+    .footer-bottom-inner {
+        flex-direction: column !important;
+        text-align: center !important;
+        gap: 0.85rem !important;
+    }
+    .footer-legal {
+        justify-content: center !important;
+        flex-wrap: wrap !important;
+    }
+}
 
 /* Back to Top Floating Button */
 .back-to-top {
@@ -676,7 +773,8 @@ header.navbar > .nav-pills-container { max-width: none; }
         grid-template-columns: 1fr auto;
         gap: .5rem;
     }
-    .brand-text p, .brand-text .tagline { display: none; }
+    .navbar-container .brand-text p, .navbar-container .brand-text .tagline, .navbar-wrapper .brand-text p, .navbar-wrapper .brand-text .tagline { display: none; }
+    .vi-footer .brand-text .tagline, .vi-footer .tagline { display: block !important; }
     .nav-search-box {
         grid-column: 1 / -1;
         width: 100%;

@@ -238,8 +238,8 @@ header.navbar {
 }
 
 @media (max-width: 768px) {
-    .brand-text p,
-    .brand-text .tagline { display: none; }
+    .navbar-wrapper .brand-text p,
+    .navbar-wrapper .brand-text .tagline { display: none; }
     .nav-search-box { order: 3; flex-basis: 100%; max-width: none; min-width: 0; }
     .nav-pills-wrapper { display: none; }
     .nav-pills-wrapper.mobile-open { display: block; }
