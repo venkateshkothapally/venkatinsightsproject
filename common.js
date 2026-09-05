@@ -149,6 +149,7 @@
         { id: 'svc-gov-agri-igrs', title: 'IGRS Telangana Stamps & Registration', cat: 'Government Services', page: 'governmentservices/governmentservices.html', target: 'svc-gov-agri-igrs', desc: 'Property registration, EC & market value search' },
 
         // --- Education & Exams Portal ---
+        { id: 'svc-edu-144', title: 'TS LAWCET Law Admissions & Counselling 2026', cat: 'Education', page: 'education/education.html', target: 'svc-edu-144', desc: 'Telangana State Law Common Entrance Test for 3-Year / 5-Year LL.B & LL.M courses.' },
         { id: 'svc-edu-50', title: 'Prof Jayashankar Agriculture University Results', cat: 'Education', page: 'education/education.html', target: 'svc-edu-50', desc: 'PJTSAU university examination results and rank cards' },
         { id: 'svc-edu-101', title: 'UGC NET JRF & Assistant Professor Eligibility', cat: 'Education', page: 'education/education.html', target: 'svc-edu-101', desc: 'Official NTA UGC NET notification and hall tickets' },
         { id: 'svc-edu-eamcet', title: 'TS EAMCET / EAPCET Engineering & Agriculture', cat: 'Education', page: 'education/education.html', target: 'svc-edu-eamcet', desc: 'Telangana engineering & agriculture common entrance test' },
@@ -187,36 +188,340 @@
         { id: 'svc-news-eenadu', title: 'Eenadu Telugu ePaper & Daily News', cat: 'News & Articles', page: 'Newsandarticles/newsandarticles.html', target: 'svc-news-eenadu', desc: 'Leading Telugu daily newspaper and online digital edition' },
         { id: 'svc-news-sakshi', title: 'Sakshi Telugu Daily ePaper', cat: 'News & Articles', page: 'Newsandarticles/newsandarticles.html', target: 'svc-news-sakshi', desc: 'Andhra Pradesh & Telangana Telugu newspaper & digital edition' },
         { id: 'svc-news-hindu', title: 'The Hindu National Daily Newspaper', cat: 'News & Articles', page: 'Newsandarticles/newsandarticles.html', target: 'svc-news-the-hindu', desc: 'National English newspaper renowned for civil services prep' },
-        { id: 'svc-news-times', title: 'The Times of India Daily ePaper', cat: 'News & Articles', page: 'Newsandarticles/newsandarticles.html', target: 'svc-news-the-times-of-india', desc: 'India\'s leading English daily newspaper' }
+        { id: 'svc-news-times', title: 'The Times of India Daily ePaper', cat: 'News & Articles', page: 'Newsandarticles/newsandarticles.html', target: 'svc-news-the-times-of-india', desc: 'India\'s leading English daily newspaper' },
+
+        // --- Tools & Calculators ---
+        { id: 'tool-age-calc', title: 'Exam Age & Cutoff Calculator', cat: 'Tools', page: 'tools.html', target: 'tool-age-calc', desc: 'Calculate exact years, months and days as of notification cutoff date' },
+        { id: 'tool-cgpa-converter', title: 'CGPA to Percentage Converter', cat: 'Tools', page: 'tools.html', target: 'tool-cgpa-converter', desc: 'CBSE, AICTE and university 10-point scale formula' },
+        { id: 'tool-word-counter', title: 'Word & Character Counter', cat: 'Tools', page: 'tools.html', target: 'tool-word-counter', desc: 'Statement of purpose, essay word count and reading time' }
     ];
+
+    // Storage keys for automated search learning & recent searches
+    const RECENT_SEARCHES_KEY = 'vi_recent_searches';
+    const AUTO_SEARCH_DATA_KEY = 'vi_auto_search_data';
+
+    function getStoredItemSafe(key) {
+        try {
+            const raw = localStorage.getItem(key);
+            return raw ? JSON.parse(raw) : [];
+        } catch (e) {
+            return [];
+        }
+    }
+
+    function setStoredItemSafe(key, val) {
+        try {
+            localStorage.setItem(key, JSON.stringify(val));
+        } catch (e) {}
+    }
+
+    function getRelativePagePath() {
+        const path = window.location.pathname.replace(/\\/g, '/').toLowerCase();
+        if (path.includes('governmentservices')) return 'governmentservices/governmentservices.html';
+        if (path.includes('education')) return 'education/education.html';
+        if (path.includes('newsandarticles')) return 'Newsandarticles/newsandarticles.html';
+        if (path.includes('career')) return 'career/career.html';
+        if (path.includes('aitools')) return 'aitools.html';
+        if (path.includes('tools')) return 'tools.html';
+        if (path.includes('about')) return 'about.html';
+        if (path.includes('privacypolicy')) return 'privacypolicy.html';
+        if (path.includes('termsofuse')) return 'termsofuse.html';
+        if (path.includes('disclaimer')) return 'disclaimer.html';
+        return 'index.html';
+    }
+
+    function getPageDefaultCategory() {
+        const p = getCurrentPage();
+        switch (p) {
+            case 'government': return 'Government Services';
+            case 'education': return 'Education';
+            case 'career': return 'Career';
+            case 'ai': return '80+ AI Tools';
+            case 'news': return 'News & Articles';
+            case 'tools': return 'Tools';
+            case 'about': return 'About';
+            default: return 'Portals';
+        }
+    }
 
     window.VI_SEARCH = {
         index: (typeof window.VI_MASTER_SEARCH_INDEX !== 'undefined' && Array.isArray(window.VI_MASTER_SEARCH_INDEX)) 
             ? [...window.VI_MASTER_SEARCH_INDEX] 
             : [...DEFAULT_SEARCH_INDEX],
-        register: function (items) {
+        autoData: getStoredItemSafe(AUTO_SEARCH_DATA_KEY),
+        recentSearches: getStoredItemSafe(RECENT_SEARCHES_KEY),
+        _indexedIds: new Set(),
+
+        init: function () {
+            this.index.forEach(item => {
+                if (item && item.id) this._indexedIds.add(item.id);
+            });
+            if (Array.isArray(this.autoData) && this.autoData.length > 0) {
+                this.register(this.autoData, false);
+            }
+            this.autoHarvest();
+        },
+
+        register: function (items, persist = false) {
             if (!Array.isArray(items)) return;
+            let addedNew = false;
             items.forEach(it => {
-                if (!this.index.some(x => x.id === it.id)) {
+                if (!it || !it.id) return;
+                if (!this._indexedIds.has(it.id)) {
+                    this._indexedIds.add(it.id);
                     this.index.push(it);
+                    if (persist) {
+                        if (!this.autoData.some(x => x.id === it.id)) {
+                            this.autoData.push(it);
+                            addedNew = true;
+                        }
+                    }
                 }
             });
+            if (addedNew) {
+                setStoredItemSafe(AUTO_SEARCH_DATA_KEY, this.autoData.slice(0, 300));
+            }
         },
+
+        persistAutoItem: function (item) {
+            if (!item || !item.id) return;
+            if (!this.autoData.some(x => x.id === item.id)) {
+                this.autoData.push(item);
+                setStoredItemSafe(AUTO_SEARCH_DATA_KEY, this.autoData.slice(0, 300));
+            }
+        },
+
+        addRecentSearch: function (q) {
+            if (!q || typeof q !== 'string') return;
+            const term = q.trim();
+            if (term.length < 2) return;
+            this.recentSearches = this.recentSearches.filter(r => r.toLowerCase() !== term.toLowerCase());
+            this.recentSearches.unshift(term);
+            if (this.recentSearches.length > 8) this.recentSearches = this.recentSearches.slice(0, 8);
+            setStoredItemSafe(RECENT_SEARCHES_KEY, this.recentSearches);
+        },
+
+        removeRecentSearch: function (q) {
+            if (!q) return;
+            const term = q.trim().toLowerCase();
+            this.recentSearches = this.recentSearches.filter(r => r.toLowerCase() !== term);
+            setStoredItemSafe(RECENT_SEARCHES_KEY, this.recentSearches);
+        },
+
+        clearRecentSearches: function () {
+            this.recentSearches = [];
+            try { localStorage.removeItem(RECENT_SEARCHES_KEY); } catch (e) {}
+        },
+
+        getRecentSearches: function () {
+            return this.recentSearches || [];
+        },
+
+        autoHarvest: function () {
+            const harvested = [];
+
+            // 1. Education data
+            const eduList = window.EDUCATION_SERVICES || window.SERVICES;
+            if (Array.isArray(eduList)) {
+                eduList.forEach(s => {
+                    harvested.push({
+                        id: `svc-edu-${s.id}`,
+                        title: s.serviceName,
+                        cat: 'Education',
+                        page: 'education/education.html',
+                        target: `svc-edu-${s.id}`,
+                        desc: `${s.category || ''} • ${s.subCategory || ''} • ${s.shortDescription || ''}`.trim()
+                    });
+                });
+            }
+
+            // 2. Career jobs
+            const jobList = window.VI_JOBS || window.jobs;
+            if (Array.isArray(jobList)) {
+                jobList.forEach(j => {
+                    const safeId = 'svc-job-' + (j.id || j.postName).replace(/[^a-zA-Z0-9_-]/g, '-');
+                    harvested.push({
+                        id: safeId,
+                        title: `${j.board} - ${j.postName}`,
+                        cat: 'Career',
+                        page: 'career/career.html',
+                        target: safeId,
+                        desc: `${j.category || ''} • ${j.qualification || ''} • Last Date: ${j.lastDate || 'N/A'}`.trim()
+                    });
+                });
+            }
+
+            // 3. Government Services
+            if (Array.isArray(window.categoriesData)) {
+                window.categoriesData.forEach(c => {
+                    if (c.id !== 'all') {
+                        harvested.push({
+                            id: `cat-gov-${c.id}`,
+                            title: `${c.title} (All Services)`,
+                            cat: 'Government Services',
+                            page: 'governmentservices/governmentservices.html',
+                            target: `cat-${c.id}`,
+                            desc: `Browse all ${c.title} online portals and applications`
+                        });
+                    }
+                    if (Array.isArray(c.services)) {
+                        c.services.forEach(s => {
+                            const slug = (s.id || s.name).toLowerCase().replace(/[^a-z0-9]+/g, '-');
+                            harvested.push({
+                                id: `svc-gov-${slug}`,
+                                title: `${s.name} - ${c.title}`,
+                                cat: 'Government Services',
+                                page: 'governmentservices/governmentservices.html',
+                                target: `svc-gov-${slug}`,
+                                desc: s.desc || `${c.title} portal`
+                            });
+                        });
+                    }
+                });
+            }
+
+            // 4. 80+ AI Tools
+            if (Array.isArray(window.aiToolsData)) {
+                window.aiToolsData.forEach(t => {
+                    const slug = 'svc-ai-' + t.name.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+                    harvested.push({
+                        id: slug,
+                        title: t.name,
+                        cat: '80+ AI Tools',
+                        page: 'aitools.html',
+                        target: slug,
+                        desc: `${t.category || ''} • ${t.description || ''}`.trim()
+                    });
+                });
+            }
+
+            // 5. Newspapers & Articles
+            if (Array.isArray(window.newspapersData)) {
+                window.newspapersData.forEach(n => {
+                    const slug = n.name.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+                    harvested.push({
+                        id: `svc-news-${slug}`,
+                        title: `${n.name} (${n.language} ${n.type})`,
+                        cat: 'News & Articles',
+                        page: 'Newsandarticles/newsandarticles.html',
+                        target: `svc-news-${slug}`,
+                        desc: `${n.language || ''} ${n.subcat || ''} • ${n.description || ''}`.trim()
+                    });
+                });
+            }
+            if (Array.isArray(window.publishedArticles)) {
+                window.publishedArticles.forEach(a => {
+                    harvested.push({
+                        id: `svc-art-${a.id}`,
+                        title: a.title,
+                        cat: 'News & Articles',
+                        page: 'Newsandarticles/newsandarticles.html',
+                        target: `svc-art-${a.id}`,
+                        desc: `${a.category || ''} • By ${a.author || ''} • ${a.excerpt || ''}`.trim()
+                    });
+                });
+            }
+
+            // 6. Tools array
+            if (Array.isArray(window.tools)) {
+                window.tools.forEach(t => {
+                    const slug = t.name.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+                    harvested.push({
+                        id: `tool-${slug}`,
+                        title: t.name,
+                        cat: 'Tools',
+                        page: 'tools.html',
+                        target: `tool-${slug}`,
+                        desc: `${t.category || ''} • ${t.description || ''}`.trim()
+                    });
+                });
+            }
+
+            // 7. Live DOM crawling on active page
+            try {
+                const domCards = document.querySelectorAll(
+                    '.service-card, .tool-widget-card, .tool-card, .newspaper-card, .article-feed-card, .featured-card, [data-target], [data-id]'
+                );
+                const curPage = getRelativePagePath();
+                const curCat = getPageDefaultCategory();
+
+                domCards.forEach(el => {
+                    const targetId = el.id || el.getAttribute('data-target') || el.getAttribute('data-id');
+                    if (!targetId) return;
+
+                    const titleEl = el.querySelector('h1, h2, h3, h4, .card-title, .post-title, .newspaper-name, strong');
+                    const title = titleEl ? titleEl.textContent.trim() : '';
+                    if (!title || title.length < 2) return;
+
+                    const descEl = el.querySelector('.card-desc, p, .subtext, .newspaper-body p, .article-feed-excerpt');
+                    const desc = descEl ? descEl.textContent.trim() : '';
+
+                    const tagEl = el.querySelector('.badge, .tag, .cat, .category, .newspaper-badge');
+                    const cat = tagEl ? tagEl.textContent.trim() : curCat;
+
+                    const itemId = targetId.startsWith('svc-') || targetId.startsWith('tool-') || targetId.startsWith('cat-') ? targetId : `dom-${targetId}`;
+
+                    harvested.push({
+                        id: itemId,
+                        title: title,
+                        cat: cat || curCat,
+                        page: curPage,
+                        target: targetId,
+                        desc: desc
+                    });
+                });
+            } catch (e) {}
+
+            if (harvested.length > 0) {
+                this.register(harvested, false);
+            }
+        },
+
         query: function (q, maxResults = 12) {
+            this.autoHarvest();
             if (!q || !q.trim()) return [];
             const term = q.toLowerCase().trim().replace(/adhar/g, 'aadhaar');
             const words = term.split(/\s+/).filter(Boolean);
+
+            // Live On-Search Addition: Scan active DOM for matching unindexed text elements
+            try {
+                const matchingElements = document.querySelectorAll('article, .card, .service-card, .tool-widget-card, .portal-card, .job-section-block tr, h2, h3');
+                const newFound = [];
+                matchingElements.forEach(el => {
+                    const text = el.textContent || '';
+                    if (text.toLowerCase().includes(term)) {
+                        const targetId = el.id || el.getAttribute('data-target') || el.getAttribute('data-id');
+                        if (targetId && !this._indexedIds.has(targetId) && !this._indexedIds.has(`auto-${targetId}`)) {
+                            const heading = el.querySelector('h1,h2,h3,h4,strong,.card-title,.title');
+                            const title = heading ? heading.textContent.trim() : text.trim().slice(0, 60);
+                            const desc = (el.querySelector('p,.subtext,.desc') || el).textContent.trim().slice(0, 140);
+                            newFound.push({
+                                id: `auto-${targetId}`,
+                                title: title,
+                                cat: getPageDefaultCategory(),
+                                page: getRelativePagePath(),
+                                target: targetId,
+                                desc: desc
+                            });
+                        }
+                    }
+                });
+                if (newFound.length > 0) {
+                    this.register(newFound, true);
+                }
+            } catch (e) {}
 
             return this.index
                 .map(item => {
                     const text = `${item.title} ${item.cat} ${item.desc || ''}`.toLowerCase().replace(/adhar/g, 'aadhaar');
                     let score = 0;
-                    if (item.title.toLowerCase().startsWith(term)) score += 100;
-                    else if (item.title.toLowerCase().includes(term)) score += 50;
-                    
+                    if (item.title.toLowerCase().startsWith(term)) score += 120;
+                    else if (item.title.toLowerCase().includes(term)) score += 60;
+                    else if (text.includes(term)) score += 30;
+
                     let allWordsMatch = true;
                     for (const w of words) {
-                        if (text.includes(w)) score += 10;
+                        if (text.includes(w)) score += 12;
                         else allWordsMatch = false;
                     }
                     return { item, score: allWordsMatch ? score : 0 };
@@ -227,6 +532,8 @@
                 .map(res => res.item);
         }
     };
+
+    window.VI_SEARCH.init();
 
     // Auto-load master search database if not yet included
     if (typeof window.VI_MASTER_SEARCH_INDEX === 'undefined') {
@@ -258,6 +565,7 @@
         if (c.includes('edu')) return 'edu';
         if (c.includes('career') || c.includes('job')) return 'career';
         if (c.includes('ai')) return 'ai';
+        if (c.includes('tool')) return 'tool';
         return 'news';
     }
 
@@ -267,6 +575,7 @@
         if (c.includes('edu')) return 'EDU';
         if (c.includes('career') || c.includes('job')) return 'JOB';
         if (c.includes('ai')) return 'AI';
+        if (c.includes('tool')) return 'TOOL';
         return 'NEWS';
     }
 
@@ -525,10 +834,21 @@
                 input.value = searchVal;
                 const clearBtn = document.getElementById('clearSearchBtn');
                 if (clearBtn) clearBtn.style.display = 'inline-flex';
+                if (typeof window.filterServices === 'function') {
+                    try { window.filterServices(searchVal); } catch (e) {}
+                }
             }
         }
 
         if (!targetId) return;
+
+        // Trigger section switches before polling for element
+        if (typeof window.resolveGovTarget === 'function') window.resolveGovTarget(targetId);
+        if (typeof window.resolveEduTarget === 'function') window.resolveEduTarget(targetId);
+        if (typeof window.resolveCareerTarget === 'function') window.resolveCareerTarget(targetId);
+        if (typeof window.resolveAiTarget === 'function') window.resolveAiTarget(targetId);
+        if (typeof window.resolveNewsTarget === 'function') window.resolveNewsTarget(targetId);
+        if (typeof window.resolveToolTarget === 'function') window.resolveToolTarget(targetId);
 
         // Try locating element immediately or poll briefly for async/dynamic lists
         let attempts = 0;
@@ -549,6 +869,101 @@
     // ============================================================
     let highlightedIndex = -1;
 
+    function renderRecentAndQuickSearches() {
+        const dropdown = document.getElementById('searchDropdown');
+        if (!dropdown) return;
+
+        const recents = window.VI_SEARCH.getRecentSearches();
+        let html = '';
+
+        if (Array.isArray(recents) && recents.length > 0) {
+            html += `
+                <div class="search-recent-header">
+                    <span>Recent Searches</span>
+                    <button class="search-clear-all" id="clearRecentSearchesBtn" type="button">Clear All</button>
+                </div>
+            `;
+            recents.forEach(r => {
+                const safeQuery = String(r).replace(/"/g, '&quot;');
+                html += `
+                    <div class="search-recent-item" data-query="${safeQuery}">
+                        <div class="search-recent-left">
+                            <span class="search-recent-icon">
+                                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            </span>
+                            <span class="search-recent-text">${r}</span>
+                        </div>
+                        <button class="search-recent-remove" data-remove="${safeQuery}" type="button" aria-label="Remove search" title="Remove">&times;</button>
+                    </div>
+                `;
+            });
+        }
+
+        html += `
+            <div class="search-recent-header">
+                <span>Quick Categories</span>
+            </div>
+            <div class="search-pills-row">
+                <button class="search-pill-btn" type="button" data-fill="Aadhaar">🆔 Aadhaar</button>
+                <button class="search-pill-btn" type="button" data-fill="PAN">💳 PAN</button>
+                <button class="search-pill-btn" type="button" data-fill="Entrance Exams">🎓 Entrance Exams</button>
+                <button class="search-pill-btn" type="button" data-fill="Railway">🚆 Railway Jobs</button>
+                <button class="search-pill-btn" type="button" data-fill="AI Tools">🤖 80+ AI Tools</button>
+                <button class="search-pill-btn" type="button" data-fill="ePaper">📰 ePapers</button>
+                <button class="search-pill-btn" type="button" data-fill="Calculator">🧮 Calculators</button>
+            </div>
+        `;
+
+        dropdown.innerHTML = html;
+        dropdown.classList.add('active');
+        highlightedIndex = -1;
+
+        // Clear all recent searches
+        const clearBtn = document.getElementById('clearRecentSearchesBtn');
+        if (clearBtn) {
+            clearBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                window.VI_SEARCH.clearRecentSearches();
+                renderRecentAndQuickSearches();
+            });
+        }
+
+        // Click recent search to populate input and search
+        dropdown.querySelectorAll('.search-recent-item').forEach(el => {
+            el.addEventListener('click', (e) => {
+                if (e.target.closest('.search-recent-remove')) return;
+                const q = el.getAttribute('data-query');
+                const searchInput = document.getElementById('searchInput');
+                if (searchInput && q) {
+                    searchInput.value = q;
+                    handleSearchInput();
+                }
+            });
+        });
+
+        // Remove single recent search
+        dropdown.querySelectorAll('.search-recent-remove').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const q = btn.getAttribute('data-remove');
+                window.VI_SEARCH.removeRecentSearch(q);
+                renderRecentAndQuickSearches();
+            });
+        });
+
+        // Quick category pill click
+        dropdown.querySelectorAll('.search-pill-btn').forEach(pill => {
+            pill.addEventListener('click', () => {
+                const fill = pill.getAttribute('data-fill');
+                const searchInput = document.getElementById('searchInput');
+                if (searchInput && fill) {
+                    searchInput.value = fill;
+                    handleSearchInput();
+                }
+            });
+        });
+    }
+
     function handleSearchInput() {
         const searchInput = document.getElementById('searchInput');
         const clearBtn = document.getElementById('clearSearchBtn');
@@ -567,13 +982,11 @@
         if (!dropdown) return;
 
         if (trimmed.length === 0) {
-            dropdown.classList.remove('active');
-            dropdown.innerHTML = '';
-            highlightedIndex = -1;
+            renderRecentAndQuickSearches();
             return;
         }
 
-        const results = window.VI_SEARCH.query(trimmed, 12);
+        const results = window.VI_SEARCH.query(trimmed, 14);
         highlightedIndex = -1;
 
         if (results.length === 0) {
@@ -626,6 +1039,9 @@
         // Attach click interceptors for items on the current page
         dropdown.querySelectorAll('.search-result-item').forEach(el => {
             el.addEventListener('click', function (e) {
+                // Record search query in recent searches
+                window.VI_SEARCH.addRecentSearch(trimmed);
+
                 const isCur = el.getAttribute('data-current') === 'true';
                 const target = el.getAttribute('data-target');
                 if (isCur && target) {
@@ -640,6 +1056,8 @@
                     if (typeof window.resolveEduTarget === 'function') window.resolveEduTarget(target);
                     if (typeof window.resolveCareerTarget === 'function') window.resolveCareerTarget(target);
                     if (typeof window.resolveAiTarget === 'function') window.resolveAiTarget(target);
+                    if (typeof window.resolveNewsTarget === 'function') window.resolveNewsTarget(target);
+                    if (typeof window.resolveToolTarget === 'function') window.resolveToolTarget(target);
 
                     const targetEl = document.getElementById(target) || document.querySelector(`[data-id="${target}"]`) || document.querySelector(`[data-target="${target}"]`);
                     if (targetEl) {
@@ -651,24 +1069,34 @@
     }
 
     function handleSearchKeydown(e) {
+        const searchInput = document.getElementById('searchInput');
         const dropdown = document.getElementById('searchDropdown');
         if (!dropdown || !dropdown.classList.contains('active')) return;
 
         const items = dropdown.querySelectorAll('.search-result-item');
-        if (items.length === 0) return;
 
         if (e.key === 'ArrowDown') {
-            e.preventDefault();
-            highlightedIndex = (highlightedIndex + 1) % items.length;
-            updateSearchHighlight(items);
+            if (items.length > 0) {
+                e.preventDefault();
+                highlightedIndex = (highlightedIndex + 1) % items.length;
+                updateSearchHighlight(items);
+            }
         } else if (e.key === 'ArrowUp') {
-            e.preventDefault();
-            highlightedIndex = (highlightedIndex - 1 + items.length) % items.length;
-            updateSearchHighlight(items);
+            if (items.length > 0) {
+                e.preventDefault();
+                highlightedIndex = (highlightedIndex - 1 + items.length) % items.length;
+                updateSearchHighlight(items);
+            }
         } else if (e.key === 'Enter') {
+            if (searchInput && searchInput.value.trim()) {
+                window.VI_SEARCH.addRecentSearch(searchInput.value.trim());
+            }
             if (highlightedIndex >= 0 && items[highlightedIndex]) {
                 e.preventDefault();
                 items[highlightedIndex].click();
+            } else if (items.length === 1) {
+                e.preventDefault();
+                items[0].click();
             }
         } else if (e.key === 'Escape') {
             dropdown.classList.remove('active');
@@ -718,7 +1146,11 @@
             searchInput.addEventListener('input', handleSearchInput);
             searchInput.addEventListener('keydown', handleSearchKeydown);
             searchInput.addEventListener('focus', () => {
-                if (searchInput.value.trim()) handleSearchInput();
+                if (searchInput.value.trim()) {
+                    handleSearchInput();
+                } else {
+                    renderRecentAndQuickSearches();
+                }
             });
         }
 
@@ -729,10 +1161,7 @@
                     searchInput.focus();
                 }
                 clearBtn.style.display = 'none';
-                if (dropdown) {
-                    dropdown.classList.remove('active');
-                    dropdown.innerHTML = '';
-                }
+                renderRecentAndQuickSearches();
                 // Call local page filter if present
                 if (typeof window.filterServices === 'function') window.filterServices('');
                 if (typeof window.clearSearch === 'function') window.clearSearch();
@@ -784,9 +1213,25 @@
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', () => {
             window.renderVISiteShell();
+            if (window.VI_SEARCH && typeof window.VI_SEARCH.autoHarvest === 'function') {
+                window.VI_SEARCH.autoHarvest();
+            }
+            setTimeout(() => {
+                if (window.VI_SEARCH && typeof window.VI_SEARCH.autoHarvest === 'function') {
+                    window.VI_SEARCH.autoHarvest();
+                }
+            }, 600);
         });
     } else {
         window.renderVISiteShell();
+        if (window.VI_SEARCH && typeof window.VI_SEARCH.autoHarvest === 'function') {
+            window.VI_SEARCH.autoHarvest();
+        }
+        setTimeout(() => {
+            if (window.VI_SEARCH && typeof window.VI_SEARCH.autoHarvest === 'function') {
+                window.VI_SEARCH.autoHarvest();
+            }
+        }, 600);
     }
 
 })();

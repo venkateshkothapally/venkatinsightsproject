@@ -1,7 +1,15 @@
 window.VI_MASTER_SEARCH_INDEX = [
   {
+    "id": "cat-gov-aadhaar",
+    "title": "Aadhaar Services (All Services)",
+    "cat": "Government Services",
+    "page": "governmentservices/governmentservices.html",
+    "target": "cat-aadhaar",
+    "desc": "Browse all Aadhaar Services online portals, certificates and applications"
+  },
+  {
     "id": "svc-gov-uidai",
-    "title": "UIDAI (All Services)",
+    "title": "UIDAI - Aadhaar Services",
     "cat": "Government Services",
     "page": "governmentservices/governmentservices.html",
     "target": "svc-gov-uidai",
@@ -9,7 +17,7 @@ window.VI_MASTER_SEARCH_INDEX = [
   },
   {
     "id": "svc-gov-my-aadhaar",
-    "title": "My Aadhaar (All Services)",
+    "title": "My Aadhaar - Aadhaar Services",
     "cat": "Government Services",
     "page": "governmentservices/governmentservices.html",
     "target": "svc-gov-my-aadhaar",
@@ -17,7 +25,7 @@ window.VI_MASTER_SEARCH_INDEX = [
   },
   {
     "id": "svc-gov-download-aadhaar",
-    "title": "Download Aadhaar (All Services)",
+    "title": "Download Aadhaar - Aadhaar Services",
     "cat": "Government Services",
     "page": "governmentservices/governmentservices.html",
     "target": "svc-gov-download-aadhaar",
@@ -25,7 +33,7 @@ window.VI_MASTER_SEARCH_INDEX = [
   },
   {
     "id": "svc-gov-check-aadhaar-status",
-    "title": "Check Aadhaar Status (All Services)",
+    "title": "Check Aadhaar Status - Aadhaar Services",
     "cat": "Government Services",
     "page": "governmentservices/governmentservices.html",
     "target": "svc-gov-check-aadhaar-status",
@@ -33,7 +41,7 @@ window.VI_MASTER_SEARCH_INDEX = [
   },
   {
     "id": "svc-gov-lock-unlock-aadhaar",
-    "title": "Lock/Unlock Aadhaar (All Services)",
+    "title": "Lock/Unlock Aadhaar - Aadhaar Services",
     "cat": "Government Services",
     "page": "governmentservices/governmentservices.html",
     "target": "svc-gov-lock-unlock-aadhaar",
@@ -41,7 +49,7 @@ window.VI_MASTER_SEARCH_INDEX = [
   },
   {
     "id": "svc-gov-enrolment-forms",
-    "title": "Enrolment Forms (All Services)",
+    "title": "Enrolment Forms - Aadhaar Services",
     "cat": "Government Services",
     "page": "governmentservices/governmentservices.html",
     "target": "svc-gov-enrolment-forms",
@@ -49,15 +57,23 @@ window.VI_MASTER_SEARCH_INDEX = [
   },
   {
     "id": "svc-gov-aadhaar-update",
-    "title": "Aadhaar Update (All Services)",
+    "title": "Aadhaar Update - Aadhaar Services",
     "cat": "Government Services",
     "page": "governmentservices/governmentservices.html",
     "target": "svc-gov-aadhaar-update",
     "desc": "Download or Order Card"
   },
   {
+    "id": "cat-gov-pan",
+    "title": "PAN Services (All Services)",
+    "cat": "Government Services",
+    "page": "governmentservices/governmentservices.html",
+    "target": "cat-pan",
+    "desc": "Browse all PAN Services online portals, certificates and applications"
+  },
+  {
     "id": "svc-gov-pan-apply",
-    "title": "PAN Apply (PAN Services)",
+    "title": "PAN Apply - PAN Services",
     "cat": "Government Services",
     "page": "governmentservices/governmentservices.html",
     "target": "svc-gov-pan-apply",
@@ -65,7 +81,7 @@ window.VI_MASTER_SEARCH_INDEX = [
   },
   {
     "id": "svc-gov-download-e-pan",
-    "title": "Download e-PAN (PAN Services)",
+    "title": "Download e-PAN - PAN Services",
     "cat": "Government Services",
     "page": "governmentservices/governmentservices.html",
     "target": "svc-gov-download-e-pan",
@@ -73,7 +89,7 @@ window.VI_MASTER_SEARCH_INDEX = [
   },
   {
     "id": "svc-gov-reprint-pan-card",
-    "title": "Reprint PAN Card (PAN Services)",
+    "title": "Reprint PAN Card - PAN Services",
     "cat": "Government Services",
     "page": "governmentservices/governmentservices.html",
     "target": "svc-gov-reprint-pan-card",
@@ -81,15 +97,23 @@ window.VI_MASTER_SEARCH_INDEX = [
   },
   {
     "id": "svc-gov-pan-status",
-    "title": "PAN Status (PAN Services)",
+    "title": "PAN Status - PAN Services",
     "cat": "Government Services",
     "page": "governmentservices/governmentservices.html",
     "target": "svc-gov-pan-status",
     "desc": "Track PAN application"
   },
   {
+    "id": "cat-gov-passport",
+    "title": "Passport Services (All Services)",
+    "cat": "Government Services",
+    "page": "governmentservices/governmentservices.html",
+    "target": "cat-passport",
+    "desc": "Browse all Passport Services online portals, certificates and applications"
+  },
+  {
     "id": "svc-gov-passport-seva",
-    "title": "Passport Seva (Passport Services)",
+    "title": "Passport Seva - Passport Services",
     "cat": "Government Services",
     "page": "governmentservices/governmentservices.html",
     "target": "svc-gov-passport-seva",
@@ -97,7 +121,7 @@ window.VI_MASTER_SEARCH_INDEX = [
   },
   {
     "id": "svc-gov-passport-application",
-    "title": "Passport Application (Passport Services)",
+    "title": "Passport Application - Passport Services",
     "cat": "Government Services",
     "page": "governmentservices/governmentservices.html",
     "target": "svc-gov-passport-application",
@@ -105,7 +129,7 @@ window.VI_MASTER_SEARCH_INDEX = [
   },
   {
     "id": "svc-gov-tatkaal-passport",
-    "title": "Tatkaal Passport (Passport Services)",
+    "title": "Tatkaal Passport - Passport Services",
     "cat": "Government Services",
     "page": "governmentservices/governmentservices.html",
     "target": "svc-gov-tatkaal-passport",
@@ -113,7 +137,7 @@ window.VI_MASTER_SEARCH_INDEX = [
   },
   {
     "id": "svc-gov-police-clearance-certificate",
-    "title": "Police Clearance Certificate (Passport Services)",
+    "title": "Police Clearance Certificate - Passport Services",
     "cat": "Government Services",
     "page": "governmentservices/governmentservices.html",
     "target": "svc-gov-police-clearance-certificate",
@@ -121,7 +145,7 @@ window.VI_MASTER_SEARCH_INDEX = [
   },
   {
     "id": "svc-gov-track-application",
-    "title": "Track Application (Passport Services)",
+    "title": "Track Application - Passport Services",
     "cat": "Government Services",
     "page": "governmentservices/governmentservices.html",
     "target": "svc-gov-track-application",
@@ -129,15 +153,23 @@ window.VI_MASTER_SEARCH_INDEX = [
   },
   {
     "id": "svc-gov-book-appointment",
-    "title": "Book Appointment (Passport Services)",
+    "title": "Book Appointment - Passport Services",
     "cat": "Government Services",
     "page": "governmentservices/governmentservices.html",
     "target": "svc-gov-book-appointment",
     "desc": "Schedule passport appointment"
   },
   {
+    "id": "cat-gov-food",
+    "title": "Food & Civil Supplies (All Services)",
+    "cat": "Government Services",
+    "page": "governmentservices/governmentservices.html",
+    "target": "cat-food",
+    "desc": "Browse all Food & Civil Supplies online portals, certificates and applications"
+  },
+  {
     "id": "svc-gov-ration-card-download",
-    "title": "Ration Card Download (Food & Civil Supplies)",
+    "title": "Ration Card Download - Food & Civil Supplies",
     "cat": "Government Services",
     "page": "governmentservices/governmentservices.html",
     "target": "svc-gov-ration-card-download",
@@ -145,7 +177,7 @@ window.VI_MASTER_SEARCH_INDEX = [
   },
   {
     "id": "svc-gov-food-security-card-search",
-    "title": "Food Security Card Search (Food & Civil Supplies)",
+    "title": "Food Security Card Search - Food & Civil Supplies",
     "cat": "Government Services",
     "page": "governmentservices/governmentservices.html",
     "target": "svc-gov-food-security-card-search",
@@ -153,7 +185,7 @@ window.VI_MASTER_SEARCH_INDEX = [
   },
   {
     "id": "svc-gov-national-food-security-portal",
-    "title": "National Food Security Portal (Food & Civil Supplies)",
+    "title": "National Food Security Portal - Food & Civil Supplies",
     "cat": "Government Services",
     "page": "governmentservices/governmentservices.html",
     "target": "svc-gov-national-food-security-portal",
@@ -161,7 +193,7 @@ window.VI_MASTER_SEARCH_INDEX = [
   },
   {
     "id": "svc-gov-mera-ration-app",
-    "title": "Mera Ration App (Food & Civil Supplies)",
+    "title": "Mera Ration App - Food & Civil Supplies",
     "cat": "Government Services",
     "page": "governmentservices/governmentservices.html",
     "target": "svc-gov-mera-ration-app",
@@ -169,15 +201,23 @@ window.VI_MASTER_SEARCH_INDEX = [
   },
   {
     "id": "svc-gov-download-fsc-card",
-    "title": "Download FSC Card (Food & Civil Supplies)",
+    "title": "Download FSC Card - Food & Civil Supplies",
     "cat": "Government Services",
     "page": "governmentservices/governmentservices.html",
     "target": "svc-gov-download-fsc-card",
     "desc": "Food Security Card"
   },
   {
+    "id": "cat-gov-transport",
+    "title": "Telangana Transport Services (All Services)",
+    "cat": "Government Services",
+    "page": "governmentservices/governmentservices.html",
+    "target": "cat-transport",
+    "desc": "Browse all Telangana Transport Services online portals, certificates and applications"
+  },
+  {
     "id": "svc-gov-driving-licence",
-    "title": "Driving Licence (Telangana Transport Services)",
+    "title": "Driving Licence - Telangana Transport Services",
     "cat": "Government Services",
     "page": "governmentservices/governmentservices.html",
     "target": "svc-gov-driving-licence",
@@ -185,7 +225,7 @@ window.VI_MASTER_SEARCH_INDEX = [
   },
   {
     "id": "svc-gov-learner-licence-slot-booking",
-    "title": "Learner Licence Slot Booking (Telangana Transport Services)",
+    "title": "Learner Licence Slot Booking - Telangana Transport Services",
     "cat": "Government Services",
     "page": "governmentservices/governmentservices.html",
     "target": "svc-gov-learner-licence-slot-booking",
@@ -193,15 +233,23 @@ window.VI_MASTER_SEARCH_INDEX = [
   },
   {
     "id": "svc-gov-dl-slot-booking",
-    "title": "DL Slot Booking (Telangana Transport Services)",
+    "title": "DL Slot Booking - Telangana Transport Services",
     "cat": "Government Services",
     "page": "governmentservices/governmentservices.html",
     "target": "svc-gov-dl-slot-booking",
     "desc": "Book driving test"
   },
   {
+    "id": "cat-gov-health",
+    "title": "Health Services (All Services)",
+    "cat": "Government Services",
+    "page": "governmentservices/governmentservices.html",
+    "target": "cat-health",
+    "desc": "Browse all Health Services online portals, certificates and applications"
+  },
+  {
     "id": "svc-gov-esanjeevani-opd",
-    "title": "eSanjeevani OPD (Health Services)",
+    "title": "eSanjeevani OPD - Health Services",
     "cat": "Government Services",
     "page": "governmentservices/governmentservices.html",
     "target": "svc-gov-esanjeevani-opd",
@@ -209,15 +257,23 @@ window.VI_MASTER_SEARCH_INDEX = [
   },
   {
     "id": "svc-gov-arogyasri-portal",
-    "title": "Arogyasri Portal (Health Services)",
+    "title": "Arogyasri Portal - Health Services",
     "cat": "Government Services",
     "page": "governmentservices/governmentservices.html",
     "target": "svc-gov-arogyasri-portal",
     "desc": "Health scheme services"
   },
   {
+    "id": "cat-gov-agri",
+    "title": "Agriculture & Land Services (All Services)",
+    "cat": "Government Services",
+    "page": "governmentservices/governmentservices.html",
+    "target": "cat-agri",
+    "desc": "Browse all Agriculture & Land Services online portals, certificates and applications"
+  },
+  {
     "id": "svc-gov-bhu-bharati",
-    "title": "Bhu Bharati (Agriculture & Land Services)",
+    "title": "Bhu Bharati - Agriculture & Land Services",
     "cat": "Government Services",
     "page": "governmentservices/governmentservices.html",
     "target": "svc-gov-bhu-bharati",
@@ -225,15 +281,23 @@ window.VI_MASTER_SEARCH_INDEX = [
   },
   {
     "id": "svc-gov-igrs-telangana",
-    "title": "IGRS Telangana (Agriculture & Land Services)",
+    "title": "IGRS Telangana - Agriculture & Land Services",
     "cat": "Government Services",
     "page": "governmentservices/governmentservices.html",
     "target": "svc-gov-igrs-telangana",
     "desc": "Registration and stamps"
   },
   {
+    "id": "cat-gov-utility",
+    "title": "Utility Services (All Services)",
+    "cat": "Government Services",
+    "page": "governmentservices/governmentservices.html",
+    "target": "cat-utility",
+    "desc": "Browse all Utility Services online portals, certificates and applications"
+  },
+  {
     "id": "svc-gov-tgspdcl-electricity",
-    "title": "TGSPDCL Electricity (Utility Services)",
+    "title": "TGSPDCL Electricity - Utility Services",
     "cat": "Government Services",
     "page": "governmentservices/governmentservices.html",
     "target": "svc-gov-tgspdcl-electricity",
@@ -241,15 +305,23 @@ window.VI_MASTER_SEARCH_INDEX = [
   },
   {
     "id": "svc-gov-tgnpdcl-electricity",
-    "title": "TGNPDCL Electricity (Utility Services)",
+    "title": "TGNPDCL Electricity - Utility Services",
     "cat": "Government Services",
     "page": "governmentservices/governmentservices.html",
     "target": "svc-gov-tgnpdcl-electricity",
     "desc": "Northern power bills"
   },
   {
+    "id": "cat-gov-gas",
+    "title": "Gas Booking Services (All Services)",
+    "cat": "Government Services",
+    "page": "governmentservices/governmentservices.html",
+    "target": "cat-gas",
+    "desc": "Browse all Gas Booking Services online portals, certificates and applications"
+  },
+  {
     "id": "svc-gov-indane-gas",
-    "title": "Indane Gas (Gas Booking Services)",
+    "title": "Indane Gas - Gas Booking Services",
     "cat": "Government Services",
     "page": "governmentservices/governmentservices.html",
     "target": "svc-gov-indane-gas",
@@ -257,15 +329,23 @@ window.VI_MASTER_SEARCH_INDEX = [
   },
   {
     "id": "svc-gov-hp-gas",
-    "title": "HP Gas (Gas Booking Services)",
+    "title": "HP Gas - Gas Booking Services",
     "cat": "Government Services",
     "page": "governmentservices/governmentservices.html",
     "target": "svc-gov-hp-gas",
     "desc": "Refill booking & services"
   },
   {
+    "id": "cat-gov-quick_gov",
+    "title": "Quick Government Portals (All Services)",
+    "cat": "Government Services",
+    "page": "governmentservices/governmentservices.html",
+    "target": "cat-quick_gov",
+    "desc": "Browse all Quick Government Portals online portals, certificates and applications"
+  },
+  {
     "id": "svc-gov-meeseva-telangana",
-    "title": "MeeSeva Telangana (Quick Government Portals)",
+    "title": "MeeSeva Telangana - Quick Government Portals",
     "cat": "Government Services",
     "page": "governmentservices/governmentservices.html",
     "target": "svc-gov-meeseva-telangana",
@@ -273,2144 +353,2490 @@ window.VI_MASTER_SEARCH_INDEX = [
   },
   {
     "id": "svc-gov-telangana-e-challan",
-    "title": "Telangana e-Challan (Quick Government Portals)",
+    "title": "Telangana e-Challan - Quick Government Portals",
     "cat": "Government Services",
     "page": "governmentservices/governmentservices.html",
     "target": "svc-gov-telangana-e-challan",
     "desc": "Traffic challan payment"
   },
   {
+    "id": "svc-edu-144",
+    "title": "TS LAWCET Law Admissions & Counselling 2026",
+    "cat": "Education",
+    "page": "education/education.html",
+    "target": "svc-edu-144",
+    "desc": "Telangana Entrance Exams • TS LAWCET & PGLCET • Telangana State Law Common Entrance Test for 3-Year / 5-Year LL.B & LL.M courses."
+  },
+  {
     "id": "svc-edu-50",
-    "title": "Prof Jayashankar Telangana state agriculture university — Results",
+    "title": "Results",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-50",
-    "desc": "Agriculture University | Examination results are published on the official website."
+    "desc": "Agriculture University • Prof Jayashankar Telangana state agriculture university • Examination results are published on the official website."
   },
   {
     "id": "svc-edu-101",
-    "title": "UGC NET — JRF & Assistant Professor Eligibility",
+    "title": "JRF & Assistant Professor Eligibility",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-101",
-    "desc": "Research And Phd | Official student service portal for research and phd."
+    "desc": "Research And Phd • UGC NET • Official student service portal for research and phd."
   },
   {
     "id": "svc-edu-139",
-    "title": "AFCAT — Air Force Common Admission Test",
+    "title": "Air Force Common Admission Test",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-139",
-    "desc": "National Level Exams | Common Entrance Examination for admission to eligible courses."
+    "desc": "National Level Exams • AFCAT • Common Entrance Examination for admission to eligible courses."
   },
   {
     "id": "svc-edu-142",
-    "title": "CMAT — Common Management Admission Test",
+    "title": "Common Management Admission Test",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-142",
-    "desc": "National Level Exams | Common Entrance Examination for admission to eligible courses."
+    "desc": "National Level Exams • CMAT • Common Entrance Examination for admission to eligible courses."
   },
   {
     "id": "svc-edu-3",
-    "title": "Students Scholarship services — ePass Telangana - Home",
+    "title": "ePass Telangana - Home",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-3",
-    "desc": "Scholarships | Apply online through the official scholarship portal."
+    "desc": "Scholarships • Students Scholarship services • Apply online through the official scholarship portal."
   },
   {
     "id": "svc-edu-23",
-    "title": "STUDENTS EXAMS — TG LAWCET & PGLCET 2026",
+    "title": "TG LAWCET & PGLCET 2026",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-23",
-    "desc": "Telangana Entrance Exams | Common Entrance Examination for admission to eligible courses 2026."
+    "desc": "Telangana Entrance Exams • STUDENTS EXAMS • Common Entrance Examination for admission to eligible courses 2026."
   },
   {
     "id": "svc-edu-33",
-    "title": "IIT BASARA — UG Admissions - Home",
+    "title": "UG Admissions - Home",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-33",
-    "desc": "Engineering & Technology | Common Entrance Examination for admission to eligible courses."
+    "desc": "Engineering & Technology • IIT BASARA • Common Entrance Examination for admission to eligible courses."
   },
   {
     "id": "svc-edu-36",
-    "title": "Kendriya vidyalaya sangathan (KVS) SERVICES — KVS Fee Payment",
+    "title": "KVS Fee Payment",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-36",
-    "desc": "School Admissions | Official student service portal for school admissions."
+    "desc": "School Admissions • Kendriya vidyalaya sangathan (KVS) SERVICES • Official student service portal for school admissions."
   },
   {
     "id": "svc-edu-78",
-    "title": "JEE Advanced — IIT Admissions",
+    "title": "IIT Admissions",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-78",
-    "desc": "Engineering & Technology | Common Entrance Examination for admission to eligible courses."
+    "desc": "Engineering & Technology • JEE Advanced • Common Entrance Examination for admission to eligible courses."
   },
   {
     "id": "svc-edu-116",
-    "title": "TMREIS Admissions — Minority Residential Schools",
+    "title": "Minority Residential Schools",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-116",
-    "desc": "Residential School Admissions | Official student service portal for residential school admissions."
+    "desc": "Residential School Admissions • TMREIS Admissions • Official student service portal for residential school admissions."
   },
   {
     "id": "svc-edu-19",
-    "title": "STUDENTS EXAMS — TG CPGET - Common Post Graduate Entrance Test",
+    "title": "TG CPGET - Common Post Graduate Entrance Test",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-19",
-    "desc": "Telangana Entrance Exams | Common Entrance Examination for admission to eligible courses."
+    "desc": "Telangana Entrance Exams • STUDENTS EXAMS • Common Entrance Examination for admission to eligible courses."
   },
   {
     "id": "svc-edu-51",
-    "title": "Students buspass — Student Bus Pass Registration - Home",
+    "title": "Student Bus Pass Registration - Home",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-51",
-    "desc": "Student Services | Students can apply online for a free / concessionary bus pass."
+    "desc": "Student Services • Students buspass • Students can apply online for a free / concessionary bus pass."
   },
   {
     "id": "svc-edu-60",
-    "title": "TOSS Admissions — Telangana Open School",
+    "title": "Telangana Open School",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-60",
-    "desc": "Telangana Entrance Exams | Official student service portal for telangana entrance exams."
+    "desc": "Telangana Entrance Exams • TOSS Admissions • Official student service portal for telangana entrance exams."
   },
   {
     "id": "svc-edu-105",
-    "title": "DAE DDFS — DAE Doctoral Fellowship Scheme",
+    "title": "DAE Doctoral Fellowship Scheme",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-105",
-    "desc": "Doctoral Fellowships | Official student service portal for doctoral fellowships."
+    "desc": "Doctoral Fellowships • DAE DDFS • Official student service portal for doctoral fellowships."
   },
   {
     "id": "svc-edu-123",
-    "title": "Sainik School Admissions — Military School Admissions",
+    "title": "Military School Admissions",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-123",
-    "desc": "Residential School Admissions | Common Entrance Examination for admission to eligible courses."
+    "desc": "Residential School Admissions • Sainik School Admissions • Common Entrance Examination for admission to eligible courses."
   },
   {
     "id": "svc-edu-124",
-    "title": "Telangana ePASS — Fee Reimbursement & Scholarships",
+    "title": "Fee Reimbursement & Scholarships",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-124",
-    "desc": "Scholarships | Apply online through the official scholarship portal."
+    "desc": "Scholarships • Telangana ePASS • Apply online through the official scholarship portal."
   },
   {
     "id": "svc-edu-6",
-    "title": "Students Scholarship services — National Scholarships Portal - One Time Registration (OTR)",
+    "title": "National Scholarships Portal - One Time Registration (OTR)",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-6",
-    "desc": "Scholarships | Apply online through the official scholarship portal."
+    "desc": "Scholarships • Students Scholarship services • Apply online through the official scholarship portal."
   },
   {
     "id": "svc-edu-20",
-    "title": "STUDENTS EXAMS — TG EAPCET 2026",
+    "title": "TG EAPCET 2026",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-20",
-    "desc": "Telangana Entrance Exams | Common Entrance Examination for admission to eligible courses 2026."
+    "desc": "Telangana Entrance Exams • STUDENTS EXAMS • Common Entrance Examination for admission to eligible courses 2026."
   },
   {
     "id": "svc-edu-37",
-    "title": "SBTET SERVICES — SBTET - Home",
+    "title": "SBTET - Home",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-37",
-    "desc": "SBTET POLYCET | Official student service portal for sbtet polycet."
+    "desc": "SBTET POLYCET • SBTET SERVICES • Official student service portal for sbtet polycet."
   },
   {
     "id": "svc-edu-90",
-    "title": "CUET PG — National Level PG Entrance",
+    "title": "National Level PG Entrance",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-90",
-    "desc": "Post Graduation Admissions | Common Entrance Examination for admission to eligible courses."
+    "desc": "Post Graduation Admissions • CUET PG • Common Entrance Examination for admission to eligible courses."
   },
   {
     "id": "svc-edu-1",
-    "title": "SSC -BOARD OF SECONDARY EDUCATION — BSE TG - Home",
+    "title": "BSE TG - Home",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-1",
-    "desc": "Scholarships | Official student service portal for scholarships."
+    "desc": "Scholarships • SSC -BOARD OF SECONDARY EDUCATION • Official student service portal for scholarships."
   },
   {
     "id": "svc-edu-14",
-    "title": "DR B R Ambedkar open University services (BRAOU) — BRAOU - Quick Links",
+    "title": "BRAOU - Quick Links",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-14",
-    "desc": "Open University | Official student service portal for open university."
+    "desc": "Open University • DR B R Ambedkar open University services (BRAOU) • Official student service portal for open university."
   },
   {
     "id": "svc-edu-55",
-    "title": "TG ECET — Diploma to B.Tech Admissions",
+    "title": "Diploma to B.Tech Admissions",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-55",
-    "desc": "Telangana Entrance Exams | Common Entrance Examination for admission to eligible courses."
+    "desc": "Telangana Entrance Exams • TG ECET • Common Entrance Examination for admission to eligible courses."
   },
   {
     "id": "svc-edu-80",
-    "title": "TG ECET — Lateral Entry Admissions",
+    "title": "Lateral Entry Admissions",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-80",
-    "desc": "Engineering & Technology | Common Entrance Examination for admission to eligible courses."
+    "desc": "Engineering & Technology • TG ECET • Common Entrance Examination for admission to eligible courses."
   },
   {
     "id": "svc-edu-129",
-    "title": "Saksham Scholarship — Differently Abled Students",
+    "title": "Differently Abled Students",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-129",
-    "desc": "Scholarships | Official student service portal for scholarships."
+    "desc": "Scholarships • Saksham Scholarship • Official student service portal for scholarships."
   },
   {
     "id": "svc-edu-49",
-    "title": "Prof Jayashankar Telangana state agriculture university — Admissions",
+    "title": "Admissions",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-49",
-    "desc": "Agriculture University | Common Entrance Examination for admission to eligible courses."
+    "desc": "Agriculture University • Prof Jayashankar Telangana state agriculture university • Common Entrance Examination for admission to eligible courses."
   },
   {
     "id": "svc-edu-74",
-    "title": "KNRUHS PG Admissions — Medical PG Admissions",
+    "title": "Medical PG Admissions",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-74",
-    "desc": "Medical & Health Sciences | Common Entrance Examination for admission to eligible courses."
+    "desc": "Medical & Health Sciences • KNRUHS PG Admissions • Common Entrance Examination for admission to eligible courses."
   },
   {
     "id": "svc-edu-131",
-    "title": "UPSC Civil Services — IAS, IPS, IFS Recruitment",
+    "title": "IAS, IPS, IFS Recruitment",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-131",
-    "desc": "National Level Exams | Official student service portal for national level exams."
+    "desc": "National Level Exams • UPSC Civil Services • Official student service portal for national level exams."
   },
   {
     "id": "svc-edu-26",
-    "title": "STUDENTS EXAMS — NEET (UG) - National Eligibility Cum Entrance Test",
+    "title": "NEET (UG) - National Eligibility Cum Entrance Test",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-26",
-    "desc": "Telangana Entrance Exams | Common Entrance Examination for admission to eligible courses."
+    "desc": "Telangana Entrance Exams • STUDENTS EXAMS • Common Entrance Examination for admission to eligible courses."
   },
   {
     "id": "svc-edu-79",
-    "title": "RGUKT Basar Admissions — IIIT Basar & Mahabubnagar",
+    "title": "IIIT Basar & Mahabubnagar",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-79",
-    "desc": "Engineering & Technology | Official student service portal for engineering & technology."
+    "desc": "Engineering & Technology • RGUKT Basar Admissions • Official student service portal for engineering & technology."
   },
   {
     "id": "svc-edu-81",
-    "title": "JEE Main — National Engineering Entrance",
+    "title": "National Engineering Entrance",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-81",
-    "desc": "Engineering & Technology | Common Entrance Examination for admission to eligible courses."
+    "desc": "Engineering & Technology • JEE Main • Common Entrance Examination for admission to eligible courses."
   },
   {
     "id": "svc-edu-35",
-    "title": "Kendriya vidyalaya sangathan (KVS) SERVICES — KVS Admissions - Home",
+    "title": "KVS Admissions - Home",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-35",
-    "desc": "School Admissions | Common Entrance Examination for admission to eligible courses."
+    "desc": "School Admissions • Kendriya vidyalaya sangathan (KVS) SERVICES • Common Entrance Examination for admission to eligible courses."
   },
   {
     "id": "svc-edu-48",
-    "title": "Prof Jayashankar Telangana state agriculture university — Home",
+    "title": "Home",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-48",
-    "desc": "Agriculture University | Official student service portal for agriculture university."
+    "desc": "Agriculture University • Prof Jayashankar Telangana state agriculture university • Official student service portal for agriculture university."
   },
   {
     "id": "svc-edu-66",
-    "title": "AIIMS Nursing — Nursing Admissions",
+    "title": "Nursing Admissions",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-66",
-    "desc": "Medical & Health Sciences | Common Entrance Examination for admission to eligible courses."
+    "desc": "Medical & Health Sciences • AIIMS Nursing • Common Entrance Examination for admission to eligible courses."
   },
   {
     "id": "svc-edu-72",
-    "title": "NEET FET — Fellowship Entrance Test",
+    "title": "Fellowship Entrance Test",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-72",
-    "desc": "Medical & Health Sciences | Common Entrance Examination for admission to eligible courses."
+    "desc": "Medical & Health Sciences • NEET FET • Common Entrance Examination for admission to eligible courses."
   },
   {
     "id": "svc-edu-91",
-    "title": "TG PGECET — M.Tech, M.Pharmacy Entrance",
+    "title": "M.Tech, M.Pharmacy Entrance",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-91",
-    "desc": "Post Graduation Admissions | Common Entrance Examination for admission to eligible courses."
+    "desc": "Post Graduation Admissions • TG PGECET • Common Entrance Examination for admission to eligible courses."
   },
   {
     "id": "svc-edu-93",
-    "title": "TG PGLCET — LL.M PG Law Entrance",
+    "title": "LL.M PG Law Entrance",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-93",
-    "desc": "Post Graduation Admissions | Common Entrance Examination for admission to eligible courses."
+    "desc": "Post Graduation Admissions • TG PGLCET • Common Entrance Examination for admission to eligible courses."
   },
   {
     "id": "svc-edu-127",
-    "title": "Minority Scholarship — Minority Welfare Scholarship",
+    "title": "Minority Welfare Scholarship",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-127",
-    "desc": "Scholarships | Apply online through the official scholarship portal."
+    "desc": "Scholarships • Minority Scholarship • Apply online through the official scholarship portal."
   },
   {
     "id": "svc-edu-21",
-    "title": "STUDENTS EXAMS — TG ICET 2026 - Integrated Common Entrance Test",
+    "title": "TG ICET 2026 - Integrated Common Entrance Test",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-21",
-    "desc": "Telangana Entrance Exams | Common Entrance Examination for admission to eligible courses 2026."
+    "desc": "Telangana Entrance Exams • STUDENTS EXAMS • Common Entrance Examination for admission to eligible courses 2026."
   },
   {
     "id": "svc-edu-89",
-    "title": "KNRUHS PG Admissions — MD, MS, MDS Admissions",
+    "title": "MD, MS, MDS Admissions",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-89",
-    "desc": "Post Graduation Admissions | Common Entrance Examination for admission to eligible courses."
+    "desc": "Post Graduation Admissions • KNRUHS PG Admissions • Common Entrance Examination for admission to eligible courses."
   },
   {
     "id": "svc-edu-122",
-    "title": "KGBV Admissions — Kasturba Gandhi Balika Vidyalaya",
+    "title": "Kasturba Gandhi Balika Vidyalaya",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-122",
-    "desc": "Residential School Admissions | Official student service portal for residential school admissions."
+    "desc": "Residential School Admissions • KGBV Admissions • Official student service portal for residential school admissions."
   },
   {
     "id": "svc-edu-52",
-    "title": "exam results — OU Results",
+    "title": "OU Results",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-52",
-    "desc": "Exam Results | Examination results are published on the official website."
+    "desc": "Exam Results • exam results • Examination results are published on the official website."
   },
   {
     "id": "svc-edu-76",
-    "title": "TG EAPCET — Engineering Admissions",
+    "title": "Engineering Admissions",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-76",
-    "desc": "Engineering & Technology | Common Entrance Examination for admission to eligible courses."
+    "desc": "Engineering & Technology • TG EAPCET • Common Entrance Examination for admission to eligible courses."
   },
   {
     "id": "svc-edu-5",
-    "title": "Students Scholarship services — National Scholarships Portal - Change Mobile No",
+    "title": "National Scholarships Portal - Change Mobile No",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-5",
-    "desc": "Scholarships | Apply online through the official scholarship portal."
+    "desc": "Scholarships • Students Scholarship services • Apply online through the official scholarship portal."
   },
   {
     "id": "svc-edu-41",
-    "title": "SBTET SERVICES — Diploma - Diploma Results",
+    "title": "Diploma - Diploma Results",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-41",
-    "desc": "SBTET POLYCET | Examination results are published on the official website."
+    "desc": "SBTET POLYCET • SBTET SERVICES • Examination results are published on the official website."
   },
   {
     "id": "svc-edu-134",
-    "title": "Agniveer — Agnipath Scheme Recruitment",
+    "title": "Agnipath Scheme Recruitment",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-134",
-    "desc": "National Level Exams | Official student service portal for national level exams."
+    "desc": "National Level Exams • Agniveer • Official student service portal for national level exams."
   },
   {
     "id": "svc-edu-31",
-    "title": "TOSS TELANGANA OPEN SCHOOL SOCIETY SERVICES — TOSS - Home",
+    "title": "TOSS - Home",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-31",
-    "desc": "Open School | Official student service portal for open school."
+    "desc": "Open School • TOSS TELANGANA OPEN SCHOOL SOCIETY SERVICES • Official student service portal for open school."
   },
   {
     "id": "svc-edu-59",
-    "title": "TG POLYCET — Diploma Admissions",
+    "title": "Diploma Admissions",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-59",
-    "desc": "Telangana Entrance Exams | Common Entrance Examination for admission to eligible courses."
+    "desc": "Telangana Entrance Exams • TG POLYCET • Common Entrance Examination for admission to eligible courses."
   },
   {
     "id": "svc-edu-133",
-    "title": "CDS — Combined Defence Services",
+    "title": "Combined Defence Services",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-133",
-    "desc": "National Level Exams | Official student service portal for national level exams."
+    "desc": "National Level Exams • CDS • Official student service portal for national level exams."
   },
   {
     "id": "svc-edu-137",
-    "title": "SSC CGL — Combined Graduate Level",
+    "title": "Combined Graduate Level",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-137",
-    "desc": "National Level Exams | Official student service portal for national level exams."
+    "desc": "National Level Exams • SSC CGL • Official student service portal for national level exams."
   },
   {
     "id": "svc-edu-61",
-    "title": "UGC NET — Assistant Professor & JRF Eligibility",
+    "title": "Assistant Professor & JRF Eligibility",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-61",
-    "desc": "Telangana Entrance Exams | Official student service portal for telangana entrance exams."
+    "desc": "Telangana Entrance Exams • UGC NET • Official student service portal for telangana entrance exams."
   },
   {
     "id": "svc-edu-65",
-    "title": "NEET SS — Super Specialty Admissions",
+    "title": "Super Specialty Admissions",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-65",
-    "desc": "Medical & Health Sciences | Common Entrance Examination for admission to eligible courses."
+    "desc": "Medical & Health Sciences • NEET SS • Common Entrance Examination for admission to eligible courses."
   },
   {
     "id": "svc-edu-7",
-    "title": "Students Scholarship services — National Scholarships Portal - OTR Login",
+    "title": "National Scholarships Portal - OTR Login",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-7",
-    "desc": "Scholarships | Apply online through the official scholarship portal."
+    "desc": "Scholarships • Students Scholarship services • Apply online through the official scholarship portal."
   },
   {
     "id": "svc-edu-64",
-    "title": "NEET PG — Post Graduate Medical Admissions",
+    "title": "Post Graduate Medical Admissions",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-64",
-    "desc": "Medical & Health Sciences | Common Entrance Examination for admission to eligible courses."
+    "desc": "Medical & Health Sciences • NEET PG • Common Entrance Examination for admission to eligible courses."
   },
   {
     "id": "svc-edu-99",
-    "title": "GPAT 2026 — Pharmacy Entrance Test",
+    "title": "Pharmacy Entrance Test",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-99",
-    "desc": "Research And Phd | Common Entrance Examination for admission to eligible courses."
+    "desc": "Research And Phd • GPAT 2026 • Common Entrance Examination for admission to eligible courses."
   },
   {
     "id": "svc-edu-132",
-    "title": "RRB NTPC — Railway Non-Technical",
+    "title": "Railway Non-Technical",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-132",
-    "desc": "National Level Exams | Official student service portal for national level exams."
+    "desc": "National Level Exams • RRB NTPC • Official student service portal for national level exams."
   },
   {
     "id": "svc-edu-106",
-    "title": "PRL JRF — Physical Research Laboratory JRF",
+    "title": "Physical Research Laboratory JRF",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-106",
-    "desc": "Doctoral Fellowships | Official student service portal for doctoral fellowships."
+    "desc": "Doctoral Fellowships • PRL JRF • Official student service portal for doctoral fellowships."
   },
   {
     "id": "svc-edu-108",
-    "title": "INSPIRE — Innovation in Science Pursuit",
+    "title": "Innovation in Science Pursuit",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-108",
-    "desc": "Doctoral Fellowships | Official student service portal for doctoral fellowships."
+    "desc": "Doctoral Fellowships • INSPIRE • Official student service portal for doctoral fellowships."
   },
   {
     "id": "svc-edu-126",
-    "title": "PM YASASVI — OBC/EBC/DNT Scholarship",
+    "title": "OBC/EBC/DNT Scholarship",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-126",
-    "desc": "Scholarships | Apply online through the official scholarship portal."
+    "desc": "Scholarships • PM YASASVI • Apply online through the official scholarship portal."
   },
   {
     "id": "svc-edu-138",
-    "title": "NDA — National Defence Academy",
+    "title": "National Defence Academy",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-138",
-    "desc": "National Level Exams | Official student service portal for national level exams."
+    "desc": "National Level Exams • NDA • Official student service portal for national level exams."
   },
   {
     "id": "svc-edu-27",
-    "title": "STUDENTS EXAMS — JEE (Main)",
+    "title": "JEE (Main)",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-27",
-    "desc": "Telangana Entrance Exams | Common Entrance Examination for admission to eligible courses."
+    "desc": "Telangana Entrance Exams • STUDENTS EXAMS • Common Entrance Examination for admission to eligible courses."
   },
   {
     "id": "svc-edu-30",
-    "title": "STUDENTS EXAMS — CTET - Home",
+    "title": "CTET - Home",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-30",
-    "desc": "Telangana Entrance Exams | Official student service portal for telangana entrance exams."
+    "desc": "Telangana Entrance Exams • STUDENTS EXAMS • Official student service portal for telangana entrance exams."
   },
   {
     "id": "svc-edu-69",
-    "title": "AYUSH Admissions — Ayurveda, Yoga, Unani, Siddha",
+    "title": "Ayurveda, Yoga, Unani, Siddha",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-69",
-    "desc": "Medical & Health Sciences | Official student service portal for medical & health sciences."
+    "desc": "Medical & Health Sciences • AYUSH Admissions • Official student service portal for medical & health sciences."
   },
   {
     "id": "svc-edu-114",
-    "title": "TGSWREIS — Social Welfare Residential Schools",
+    "title": "Social Welfare Residential Schools",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-114",
-    "desc": "Residential School Admissions | Official student service portal for residential school admissions."
+    "desc": "Residential School Admissions • TGSWREIS • Official student service portal for residential school admissions."
   },
   {
     "id": "svc-edu-13",
-    "title": "DR B R Ambedkar open University services (BRAOU) — BRAOU - Home",
+    "title": "BRAOU - Home",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-13",
-    "desc": "Open University | Official student service portal for open university."
+    "desc": "Open University • DR B R Ambedkar open University services (BRAOU) • Official student service portal for open university."
   },
   {
     "id": "svc-edu-17",
-    "title": "ABC & DEB Ids (BRAOU) — Create ABC ID & DEB ID - User Manual",
+    "title": "Create ABC ID & DEB ID - User Manual",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-17",
-    "desc": "Open University | Official student service portal for open university."
+    "desc": "Open University • ABC & DEB Ids (BRAOU) • Official student service portal for open university."
   },
   {
     "id": "svc-edu-34",
-    "title": "Forest colleges and research institute — FCRITS - Home",
+    "title": "FCRITS - Home",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-34",
-    "desc": "Specialized Institutions | Official student service portal for specialized institutions."
+    "desc": "Specialized Institutions • Forest colleges and research institute • Official student service portal for specialized institutions."
   },
   {
     "id": "svc-edu-70",
-    "title": "NEET All Services — Entrance & Screening Tests",
+    "title": "Entrance & Screening Tests",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-70",
-    "desc": "Medical & Health Sciences | Common Entrance Examination for admission to eligible courses."
+    "desc": "Medical & Health Sciences • NEET All Services • Common Entrance Examination for admission to eligible courses."
   },
   {
     "id": "svc-edu-128",
-    "title": "National Scholarship Portal — Central Government Scholarships",
+    "title": "Central Government Scholarships",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-128",
-    "desc": "Scholarships | Apply online through the official scholarship portal."
+    "desc": "Scholarships • National Scholarship Portal • Apply online through the official scholarship portal."
   },
   {
     "id": "svc-edu-18",
-    "title": "STUDENTS EXAMS — TGCHE - Home",
+    "title": "TGCHE - Home",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-18",
-    "desc": "Telangana Entrance Exams | Official student service portal for telangana entrance exams."
+    "desc": "Telangana Entrance Exams • STUDENTS EXAMS • Official student service portal for telangana entrance exams."
   },
   {
     "id": "svc-edu-102",
-    "title": "AICTE ADF — AICTE Doctoral Fellowship",
+    "title": "AICTE Doctoral Fellowship",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-102",
-    "desc": "Doctoral Fellowships | Official student service portal for doctoral fellowships."
+    "desc": "Doctoral Fellowships • AICTE ADF • Official student service portal for doctoral fellowships."
   },
   {
     "id": "svc-edu-11",
-    "title": "Students certificate services (ssc/inter,jntuh,braou) — JNTU Hyderabad - Student Exam Services",
+    "title": "JNTU Hyderabad - Student Exam Services",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-11",
-    "desc": "Scholarships | Official student service portal for scholarships."
+    "desc": "Scholarships • Students certificate services (ssc/inter,jntuh,braou) • Official student service portal for scholarships."
   },
   {
     "id": "svc-edu-119",
-    "title": "TTWREIS Admissions — Tribal Welfare Schools",
+    "title": "Tribal Welfare Schools",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-119",
-    "desc": "Residential School Admissions | Official student service portal for residential school admissions."
+    "desc": "Residential School Admissions • TTWREIS Admissions • Official student service portal for residential school admissions."
   },
   {
     "id": "svc-edu-10",
-    "title": "Students certificate services (ssc/inter,jntuh,braou) — Osmania University - Apply Certificates (Upto 2021)",
+    "title": "Osmania University - Apply Certificates (Upto 2021)",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-10",
-    "desc": "Scholarships | Common Entrance Examination for admission to eligible courses 2021."
+    "desc": "Scholarships • Students certificate services (ssc/inter,jntuh,braou) • Common Entrance Examination for admission to eligible courses 2021."
   },
   {
     "id": "svc-edu-109",
-    "title": "TG TET — Teacher Eligibility Test",
+    "title": "Teacher Eligibility Test",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-109",
-    "desc": "Teachers Education | Official student service portal for teachers education."
+    "desc": "Teachers Education • TG TET • Official student service portal for teachers education."
   },
   {
     "id": "svc-edu-84",
-    "title": "Distance Degree Admissions — Distance Education Programs",
+    "title": "Distance Education Programs",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-84",
-    "desc": "Degree Admissions | Common Entrance Examination for admission to eligible courses."
+    "desc": "Degree Admissions • Distance Degree Admissions • Common Entrance Examination for admission to eligible courses."
   },
   {
     "id": "svc-edu-16",
-    "title": "ABC & DEB Ids (BRAOU) — DEB Id - Home",
+    "title": "DEB Id - Home",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-16",
-    "desc": "Open University | Official student service portal for open university."
+    "desc": "Open University • ABC & DEB Ids (BRAOU) • Official student service portal for open university."
   },
   {
     "id": "svc-edu-71",
-    "title": "NEET MDS — Dental PG Admissions",
+    "title": "Dental PG Admissions",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-71",
-    "desc": "Medical & Health Sciences | Common Entrance Examination for admission to eligible courses."
+    "desc": "Medical & Health Sciences • NEET MDS • Common Entrance Examination for admission to eligible courses."
   },
   {
     "id": "svc-edu-9",
-    "title": "Students certificate services (ssc/inter,jntuh,braou) — Board of Intermediate Education - Student Services",
+    "title": "Board of Intermediate Education - Student Services",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-9",
-    "desc": "Scholarships | Common Entrance Examination for admission to eligible courses."
+    "desc": "Scholarships • Students certificate services (ssc/inter,jntuh,braou) • Common Entrance Examination for admission to eligible courses."
   },
   {
     "id": "svc-edu-22",
-    "title": "STUDENTS EXAMS — TG POLYCET 2026",
+    "title": "TG POLYCET 2026",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-22",
-    "desc": "Telangana Entrance Exams | Common Entrance Examination for admission to eligible courses 2026."
+    "desc": "Telangana Entrance Exams • STUDENTS EXAMS • Common Entrance Examination for admission to eligible courses 2026."
   },
   {
     "id": "svc-edu-25",
-    "title": "STUDENTS EXAMS — TG DEECET 2026 - Diploma in Elementary Education",
+    "title": "TG DEECET 2026 - Diploma in Elementary Education",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-25",
-    "desc": "Telangana Entrance Exams | Common Entrance Examination for admission to eligible courses 2026."
+    "desc": "Telangana Entrance Exams • STUDENTS EXAMS • Common Entrance Examination for admission to eligible courses 2026."
   },
   {
     "id": "svc-edu-57",
-    "title": "TG PGLCET — LLM Admissions",
+    "title": "LLM Admissions",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-57",
-    "desc": "Telangana Entrance Exams | Common Entrance Examination for admission to eligible courses."
+    "desc": "Telangana Entrance Exams • TG PGLCET • Common Entrance Examination for admission to eligible courses."
   },
   {
     "id": "svc-edu-97",
-    "title": "ICAR AICE JRF/SRF — Agricultural Research Fellowships",
+    "title": "Agricultural Research Fellowships",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-97",
-    "desc": "Research And Phd | Official student service portal for research and phd."
+    "desc": "Research And Phd • ICAR AICE JRF/SRF • Official student service portal for research and phd."
   },
   {
     "id": "svc-edu-115",
-    "title": "MJPTBCWREIS Admissions — BC Welfare Schools",
+    "title": "BC Welfare Schools",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-115",
-    "desc": "Residential School Admissions | Official student service portal for residential school admissions."
+    "desc": "Residential School Admissions • MJPTBCWREIS Admissions • Official student service portal for residential school admissions."
   },
   {
     "id": "svc-edu-29",
-    "title": "STUDENTS EXAMS — NTA Home- National Testing Agency",
+    "title": "NTA Home- National Testing Agency",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-29",
-    "desc": "Telangana Entrance Exams | Official student service portal for telangana entrance exams."
+    "desc": "Telangana Entrance Exams • STUDENTS EXAMS • Official student service portal for telangana entrance exams."
   },
   {
     "id": "svc-edu-39",
-    "title": "SBTET SERVICES — Diploma - Exam Fee Payments",
+    "title": "Diploma - Exam Fee Payments",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-39",
-    "desc": "SBTET POLYCET | Official student service portal for sbtet polycet."
+    "desc": "SBTET POLYCET • SBTET SERVICES • Official student service portal for sbtet polycet."
   },
   {
     "id": "svc-edu-83",
-    "title": "TG DOST — Degree Online Services Telangana",
+    "title": "Degree Online Services Telangana",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-83",
-    "desc": "Degree Admissions | Official student service portal for degree admissions."
+    "desc": "Degree Admissions • TG DOST • Official student service portal for degree admissions."
   },
   {
     "id": "svc-edu-87",
-    "title": "TG CPGET — Common PG Entrance Test",
+    "title": "Common PG Entrance Test",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-87",
-    "desc": "Post Graduation Admissions | Common Entrance Examination for admission to eligible courses."
+    "desc": "Post Graduation Admissions • TG CPGET • Common Entrance Examination for admission to eligible courses."
   },
   {
     "id": "svc-edu-95",
-    "title": "GATE 2026 — Graduate Aptitude Test in Engineering",
+    "title": "Graduate Aptitude Test in Engineering",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-95",
-    "desc": "Research And Phd | Official student service portal for research and phd."
+    "desc": "Research And Phd • GATE 2026 • Official student service portal for research and phd."
   },
   {
     "id": "svc-edu-118",
-    "title": "Navodaya Admissions — Jawahar Navodaya Vidyalaya",
+    "title": "Jawahar Navodaya Vidyalaya",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-118",
-    "desc": "Residential School Admissions | Official student service portal for residential school admissions."
+    "desc": "Residential School Admissions • Navodaya Admissions • Official student service portal for residential school admissions."
   },
   {
     "id": "svc-edu-2",
-    "title": "SSC -BOARD OF SECONDARY EDUCATION — SSC 2026 - Hall Ticket Download",
+    "title": "SSC 2026 - Hall Ticket Download",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-2",
-    "desc": "Scholarships | Hall tickets are now available for download from the official portal."
+    "desc": "Scholarships • SSC -BOARD OF SECONDARY EDUCATION • Hall tickets are now available for download from the official portal."
   },
   {
     "id": "svc-edu-88",
-    "title": "TG ICET — MBA & MCA Admissions",
+    "title": "MBA & MCA Admissions",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-88",
-    "desc": "Post Graduation Admissions | Common Entrance Examination for admission to eligible courses."
+    "desc": "Post Graduation Admissions • TG ICET • Common Entrance Examination for admission to eligible courses."
   },
   {
     "id": "svc-edu-107",
-    "title": "DBT JRF — Biotechnology JRF Programme",
+    "title": "Biotechnology JRF Programme",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-107",
-    "desc": "Doctoral Fellowships | Official student service portal for doctoral fellowships."
+    "desc": "Doctoral Fellowships • DBT JRF • Official student service portal for doctoral fellowships."
   },
   {
     "id": "svc-edu-110",
-    "title": "TG DSC — Teacher Recruitment",
+    "title": "Teacher Recruitment",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-110",
-    "desc": "Teachers Education | Official student service portal for teachers education."
+    "desc": "Teachers Education • TG DSC • Official student service portal for teachers education."
   },
   {
     "id": "svc-edu-143",
-    "title": "Admission — Centralized Counselling for M.Tech/M.Arch/M.Plan Admissions",
+    "title": "Centralized Counselling for M.Tech/M.Arch/M.Plan Admissions",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-143",
-    "desc": "CCMT Counselling | Common Entrance Examination for admission to eligible courses."
+    "desc": "CCMT Counselling • Admission • Common Entrance Examination for admission to eligible courses."
   },
   {
     "id": "svc-edu-24",
-    "title": "STUDENTS EXAMS — TG EdCET 2026 - Education Common Entrance Test",
+    "title": "TG EdCET 2026 - Education Common Entrance Test",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-24",
-    "desc": "Telangana Entrance Exams | Common Entrance Examination for admission to eligible courses 2026."
+    "desc": "Telangana Entrance Exams • STUDENTS EXAMS • Common Entrance Examination for admission to eligible courses 2026."
   },
   {
     "id": "svc-edu-54",
-    "title": "TG EAPCET — Engineering, Agriculture & Pharmacy",
+    "title": "Engineering, Agriculture & Pharmacy",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-54",
-    "desc": "Telangana Entrance Exams | Official student service portal for telangana entrance exams."
+    "desc": "Telangana Entrance Exams • TG EAPCET • Official student service portal for telangana entrance exams."
   },
   {
     "id": "svc-edu-112",
-    "title": "CTET — Central Teacher Eligibility Test",
+    "title": "Central Teacher Eligibility Test",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-112",
-    "desc": "Teachers Education | Official student service portal for teachers education."
+    "desc": "Teachers Education • CTET • Official student service portal for teachers education."
   },
   {
     "id": "svc-edu-113",
-    "title": "TG EdCET — B.Ed Entrance Exam",
+    "title": "B.Ed Entrance Exam",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-113",
-    "desc": "Teachers Education | Common Entrance Examination for admission to eligible courses."
+    "desc": "Teachers Education • TG EdCET • Common Entrance Examination for admission to eligible courses."
   },
   {
     "id": "svc-edu-82",
-    "title": "Polytechnic Admissions — Diploma Courses",
+    "title": "Diploma Courses",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-82",
-    "desc": "Engineering & Technology | Official student service portal for engineering & technology."
+    "desc": "Engineering & Technology • Polytechnic Admissions • Official student service portal for engineering & technology."
   },
   {
     "id": "svc-edu-94",
-    "title": "UGC NET — JRF & Assistant Professor Eligibility",
+    "title": "JRF & Assistant Professor Eligibility",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-94",
-    "desc": "Research And Phd | Official student service portal for research and phd."
+    "desc": "Research And Phd • UGC NET • Official student service portal for research and phd."
   },
   {
     "id": "svc-edu-73",
-    "title": "AIIMS Paramedical — Paramedical Admissions",
+    "title": "Paramedical Admissions",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-73",
-    "desc": "Medical & Health Sciences | Common Entrance Examination for admission to eligible courses."
+    "desc": "Medical & Health Sciences • AIIMS Paramedical • Common Entrance Examination for admission to eligible courses."
   },
   {
     "id": "svc-edu-136",
-    "title": "XAT — Xavier Admission Test",
+    "title": "Xavier Admission Test",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-136",
-    "desc": "National Level Exams | Common Entrance Examination for admission to eligible courses."
+    "desc": "National Level Exams • XAT • Common Entrance Examination for admission to eligible courses."
   },
   {
     "id": "svc-edu-38",
-    "title": "SBTET SERVICES — Student Online Portal - Home",
+    "title": "Student Online Portal - Home",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-38",
-    "desc": "SBTET POLYCET | Official student service portal for sbtet polycet."
+    "desc": "SBTET POLYCET • SBTET SERVICES • Official student service portal for sbtet polycet."
   },
   {
     "id": "svc-edu-42",
-    "title": "SBTET SERVICES — Diploma - Student Attendance",
+    "title": "Diploma - Student Attendance",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-42",
-    "desc": "SBTET POLYCET | Official student service portal for sbtet polycet."
+    "desc": "SBTET POLYCET • SBTET SERVICES • Official student service portal for sbtet polycet."
   },
   {
     "id": "svc-edu-68",
-    "title": "B.Sc Nursing — Nursing Admissions",
+    "title": "Nursing Admissions",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-68",
-    "desc": "Medical & Health Sciences | Common Entrance Examination for admission to eligible courses."
+    "desc": "Medical & Health Sciences • B.Sc Nursing • Common Entrance Examination for admission to eligible courses."
   },
   {
     "id": "svc-edu-140",
-    "title": "CUET UG — Common University Entrance Test",
+    "title": "Common University Entrance Test",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-140",
-    "desc": "National Level Exams | Common Entrance Examination for admission to eligible courses."
+    "desc": "National Level Exams • CUET UG • Common Entrance Examination for admission to eligible courses."
   },
   {
     "id": "svc-edu-28",
-    "title": "STUDENTS EXAMS — TG DOST - Degree Online Services",
+    "title": "TG DOST - Degree Online Services",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-28",
-    "desc": "Telangana Entrance Exams | Official student service portal for telangana entrance exams."
+    "desc": "Telangana Entrance Exams • STUDENTS EXAMS • Official student service portal for telangana entrance exams."
   },
   {
     "id": "svc-edu-47",
-    "title": "SBTET SERVICES — Diploma - 2 Yr Engg. Certificate Application",
+    "title": "Diploma - 2 Yr Engg. Certificate Application",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-47",
-    "desc": "SBTET POLYCET | Common Entrance Examination for admission to eligible courses."
+    "desc": "SBTET POLYCET • SBTET SERVICES • Common Entrance Examination for admission to eligible courses."
   },
   {
     "id": "svc-edu-58",
-    "title": "TG PECET — Physical Education Courses",
+    "title": "Physical Education Courses",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-58",
-    "desc": "Telangana Entrance Exams | Common Entrance Examination for admission to eligible courses."
+    "desc": "Telangana Entrance Exams • TG PECET • Common Entrance Examination for admission to eligible courses."
   },
   {
     "id": "svc-edu-92",
-    "title": "TG PGECET — M.Tech, M.Pharmacy Entrance",
+    "title": "M.Tech, M.Pharmacy Entrance",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-92",
-    "desc": "Post Graduation Admissions | Common Entrance Examination for admission to eligible courses."
+    "desc": "Post Graduation Admissions • TG PGECET • Common Entrance Examination for admission to eligible courses."
   },
   {
     "id": "svc-edu-98",
-    "title": "CSIR NET — Science Research Eligibility",
+    "title": "Science Research Eligibility",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-98",
-    "desc": "Research And Phd | Official student service portal for research and phd."
+    "desc": "Research And Phd • CSIR NET • Official student service portal for research and phd."
   },
   {
     "id": "svc-edu-103",
-    "title": "AICTE APF — AICTE Productization Fellowship",
+    "title": "AICTE Productization Fellowship",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-103",
-    "desc": "Doctoral Fellowships | Official student service portal for doctoral fellowships."
+    "desc": "Doctoral Fellowships • AICTE APF • Official student service portal for doctoral fellowships."
   },
   {
     "id": "svc-edu-32",
-    "title": "IIT BASARA — IIIT Basara (RGUKT) - Home",
+    "title": "IIIT Basara (RGUKT) - Home",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-32",
-    "desc": "Engineering & Technology | Official student service portal for engineering & technology."
+    "desc": "Engineering & Technology • IIT BASARA • Official student service portal for engineering & technology."
   },
   {
     "id": "svc-edu-44",
-    "title": "SBTET SERVICES — Diploma - Apply for Certificates",
+    "title": "Diploma - Apply for Certificates",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-44",
-    "desc": "SBTET POLYCET | Common Entrance Examination for admission to eligible courses."
+    "desc": "SBTET POLYCET • SBTET SERVICES • Common Entrance Examination for admission to eligible courses."
   },
   {
     "id": "svc-edu-117",
-    "title": "TGSWRJC CET — Social Welfare Junior Colleges",
+    "title": "Social Welfare Junior Colleges",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-117",
-    "desc": "Residential School Admissions | Official student service portal for residential school admissions."
+    "desc": "Residential School Admissions • TGSWRJC CET • Official student service portal for residential school admissions."
   },
   {
     "id": "svc-edu-120",
-    "title": "TREI-RB — Residential Educational Institutions",
+    "title": "Residential Educational Institutions",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-120",
-    "desc": "Residential School Admissions | Common Entrance Examination for admission to eligible courses."
+    "desc": "Residential School Admissions • TREI-RB • Common Entrance Examination for admission to eligible courses."
   },
   {
     "id": "svc-edu-125",
-    "title": "Pragati Scholarship — Scholarship for Girls",
+    "title": "Scholarship for Girls",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-125",
-    "desc": "Scholarships | Apply online through the official scholarship portal."
+    "desc": "Scholarships • Pragati Scholarship • Apply online through the official scholarship portal."
   },
   {
     "id": "svc-edu-40",
-    "title": "SBTET SERVICES — Diploma - Download Hall Tickets",
+    "title": "Diploma - Download Hall Tickets",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-40",
-    "desc": "SBTET POLYCET | Hall tickets are now available for download from the official portal."
+    "desc": "SBTET POLYCET • SBTET SERVICES • Hall tickets are now available for download from the official portal."
   },
   {
     "id": "svc-edu-62",
-    "title": "CMAT — Common Management Admission Test",
+    "title": "Common Management Admission Test",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-62",
-    "desc": "Telangana Entrance Exams | Common Entrance Examination for admission to eligible courses."
+    "desc": "Telangana Entrance Exams • CMAT • Common Entrance Examination for admission to eligible courses."
   },
   {
     "id": "svc-edu-63",
-    "title": "NEET UG — MBBS & BDS Admissions",
+    "title": "MBBS & BDS Admissions",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-63",
-    "desc": "Medical & Health Sciences | Common Entrance Examination for admission to eligible courses."
+    "desc": "Medical & Health Sciences • NEET UG • Common Entrance Examination for admission to eligible courses."
   },
   {
     "id": "svc-edu-86",
-    "title": "PGRRCDE Distance Education — Osmania University Distance",
+    "title": "Osmania University Distance",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-86",
-    "desc": "Degree Admissions | Official student service portal for degree admissions."
+    "desc": "Degree Admissions • PGRRCDE Distance Education • Official student service portal for degree admissions."
   },
   {
     "id": "svc-edu-111",
-    "title": "TG DEECET — Diploma in Elementary Education",
+    "title": "Diploma in Elementary Education",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-111",
-    "desc": "Teachers Education | Common Entrance Examination for admission to eligible courses."
+    "desc": "Teachers Education • TG DEECET • Common Entrance Examination for admission to eligible courses."
   },
   {
     "id": "svc-edu-141",
-    "title": "CAT — Common Admission Test",
+    "title": "Common Admission Test",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-141",
-    "desc": "National Level Exams | Common Entrance Examination for admission to eligible courses."
+    "desc": "National Level Exams • CAT • Common Entrance Examination for admission to eligible courses."
   },
   {
     "id": "svc-edu-46",
-    "title": "SBTET SERVICES — Diploma - Genuineness Check Application",
+    "title": "Diploma - Genuineness Check Application",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-46",
-    "desc": "SBTET POLYCET | Common Entrance Examination for admission to eligible courses."
+    "desc": "SBTET POLYCET • SBTET SERVICES • Common Entrance Examination for admission to eligible courses."
   },
   {
     "id": "svc-edu-77",
-    "title": "TG PGECET — M.Tech Admissions",
+    "title": "M.Tech Admissions",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-77",
-    "desc": "Engineering & Technology | Common Entrance Examination for admission to eligible courses."
+    "desc": "Engineering & Technology • TG PGECET • Common Entrance Examination for admission to eligible courses."
   },
   {
     "id": "svc-edu-135",
-    "title": "CUET PG — PG Entrance Test",
+    "title": "PG Entrance Test",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-135",
-    "desc": "National Level Exams | Common Entrance Examination for admission to eligible courses."
+    "desc": "National Level Exams • CUET PG • Common Entrance Examination for admission to eligible courses."
   },
   {
     "id": "svc-edu-15",
-    "title": "ABC & DEB Ids (BRAOU) — ABC ID - Home",
+    "title": "ABC ID - Home",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-15",
-    "desc": "Open University | Official student service portal for open university."
+    "desc": "Open University • ABC & DEB Ids (BRAOU) • Official student service portal for open university."
   },
   {
     "id": "svc-edu-53",
-    "title": "exam results — JNTUH Results",
+    "title": "JNTUH Results",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-53",
-    "desc": "Exam Results | Examination results are published on the official website."
+    "desc": "Exam Results • exam results • Examination results are published on the official website."
   },
   {
     "id": "svc-edu-85",
-    "title": "Open University Admissions — Kakatiya University CDOE",
+    "title": "Kakatiya University CDOE",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-85",
-    "desc": "Degree Admissions | Official student service portal for degree admissions."
+    "desc": "Degree Admissions • Open University Admissions • Official student service portal for degree admissions."
   },
   {
     "id": "svc-edu-45",
-    "title": "SBTET SERVICES — Diploma - Certificate Application with 3 Backlogs",
+    "title": "Diploma - Certificate Application with 3 Backlogs",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-45",
-    "desc": "SBTET POLYCET | Common Entrance Examination for admission to eligible courses."
+    "desc": "SBTET POLYCET • SBTET SERVICES • Common Entrance Examination for admission to eligible courses."
   },
   {
     "id": "svc-edu-75",
-    "title": "Pharmacy Admissions — B.Pharmacy & Pharm-D",
+    "title": "B.Pharmacy & Pharm-D",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-75",
-    "desc": "Medical & Health Sciences | Official student service portal for medical & health sciences."
+    "desc": "Medical & Health Sciences • Pharmacy Admissions • Official student service portal for medical & health sciences."
   },
   {
     "id": "svc-edu-96",
-    "title": "Gate 2027 — Graduate Aptitude Test in Engineering",
+    "title": "Graduate Aptitude Test in Engineering",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-96",
-    "desc": "Research And Phd | Official student service portal for research and phd."
+    "desc": "Research And Phd • Gate 2027 • Official student service portal for research and phd."
   },
   {
     "id": "svc-edu-4",
-    "title": "Students Scholarship services — National Scholarships Portal - Home",
+    "title": "National Scholarships Portal - Home",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-4",
-    "desc": "Scholarships | Apply online through the official scholarship portal."
+    "desc": "Scholarships • Students Scholarship services • Apply online through the official scholarship portal."
   },
   {
     "id": "svc-edu-12",
-    "title": "DR B R Ambedkar open University services (BRAOU) — BRAOU - Online",
+    "title": "BRAOU - Online",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-12",
-    "desc": "Open University | Official student service portal for open university."
+    "desc": "Open University • DR B R Ambedkar open University services (BRAOU) • Official student service portal for open university."
   },
   {
     "id": "svc-edu-56",
-    "title": "TG PGECET — M.Tech Admissions",
+    "title": "M.Tech Admissions",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-56",
-    "desc": "Telangana Entrance Exams | Common Entrance Examination for admission to eligible courses."
+    "desc": "Telangana Entrance Exams • TG PGECET • Common Entrance Examination for admission to eligible courses."
   },
   {
     "id": "svc-edu-104",
-    "title": "BARC — Bhabha Atomic Research Centre",
+    "title": "Bhabha Atomic Research Centre",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-104",
-    "desc": "Doctoral Fellowships | Official student service portal for doctoral fellowships."
+    "desc": "Doctoral Fellowships • BARC • Official student service portal for doctoral fellowships."
   },
   {
     "id": "svc-edu-121",
-    "title": "RGUKT Admissions — IIIT Basar & Mahabubnagar",
+    "title": "IIIT Basar & Mahabubnagar",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-121",
-    "desc": "Residential School Admissions | Official student service portal for residential school admissions."
+    "desc": "Residential School Admissions • RGUKT Admissions • Official student service portal for residential school admissions."
   },
   {
     "id": "svc-edu-8",
-    "title": "Students certificate services (ssc/inter,jntuh,braou) — Board of Intermediate Education - Hall Tkts/Results/Memos",
+    "title": "Board of Intermediate Education - Hall Tkts/Results/Memos",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-8",
-    "desc": "Scholarships | Examination results are published on the official website."
+    "desc": "Scholarships • Students certificate services (ssc/inter,jntuh,braou) • Examination results are published on the official website."
   },
   {
     "id": "svc-edu-43",
-    "title": "SBTET SERVICES — Diploma - Consolidated Result",
+    "title": "Diploma - Consolidated Result",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-43",
-    "desc": "SBTET POLYCET | Examination results are published on the official website."
+    "desc": "SBTET POLYCET • SBTET SERVICES • Examination results are published on the official website."
   },
   {
     "id": "svc-edu-67",
-    "title": "KNRUHS UG Admissions — Medical UG Admissions",
+    "title": "Medical UG Admissions",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-67",
-    "desc": "Medical & Health Sciences | Common Entrance Examination for admission to eligible courses."
+    "desc": "Medical & Health Sciences • KNRUHS UG Admissions • Common Entrance Examination for admission to eligible courses."
   },
   {
     "id": "svc-edu-100",
-    "title": "AIAPGET 2026 — AYUSH PG Entrance Test",
+    "title": "AYUSH PG Entrance Test",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-100",
-    "desc": "Research And Phd | Common Entrance Examination for admission to eligible courses."
+    "desc": "Research And Phd • AIAPGET 2026 • Common Entrance Examination for admission to eligible courses."
   },
   {
     "id": "svc-edu-130",
-    "title": "INSPIRE Scholarship — Science Students Scholarship",
+    "title": "Science Students Scholarship",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-130",
-    "desc": "Scholarships | Apply online through the official scholarship portal."
+    "desc": "Scholarships • INSPIRE Scholarship • Apply online through the official scholarship portal."
   },
   {
-    "id": "svc-ai-manus-ai-agent",
-    "title": "Manus AI Agent (AI Agents)",
-    "cat": "80+ AI Tools",
-    "page": "aitools.html",
-    "target": "svc-ai-manus-ai-agent",
-    "desc": "AI Agents AI tool for enhanced workflow and productivity"
+    "id": "svc-edu-2027",
+    "title": "GATE 2027",
+    "cat": "Education",
+    "page": "education/education.html",
+    "target": "svc-edu-2027",
+    "desc": "GATE 2027 • GATE 2027  — Graduate Aptitude Test in Engineering • GATE 2027 Online Application Registration Portal is LIVE now!."
   },
   {
-    "id": "svc-ai-openclaw",
-    "title": "OpenClaw (AI Agents)",
-    "cat": "80+ AI Tools",
-    "page": "aitools.html",
-    "target": "svc-ai-openclaw",
-    "desc": "AI Agents AI tool for enhanced workflow and productivity"
+    "id": "cat-edu-telangana-entrance-exams",
+    "title": "Telangana Entrance Exams (Education Category)",
+    "cat": "Education",
+    "page": "education/education.html",
+    "target": "cat-telangana-entrance-exams",
+    "desc": "Browse all Telangana Entrance Exams admissions, entrance exams, notifications and results"
   },
   {
-    "id": "svc-ai-hermes-agent",
-    "title": "Hermes Agent (AI Agents)",
-    "cat": "80+ AI Tools",
-    "page": "aitools.html",
-    "target": "svc-ai-hermes-agent",
-    "desc": "AI Agents AI tool for enhanced workflow and productivity"
+    "id": "cat-edu-agriculture-university",
+    "title": "Agriculture University (Education Category)",
+    "cat": "Education",
+    "page": "education/education.html",
+    "target": "cat-agriculture-university",
+    "desc": "Browse all Agriculture University admissions, entrance exams, notifications and results"
   },
   {
-    "id": "svc-ai-browser-use",
-    "title": "Browser Use (AI Agents)",
-    "cat": "80+ AI Tools",
-    "page": "aitools.html",
-    "target": "svc-ai-browser-use",
-    "desc": "AI Agents AI tool for enhanced workflow and productivity"
+    "id": "cat-edu-research-and-phd",
+    "title": "Research And Phd (Education Category)",
+    "cat": "Education",
+    "page": "education/education.html",
+    "target": "cat-research-and-phd",
+    "desc": "Browse all Research And Phd admissions, entrance exams, notifications and results"
   },
   {
-    "id": "svc-ai-genspark-ai-browser",
-    "title": "Genspark AI Browser (AI Agents)",
-    "cat": "80+ AI Tools",
-    "page": "aitools.html",
-    "target": "svc-ai-genspark-ai-browser",
-    "desc": "AI Agents AI tool for enhanced workflow and productivity"
+    "id": "cat-edu-national-level-exams",
+    "title": "National Level Exams (Education Category)",
+    "cat": "Education",
+    "page": "education/education.html",
+    "target": "cat-national-level-exams",
+    "desc": "Browse all National Level Exams admissions, entrance exams, notifications and results"
   },
   {
-    "id": "svc-ai-autogpt",
-    "title": "AutoGPT (AI Agents)",
-    "cat": "80+ AI Tools",
-    "page": "aitools.html",
-    "target": "svc-ai-autogpt",
-    "desc": "AI Agents AI tool for enhanced workflow and productivity"
+    "id": "cat-edu-scholarships",
+    "title": "Scholarships (Education Category)",
+    "cat": "Education",
+    "page": "education/education.html",
+    "target": "cat-scholarships",
+    "desc": "Browse all Scholarships admissions, entrance exams, notifications and results"
   },
   {
-    "id": "svc-ai-agent-tars",
-    "title": "Agent TARS (AI Agents)",
-    "cat": "80+ AI Tools",
-    "page": "aitools.html",
-    "target": "svc-ai-agent-tars",
-    "desc": "AI Agents AI tool for enhanced workflow and productivity"
+    "id": "cat-edu-engineering-technology",
+    "title": "Engineering & Technology (Education Category)",
+    "cat": "Education",
+    "page": "education/education.html",
+    "target": "cat-engineering-technology",
+    "desc": "Browse all Engineering & Technology admissions, entrance exams, notifications and results"
   },
   {
-    "id": "svc-ai-make",
-    "title": "Make (AI Agents)",
-    "cat": "80+ AI Tools",
-    "page": "aitools.html",
-    "target": "svc-ai-make",
-    "desc": "AI Agents AI tool for enhanced workflow and productivity"
+    "id": "cat-edu-school-admissions",
+    "title": "School Admissions (Education Category)",
+    "cat": "Education",
+    "page": "education/education.html",
+    "target": "cat-school-admissions",
+    "desc": "Browse all School Admissions admissions, entrance exams, notifications and results"
   },
   {
-    "id": "svc-ai-zapier",
-    "title": "Zapier (AI Agents)",
-    "cat": "80+ AI Tools",
-    "page": "aitools.html",
-    "target": "svc-ai-zapier",
-    "desc": "AI Agents AI tool for enhanced workflow and productivity"
+    "id": "cat-edu-residential-school-admissions",
+    "title": "Residential School Admissions (Education Category)",
+    "cat": "Education",
+    "page": "education/education.html",
+    "target": "cat-residential-school-admissions",
+    "desc": "Browse all Residential School Admissions admissions, entrance exams, notifications and results"
   },
   {
-    "id": "svc-ai-n8n",
-    "title": "n8n (AI Agents)",
-    "cat": "80+ AI Tools",
-    "page": "aitools.html",
-    "target": "svc-ai-n8n",
-    "desc": "AI Agents AI tool for enhanced workflow and productivity"
-  },
-  {
-    "id": "svc-ai-midjourney-v8",
-    "title": "Midjourney V8 (Image Makers)",
-    "cat": "80+ AI Tools",
-    "page": "aitools.html",
-    "target": "svc-ai-midjourney-v8",
-    "desc": "Image Makers AI tool for enhanced workflow and productivity"
-  },
-  {
-    "id": "svc-ai-adobe-firefly-3",
-    "title": "Adobe Firefly 3 (Image Makers)",
-    "cat": "80+ AI Tools",
-    "page": "aitools.html",
-    "target": "svc-ai-adobe-firefly-3",
-    "desc": "Image Makers AI tool for enhanced workflow and productivity"
-  },
-  {
-    "id": "svc-ai-flux-2",
-    "title": "Flux.2 (Image Makers)",
-    "cat": "80+ AI Tools",
-    "page": "aitools.html",
-    "target": "svc-ai-flux-2",
-    "desc": "Image Makers AI tool for enhanced workflow and productivity"
-  },
-  {
-    "id": "svc-ai-chatgpt-images-2-0",
-    "title": "ChatGPT Images 2.0 (Image Makers)",
-    "cat": "80+ AI Tools",
-    "page": "aitools.html",
-    "target": "svc-ai-chatgpt-images-2-0",
-    "desc": "Image Makers AI tool for enhanced workflow and productivity"
-  },
-  {
-    "id": "svc-ai-nano-banana-pro",
-    "title": "Nano Banana Pro (Image Makers)",
-    "cat": "80+ AI Tools",
-    "page": "aitools.html",
-    "target": "svc-ai-nano-banana-pro",
-    "desc": "Image Makers AI tool for enhanced workflow and productivity"
-  },
-  {
-    "id": "svc-ai-imagine-image-2-0",
-    "title": "Imagine Image 2.0 (Image Makers)",
-    "cat": "80+ AI Tools",
-    "page": "aitools.html",
-    "target": "svc-ai-imagine-image-2-0",
-    "desc": "Image Makers AI tool for enhanced workflow and productivity"
-  },
-  {
-    "id": "svc-ai-seedream-5-0",
-    "title": "Seedream 5.0 (Image Makers)",
-    "cat": "80+ AI Tools",
-    "page": "aitools.html",
-    "target": "svc-ai-seedream-5-0",
-    "desc": "Image Makers AI tool for enhanced workflow and productivity"
-  },
-  {
-    "id": "svc-ai-deevid-ai-images",
-    "title": "Deevid AI Images (Image Makers)",
-    "cat": "80+ AI Tools",
-    "page": "aitools.html",
-    "target": "svc-ai-deevid-ai-images",
-    "desc": "Image Makers AI tool for enhanced workflow and productivity"
-  },
-  {
-    "id": "svc-ai-photoshop-ai",
-    "title": "Photoshop AI (Image Makers)",
-    "cat": "80+ AI Tools",
-    "page": "aitools.html",
-    "target": "svc-ai-photoshop-ai",
-    "desc": "Image Makers AI tool for enhanced workflow and productivity"
-  },
-  {
-    "id": "svc-ai-lexica-art",
-    "title": "Lexica.art (Image Makers)",
-    "cat": "80+ AI Tools",
-    "page": "aitools.html",
-    "target": "svc-ai-lexica-art",
-    "desc": "Image Makers AI tool for enhanced workflow and productivity"
-  },
-  {
-    "id": "svc-ai-krea-ai",
-    "title": "Krea.ai (Image Makers)",
-    "cat": "80+ AI Tools",
-    "page": "aitools.html",
-    "target": "svc-ai-krea-ai",
-    "desc": "Image Makers AI tool for enhanced workflow and productivity"
-  },
-  {
-    "id": "svc-ai-civitai",
-    "title": "Civitai (Image Makers)",
-    "cat": "80+ AI Tools",
-    "page": "aitools.html",
-    "target": "svc-ai-civitai",
-    "desc": "Image Makers AI tool for enhanced workflow and productivity"
-  },
-  {
-    "id": "svc-ai-openart",
-    "title": "Openart (Image Makers)",
-    "cat": "80+ AI Tools",
-    "page": "aitools.html",
-    "target": "svc-ai-openart",
-    "desc": "Image Makers AI tool for enhanced workflow and productivity"
-  },
-  {
-    "id": "svc-ai-chatgpt",
-    "title": "ChatGPT (Chat & Assistant)",
-    "cat": "80+ AI Tools",
-    "page": "aitools.html",
-    "target": "svc-ai-chatgpt",
-    "desc": "Chat & Assistant AI tool for enhanced workflow and productivity"
-  },
-  {
-    "id": "svc-ai-gemini-ai",
-    "title": "Gemini AI (Chat & Assistant)",
-    "cat": "80+ AI Tools",
-    "page": "aitools.html",
-    "target": "svc-ai-gemini-ai",
-    "desc": "Chat & Assistant AI tool for enhanced workflow and productivity"
-  },
-  {
-    "id": "svc-ai-claude-4",
-    "title": "Claude 4 (Chat & Assistant)",
-    "cat": "80+ AI Tools",
-    "page": "aitools.html",
-    "target": "svc-ai-claude-4",
-    "desc": "Chat & Assistant AI tool for enhanced workflow and productivity"
-  },
-  {
-    "id": "svc-ai-grok-4",
-    "title": "Grok 4 (Chat & Assistant)",
-    "cat": "80+ AI Tools",
-    "page": "aitools.html",
-    "target": "svc-ai-grok-4",
-    "desc": "Chat & Assistant AI tool for enhanced workflow and productivity"
-  },
-  {
-    "id": "svc-ai-deepseek-r1",
-    "title": "DeepSeek-R1 (Chat & Assistant)",
-    "cat": "80+ AI Tools",
-    "page": "aitools.html",
-    "target": "svc-ai-deepseek-r1",
-    "desc": "Chat & Assistant AI tool for enhanced workflow and productivity"
-  },
-  {
-    "id": "svc-ai-qwen-3",
-    "title": "Qwen 3 (Chat & Assistant)",
-    "cat": "80+ AI Tools",
-    "page": "aitools.html",
-    "target": "svc-ai-qwen-3",
-    "desc": "Chat & Assistant AI tool for enhanced workflow and productivity"
-  },
-  {
-    "id": "svc-ai-microsoft-copilot",
-    "title": "Microsoft Copilot (Chat & Assistant)",
-    "cat": "80+ AI Tools",
-    "page": "aitools.html",
-    "target": "svc-ai-microsoft-copilot",
-    "desc": "Chat & Assistant AI tool for enhanced workflow and productivity"
-  },
-  {
-    "id": "svc-ai-kimi-ai",
-    "title": "Kimi.ai (Chat & Assistant)",
-    "cat": "80+ AI Tools",
-    "page": "aitools.html",
-    "target": "svc-ai-kimi-ai",
-    "desc": "Chat & Assistant AI tool for enhanced workflow and productivity"
-  },
-  {
-    "id": "svc-ai-le-chat-by-mistral-ai",
-    "title": "Le Chat by Mistral AI (Chat & Assistant)",
-    "cat": "80+ AI Tools",
-    "page": "aitools.html",
-    "target": "svc-ai-le-chat-by-mistral-ai",
-    "desc": "Chat & Assistant AI tool for enhanced workflow and productivity"
-  },
-  {
-    "id": "svc-ai-perplexity-ai",
-    "title": "Perplexity AI (Chat & Assistant)",
-    "cat": "80+ AI Tools",
-    "page": "aitools.html",
-    "target": "svc-ai-perplexity-ai",
-    "desc": "Chat & Assistant AI tool for enhanced workflow and productivity"
-  },
-  {
-    "id": "svc-ai-kling-3-0",
-    "title": "Kling 3.0 (Video Generators)",
-    "cat": "80+ AI Tools",
-    "page": "aitools.html",
-    "target": "svc-ai-kling-3-0",
-    "desc": "Video Generators AI tool for enhanced workflow and productivity"
-  },
-  {
-    "id": "svc-ai-runway-ml",
-    "title": "Runway ML (Video Generators)",
-    "cat": "80+ AI Tools",
-    "page": "aitools.html",
-    "target": "svc-ai-runway-ml",
-    "desc": "Video Generators AI tool for enhanced workflow and productivity"
-  },
-  {
-    "id": "svc-ai-heygen-ai",
-    "title": "HeyGen AI (Video Generators)",
-    "cat": "80+ AI Tools",
-    "page": "aitools.html",
-    "target": "svc-ai-heygen-ai",
-    "desc": "Video Generators AI tool for enhanced workflow and productivity"
-  },
-  {
-    "id": "svc-ai-capcut",
-    "title": "CapCut (Video Generators)",
-    "cat": "80+ AI Tools",
-    "page": "aitools.html",
-    "target": "svc-ai-capcut",
-    "desc": "Video Generators AI tool for enhanced workflow and productivity"
-  },
-  {
-    "id": "svc-ai-invideo",
-    "title": "InVideo (Video Generators)",
-    "cat": "80+ AI Tools",
-    "page": "aitools.html",
-    "target": "svc-ai-invideo",
-    "desc": "Video Generators AI tool for enhanced workflow and productivity"
-  },
-  {
-    "id": "svc-ai-ltx-2-5",
-    "title": "LTX 2.5 (Video Generators)",
-    "cat": "80+ AI Tools",
-    "page": "aitools.html",
-    "target": "svc-ai-ltx-2-5",
-    "desc": "Video Generators AI tool for enhanced workflow and productivity"
-  },
-  {
-    "id": "svc-ai-wan-3-0",
-    "title": "Wan 3.0 (Video Generators)",
-    "cat": "80+ AI Tools",
-    "page": "aitools.html",
-    "target": "svc-ai-wan-3-0",
-    "desc": "Video Generators AI tool for enhanced workflow and productivity"
-  },
-  {
-    "id": "svc-ai-seedance-2-5",
-    "title": "Seedance 2.5 (Video Generators)",
-    "cat": "80+ AI Tools",
-    "page": "aitools.html",
-    "target": "svc-ai-seedance-2-5",
-    "desc": "Video Generators AI tool for enhanced workflow and productivity"
-  },
-  {
-    "id": "svc-ai-veo-3-1",
-    "title": "Veo 3.1 (Video Generators)",
-    "cat": "80+ AI Tools",
-    "page": "aitools.html",
-    "target": "svc-ai-veo-3-1",
-    "desc": "Video Generators AI tool for enhanced workflow and productivity"
-  },
-  {
-    "id": "svc-ai-opus-clip",
-    "title": "Opus Clip (Video Generators)",
-    "cat": "80+ AI Tools",
-    "page": "aitools.html",
-    "target": "svc-ai-opus-clip",
-    "desc": "Video Generators AI tool for enhanced workflow and productivity"
-  },
-  {
-    "id": "svc-ai-quillbot",
-    "title": "QuillBot (Writing & SEO)",
-    "cat": "80+ AI Tools",
-    "page": "aitools.html",
-    "target": "svc-ai-quillbot",
-    "desc": "Writing & SEO AI tool for enhanced workflow and productivity"
-  },
-  {
-    "id": "svc-ai-scispace-ai-writer",
-    "title": "SciSpace AI Writer (Writing & SEO)",
-    "cat": "80+ AI Tools",
-    "page": "aitools.html",
-    "target": "svc-ai-scispace-ai-writer",
-    "desc": "Writing & SEO AI tool for enhanced workflow and productivity"
-  },
-  {
-    "id": "svc-ai-undetectable-ai",
-    "title": "Undetectable AI (Writing & SEO)",
-    "cat": "80+ AI Tools",
-    "page": "aitools.html",
-    "target": "svc-ai-undetectable-ai",
-    "desc": "Writing & SEO AI tool for enhanced workflow and productivity"
-  },
-  {
-    "id": "svc-ai-writesonic",
-    "title": "WriteSonic (Writing & SEO)",
-    "cat": "80+ AI Tools",
-    "page": "aitools.html",
-    "target": "svc-ai-writesonic",
-    "desc": "Writing & SEO AI tool for enhanced workflow and productivity"
-  },
-  {
-    "id": "svc-ai-rytr",
-    "title": "Rytr (Writing & SEO)",
-    "cat": "80+ AI Tools",
-    "page": "aitools.html",
-    "target": "svc-ai-rytr",
-    "desc": "Writing & SEO AI tool for enhanced workflow and productivity"
-  },
-  {
-    "id": "svc-ai-semrush-content-toolkit",
-    "title": "Semrush Content Toolkit (Writing & SEO)",
-    "cat": "80+ AI Tools",
-    "page": "aitools.html",
-    "target": "svc-ai-semrush-content-toolkit",
-    "desc": "Writing & SEO AI tool for enhanced workflow and productivity"
-  },
-  {
-    "id": "svc-ai-jasper",
-    "title": "Jasper (Writing & SEO)",
-    "cat": "80+ AI Tools",
-    "page": "aitools.html",
-    "target": "svc-ai-jasper",
-    "desc": "Writing & SEO AI tool for enhanced workflow and productivity"
-  },
-  {
-    "id": "svc-ai-copy-ai",
-    "title": "Copy.ai (Writing & SEO)",
-    "cat": "80+ AI Tools",
-    "page": "aitools.html",
-    "target": "svc-ai-copy-ai",
-    "desc": "Writing & SEO AI tool for enhanced workflow and productivity"
-  },
-  {
-    "id": "svc-ai-gptzero",
-    "title": "GPTZero (Writing & SEO)",
-    "cat": "80+ AI Tools",
-    "page": "aitools.html",
-    "target": "svc-ai-gptzero",
-    "desc": "Writing & SEO AI tool for enhanced workflow and productivity"
-  },
-  {
-    "id": "svc-ai-smodin",
-    "title": "Smodin (Writing & SEO)",
-    "cat": "80+ AI Tools",
-    "page": "aitools.html",
-    "target": "svc-ai-smodin",
-    "desc": "Writing & SEO AI tool for enhanced workflow and productivity"
-  },
-  {
-    "id": "svc-ai-cursor-ai",
-    "title": "Cursor AI (Developer Tools)",
-    "cat": "80+ AI Tools",
-    "page": "aitools.html",
-    "target": "svc-ai-cursor-ai",
-    "desc": "Developer Tools AI tool for enhanced workflow and productivity"
-  },
-  {
-    "id": "svc-ai-github-copilot",
-    "title": "GitHub Copilot (Developer Tools)",
-    "cat": "80+ AI Tools",
-    "page": "aitools.html",
-    "target": "svc-ai-github-copilot",
-    "desc": "Developer Tools AI tool for enhanced workflow and productivity"
-  },
-  {
-    "id": "svc-ai-bolt-new",
-    "title": "Bolt.new (Developer Tools)",
-    "cat": "80+ AI Tools",
-    "page": "aitools.html",
-    "target": "svc-ai-bolt-new",
-    "desc": "Developer Tools AI tool for enhanced workflow and productivity"
-  },
-  {
-    "id": "svc-ai-replit-ai",
-    "title": "Replit AI (Developer Tools)",
-    "cat": "80+ AI Tools",
-    "page": "aitools.html",
-    "target": "svc-ai-replit-ai",
-    "desc": "Developer Tools AI tool for enhanced workflow and productivity"
-  },
-  {
-    "id": "svc-ai-lovable",
-    "title": "Lovable (Developer Tools)",
-    "cat": "80+ AI Tools",
-    "page": "aitools.html",
-    "target": "svc-ai-lovable",
-    "desc": "Developer Tools AI tool for enhanced workflow and productivity"
-  },
-  {
-    "id": "svc-ai-framer-ai",
-    "title": "Framer AI (Developer Tools)",
-    "cat": "80+ AI Tools",
-    "page": "aitools.html",
-    "target": "svc-ai-framer-ai",
-    "desc": "Developer Tools AI tool for enhanced workflow and productivity"
-  },
-  {
-    "id": "svc-ai-windsurf-editor",
-    "title": "Windsurf Editor (Developer Tools)",
-    "cat": "80+ AI Tools",
-    "page": "aitools.html",
-    "target": "svc-ai-windsurf-editor",
-    "desc": "Developer Tools AI tool for enhanced workflow and productivity"
-  },
-  {
-    "id": "svc-ai-hugging-face",
-    "title": "Hugging Face (Developer Tools)",
-    "cat": "80+ AI Tools",
-    "page": "aitools.html",
-    "target": "svc-ai-hugging-face",
-    "desc": "Developer Tools AI tool for enhanced workflow and productivity"
-  },
-  {
-    "id": "svc-ai-google-ai-studio",
-    "title": "Google AI Studio (Developer Tools)",
-    "cat": "80+ AI Tools",
-    "page": "aitools.html",
-    "target": "svc-ai-google-ai-studio",
-    "desc": "Developer Tools AI tool for enhanced workflow and productivity"
-  },
-  {
-    "id": "svc-ai-devin-ai",
-    "title": "Devin AI (Developer Tools)",
-    "cat": "80+ AI Tools",
-    "page": "aitools.html",
-    "target": "svc-ai-devin-ai",
-    "desc": "Developer Tools AI tool for enhanced workflow and productivity"
-  },
-  {
-    "id": "svc-ai-hostinger-ai-hub",
-    "title": "Hostinger AI Hub (Developer Tools)",
-    "cat": "80+ AI Tools",
-    "page": "aitools.html",
-    "target": "svc-ai-hostinger-ai-hub",
-    "desc": "Developer Tools AI tool for enhanced workflow and productivity"
-  },
-  {
-    "id": "svc-ai-elevenlabs",
-    "title": "ElevenLabs (Audio & Speech)",
-    "cat": "80+ AI Tools",
-    "page": "aitools.html",
-    "target": "svc-ai-elevenlabs",
-    "desc": "Audio & Speech AI tool for enhanced workflow and productivity"
-  },
-  {
-    "id": "svc-ai-suno-ai-v5-5",
-    "title": "Suno AI V5.5 (Audio & Speech)",
-    "cat": "80+ AI Tools",
-    "page": "aitools.html",
-    "target": "svc-ai-suno-ai-v5-5",
-    "desc": "Audio & Speech AI tool for enhanced workflow and productivity"
-  },
-  {
-    "id": "svc-ai-udio",
-    "title": "Udio (Audio & Speech)",
-    "cat": "80+ AI Tools",
-    "page": "aitools.html",
-    "target": "svc-ai-udio",
-    "desc": "Audio & Speech AI tool for enhanced workflow and productivity"
-  },
-  {
-    "id": "svc-ai-murf-ai",
-    "title": "Murf.AI (Audio & Speech)",
-    "cat": "80+ AI Tools",
-    "page": "aitools.html",
-    "target": "svc-ai-murf-ai",
-    "desc": "Audio & Speech AI tool for enhanced workflow and productivity"
-  },
-  {
-    "id": "svc-ai-uberduck",
-    "title": "Uberduck (Audio & Speech)",
-    "cat": "80+ AI Tools",
-    "page": "aitools.html",
-    "target": "svc-ai-uberduck",
-    "desc": "Audio & Speech AI tool for enhanced workflow and productivity"
-  },
-  {
-    "id": "svc-ai-adobe-podcast",
-    "title": "Adobe Podcast (Audio & Speech)",
-    "cat": "80+ AI Tools",
-    "page": "aitools.html",
-    "target": "svc-ai-adobe-podcast",
-    "desc": "Audio & Speech AI tool for enhanced workflow and productivity"
-  },
-  {
-    "id": "svc-ai-voicemod",
-    "title": "Voicemod (Audio & Speech)",
-    "cat": "80+ AI Tools",
-    "page": "aitools.html",
-    "target": "svc-ai-voicemod",
-    "desc": "Audio & Speech AI tool for enhanced workflow and productivity"
-  },
-  {
-    "id": "svc-ai-speechify",
-    "title": "Speechify (Audio & Speech)",
-    "cat": "80+ AI Tools",
-    "page": "aitools.html",
-    "target": "svc-ai-speechify",
-    "desc": "Audio & Speech AI tool for enhanced workflow and productivity"
-  },
-  {
-    "id": "svc-ai-mubert-ai",
-    "title": "Mubert AI (Audio & Speech)",
-    "cat": "80+ AI Tools",
-    "page": "aitools.html",
-    "target": "svc-ai-mubert-ai",
-    "desc": "Audio & Speech AI tool for enhanced workflow and productivity"
-  },
-  {
-    "id": "svc-ai-aiva",
-    "title": "AIVA (Audio & Speech)",
-    "cat": "80+ AI Tools",
-    "page": "aitools.html",
-    "target": "svc-ai-aiva",
-    "desc": "Audio & Speech AI tool for enhanced workflow and productivity"
-  },
-  {
-    "id": "svc-ai-notion-ai",
-    "title": "Notion AI (Productivity)",
-    "cat": "80+ AI Tools",
-    "page": "aitools.html",
-    "target": "svc-ai-notion-ai",
-    "desc": "Productivity AI tool for enhanced workflow and productivity"
-  },
-  {
-    "id": "svc-ai-notebooklm",
-    "title": "NotebookLM (Productivity)",
-    "cat": "80+ AI Tools",
-    "page": "aitools.html",
-    "target": "svc-ai-notebooklm",
-    "desc": "Productivity AI tool for enhanced workflow and productivity"
-  },
-  {
-    "id": "svc-ai-gamma-app",
-    "title": "Gamma App (Productivity)",
-    "cat": "80+ AI Tools",
-    "page": "aitools.html",
-    "target": "svc-ai-gamma-app",
-    "desc": "Productivity AI tool for enhanced workflow and productivity"
-  },
-  {
-    "id": "svc-ai-clickup",
-    "title": "ClickUp (Productivity)",
-    "cat": "80+ AI Tools",
-    "page": "aitools.html",
-    "target": "svc-ai-clickup",
-    "desc": "Productivity AI tool for enhanced workflow and productivity"
-  },
-  {
-    "id": "svc-ai-fireflies",
-    "title": "Fireflies (Productivity)",
-    "cat": "80+ AI Tools",
-    "page": "aitools.html",
-    "target": "svc-ai-fireflies",
-    "desc": "Productivity AI tool for enhanced workflow and productivity"
-  },
-  {
-    "id": "svc-ai-chatpdf",
-    "title": "ChatPDF (Productivity)",
-    "cat": "80+ AI Tools",
-    "page": "aitools.html",
-    "target": "svc-ai-chatpdf",
-    "desc": "Productivity AI tool for enhanced workflow and productivity"
-  },
-  {
-    "id": "svc-ai-solvely-ai",
-    "title": "Solvely.ai (Productivity)",
-    "cat": "80+ AI Tools",
-    "page": "aitools.html",
-    "target": "svc-ai-solvely-ai",
-    "desc": "Productivity AI tool for enhanced workflow and productivity"
-  },
-  {
-    "id": "svc-ai-quizlet",
-    "title": "Quizlet (Productivity)",
-    "cat": "80+ AI Tools",
-    "page": "aitools.html",
-    "target": "svc-ai-quizlet",
-    "desc": "Productivity AI tool for enhanced workflow and productivity"
-  },
-  {
-    "id": "svc-ai-otter-ai",
-    "title": "Otter AI (Productivity)",
-    "cat": "80+ AI Tools",
-    "page": "aitools.html",
-    "target": "svc-ai-otter-ai",
-    "desc": "Productivity AI tool for enhanced workflow and productivity"
-  },
-  {
-    "id": "svc-ai-canva-ai",
-    "title": "Canva AI (Productivity)",
-    "cat": "80+ AI Tools",
-    "page": "aitools.html",
-    "target": "svc-ai-canva-ai",
-    "desc": "Productivity AI tool for enhanced workflow and productivity"
-  },
-  {
-    "id": "svc-ai-looka",
-    "title": "Looka (Productivity)",
-    "cat": "80+ AI Tools",
-    "page": "aitools.html",
-    "target": "svc-ai-looka",
-    "desc": "Productivity AI tool for enhanced workflow and productivity"
+    "id": "cat-edu-student-services",
+    "title": "Student Services (Education Category)",
+    "cat": "Education",
+    "page": "education/education.html",
+    "target": "cat-student-services",
+    "desc": "Browse all Student Services admissions, entrance exams, notifications and results"
+  },
+  {
+    "id": "cat-edu-doctoral-fellowships",
+    "title": "Doctoral Fellowships (Education Category)",
+    "cat": "Education",
+    "page": "education/education.html",
+    "target": "cat-doctoral-fellowships",
+    "desc": "Browse all Doctoral Fellowships admissions, entrance exams, notifications and results"
+  },
+  {
+    "id": "cat-edu-sbtet-polycet",
+    "title": "SBTET POLYCET (Education Category)",
+    "cat": "Education",
+    "page": "education/education.html",
+    "target": "cat-sbtet-polycet",
+    "desc": "Browse all SBTET POLYCET admissions, entrance exams, notifications and results"
+  },
+  {
+    "id": "cat-edu-post-graduation-admissions",
+    "title": "Post Graduation Admissions (Education Category)",
+    "cat": "Education",
+    "page": "education/education.html",
+    "target": "cat-post-graduation-admissions",
+    "desc": "Browse all Post Graduation Admissions admissions, entrance exams, notifications and results"
+  },
+  {
+    "id": "cat-edu-open-university",
+    "title": "Open University (Education Category)",
+    "cat": "Education",
+    "page": "education/education.html",
+    "target": "cat-open-university",
+    "desc": "Browse all Open University admissions, entrance exams, notifications and results"
+  },
+  {
+    "id": "cat-edu-medical-health-sciences",
+    "title": "Medical & Health Sciences (Education Category)",
+    "cat": "Education",
+    "page": "education/education.html",
+    "target": "cat-medical-health-sciences",
+    "desc": "Browse all Medical & Health Sciences admissions, entrance exams, notifications and results"
+  },
+  {
+    "id": "cat-edu-exam-results",
+    "title": "Exam Results (Education Category)",
+    "cat": "Education",
+    "page": "education/education.html",
+    "target": "cat-exam-results",
+    "desc": "Browse all Exam Results admissions, entrance exams, notifications and results"
+  },
+  {
+    "id": "cat-edu-open-school",
+    "title": "Open School (Education Category)",
+    "cat": "Education",
+    "page": "education/education.html",
+    "target": "cat-open-school",
+    "desc": "Browse all Open School admissions, entrance exams, notifications and results"
+  },
+  {
+    "id": "cat-edu-specialized-institutions",
+    "title": "Specialized Institutions (Education Category)",
+    "cat": "Education",
+    "page": "education/education.html",
+    "target": "cat-specialized-institutions",
+    "desc": "Browse all Specialized Institutions admissions, entrance exams, notifications and results"
+  },
+  {
+    "id": "cat-edu-teachers-education",
+    "title": "Teachers Education (Education Category)",
+    "cat": "Education",
+    "page": "education/education.html",
+    "target": "cat-teachers-education",
+    "desc": "Browse all Teachers Education admissions, entrance exams, notifications and results"
+  },
+  {
+    "id": "cat-edu-degree-admissions",
+    "title": "Degree Admissions (Education Category)",
+    "cat": "Education",
+    "page": "education/education.html",
+    "target": "cat-degree-admissions",
+    "desc": "Browse all Degree Admissions admissions, entrance exams, notifications and results"
+  },
+  {
+    "id": "cat-edu-ccmt-counselling",
+    "title": "CCMT Counselling (Education Category)",
+    "cat": "Education",
+    "page": "education/education.html",
+    "target": "cat-ccmt-counselling",
+    "desc": "Browse all CCMT Counselling admissions, entrance exams, notifications and results"
+  },
+  {
+    "id": "cat-edu-gate-2027",
+    "title": "GATE 2027 (Education Category)",
+    "cat": "Education",
+    "page": "education/education.html",
+    "target": "cat-gate-2027",
+    "desc": "Browse all GATE 2027 admissions, entrance exams, notifications and results"
   },
   {
     "id": "svc-job-RRB-NTPC-2026",
-    "title": "RRB NTPC Graduate & Undergraduate Posts",
+    "title": "RRB - NTPC Graduate & Undergraduate Posts",
     "cat": "Career",
     "page": "career/career.html",
     "target": "svc-job-RRB-NTPC-2026",
-    "desc": "Railway | Qualification: 12th / Degree | Last Date: 25-09-2026"
+    "desc": "Railway • 12th / Degree • Last Date: 25-09-2026"
   },
   {
     "id": "svc-job-venkatinsights",
-    "title": "venkatinsights editor",
+    "title": "venkatinsights - editor",
     "cat": "Career",
     "page": "career/career.html",
     "target": "svc-job-venkatinsights",
-    "desc": "venkatinsights | Qualification: editing | Last Date: 26-08-2026"
+    "desc": "venkatinsights • editing • Last Date: 26-08-2026"
   },
   {
-    "id": "svc-job-Apprentice-Recruitment",
-    "title": "Rashtriya Chemicals and Fertilizers Limited (RCFL) Apprentice Recruitment 2026",
+    "id": "svc-job-Apprantice-Recruitment",
+    "title": "Rashtriya Chemicals and Fertilizers Limited (RCFL) Apprentice Recruitment 2026 - Category of Trade Apprentices",
     "cat": "Career",
     "page": "career/career.html",
-    "target": "svc-job-Apprentice-Recruitment",
-    "desc": "Apprentice Recruitment | Qualification: 10+2, Diploma  and B.Sc | Last Date: 20-09-2026"
+    "target": "svc-job-Apprantice-Recruitment",
+    "desc": "Apprentice Recruitment • 10+2, Diploma  and B.Sc • Last Date: 20-09-2026"
   },
-
-
-
-
-
-
   {
     "id": "svc-job-RRB-JE-2026",
-    "title": "RRB Junior Engineer – 4029 Posts",
+    "title": "RRB - Junior Engineer – 4029 Posts",
     "cat": "Career",
     "page": "career/career.html",
     "target": "svc-job-RRB-JE-2026",
-    "desc": "Railway | Qualification: Diploma / B.Tech | Last Date: 13-09-2026"
+    "desc": "Railway • Diploma / B.Tech • Last Date: 13-09-2026"
   },
   {
     "id": "svc-job-IBPS-PO-2026",
-    "title": "IBPS IBPS PO",
+    "title": "IBPS - IBPS PO",
     "cat": "Career",
     "page": "career/career.html",
     "target": "svc-job-IBPS-PO-2026",
-    "desc": "Banking | Qualification: Degree | Last Date: 15-09-2026"
+    "desc": "Banking • Degree • Last Date: 15-09-2026"
   },
   {
     "id": "svc-job-IBPS-CLERK-2026",
-    "title": "IBPS IBPS Clerk",
+    "title": "IBPS - IBPS Clerk",
     "cat": "Career",
     "page": "career/career.html",
     "target": "svc-job-IBPS-CLERK-2026",
-    "desc": "Banking | Qualification: Degree | Last Date: 30-08-2026"
+    "desc": "Banking • Degree • Last Date: 30-08-2026"
   },
   {
     "id": "svc-job-ARMY-AGNI-2026",
-    "title": "Indian Army Agniveer General Duty",
+    "title": "Indian Army - Agniveer General Duty",
     "cat": "Career",
     "page": "career/career.html",
     "target": "svc-job-ARMY-AGNI-2026",
-    "desc": "Defence | Qualification: 10th / 12th | Last Date: 10-09-2026"
+    "desc": "Defence • 10th / 12th • Last Date: 10-09-2026"
   },
   {
     "id": "svc-job-DRDO-SCI-2026",
-    "title": "DRDO DRDO Scientist B",
+    "title": "DRDO - DRDO Scientist B",
     "cat": "Career",
     "page": "career/career.html",
     "target": "svc-job-DRDO-SCI-2026",
-    "desc": "DRDO | Qualification: B.Tech / M.Tech | Last Date: 15-09-2026"
+    "desc": "DRDO • B.Tech / M.Tech • Last Date: 15-09-2026"
   },
   {
     "id": "svc-job-NTPC-ENG-2026",
-    "title": "NTPC Executive / Engineer",
+    "title": "NTPC - Executive / Engineer",
     "cat": "Career",
     "page": "career/career.html",
     "target": "svc-job-NTPC-ENG-2026",
-    "desc": "PSU | Qualification: B.Tech / Degree | Last Date: 10-09-2026"
+    "desc": "PSU • B.Tech / Degree • Last Date: 10-09-2026"
   },
   {
     "id": "svc-job-CIL-MT-2026",
-    "title": "CIL Management Trainee",
+    "title": "CIL - Management Trainee",
     "cat": "Career",
     "page": "career/career.html",
     "target": "svc-job-CIL-MT-2026",
-    "desc": "Mining | Qualification: Engineering Degree | Last Date: 15-09-2026"
+    "desc": "Mining • Engineering Degree • Last Date: 15-09-2026"
   },
   {
     "id": "svc-job-KVS-TCH-2026",
-    "title": "KVS PRT / TGT / PGT Teacher",
+    "title": "KVS - PRT / TGT / PGT Teacher",
     "cat": "Career",
     "page": "career/career.html",
     "target": "svc-job-KVS-TCH-2026",
-    "desc": "Teaching | Qualification: B.Ed / TET | Last Date: 15-09-2026"
+    "desc": "Teaching • B.Ed / TET • Last Date: 15-09-2026"
   },
   {
     "id": "svc-job-UPSC-CSE-2026",
-    "title": "UPSC Civil Services Examination (IAS/IPS)",
+    "title": "UPSC - Civil Services Examination (IAS/IPS)",
     "cat": "Career",
     "page": "career/career.html",
     "target": "svc-job-UPSC-CSE-2026",
-    "desc": "UPSC | Qualification: Degree | Last Date: 15-09-2026"
+    "desc": "UPSC • Degree • Last Date: 15-09-2026"
   },
   {
     "id": "svc-job-SSC-CGL-2026",
-    "title": "SSC Combined Graduate Level (CGL)",
+    "title": "SSC - Combined Graduate Level (CGL)",
     "cat": "Career",
     "page": "career/career.html",
     "target": "svc-job-SSC-CGL-2026",
-    "desc": "SSC | Qualification: Degree | Last Date: 15-09-2026"
+    "desc": "SSC • Degree • Last Date: 15-09-2026"
   },
   {
     "id": "svc-job-NAVY-SSR",
-    "title": "Indian Navy SSR Agniveer – 1400 Posts",
+    "title": "Indian Navy - SSR Agniveer – 1400 Posts",
     "cat": "Career",
     "page": "career/career.html",
     "target": "svc-job-NAVY-SSR",
-    "desc": "Defence | Qualification: 12th (PCM) | Last Date: 05-09-2026"
+    "desc": "Defence • 12th (PCM) • Last Date: 08-09-2026"
   },
   {
     "id": "svc-job-TSLPRB-CONST",
-    "title": "TSLPRB Police Constable – 7112 Posts",
+    "title": "TSLPRB - Police Constable – 7112 Posts",
     "cat": "Career",
     "page": "career/career.html",
     "target": "svc-job-TSLPRB-CONST",
-    "desc": "Police | Qualification: 10th / 12th | Last Date: 07-09-2026"
+    "desc": "Police • 10th / 12th • Last Date: 10-09-2026"
   },
   {
     "id": "svc-job-RRC-APP",
-    "title": "RRC Act Apprentice – 1853 Posts",
+    "title": "RRC - Act Apprentice – 1853 Posts",
     "cat": "Career",
     "page": "career/career.html",
     "target": "svc-job-RRC-APP",
-    "desc": "Railway | Qualification: ITI / Diploma | Last Date: 08-09-2026"
+    "desc": "Railway • ITI / Diploma • Last Date: 11-09-2026"
   },
   {
     "id": "svc-job-SBI-JA",
-    "title": "SBI Junior Associate (Clerk) – 8773 Posts",
+    "title": "SBI - Junior Associate (Clerk) – 8773 Posts",
     "cat": "Career",
     "page": "career/career.html",
     "target": "svc-job-SBI-JA",
-    "desc": "Banking | Qualification: Degree | Last Date: 09-09-2026"
+    "desc": "Banking • Degree • Last Date: 12-09-2026"
   },
   {
     "id": "svc-job-SSC-MTS",
-    "title": "SSC Multi Tasking Staff (MTS)",
+    "title": "SSC - Multi Tasking Staff (MTS)",
     "cat": "Career",
     "page": "career/career.html",
     "target": "svc-job-SSC-MTS",
-    "desc": "SSC | Qualification: 10th | Last Date: 14-09-2026"
+    "desc": "SSC • 10th • Last Date: 17-09-2026"
   },
   {
     "id": "svc-job-AIIMS-NO",
-    "title": "AIIMS Nursing Officer – 4455 Posts",
+    "title": "AIIMS - Nursing Officer – 4455 Posts",
     "cat": "Career",
     "page": "career/career.html",
     "target": "svc-job-AIIMS-NO",
-    "desc": "Healthcare | Qualification: B.Sc Nursing | Last Date: 17-09-2026"
+    "desc": "Healthcare • B.Sc Nursing • Last Date: 20-09-2026"
   },
   {
     "id": "svc-job-NIC-SCIB",
-    "title": "NIC Scientist B & Scientific Officer",
+    "title": "NIC - Scientist B & Scientific Officer",
     "cat": "Career",
     "page": "career/career.html",
     "target": "svc-job-NIC-SCIB",
-    "desc": "Technical Jobs | Qualification: B.E / B.Tech / MCA | Last Date: 11-09-2026"
+    "desc": "Technical Jobs • B.E / B.Tech / MCA • Last Date: 14-09-2026"
   },
   {
     "id": "svc-job-DHC-CLERK",
-    "title": "Delhi High Court Junior Judicial Assistant – 123 Posts",
+    "title": "Delhi High Court - Junior Judicial Assistant – 123 Posts",
     "cat": "Career",
     "page": "career/career.html",
     "target": "svc-job-DHC-CLERK",
-    "desc": "Judiciary | Qualification: Degree | Last Date: 16-09-2026"
+    "desc": "Judiciary • Degree • Last Date: 19-09-2026"
   },
   {
     "id": "svc-job-UPSC-EPFO",
-    "title": "UPSC EPFO Enforcement Officer – 418 Posts",
+    "title": "UPSC - EPFO Enforcement Officer – 418 Posts",
     "cat": "Career",
     "page": "career/career.html",
     "target": "svc-job-UPSC-EPFO",
-    "desc": "UPSC | Qualification: Degree | Last Date: 20-09-2026"
+    "desc": "UPSC • Degree • Last Date: 23-09-2026"
+  },
+  {
+    "id": "svc-ai-manus-ai-agent",
+    "title": "Manus AI Agent",
+    "cat": "80+ AI Tools",
+    "page": "aitools.html",
+    "target": "svc-ai-manus-ai-agent",
+    "desc": "AI Agents • "
+  },
+  {
+    "id": "svc-ai-openclaw",
+    "title": "OpenClaw",
+    "cat": "80+ AI Tools",
+    "page": "aitools.html",
+    "target": "svc-ai-openclaw",
+    "desc": "AI Agents • "
+  },
+  {
+    "id": "svc-ai-hermes-agent",
+    "title": "Hermes Agent",
+    "cat": "80+ AI Tools",
+    "page": "aitools.html",
+    "target": "svc-ai-hermes-agent",
+    "desc": "AI Agents • "
+  },
+  {
+    "id": "svc-ai-browser-use",
+    "title": "Browser Use",
+    "cat": "80+ AI Tools",
+    "page": "aitools.html",
+    "target": "svc-ai-browser-use",
+    "desc": "AI Agents • "
+  },
+  {
+    "id": "svc-ai-genspark-ai-browser",
+    "title": "Genspark AI Browser",
+    "cat": "80+ AI Tools",
+    "page": "aitools.html",
+    "target": "svc-ai-genspark-ai-browser",
+    "desc": "AI Agents • "
+  },
+  {
+    "id": "svc-ai-autogpt",
+    "title": "AutoGPT",
+    "cat": "80+ AI Tools",
+    "page": "aitools.html",
+    "target": "svc-ai-autogpt",
+    "desc": "AI Agents • "
+  },
+  {
+    "id": "svc-ai-agent-tars",
+    "title": "Agent TARS",
+    "cat": "80+ AI Tools",
+    "page": "aitools.html",
+    "target": "svc-ai-agent-tars",
+    "desc": "AI Agents • "
+  },
+  {
+    "id": "svc-ai-make",
+    "title": "Make",
+    "cat": "80+ AI Tools",
+    "page": "aitools.html",
+    "target": "svc-ai-make",
+    "desc": "AI Agents • "
+  },
+  {
+    "id": "svc-ai-zapier",
+    "title": "Zapier",
+    "cat": "80+ AI Tools",
+    "page": "aitools.html",
+    "target": "svc-ai-zapier",
+    "desc": "AI Agents • "
+  },
+  {
+    "id": "svc-ai-n8n",
+    "title": "n8n",
+    "cat": "80+ AI Tools",
+    "page": "aitools.html",
+    "target": "svc-ai-n8n",
+    "desc": "AI Agents • "
+  },
+  {
+    "id": "svc-ai-midjourney-v8",
+    "title": "Midjourney V8",
+    "cat": "80+ AI Tools",
+    "page": "aitools.html",
+    "target": "svc-ai-midjourney-v8",
+    "desc": "Image Makers • "
+  },
+  {
+    "id": "svc-ai-adobe-firefly-3",
+    "title": "Adobe Firefly 3",
+    "cat": "80+ AI Tools",
+    "page": "aitools.html",
+    "target": "svc-ai-adobe-firefly-3",
+    "desc": "Image Makers • "
+  },
+  {
+    "id": "svc-ai-flux-2",
+    "title": "Flux.2",
+    "cat": "80+ AI Tools",
+    "page": "aitools.html",
+    "target": "svc-ai-flux-2",
+    "desc": "Image Makers • "
+  },
+  {
+    "id": "svc-ai-chatgpt-images-2-0",
+    "title": "ChatGPT Images 2.0",
+    "cat": "80+ AI Tools",
+    "page": "aitools.html",
+    "target": "svc-ai-chatgpt-images-2-0",
+    "desc": "Image Makers • "
+  },
+  {
+    "id": "svc-ai-nano-banana-pro",
+    "title": "Nano Banana Pro",
+    "cat": "80+ AI Tools",
+    "page": "aitools.html",
+    "target": "svc-ai-nano-banana-pro",
+    "desc": "Image Makers • "
+  },
+  {
+    "id": "svc-ai-imagine-image-2-0",
+    "title": "Imagine Image 2.0",
+    "cat": "80+ AI Tools",
+    "page": "aitools.html",
+    "target": "svc-ai-imagine-image-2-0",
+    "desc": "Image Makers • "
+  },
+  {
+    "id": "svc-ai-seedream-5-0",
+    "title": "Seedream 5.0",
+    "cat": "80+ AI Tools",
+    "page": "aitools.html",
+    "target": "svc-ai-seedream-5-0",
+    "desc": "Image Makers • "
+  },
+  {
+    "id": "svc-ai-deevid-ai-images",
+    "title": "Deevid AI Images",
+    "cat": "80+ AI Tools",
+    "page": "aitools.html",
+    "target": "svc-ai-deevid-ai-images",
+    "desc": "Image Makers • "
+  },
+  {
+    "id": "svc-ai-photoshop-ai",
+    "title": "Photoshop AI",
+    "cat": "80+ AI Tools",
+    "page": "aitools.html",
+    "target": "svc-ai-photoshop-ai",
+    "desc": "Image Makers • "
+  },
+  {
+    "id": "svc-ai-lexica-art",
+    "title": "Lexica.art",
+    "cat": "80+ AI Tools",
+    "page": "aitools.html",
+    "target": "svc-ai-lexica-art",
+    "desc": "Image Makers • "
+  },
+  {
+    "id": "svc-ai-krea-ai",
+    "title": "Krea.ai",
+    "cat": "80+ AI Tools",
+    "page": "aitools.html",
+    "target": "svc-ai-krea-ai",
+    "desc": "Image Makers • "
+  },
+  {
+    "id": "svc-ai-civitai",
+    "title": "Civitai",
+    "cat": "80+ AI Tools",
+    "page": "aitools.html",
+    "target": "svc-ai-civitai",
+    "desc": "Image Makers • "
+  },
+  {
+    "id": "svc-ai-openart",
+    "title": "Openart",
+    "cat": "80+ AI Tools",
+    "page": "aitools.html",
+    "target": "svc-ai-openart",
+    "desc": "Image Makers • "
+  },
+  {
+    "id": "svc-ai-chatgpt",
+    "title": "ChatGPT",
+    "cat": "80+ AI Tools",
+    "page": "aitools.html",
+    "target": "svc-ai-chatgpt",
+    "desc": "Chat & Assistant • "
+  },
+  {
+    "id": "svc-ai-gemini-ai",
+    "title": "Gemini AI",
+    "cat": "80+ AI Tools",
+    "page": "aitools.html",
+    "target": "svc-ai-gemini-ai",
+    "desc": "Chat & Assistant • "
+  },
+  {
+    "id": "svc-ai-claude-4",
+    "title": "Claude 4",
+    "cat": "80+ AI Tools",
+    "page": "aitools.html",
+    "target": "svc-ai-claude-4",
+    "desc": "Chat & Assistant • "
+  },
+  {
+    "id": "svc-ai-grok-4",
+    "title": "Grok 4",
+    "cat": "80+ AI Tools",
+    "page": "aitools.html",
+    "target": "svc-ai-grok-4",
+    "desc": "Chat & Assistant • "
+  },
+  {
+    "id": "svc-ai-deepseek-r1",
+    "title": "DeepSeek-R1",
+    "cat": "80+ AI Tools",
+    "page": "aitools.html",
+    "target": "svc-ai-deepseek-r1",
+    "desc": "Chat & Assistant • "
+  },
+  {
+    "id": "svc-ai-qwen-3",
+    "title": "Qwen 3",
+    "cat": "80+ AI Tools",
+    "page": "aitools.html",
+    "target": "svc-ai-qwen-3",
+    "desc": "Chat & Assistant • "
+  },
+  {
+    "id": "svc-ai-microsoft-copilot",
+    "title": "Microsoft Copilot",
+    "cat": "80+ AI Tools",
+    "page": "aitools.html",
+    "target": "svc-ai-microsoft-copilot",
+    "desc": "Chat & Assistant • "
+  },
+  {
+    "id": "svc-ai-kimi-ai",
+    "title": "Kimi.ai",
+    "cat": "80+ AI Tools",
+    "page": "aitools.html",
+    "target": "svc-ai-kimi-ai",
+    "desc": "Chat & Assistant • "
+  },
+  {
+    "id": "svc-ai-le-chat-by-mistral-ai",
+    "title": "Le Chat by Mistral AI",
+    "cat": "80+ AI Tools",
+    "page": "aitools.html",
+    "target": "svc-ai-le-chat-by-mistral-ai",
+    "desc": "Chat & Assistant • "
+  },
+  {
+    "id": "svc-ai-perplexity-ai",
+    "title": "Perplexity AI",
+    "cat": "80+ AI Tools",
+    "page": "aitools.html",
+    "target": "svc-ai-perplexity-ai",
+    "desc": "Chat & Assistant • "
+  },
+  {
+    "id": "svc-ai-kling-3-0",
+    "title": "Kling 3.0",
+    "cat": "80+ AI Tools",
+    "page": "aitools.html",
+    "target": "svc-ai-kling-3-0",
+    "desc": "Video Generators • "
+  },
+  {
+    "id": "svc-ai-runway-ml",
+    "title": "Runway ML",
+    "cat": "80+ AI Tools",
+    "page": "aitools.html",
+    "target": "svc-ai-runway-ml",
+    "desc": "Video Generators • "
+  },
+  {
+    "id": "svc-ai-heygen-ai",
+    "title": "HeyGen AI",
+    "cat": "80+ AI Tools",
+    "page": "aitools.html",
+    "target": "svc-ai-heygen-ai",
+    "desc": "Video Generators • "
+  },
+  {
+    "id": "svc-ai-capcut",
+    "title": "CapCut",
+    "cat": "80+ AI Tools",
+    "page": "aitools.html",
+    "target": "svc-ai-capcut",
+    "desc": "Video Generators • "
+  },
+  {
+    "id": "svc-ai-invideo",
+    "title": "InVideo",
+    "cat": "80+ AI Tools",
+    "page": "aitools.html",
+    "target": "svc-ai-invideo",
+    "desc": "Video Generators • "
+  },
+  {
+    "id": "svc-ai-ltx-2-5",
+    "title": "LTX 2.5",
+    "cat": "80+ AI Tools",
+    "page": "aitools.html",
+    "target": "svc-ai-ltx-2-5",
+    "desc": "Video Generators • "
+  },
+  {
+    "id": "svc-ai-wan-3-0",
+    "title": "Wan 3.0",
+    "cat": "80+ AI Tools",
+    "page": "aitools.html",
+    "target": "svc-ai-wan-3-0",
+    "desc": "Video Generators • "
+  },
+  {
+    "id": "svc-ai-seedance-2-5",
+    "title": "Seedance 2.5",
+    "cat": "80+ AI Tools",
+    "page": "aitools.html",
+    "target": "svc-ai-seedance-2-5",
+    "desc": "Video Generators • "
+  },
+  {
+    "id": "svc-ai-veo-3-1",
+    "title": "Veo 3.1",
+    "cat": "80+ AI Tools",
+    "page": "aitools.html",
+    "target": "svc-ai-veo-3-1",
+    "desc": "Video Generators • "
+  },
+  {
+    "id": "svc-ai-opus-clip",
+    "title": "Opus Clip",
+    "cat": "80+ AI Tools",
+    "page": "aitools.html",
+    "target": "svc-ai-opus-clip",
+    "desc": "Video Generators • "
+  },
+  {
+    "id": "svc-ai-quillbot",
+    "title": "QuillBot",
+    "cat": "80+ AI Tools",
+    "page": "aitools.html",
+    "target": "svc-ai-quillbot",
+    "desc": "Writing & SEO • "
+  },
+  {
+    "id": "svc-ai-scispace-ai-writer",
+    "title": "SciSpace AI Writer",
+    "cat": "80+ AI Tools",
+    "page": "aitools.html",
+    "target": "svc-ai-scispace-ai-writer",
+    "desc": "Writing & SEO • "
+  },
+  {
+    "id": "svc-ai-undetectable-ai",
+    "title": "Undetectable AI",
+    "cat": "80+ AI Tools",
+    "page": "aitools.html",
+    "target": "svc-ai-undetectable-ai",
+    "desc": "Writing & SEO • "
+  },
+  {
+    "id": "svc-ai-writesonic",
+    "title": "WriteSonic",
+    "cat": "80+ AI Tools",
+    "page": "aitools.html",
+    "target": "svc-ai-writesonic",
+    "desc": "Writing & SEO • "
+  },
+  {
+    "id": "svc-ai-rytr",
+    "title": "Rytr",
+    "cat": "80+ AI Tools",
+    "page": "aitools.html",
+    "target": "svc-ai-rytr",
+    "desc": "Writing & SEO • "
+  },
+  {
+    "id": "svc-ai-semrush-content-toolkit",
+    "title": "Semrush Content Toolkit",
+    "cat": "80+ AI Tools",
+    "page": "aitools.html",
+    "target": "svc-ai-semrush-content-toolkit",
+    "desc": "Writing & SEO • "
+  },
+  {
+    "id": "svc-ai-jasper",
+    "title": "Jasper",
+    "cat": "80+ AI Tools",
+    "page": "aitools.html",
+    "target": "svc-ai-jasper",
+    "desc": "Writing & SEO • "
+  },
+  {
+    "id": "svc-ai-copy-ai",
+    "title": "Copy.ai",
+    "cat": "80+ AI Tools",
+    "page": "aitools.html",
+    "target": "svc-ai-copy-ai",
+    "desc": "Writing & SEO • "
+  },
+  {
+    "id": "svc-ai-gptzero",
+    "title": "GPTZero",
+    "cat": "80+ AI Tools",
+    "page": "aitools.html",
+    "target": "svc-ai-gptzero",
+    "desc": "Writing & SEO • "
+  },
+  {
+    "id": "svc-ai-smodin",
+    "title": "Smodin",
+    "cat": "80+ AI Tools",
+    "page": "aitools.html",
+    "target": "svc-ai-smodin",
+    "desc": "Writing & SEO • "
+  },
+  {
+    "id": "svc-ai-cursor-ai",
+    "title": "Cursor AI",
+    "cat": "80+ AI Tools",
+    "page": "aitools.html",
+    "target": "svc-ai-cursor-ai",
+    "desc": "Developer Tools • "
+  },
+  {
+    "id": "svc-ai-github-copilot",
+    "title": "GitHub Copilot",
+    "cat": "80+ AI Tools",
+    "page": "aitools.html",
+    "target": "svc-ai-github-copilot",
+    "desc": "Developer Tools • "
+  },
+  {
+    "id": "svc-ai-bolt-new",
+    "title": "Bolt.new",
+    "cat": "80+ AI Tools",
+    "page": "aitools.html",
+    "target": "svc-ai-bolt-new",
+    "desc": "Developer Tools • "
+  },
+  {
+    "id": "svc-ai-replit-ai",
+    "title": "Replit AI",
+    "cat": "80+ AI Tools",
+    "page": "aitools.html",
+    "target": "svc-ai-replit-ai",
+    "desc": "Developer Tools • "
+  },
+  {
+    "id": "svc-ai-lovable",
+    "title": "Lovable",
+    "cat": "80+ AI Tools",
+    "page": "aitools.html",
+    "target": "svc-ai-lovable",
+    "desc": "Developer Tools • "
+  },
+  {
+    "id": "svc-ai-framer-ai",
+    "title": "Framer AI",
+    "cat": "80+ AI Tools",
+    "page": "aitools.html",
+    "target": "svc-ai-framer-ai",
+    "desc": "Developer Tools • "
+  },
+  {
+    "id": "svc-ai-windsurf-editor",
+    "title": "Windsurf Editor",
+    "cat": "80+ AI Tools",
+    "page": "aitools.html",
+    "target": "svc-ai-windsurf-editor",
+    "desc": "Developer Tools • "
+  },
+  {
+    "id": "svc-ai-hugging-face",
+    "title": "Hugging Face",
+    "cat": "80+ AI Tools",
+    "page": "aitools.html",
+    "target": "svc-ai-hugging-face",
+    "desc": "Developer Tools • "
+  },
+  {
+    "id": "svc-ai-google-ai-studio",
+    "title": "Google AI Studio",
+    "cat": "80+ AI Tools",
+    "page": "aitools.html",
+    "target": "svc-ai-google-ai-studio",
+    "desc": "Developer Tools • "
+  },
+  {
+    "id": "svc-ai-devin-ai",
+    "title": "Devin AI",
+    "cat": "80+ AI Tools",
+    "page": "aitools.html",
+    "target": "svc-ai-devin-ai",
+    "desc": "Developer Tools • "
+  },
+  {
+    "id": "svc-ai-hostinger-ai-hub",
+    "title": "Hostinger AI Hub",
+    "cat": "80+ AI Tools",
+    "page": "aitools.html",
+    "target": "svc-ai-hostinger-ai-hub",
+    "desc": "Developer Tools • "
+  },
+  {
+    "id": "svc-ai-elevenlabs",
+    "title": "ElevenLabs",
+    "cat": "80+ AI Tools",
+    "page": "aitools.html",
+    "target": "svc-ai-elevenlabs",
+    "desc": "Audio & Speech • "
+  },
+  {
+    "id": "svc-ai-suno-ai-v5-5",
+    "title": "Suno AI V5.5",
+    "cat": "80+ AI Tools",
+    "page": "aitools.html",
+    "target": "svc-ai-suno-ai-v5-5",
+    "desc": "Audio & Speech • "
+  },
+  {
+    "id": "svc-ai-udio",
+    "title": "Udio",
+    "cat": "80+ AI Tools",
+    "page": "aitools.html",
+    "target": "svc-ai-udio",
+    "desc": "Audio & Speech • "
+  },
+  {
+    "id": "svc-ai-murf-ai",
+    "title": "Murf.AI",
+    "cat": "80+ AI Tools",
+    "page": "aitools.html",
+    "target": "svc-ai-murf-ai",
+    "desc": "Audio & Speech • "
+  },
+  {
+    "id": "svc-ai-uberduck",
+    "title": "Uberduck",
+    "cat": "80+ AI Tools",
+    "page": "aitools.html",
+    "target": "svc-ai-uberduck",
+    "desc": "Audio & Speech • "
+  },
+  {
+    "id": "svc-ai-adobe-podcast",
+    "title": "Adobe Podcast",
+    "cat": "80+ AI Tools",
+    "page": "aitools.html",
+    "target": "svc-ai-adobe-podcast",
+    "desc": "Audio & Speech • "
+  },
+  {
+    "id": "svc-ai-voicemod",
+    "title": "Voicemod",
+    "cat": "80+ AI Tools",
+    "page": "aitools.html",
+    "target": "svc-ai-voicemod",
+    "desc": "Audio & Speech • "
+  },
+  {
+    "id": "svc-ai-speechify",
+    "title": "Speechify",
+    "cat": "80+ AI Tools",
+    "page": "aitools.html",
+    "target": "svc-ai-speechify",
+    "desc": "Audio & Speech • "
+  },
+  {
+    "id": "svc-ai-mubert-ai",
+    "title": "Mubert AI",
+    "cat": "80+ AI Tools",
+    "page": "aitools.html",
+    "target": "svc-ai-mubert-ai",
+    "desc": "Audio & Speech • "
+  },
+  {
+    "id": "svc-ai-aiva",
+    "title": "AIVA",
+    "cat": "80+ AI Tools",
+    "page": "aitools.html",
+    "target": "svc-ai-aiva",
+    "desc": "Audio & Speech • "
+  },
+  {
+    "id": "svc-ai-notion-ai",
+    "title": "Notion AI",
+    "cat": "80+ AI Tools",
+    "page": "aitools.html",
+    "target": "svc-ai-notion-ai",
+    "desc": "Productivity • "
+  },
+  {
+    "id": "svc-ai-notebooklm",
+    "title": "NotebookLM",
+    "cat": "80+ AI Tools",
+    "page": "aitools.html",
+    "target": "svc-ai-notebooklm",
+    "desc": "Productivity • "
+  },
+  {
+    "id": "svc-ai-gamma-app",
+    "title": "Gamma App",
+    "cat": "80+ AI Tools",
+    "page": "aitools.html",
+    "target": "svc-ai-gamma-app",
+    "desc": "Productivity • "
+  },
+  {
+    "id": "svc-ai-clickup",
+    "title": "ClickUp",
+    "cat": "80+ AI Tools",
+    "page": "aitools.html",
+    "target": "svc-ai-clickup",
+    "desc": "Productivity • "
+  },
+  {
+    "id": "svc-ai-fireflies",
+    "title": "Fireflies",
+    "cat": "80+ AI Tools",
+    "page": "aitools.html",
+    "target": "svc-ai-fireflies",
+    "desc": "Productivity • "
+  },
+  {
+    "id": "svc-ai-chatpdf",
+    "title": "ChatPDF",
+    "cat": "80+ AI Tools",
+    "page": "aitools.html",
+    "target": "svc-ai-chatpdf",
+    "desc": "Productivity • "
+  },
+  {
+    "id": "svc-ai-solvely-ai",
+    "title": "Solvely.ai",
+    "cat": "80+ AI Tools",
+    "page": "aitools.html",
+    "target": "svc-ai-solvely-ai",
+    "desc": "Productivity • "
+  },
+  {
+    "id": "svc-ai-quizlet",
+    "title": "Quizlet",
+    "cat": "80+ AI Tools",
+    "page": "aitools.html",
+    "target": "svc-ai-quizlet",
+    "desc": "Productivity • "
+  },
+  {
+    "id": "svc-ai-otter-ai",
+    "title": "Otter AI",
+    "cat": "80+ AI Tools",
+    "page": "aitools.html",
+    "target": "svc-ai-otter-ai",
+    "desc": "Productivity • "
+  },
+  {
+    "id": "svc-ai-canva-ai",
+    "title": "Canva AI",
+    "cat": "80+ AI Tools",
+    "page": "aitools.html",
+    "target": "svc-ai-canva-ai",
+    "desc": "Productivity • "
+  },
+  {
+    "id": "svc-ai-looka",
+    "title": "Looka",
+    "cat": "80+ AI Tools",
+    "page": "aitools.html",
+    "target": "svc-ai-looka",
+    "desc": "Productivity • "
   },
   {
     "id": "svc-news-eenadu",
-    "title": "Eenadu Telugu ePaper & Daily News",
+    "title": "Eenadu (Telugu EPAPER)",
     "cat": "News & Articles",
     "page": "Newsandarticles/newsandarticles.html",
     "target": "svc-news-eenadu",
-    "desc": "Leading Telugu daily newspaper and digital ePaper edition"
+    "desc": "Telugu Telugu ePapers • Telugu daily newspaper and digital e-paper edition."
   },
   {
     "id": "svc-news-sakshi",
-    "title": "Sakshi Telugu Daily ePaper",
+    "title": "Sakshi (Telugu EPAPER)",
     "cat": "News & Articles",
     "page": "Newsandarticles/newsandarticles.html",
     "target": "svc-news-sakshi",
-    "desc": "Andhra Pradesh & Telangana Telugu newspaper & digital edition"
+    "desc": "Telugu Telugu ePapers • Telugu news, latest updates and e-paper."
   },
   {
-    "id": "svc-news-namasthe-telangana",
-    "title": "Namasthe Telangana Telugu ePaper",
+    "id": "svc-news-dinakaran",
+    "title": "Dinakaran (Tamil EPAPER)",
     "cat": "News & Articles",
     "page": "Newsandarticles/newsandarticles.html",
-    "target": "svc-news-namasthe-telangana",
-    "desc": "Official Telangana daily newspaper and ePaper edition"
+    "target": "svc-news-dinakaran",
+    "desc": "Tamil Tamil ePapers • Tamil daily newspaper and digital e-paper edition."
   },
   {
-    "id": "svc-news-andhra-jyothi",
-    "title": "Andhra Jyothi Telugu Newspaper",
+    "id": "svc-news-dinamalar",
+    "title": "Dinamalar (Tamil EPAPER)",
     "cat": "News & Articles",
     "page": "Newsandarticles/newsandarticles.html",
-    "target": "svc-news-andhra-jyothi",
-    "desc": "Telugu daily newspaper covering news across two Telugu states"
+    "target": "svc-news-dinamalar",
+    "desc": "Tamil Tamil ePapers • Tamil daily newspaper and digital e-paper edition."
   },
   {
     "id": "svc-news-the-hindu",
-    "title": "The Hindu National Daily Newspaper",
+    "title": "The Hindu (English NEWSPAPER)",
     "cat": "News & Articles",
     "page": "Newsandarticles/newsandarticles.html",
     "target": "svc-news-the-hindu",
-    "desc": "National English newspaper renowned for civil services prep"
+    "desc": "English English News Papers • The Hindu is a daily Indian English-language newspaper published in Chennai, Mumbai, New Delhi, Bengaluru, Kolkata, Hyderabad, Pune, Ahmedabad, Lucknow, Chandigarh, Patna, Indore, Jaipur, Surat, Ludhiana, Nagpur, Varanasi, Gurugram, Chandigarh, and Vishakapatnam."
   },
   {
     "id": "svc-news-the-times-of-india",
-    "title": "The Times of India Daily ePaper",
+    "title": "The Times of India (English NEWSPAPER)",
     "cat": "News & Articles",
     "page": "Newsandarticles/newsandarticles.html",
     "target": "svc-news-the-times-of-india",
-    "desc": "India's leading English daily newspaper"
+    "desc": "English English News Papers • The Times of India is an Indian English-language daily newspaper owned by The Times Group, the largest media conglomerate in India."
   },
   {
-    "id": "svc-news-the-indian-express",
-    "title": "The Indian Express National ePaper",
+    "id": "svc-news-andhra-jyothi",
+    "title": "Andhra Jyothi (Telugu EPAPER)",
     "cat": "News & Articles",
     "page": "Newsandarticles/newsandarticles.html",
-    "target": "svc-news-the-indian-express",
-    "desc": "Leading national investigative journalism & editorial English daily"
+    "target": "svc-news-andhra-jyothi",
+    "desc": "Telugu Telugu ePapers • Telugu newspaper and online edition."
   },
   {
-    "id": "svc-news-the-hans-india",
-    "title": "The Hans India English Daily",
+    "id": "svc-news-namasthe-telangana",
+    "title": "Namasthe Telangana (Telugu EPAPER)",
     "cat": "News & Articles",
     "page": "Newsandarticles/newsandarticles.html",
-    "target": "svc-news-the-hans-india",
-    "desc": "English daily newspaper published from Hyderabad and Andhra Pradesh"
+    "target": "svc-news-namasthe-telangana",
+    "desc": "Telugu Telugu ePapers • Telangana-focused Telugu daily e-paper."
+  },
+  {
+    "id": "svc-news-nava-telangana",
+    "title": "Nava Telangana (Telugu EPAPER)",
+    "cat": "News & Articles",
+    "page": "Newsandarticles/newsandarticles.html",
+    "target": "svc-news-nava-telangana",
+    "desc": "Telugu Telugu ePapers • Telugu daily newspaper digital edition."
+  },
+  {
+    "id": "svc-news-mana-telangana",
+    "title": "Mana Telangana (Telugu EPAPER)",
+    "cat": "News & Articles",
+    "page": "Newsandarticles/newsandarticles.html",
+    "target": "svc-news-mana-telangana",
+    "desc": "Telugu Telugu ePapers • Telugu news and digital newspaper."
+  },
+  {
+    "id": "svc-news-times-of-india",
+    "title": "Times of India (English EPAPER)",
+    "cat": "News & Articles",
+    "page": "Newsandarticles/newsandarticles.html",
+    "target": "svc-news-times-of-india",
+    "desc": "English English ePapers • English daily e-paper edition."
   },
   {
     "id": "svc-news-deccan-chronicle",
-    "title": "Deccan Chronicle English Newspaper",
+    "title": "Deccan Chronicle (English EPAPER)",
     "cat": "News & Articles",
     "page": "Newsandarticles/newsandarticles.html",
     "target": "svc-news-deccan-chronicle",
-    "desc": "Largest circulated English newspaper in Hyderabad & South India"
+    "desc": "English English ePapers • English newspaper digital edition."
+  },
+  {
+    "id": "svc-news-indian-express",
+    "title": "Indian Express (English NEWS)",
+    "cat": "News & Articles",
+    "page": "Newsandarticles/newsandarticles.html",
+    "target": "svc-news-indian-express",
+    "desc": "English English Websites • Breaking news, explainers and analysis."
+  },
+  {
+    "id": "svc-news-hindustan-times",
+    "title": "Hindustan Times (English NEWS)",
+    "cat": "News & Articles",
+    "page": "Newsandarticles/newsandarticles.html",
+    "target": "svc-news-hindustan-times",
+    "desc": "English English Websites • Latest news, business, sports and more."
+  },
+  {
+    "id": "svc-news-bbc-news",
+    "title": "BBC News (English NEWS)",
+    "cat": "News & Articles",
+    "page": "Newsandarticles/newsandarticles.html",
+    "target": "svc-news-bbc-news",
+    "desc": "English English Websites • International news and analysis."
+  },
+  {
+    "id": "svc-news-ndtv",
+    "title": "NDTV (English NEWS)",
+    "cat": "News & Articles",
+    "page": "Newsandarticles/newsandarticles.html",
+    "target": "svc-news-ndtv",
+    "desc": "English English Websites • Latest India and world news."
   },
   {
     "id": "svc-art-1",
-    "title": "Guide: How to Apply for Driving Licence (LLR & DL) in Telangana",
+    "title": "How Artificial Intelligence Is Changing Everyday Digital Services",
     "cat": "News & Articles",
     "page": "Newsandarticles/newsandarticles.html",
     "target": "svc-art-1",
-    "desc": "Step-by-step process to apply for Learner Licence and Driving Licence slot"
+    "desc": "Technology • By Venkat Insights • Artificial intelligence is transforming government services, education, productivity and everyday digital experiences."
   },
   {
     "id": "svc-art-2",
-    "title": "Guide: TS EAMCET 2026 Counselling & Web Options Walkthrough",
+    "title": "Complete Guide to Online Government Services in Telangana",
     "cat": "News & Articles",
     "page": "Newsandarticles/newsandarticles.html",
     "target": "svc-art-2",
-    "desc": "Detailed walkthrough on fee payment, document verification & web options"
+    "desc": "Government Services • By Venkat News Desk • A practical overview of finding government portals, documents and citizen services online."
   },
   {
     "id": "svc-art-3",
-    "title": "Guide: Railway RRB NTPC 2026 Exam Pattern & Syllabus Strategy",
+    "title": "How Students Can Prepare for Competitive Entrance Exams",
     "cat": "News & Articles",
     "page": "Newsandarticles/newsandarticles.html",
     "target": "svc-art-3",
-    "desc": "Complete breakdown of CBT-1 and CBT-2 syllabus, marking scheme & cutoffs"
+    "desc": "Education • By Education Bureau • Build a realistic preparation plan using syllabus mapping, revision and mock tests."
   },
   {
     "id": "svc-art-4",
-    "title": "Guide: Top 10 Free AI Tools Every College Student & Researcher Needs",
+    "title": "Digital Documents: How to Store and Access Important Certificates",
     "cat": "News & Articles",
     "page": "Newsandarticles/newsandarticles.html",
     "target": "svc-art-4",
-    "desc": "Curated list of AI tools for literature review, presentations & math"
+    "desc": "Digital Services • By Digital Desk • Organize certificates and important digital documents securely for faster access."
   },
   {
-    "id": "svc-privacy-policy",
-    "title": "Privacy Policy & Data Security",
+    "id": "svc-art-5",
+    "title": "Best Practices for Protecting Your Personal Information Online",
+    "cat": "News & Articles",
+    "page": "Newsandarticles/newsandarticles.html",
+    "target": "svc-art-5",
+    "desc": "Cybersecurity • By Tech Insights • Simple cybersecurity practices can reduce the risk of account compromise and online fraud."
+  },
+  {
+    "id": "svc-art-6",
+    "title": "Understanding E-Papers and Digital News Platforms",
+    "cat": "News & Articles",
+    "page": "Newsandarticles/newsandarticles.html",
+    "target": "svc-art-6",
+    "desc": "News • By News Desk • Learn how digital newspaper editions and online news platforms differ."
+  },
+  {
+    "id": "svc-art-7",
+    "title": "How to Apply for Government Services Online",
+    "cat": "News & Articles",
+    "page": "Newsandarticles/newsandarticles.html",
+    "target": "svc-art-7",
+    "desc": "Career • By Career Desk • A simple workflow for finding official application pages and tracking submissions."
+  },
+  {
+    "id": "svc-art-8",
+    "title": "Essential Cybersecurity Tips for Students",
+    "cat": "News & Articles",
+    "page": "Newsandarticles/newsandarticles.html",
+    "target": "svc-art-8",
+    "desc": "Tutorials • By Tech Insights • Practical habits for protecting college accounts, devices and personal files."
+  },
+  {
+    "id": "svc-art-9",
+    "title": "How Technology Is Changing Travel Planning in India",
+    "cat": "News & Articles",
+    "page": "Newsandarticles/newsandarticles.html",
+    "target": "svc-art-9",
+    "desc": "Travel • By Travel Desk • Maps, digital tickets and online services are making trip planning easier."
+  },
+  {
+    "id": "svc-art-10",
+    "title": "A Beginner's Guide to Digital Productivity Tools",
+    "cat": "News & Articles",
+    "page": "Newsandarticles/newsandarticles.html",
+    "target": "svc-art-10",
+    "desc": "General Information • By Venkat Insights • A practical introduction to digital tools for notes, documents, planning and collaboration."
+  },
+  {
+    "id": "tool-age-calc",
+    "title": "Exam Age & Cutoff Calculator",
+    "cat": "Tools",
+    "page": "tools.html",
+    "target": "tool-age-calc",
+    "desc": "Calculate exact years, months and days as of notification cutoff date"
+  },
+  {
+    "id": "tool-cgpa-converter",
+    "title": "CGPA to Percentage Converter",
+    "cat": "Tools",
+    "page": "tools.html",
+    "target": "tool-cgpa-converter",
+    "desc": "CBSE, AICTE and university 10-point scale CGPA conversion formula"
+  },
+  {
+    "id": "tool-word-counter",
+    "title": "Word & Character Counter",
+    "cat": "Tools",
+    "page": "tools.html",
+    "target": "tool-word-counter",
+    "desc": "Essay word counter, character counter and estimated reading time"
+  },
+  {
+    "id": "tool-resume-builder",
+    "title": "Resume Builder Utility",
+    "cat": "Tools",
+    "page": "tools.html",
+    "target": "tool-resume-builder",
+    "desc": "Career tool: create a concise, professional resume in minutes"
+  },
+  {
+    "id": "tool-exam-tracker",
+    "title": "Exam Tracker Tool",
+    "cat": "Tools",
+    "page": "tools.html",
+    "target": "tool-exam-tracker",
+    "desc": "Education tool: track important dates and examination schedules"
+  },
+  {
+    "id": "tool-pdf-splitter",
+    "title": "PDF Splitter Utility",
+    "cat": "Tools",
+    "page": "tools.html",
+    "target": "tool-pdf-splitter",
+    "desc": "Productivity tool: break large document PDFs into workable sections"
+  },
+  {
+    "id": "page-home",
+    "title": "Venkat Insights Home",
+    "cat": "Portals",
+    "page": "index.html",
+    "target": "home",
+    "desc": "Unified portal for jobs, education, govt services, AI tools & insights"
+  },
+  {
+    "id": "page-about",
+    "title": "About Venkat Insights & Developer",
+    "cat": "About",
+    "page": "about.html",
+    "target": "about",
+    "desc": "About the founder Venkatesh Kothapally, mission, vision & support"
+  },
+  {
+    "id": "page-privacy",
+    "title": "Privacy Policy",
     "cat": "Legal & Transparency",
     "page": "privacypolicy.html",
-    "target": "svc-privacy-policy",
-    "desc": "Venkat Insights official privacy policy, data practices & user rights"
+    "target": "privacy",
+    "desc": "Data protection, privacy and terms for Venkat Insights"
   },
   {
-    "id": "svc-terms-of-use",
-    "title": "Terms of Use & User Agreement",
+    "id": "page-terms",
+    "title": "Terms of Use",
     "cat": "Legal & Transparency",
     "page": "termsofuse.html",
-    "target": "svc-terms-of-use",
-    "desc": "Venkat Insights terms of service, user conduct & intellectual property rights"
+    "target": "terms",
+    "desc": "Terms and conditions for using Venkat Insights portal"
   },
   {
-    "id": "svc-disclaimer",
-    "title": "Disclaimer & Official Notice",
+    "id": "page-disclaimer",
+    "title": "Disclaimer",
     "cat": "Legal & Transparency",
     "page": "disclaimer.html",
-    "target": "svc-disclaimer",
-    "desc": "Venkat Insights non-government entity notice, public verification & liability disclaimer"
+    "target": "disclaimer",
+    "desc": "Official non-government affiliation disclaimer and source citations"
   }
 ];

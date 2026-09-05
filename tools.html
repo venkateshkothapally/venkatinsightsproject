@@ -189,7 +189,7 @@
 
         <div class="tools-grid">
             <!-- Age & Eligibility Calculator -->
-            <div class="tool-widget-card">
+            <div class="tool-widget-card" id="tool-age-calc" data-target="tool-age-calc">
                 <h3>📅 Exam Age &amp; Cutoff Calculator</h3>
                 <p class="subtext">Calculate exact years, months and days as of notification cutoff date</p>
                 <div class="tool-form-group">
@@ -205,7 +205,7 @@
             </div>
 
             <!-- CGPA to Percentage Converter -->
-            <div class="tool-widget-card">
+            <div class="tool-widget-card" id="tool-cgpa-converter" data-target="tool-cgpa-converter">
                 <h3>🎓 CGPA to Percentage Converter</h3>
                 <p class="subtext">Standard CBSE, AICTE and university 10-point scale formula</p>
                 <div class="tool-form-group">
@@ -225,7 +225,7 @@
             </div>
 
             <!-- Word & Character Counter -->
-            <div class="tool-widget-card">
+            <div class="tool-widget-card" id="tool-word-counter" data-target="tool-word-counter">
                 <h3>📝 Word &amp; Character Counter</h3>
                 <p class="subtext">For statement of purpose, application bios and exam essays</p>
                 <div class="tool-form-group">
@@ -376,6 +376,19 @@
             const mins = Math.ceil(words / 200);
             document.getElementById('wordCountResult').innerHTML = `Words: <strong>${words}</strong> | Characters: <strong>${chars}</strong> | Reading Time: ~<strong>${mins}</strong> min`;
         }
+
+        function resolveToolTarget(targetParam) {
+            document.querySelectorAll('.vi-highlight-pulse').forEach(el => el.classList.remove('vi-highlight-pulse'));
+            const params = new URLSearchParams(window.location.search);
+            const target = targetParam || params.get('target') || (window.location.hash ? window.location.hash.replace('#', '') : '');
+            if (!target) return;
+            const el = document.getElementById(target) || document.querySelector(`[data-target="${target}"]`);
+            if (el && typeof window.pulseAndScrollToElement === 'function') {
+                window.pulseAndScrollToElement(el);
+            }
+        }
+        window.resolveToolTarget = resolveToolTarget;
+        setTimeout(resolveToolTarget, 200);
     </script>
     <script src="career/careerdata.js"></script>
     <script src="searchdata.js"></script>

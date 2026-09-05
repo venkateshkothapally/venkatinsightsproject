@@ -353,6 +353,13 @@
     results:       { label: 'Results',     icon: 'award',        sub: 'Check scores' },
     rankCard:      { label: 'Rank Card',   icon: 'badge-check',  sub: 'Download' },
     hallTicket:    { label: 'Hall Ticket', icon: 'ticket',       sub: 'Admit card' },
+    previousYearPapers: { label: 'Previous Papers', icon: 'file-text', sub: 'Past exams' },
+    syllabus:      { label: 'Syllabus',    icon: 'book',         sub: 'Study material' },
+    apply:         { label: 'Apply Now',   icon: 'edit-3',       sub: 'Submit application' },
+    collegeslist:   { label: 'Colleges List', icon: 'building',     sub: 'Participating colleges' },
+    support:        { label: 'Support',     icon: 'headphones',   sub: 'Contact helpdesk' },
+    answerKey:      { label: 'Answer Key', icon: 'file-text', sub: 'Check answers' },
+    
   };
 
   function openModal(s) {

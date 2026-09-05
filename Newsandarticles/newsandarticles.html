@@ -377,9 +377,9 @@ if (window.VI_SEARCH) {
 }
 
 // Deep-link target resolution
-function resolveNewsTarget() {
+function resolveNewsTarget(targetParam) {
   const params = new URLSearchParams(window.location.search);
-  const target = params.get('target') || (window.location.hash ? window.location.hash.replace('#', '') : '');
+  const target = targetParam || params.get('target') || (window.location.hash ? window.location.hash.replace('#', '') : '');
   if (!target) return;
   if (target.startsWith('svc-art-')) {
     switchMainView('articles');
@@ -399,6 +399,7 @@ function resolveNewsTarget() {
     }, 350);
   }
 }
+window.resolveNewsTarget = resolveNewsTarget;
 setTimeout(resolveNewsTarget, 250);
 </script>
 

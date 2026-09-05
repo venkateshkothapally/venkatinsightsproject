@@ -3890,7 +3890,42 @@ window.EDUCATION_SERVICES = [
       "rankCard": null,
       "hallTicket": null
     }
+  },
+  {
+    "id": 2027,
+    "page": "Education & Exams Portal",
+    "category": "GATE 2027",
+    "subCategory": "GATE 2027  — Graduate Aptitude Test in Engineering",
+    "serviceName": "GATE 2027",
+    "officialLink": "https://gate2027.iitm.ac.in/",
+    "shortDescription": "GATE 2027 Online Application Registration Portal is LIVE now!.",
+    "description": "A prestigious national-level examination that evaluates candidates understanding of undergraduate-level subjects in Engineering, Technology, Science, Commerce, Arts, Architecture, and Humanities.Conducted jointly by IISc & IITs on behalf of the National Coordination Board (NCB), Department of Higher Education, Ministry of Education (MoE), Government of India.Qualified candidates can use GATE Scores for admission to postgraduate and doctoral programs, with possible financial assistance, in MoE-supported institutions, while several Public Sector Undertakings also use GATE scores for recruitment.",
+    "logo": "https://gate2027.iitm.ac.in/static/img/logos/GATE27_logo.svg",
+    "logoColor": "#f59e0b",
+    "logoSoft": "#fef3c7",
+    "icon": "award",
+    "postDate": "2026-09-02",
+    "applicationStartDate": "2026-09-02",
+    "applicationLastDate": "2026-09-27",
+    "examDate": "2027-02-06" ,
+    "resultDate": "2027-03-19",
+    "actions": {
+      "notification": "https://gate2027ib.iitm.ac.in/GATE2027-IB.pdf",
+      "officialSite": "https://goaps.iitm.ac.in/login",
+      "webOptions": null,
+      "results": "https://online-inspire.gov.in/status.aspx",
+      "rankCard": null,
+      "hallTicket": null,
+      "previousYearPapers": "https://drive.google.com/drive/folders/1xUn7rGTzKlfvJDoo4SzCRi8jRlBD63ud?usp=drive_link",
+      "apply": "https://goaps.iitm.ac.in/login",
+      "collegeslist": null,
+      "support": null,
+      "answerKey": null,
+      "syllabus": null
+
+    }
   }
+
 ];
 
 window.CATEGORY_META = {

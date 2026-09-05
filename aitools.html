@@ -521,9 +521,9 @@
         }
 
         // Deep-link target resolution
-        function resolveAiTarget() {
+        function resolveAiTarget(targetParam) {
             const params = new URLSearchParams(window.location.search);
-            const target = params.get('target') || (window.location.hash ? window.location.hash.replace('#', '') : '');
+            const target = targetParam || params.get('target') || (window.location.hash ? window.location.hash.replace('#', '') : '');
             if (!target) return;
 
             const match = aiToolsData.find(t => {
@@ -543,6 +543,7 @@
                 }, 300);
             }
         }
+        window.resolveAiTarget = resolveAiTarget;
 
         // Initialize on load
         document.addEventListener('DOMContentLoaded', () => {
