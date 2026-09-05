@@ -1,0 +1,964 @@
+<!doctype html>
+<html lang="en" data-page="tools">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Useful Online Tools &amp; Utilities — Venkat Insights</title>
+    <meta name="description" content="Free student and applicant utilities: Exam Age &amp; Eligibility Calculator, CGPA to Percentage converter, Word Counter, and Quick Utilities.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="common.css">
+
+    <style>
+        .tools-main {
+            flex: 1;
+            max-width: 1280px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 2.5rem 1.5rem 4rem;
+        }
+
+        .tools-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .tools-header h1 {
+            font-size: clamp(2rem, 3.5vw, 2.75rem);
+            font-weight: 800;
+            color: var(--vi-text, #0f172a);
+            letter-spacing: -0.02em;
+        }
+
+        .tools-header p {
+            color: var(--vi-text-muted, #64748b);
+            font-size: 1.05rem;
+            margin-top: 0.5rem;
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.75rem;
+            margin-bottom: 3rem;
+        }
+
+        .tool-widget-card {
+            background: var(--vi-card-bg, #ffffff);
+            border: 1px solid var(--vi-border, #e2e8f0);
+            border-radius: 18px;
+            padding: 1.75rem;
+            box-shadow: var(--vi-shadow, 0 4px 16px rgba(0,0,0,0.03));
+            display: flex;
+            flex-direction: column;
+        }
+
+        .tool-widget-card h3 {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: var(--vi-text, #0f172a);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .tool-widget-card p.subtext {
+            font-size: 0.88rem;
+            color: var(--vi-text-muted, #64748b);
+            margin-bottom: 1.25rem;
+        }
+
+        .tool-form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+            margin-bottom: 1rem;
+        }
+
+        .tool-form-group label {
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: var(--vi-text, #0f172a);
+        }
+
+        .tool-input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border-radius: 10px;
+            border: 1px solid var(--vi-border, #e2e8f0);
+            background: var(--vi-bg-alt, #f8fafc);
+            color: var(--vi-text, #0f172a);
+            font-size: 0.95rem;
+            outline: none;
+            transition: all 0.2s;
+        }
+
+        .tool-input:focus {
+            border-color: var(--vi-primary, #4f46e5);
+            background: var(--vi-card-bg, #ffffff);
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
+        }
+
+        .tool-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem 1.25rem;
+            border-radius: 10px;
+            border: none;
+            background: var(--vi-primary, #4f46e5);
+            color: #ffffff;
+            font-weight: 700;
+            font-size: 0.92rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-top: 0.5rem;
+        }
+
+        .tool-btn:hover {
+            background: var(--vi-primary-hover, #4338ca);
+            transform: translateY(-1px);
+        }
+
+        .tool-result-box {
+            margin-top: 1.25rem;
+            padding: 1rem;
+            border-radius: 10px;
+            background: var(--vi-bg-alt, #f1f5f9);
+            border: 1px dashed var(--vi-border, #cbd5e1);
+            font-size: 0.92rem;
+            color: var(--vi-text, #0f172a);
+            min-height: 52px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        @media (max-width: 960px) {
+            .tools-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 640px) {
+            .tools-grid { grid-template-columns: 1fr; }
+        }
+
+        /* Dark mode explicit overrides */
+        [data-theme='dark'] .tool-widget-card,
+        html.dark .tool-widget-card {
+            background: var(--vi-card-bg, #111b31);
+            border-color: var(--vi-border, #334155);
+        }
+        [data-theme='dark'] .tool-widget-card h3,
+        html.dark .tool-widget-card h3 {
+            color: var(--vi-text, #f1f5f9);
+        }
+        [data-theme='dark'] .tool-form-group label,
+        html.dark .tool-form-group label {
+            color: var(--vi-text, #f1f5f9);
+        }
+        [data-theme='dark'] .tool-input,
+        html.dark .tool-input {
+            background: var(--vi-bg-alt, #1e293b);
+            border-color: var(--vi-border, #334155);
+            color: var(--vi-text, #f1f5f9);
+        }
+        [data-theme='dark'] .tool-input:focus,
+        html.dark .tool-input:focus {
+            background: #0f172a;
+            border-color: var(--vi-primary, #6366f1);
+            color: #ffffff;
+        }
+        [data-theme='dark'] .tool-result-box,
+        html.dark .tool-result-box {
+            background: var(--vi-bg-alt, #1e293b);
+            border-color: var(--vi-border, #334155);
+            color: var(--vi-text, #f1f5f9);
+        }
+    </style>
+<style id="vi-tool-popups-style">
+.vi-tool-launch-card{cursor:pointer;transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease}
+.vi-tool-launch-card:hover{transform:translateY(-5px);box-shadow:0 15px 32px rgba(15,23,42,.11);border-color:rgba(15,118,110,.35)}
+.vi-tool-launch-card .tool-btn{margin-top:auto}
+.vi-tool-overlay{position:fixed;inset:0;z-index:2147483000;display:flex;align-items:center;justify-content:center;padding:12px;background:rgba(15,23,42,.48);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);opacity:0;visibility:hidden;pointer-events:none;transition:opacity .25s ease,visibility .25s ease}
+.vi-tool-overlay.show{opacity:1;visibility:visible;pointer-events:auto}
+.vi-tool-popup{width:min(420px,100%);max-height:min(600px,calc(100vh - 24px));display:flex;flex-direction:column;overflow:hidden;background:var(--vi-card-bg,#fff);color:var(--vi-text,#0f172a);border:1px solid var(--vi-border,#e2e8f0);border-radius:18px;box-shadow:0 25px 70px rgba(15,23,42,.28);transform:translateY(25px) scale(.94);opacity:0;transition:transform .3s cubic-bezier(.2,.8,.2,1),opacity .25s ease}
+.vi-tool-overlay.show .vi-tool-popup{transform:none;opacity:1}
+.vi-tool-head{display:flex;align-items:center;justify-content:space-between;padding:16px 18px 13px;border-bottom:1px solid var(--vi-border,#e2e8f0)}
+.vi-tool-head h2{margin:0;font-size:18px;font-weight:800;color:var(--vi-text,#0f172a)}
+.vi-tool-head small{display:block;margin-top:4px;font-size:11px;color:var(--vi-text-muted,#64748b)}
+.vi-tool-close{width:34px;height:34px;border:0;border-radius:9px;background:var(--vi-bg-alt,#f1f5f9);color:var(--vi-text-muted,#475569);font-size:22px;line-height:1;cursor:pointer}
+.vi-tool-body{overflow:auto;padding:18px}
+.vi-tool-body .tool-widget-card{padding:0;border:0;box-shadow:none;background:transparent}
+.vi-tool-body .tool-widget-card>h3,.vi-tool-body .tool-widget-card>.subtext{display:none}
+.vi-tool-footer{display:flex;justify-content:flex-end;padding:10px 18px 14px;border-top:1px solid var(--vi-border,#e2e8f0)}
+.vi-tool-footer button{border:0;border-radius:9px;padding:9px 14px;background:var(--vi-primary,#0f766e);color:#fff;font-weight:700;cursor:pointer}
+@media(max-width:520px){.vi-tool-overlay{padding:10px}.vi-tool-popup{max-height:calc(100vh - 20px)}.vi-tool-body{padding:15px}}
+
+
+
+/* ===============================
+   Currency Counter
+================================ */
+
+.currency-counter-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+
+    display: none;
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    background: rgba(10, 20, 30, 0.45);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+
+    opacity: 0;
+    transition: opacity .25s ease;
+}
+
+.currency-counter-overlay.active {
+    display: flex;
+    opacity: 1;
+}
+
+.currency-counter-popup {
+    width: min(94vw, 500px);
+    max-height: min(90vh, 680px);
+
+    background: var(--card-bg, #ffffff);
+    color: var(--text-color, #17212b);
+
+    border: 1px solid rgba(0,0,0,.08);
+    border-radius: 18px;
+
+    box-shadow: 0 24px 70px rgba(0,0,0,.25);
+
+    overflow: hidden;
+
+    transform: translateY(25px) scale(.96);
+    transition: transform .28s ease;
+}
+
+.currency-counter-overlay.active .currency-counter-popup {
+    transform: translateY(0) scale(1);
+}
+
+.currency-counter-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 18px 20px;
+
+    border-bottom: 1px solid rgba(0,0,0,.08);
+}
+
+.currency-counter-header h2 {
+    margin: 0;
+    font-size: 20px;
+}
+
+.currency-counter-header p {
+    margin: 4px 0 0;
+    font-size: 12px;
+    opacity: .65;
+}
+
+.currency-counter-close {
+    width: 36px;
+    height: 36px;
+
+    border: 0;
+    border-radius: 50%;
+
+    background: rgba(0,0,0,.06);
+    color: inherit;
+
+    font-size: 25px;
+    line-height: 1;
+
+    cursor: pointer;
+
+    transition: .2s ease;
+}
+
+.currency-counter-close:hover {
+    transform: rotate(90deg);
+}
+
+/* Scrollable list */
+
+.currency-counter-list {
+    max-height: 470px;
+    overflow-y: auto;
+
+    padding: 10px 16px;
+}
+
+/* Currency row */
+
+.currency-row {
+    display: grid;
+    grid-template-columns: 70px 1fr 72px;
+    align-items: center;
+    gap: 12px;
+
+    padding: 9px 4px;
+
+    border-bottom: 1px solid rgba(0,0,0,.06);
+}
+
+.currency-row:last-child {
+    border-bottom: 0;
+}
+
+.currency-row img {
+    width: 65px;
+    height: 38px;
+
+    object-fit: contain;
+
+    border-radius: 4px;
+}
+
+.currency-info {
+    min-width: 0;
+}
+
+.currency-info strong {
+    display: block;
+    font-size: 15px;
+}
+
+.currency-info span {
+    display: block;
+    margin-top: 2px;
+
+    font-size: 11px;
+    opacity: .55;
+}
+
+.currency-qty {
+    width: 100%;
+    height: 38px;
+
+    box-sizing: border-box;
+
+    padding: 5px 8px;
+
+    border: 1px solid rgba(0,0,0,.15);
+    border-radius: 8px;
+
+    background: transparent;
+    color: inherit;
+
+    text-align: center;
+    font-size: 14px;
+}
+
+.currency-qty:focus {
+    outline: 2px solid rgba(20,150,130,.25);
+    border-color: #159b87;
+}
+
+/* Total */
+
+.currency-total {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin: 0 16px;
+    padding: 15px 0;
+
+    border-top: 1px solid rgba(0,0,0,.08);
+}
+
+.currency-total span {
+    font-size: 13px;
+    opacity: .7;
+}
+
+.currency-total strong {
+    font-size: 23px;
+}
+
+/* Reset */
+
+.currency-actions {
+    padding: 0 16px 16px;
+}
+
+.currency-reset {
+    width: 100%;
+    height: 40px;
+
+    border: 1px solid rgba(0,0,0,.12);
+    border-radius: 9px;
+
+    background: transparent;
+    color: inherit;
+
+    cursor: pointer;
+
+    font-weight: 600;
+
+    transition: .2s ease;
+}
+
+.currency-reset:hover {
+    background: rgba(0,0,0,.05);
+}
+
+/* Mobile */
+
+@media (max-width: 500px) {
+
+    .currency-counter-overlay {
+        padding: 10px;
+    }
+
+    .currency-counter-popup {
+        width: 100%;
+        max-height: 94vh;
+        border-radius: 16px;
+    }
+
+    .currency-counter-list {
+        max-height: 55vh;
+    }
+
+    .currency-row {
+        grid-template-columns: 58px 1fr 65px;
+        gap: 8px;
+    }
+
+    .currency-row img {
+        width: 55px;
+        height: 34px;
+    }
+}
+</style>
+</head>
+<body>
+
+    <main class="tools-main">
+        <div class="tools-header">
+            <h1>Useful Online Utilities</h1>
+            <p>Practical calculators and document tools for applicants, students and job seekers</p>
+        </div>
+
+        <div class="tools-grid">
+            
+            <div class="tool-widget-card vi-tool-launch-card" tabindex="0" role="button" data-vi-popup="age">
+                <h3>📅 Exam Age &amp; Cutoff Calculator</h3>
+                <p class="subtext">Calculate exact years, months and days as of notification cutoff date</p>
+                <button class="tool-btn vi-open-tool" type="button">Open Calculator →</button>
+            </div>
+            <div class="tool-widget-card vi-tool-launch-card" tabindex="0" role="button" data-vi-popup="cgpa">
+                <h3>🎓 CGPA to Percentage Converter</h3>
+                <p class="subtext">Standard CBSE, AICTE and university 10-point scale formula</p>
+                <button class="tool-btn vi-open-tool" type="button">Open Converter →</button>
+            </div>
+            <div class="tool-widget-card vi-tool-launch-card" tabindex="0" role="button" data-vi-popup="word">
+                <h3>📝 Word &amp; Character Counter</h3>
+                <p class="subtext">For statement of purpose, application bios and exam essays</p>
+                <button class="tool-btn vi-open-tool" type="button">Open Counter →</button>
+            </div>
+
+        </div>
+
+
+        <!-- Currency Counter -->
+<div class="tool-card" onclick="openCurrencyCounter()">
+    <div class="tool-icon">₹</div>
+    <div class="tool-content">
+        <h3>Currency Counter</h3>
+        <p>Count Indian currency notes quickly</p>
+        <span class="tool-link">Open tool →</span>
+    </div>
+</div>
+    </main>
+
+        <!-- ===== Footer Section (Adjustable in-page) ===== -->
+    <footer class="vi-footer" role="contentinfo">
+        <div class="footer-main">
+            <div class="footer-container footer-grid">
+                <!-- Brand -->
+                <div class="footer-brand-col">
+                    <a href="index.html" class="footer-brand-link" aria-label="Venkat Insights Home">
+                        <div class="logo-box">
+                            <img src="https://yt3.googleusercontent.com/4v1xmWtq6zF97zQKTMasxeUMAxjrAPD5cNlwp3bGLHzhPl82FtsydTCYlYoa2S2Ezmxjc5ckq0I=s88-c-k-c0x00ffffff-no-rj" alt="Vi Logo" onerror="this.onerror=null; this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 42 42%22><rect width=%2242%22 height=%2242%22 rx=%2210%22 fill=%22%234f46e5%22/><text x=%2221%22 y=%2228%22 text-anchor=%22middle%22 fill=%22white%22 font-size=%2218%22 font-weight=%22bold%22>Vi</text></svg>';">
+                        </div>
+                        <div class="brand-text">
+                            <h1>Venkat Insights</h1>
+                            <p class="tagline">Jobs &bull; Education &bull; Services &bull; Insights</p>
+                        </div>
+                    </a>
+                    <p class="footer-desc">
+                        Official government schemes, exam schedules, recruitment updates, and digital tools. Built by Venkatesh Kothapally.
+                    </p>
+                    <div class="footer-socials">
+                        <a href="https://www.youtube.com/venkyvenkat" target="_blank" rel="noopener noreferrer" class="social-btn social-yt" aria-label="YouTube" title="YouTube"><svg viewBox="0 0 24 24"><path fill="#FF0000" d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.8V8.2l6.5 3.8-6.5 3.8Z"/></svg></a>
+                        <a href="https://www.facebook.com/venkatinsights" target="_blank" rel="noopener noreferrer" class="social-btn social-fb" aria-label="Facebook" title="Facebook"><svg viewBox="0 0 24 24"><path fill="#1877F2" d="M24 12.1C24 5.5 18.6.1 12 .1S0 5.5 0 12.1c0 6 4.4 11 10.1 11.9v-8.4H7.1v-3.5h3V9.4c0-3 1.8-4.7 4.5-4.7 1.3 0 2.6.2 2.6.2v2.9h-1.5c-1.5 0-2 .9-2 1.9v2.3h3.4l-.5 3.5h-2.9V24C19.6 23.1 24 18.1 24 12.1Z"/></svg></a>
+                        <a href="https://www.instagram.com/venkatinsight" target="_blank" rel="noopener noreferrer" class="social-btn social-ig" aria-label="Instagram" title="Instagram"><svg viewBox="0 0 24 24"><defs><linearGradient id="ig-grad" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#F58529"/><stop offset=".5" stop-color="#DD2A7B"/><stop offset="1" stop-color="#8134AF"/></linearGradient></defs><path fill="url(#ig-grad)" fill-rule="evenodd" d="M7.2 0h9.6A7.2 7.2 0 0 1 24 7.2v9.6a7.2 7.2 0 0 1-7.2 7.2H7.2A7.2 7.2 0 0 1 0 16.8V7.2A7.2 7.2 0 0 1 7.2 0Zm0 2.4A4.8 4.8 0 0 0 2.4 7.2v9.6a4.8 4.8 0 0 0 4.8 4.8h9.6a4.8 4.8 0 0 0 4.8-4.8V7.2a4.8 4.8 0 0 0-4.8-4.8H7.2ZM12 6a6 6 0 1 1 0 12 6 6 0 0 1 0-12Zm0 2.4a3.6 3.6 0 1 0 0 7.2 3.6 3.6 0 0 0 0-7.2Zm6.3-3.2a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z"/></svg></a>
+                        <a href="https://x.com/venkatinsights" target="_blank" rel="noopener noreferrer" class="social-btn social-x" aria-label="X (Twitter)" title="X (Twitter)"><svg viewBox="0 0 24 24"><path fill="#ffffff" d="M18.2 2H22l-8.3 9.5L23.5 22h-7.6l-6-7.8L3.1 22H0l8.9-10.2L.5 2h7.8l5.4 7.1L18.2 2Zm-1.3 17.8h2.1L7.2 4H5l11.9 15.8Z"/></svg></a>
+                        <a href="https://whatsapp.com/channel/0029VawvrJQ1dAvxmlIxD72c" target="_blank" rel="noopener noreferrer" class="social-btn social-wa" aria-label="WhatsApp" title="WhatsApp"><svg viewBox="0 0 24 24"><path fill="#25D366" d="M20.5 3.5A11.9 11.9 0 0 0 12 0C5.4 0 .1 5.3.1 11.9c0 2.1.5 4.1 1.6 5.9L0 24l6.4-1.7c1.7.9 3.6 1.4 5.6 1.4h.1c6.5 0 11.8-5.3 11.8-11.9 0-3.2-1.2-6.1-3.4-8.3ZM12 21.2c-1.8 0-3.5-.5-5-1.3l-.4-.2-3.8 1 1-3.7-.2-.4a9.3 9.3 0 0 1-1.4-4.9C2.2 6.6 6.6 2.3 12 2.3c2.6 0 5 1 6.8 2.8a9.6 9.6 0 0 1 2.8 6.8c0 5.3-4.3 9.6-9.6 9.6Zm5.3-7.2c-.3-.2-1.8-.9-2.1-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-1.7-.8-2.8-1.5-3.9-3.3-.3-.5.3-.4.9-1.3.1-.2.1-.4 0-.6-.1-.2-.7-1.7-.9-2.3-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.1 1.1-1.1 2.6s1.1 3 1.3 3.2c.2.2 2.2 3.4 5.4 4.8 2 .9 2.8 1 3.8.8.6-.1 1.8-.7 2-1.4.3-.7.3-1.3.2-1.4-.2-.2-.4-.3-.7-.5Z"/></svg></a>
+                        <a href="https://t.me/Venkatinsights" target="_blank" rel="noopener noreferrer" class="social-btn social-tg" aria-label="Telegram" title="Telegram"><svg viewBox="0 0 24 24"><path fill="#229ED9" d="M21.9 3.2 2.8 10.6c-1.3.5-1.3 1.2-.2 1.5l4.9 1.5 1.9 5.8c.2.6.1.8.7.8.5 0 .7-.2 1-.9l2.4 1.8c.4.3.8.2 1-.4l1.4-4.5 5-9.1c.2-.4-.1-.7-.6-.4l-12.4 7.8-4.8-1.5 11.7-4.7c.5-.2 1-.1.6.2L21.9 3.2Z"/></svg></a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a class="footer-link" href="index.html">Home</a></li>
+                        <li><a class="footer-link" href="governmentservices/governmentservices.html">Govt Services</a></li>
+                        <li><a class="footer-link" href="education/education.html">Education</a></li>
+                        <li><a class="footer-link" href="Newsandarticles/newsandarticles.html">News &amp; Articles</a></li>
+                        <li><a class="footer-link" href="career/career.html">Career / Jobs</a></li>
+                        <li><a class="footer-link" href="tools.html">Tools</a></li>
+                        <li><a class="footer-link" href="aitools.html">80+ AI Tools</a></li>
+                    </ul>
+                </div>
+
+                <!-- Job Categories -->
+                <div class="footer-col">
+                    <h4>Job Categories</h4>
+                    <ul>
+                        <li><a class="footer-link" href="career/career.html">Railway Jobs</a></li>
+                        <li><a class="footer-link" href="career/career.html">Banking Jobs</a></li>
+                        <li><a class="footer-link" href="career/career.html">Defence Jobs</a></li>
+                        <li><a class="footer-link" href="career/career.html">UPSC</a></li>
+                        <li><a class="footer-link" href="career/career.html">SSC</a></li>
+                        <li><a class="footer-link" href="career/career.html">Teaching</a></li>
+                    </ul>
+                </div>
+
+                <!-- Resources & Legal -->
+                <div class="footer-col">
+                    <h4>Resources &amp; Legal</h4>
+                    <ul>
+                        <li><a class="footer-link" href="about.html">About Us</a></li>
+                        <li><a class="footer-link" href="privacypolicy.html">Privacy Policy</a></li>
+                        <li><a class="footer-link" href="termsofuse.html">Terms of Use</a></li>
+                        <li><a class="footer-link" href="disclaimer.html">Disclaimer</a></li>
+                        <li><a class="footer-link" href="about.html#upiIdText">Support Developer</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom bar -->
+        <div class="footer-bottom">
+            <div class="footer-container footer-bottom-inner">
+                <p>&copy; <span id="footerYear">2026</span> Venkat Insights &bull; Developed by Venkatesh Kothapally</p>
+                <div class="footer-legal">
+                    <a href="privacypolicy.html">Privacy Policy</a>
+                    <a href="termsofuse.html">Terms of Use</a>
+                    <a href="disclaimer.html">Disclaimer</a>
+                    <a href="mailto:venkateshkothapally308@gmail.com">Contact</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" aria-label="Back to top" title="Back to top">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7"/></svg>
+    </button>
+<!-- Currency Counter Popup -->
+<div id="currencyCounterOverlay" class="currency-counter-overlay"
+     onclick="closeCurrencyCounter(event)">
+
+    <div class="currency-counter-popup"
+         onclick="event.stopPropagation()">
+
+        <div class="currency-counter-header">
+            <div>
+                <h2>₹ Currency Counter</h2>
+                <p>Enter the number of notes</p>
+            </div>
+
+            <button type="button"
+                    class="currency-counter-close"
+                    onclick="closeCurrencyCounter()"
+                    aria-label="Close">
+                ×
+            </button>
+        </div>
+
+        <div class="currency-counter-list">
+
+            <!-- ₹500 -->
+            <div class="currency-row">
+                <img src="https://png.pngtree.com/png-clipart/20240205/original/pngtree-indian-500-currency-note-rupee-mahatma-gandhi-investment-photo-png-image_14239910.png"
+                     alt="₹500 note">
+                <div class="currency-info">
+                    <strong>₹500</strong>
+                    <span>₹500 × quantity</span>
+                </div>
+                <input type="number"
+                       min="0"
+                       value="0"
+                       data-value="500"
+                       class="currency-qty"
+                       oninput="calculateCurrencyCounter()">
+            </div>
+
+            <!-- ₹200 -->
+            <div class="currency-row">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSD39vvqh4yvzaWQn_46cd39a2Fgs_G6QOioFQj8J3X8Q&s=10"
+                     alt="₹200 note">
+                <div class="currency-info">
+                    <strong>₹200</strong>
+                    <span>₹200 × quantity</span>
+                </div>
+                <input type="number"
+                       min="0"
+                       value="0"
+                       data-value="200"
+                       class="currency-qty"
+                       oninput="calculateCurrencyCounter()">
+            </div>
+
+            <!-- ₹100 -->
+            <div class="currency-row">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3p-Feh9CaW2zn7CEALbT_MHcRbZ6eV0NOjkPCSAeFeg&s=10"
+                     alt="₹100 note">
+                <div class="currency-info">
+                    <strong>₹100</strong>
+                    <span>₹100 × quantity</span>
+                </div>
+                <input type="number"
+                       min="0"
+                       value="0"
+                       data-value="100"
+                       class="currency-qty"
+                       oninput="calculateCurrencyCounter()">
+            </div>
+
+            <!-- ₹50 -->
+            <div class="currency-row">
+                <img src="assets/50.png"
+                     alt="₹50 note">
+                <div class="currency-info">
+                    <strong>₹50</strong>
+                    <span>₹50 × quantity</span>
+                </div>
+                <input type="number"
+                       min="0"
+                       value="0"
+                       data-value="50"
+                       class="currency-qty"
+                       oninput="calculateCurrencyCounter()">
+            </div>
+
+            <!-- ₹20 -->
+            <div class="currency-row">
+                <img src="assets/20.png"
+                     alt="₹20 note">
+                <div class="currency-info">
+                    <strong>₹20</strong>
+                    <span>₹20 × quantity</span>
+                </div>
+                <input type="number"
+                       min="0"
+                       value="0"
+                       data-value="20"
+                       class="currency-qty"
+                       oninput="calculateCurrencyCounter()">
+            </div>
+
+            <!-- ₹10 -->
+            <div class="currency-row">
+                <img src="assets/10.png"
+                     alt="₹10 note">
+                <div class="currency-info">
+                    <strong>₹10</strong>
+                    <span>₹10 × quantity</span>
+                </div>
+                <input type="number"
+                       min="0"
+                       value="0"
+                       data-value="10"
+                       class="currency-qty"
+                       oninput="calculateCurrencyCounter()">
+            </div>
+
+            <!-- ₹5 -->
+            <div class="currency-row">
+                <img src="assets/5.png"
+                     alt="₹5 note">
+                <div class="currency-info">
+                    <strong>₹5</strong>
+                    <span>₹5 × quantity</span>
+                </div>
+                <input type="number"
+                       min="0"
+                       value="0"
+                       data-value="5"
+                       class="currency-qty"
+                       oninput="calculateCurrencyCounter()">
+            </div>
+
+            <!-- ₹2 -->
+            <div class="currency-row">
+                <img src="assets/2.png"
+                     alt="₹2 coin">
+                <div class="currency-info">
+                    <strong>₹2</strong>
+                    <span>₹2 × quantity</span>
+                </div>
+                <input type="number"
+                       min="0"
+                       value="0"
+                       data-value="2"
+                       class="currency-qty"
+                       oninput="calculateCurrencyCounter()">
+            </div>
+
+            <!-- ₹1 -->
+            <div class="currency-row">
+                <img src="assets/1.png"
+                     alt="₹1 coin">
+                <div class="currency-info">
+                    <strong>₹1</strong>
+                    <span>₹1 × quantity</span>
+                </div>
+                <input type="number"
+                       min="0"
+                       value="0"
+                       data-value="1"
+                       class="currency-qty"
+                       oninput="calculateCurrencyCounter()">
+            </div>
+
+        </div>
+
+        <div class="currency-total">
+            <span>Total Amount</span>
+            <strong id="currencyTotal">₹0</strong>
+        </div>
+
+        <div class="currency-actions">
+            <button type="button"
+                    onclick="resetCurrencyCounter()"
+                    class="currency-reset">
+                Reset
+            </button>
+        </div>
+
+    </div>
+</div>
+    <script>
+        function calculateExamAge() {
+            const dobVal = document.getElementById('calcDob').value;
+            const cutVal = document.getElementById('calcCutoff').value;
+            const resBox = document.getElementById('ageResult');
+            if (!dobVal || !cutVal) {
+                resBox.innerHTML = '<strong>Please select both Date of Birth and Cutoff Date.</strong>';
+                return;
+            }
+            const dob = new Date(dobVal);
+            const cut = new Date(cutVal);
+            if (dob > cut) {
+                resBox.innerHTML = '<strong>Cutoff date must be after your Date of Birth.</strong>';
+                return;
+            }
+            let years = cut.getFullYear() - dob.getFullYear();
+            let months = cut.getMonth() - dob.getMonth();
+            let days = cut.getDate() - dob.getDate();
+            if (days < 0) {
+                months -= 1;
+                days += new Date(cut.getFullYear(), cut.getMonth(), 0).getDate();
+            }
+            if (months < 0) {
+                years -= 1;
+                months += 12;
+            }
+            resBox.innerHTML = `<strong>Exact Age:</strong> ${years} years, ${months} months, ${days} days`;
+        }
+
+        function convertCgpa() {
+            const val = parseFloat(document.getElementById('cgpaVal').value);
+            const formula = document.getElementById('cgpaFormula').value;
+            const resBox = document.getElementById('cgpaResult');
+            if (isNaN(val) || val < 0 || val > 10) {
+                resBox.innerHTML = '<strong>Please enter a valid CGPA between 0.0 and 10.0.</strong>';
+                return;
+            }
+            let pct = 0;
+            if (formula === '9.5') pct = (val * 9.5).toFixed(2);
+            else if (formula === '10') pct = (val * 10).toFixed(2);
+            else if (formula === '7.1') pct = Math.max(0, ((val - 0.75) * 10)).toFixed(2);
+            resBox.innerHTML = `<strong>Equivalent Percentage:</strong> ${pct}%`;
+        }
+
+        function updateWordCount() {
+            const text = (document.getElementById('textCounterInput').value || '').trim();
+            const words = text ? text.split(/\s+/).length : 0;
+            const chars = text.length;
+            const mins = Math.ceil(words / 200);
+            document.getElementById('wordCountResult').innerHTML = `Words: <strong>${words}</strong> | Characters: <strong>${chars}</strong> | Reading Time: ~<strong>${mins}</strong> min`;
+        }
+    </script>
+    <script src="career/careerdata.js"></script>
+    <script src="searchdata.js"></script>
+    <script src="common.js"></script>
+
+<div class="vi-tool-overlay" id="viAgePopup" aria-hidden="true">
+ <div class="vi-tool-popup" role="dialog" aria-modal="true">
+  <div class="vi-tool-head"><div><h2>📅 Exam Age &amp; Cutoff Calculator</h2><small>Calculate exact age at the notification cutoff</small></div><button class="vi-tool-close" data-close-popup type="button">×</button></div>
+  <div class="vi-tool-body"><div class="tool-widget-card"><h3>📅 Exam Age &amp; Cutoff Calculator</h3>
+                <p class="subtext">Calculate exact years, months and days as of notification cutoff date</p>
+                <div class="tool-form-group">
+                    <label for="calcDob">Date of Birth</label>
+                    <input type="date" id="calcDob" class="tool-input">
+                </div>
+                <div class="tool-form-group">
+                    <label for="calcCutoff">Notification Cutoff Date</label>
+                    <input type="date" id="calcCutoff" class="tool-input" value="2026-07-01">
+                </div>
+                <button class="tool-btn" onclick="calculateExamAge()">Calculate Exact Age</button>
+                <div class="tool-result-box" id="ageResult">Enter dates above to see your exact age.</div></div></div>
+  <div class="vi-tool-footer"><button data-close-popup type="button">Done</button></div>
+ </div>
+</div>
+<div class="vi-tool-overlay" id="viCgpaPopup" aria-hidden="true">
+ <div class="vi-tool-popup" role="dialog" aria-modal="true">
+  <div class="vi-tool-head"><div><h2>🎓 CGPA to Percentage Converter</h2><small>Choose a formula standard and convert</small></div><button class="vi-tool-close" data-close-popup type="button">×</button></div>
+  <div class="vi-tool-body"><div class="tool-widget-card"><h3>🎓 CGPA to Percentage Converter</h3>
+                <p class="subtext">Standard CBSE, AICTE and university 10-point scale formula</p>
+                <div class="tool-form-group">
+                    <label for="cgpaVal">Your CGPA (0.0 to 10.0)</label>
+                    <input type="number" id="cgpaVal" class="tool-input" step="0.01" min="0" max="10" placeholder="e.g. 8.45">
+                </div>
+                <div class="tool-form-group">
+                    <label for="cgpaFormula">Formula Standard</label>
+                    <select id="cgpaFormula" class="tool-input">
+                        <option value="9.5">CBSE / Standard (CGPA × 9.5)</option>
+                        <option value="10">Direct (CGPA × 10)</option>
+                        <option value="7.1">AICTE ((CGPA - 0.75) × 10)</option>
+                    </select>
+                </div>
+                <button class="tool-btn" onclick="convertCgpa()">Convert to Percentage</button>
+                <div class="tool-result-box" id="cgpaResult">Enter your CGPA to convert.</div></div></div>
+  <div class="vi-tool-footer"><button data-close-popup type="button">Done</button></div>
+ </div>
+</div>
+<div class="vi-tool-overlay" id="viWordPopup" aria-hidden="true">
+ <div class="vi-tool-popup" role="dialog" aria-modal="true">
+  <div class="vi-tool-head"><div><h2>📝 Word &amp; Character Counter</h2><small>Count words, characters and reading time</small></div><button class="vi-tool-close" data-close-popup type="button">×</button></div>
+  <div class="vi-tool-body"><div class="tool-widget-card"><h3>📝 Word &amp; Character Counter</h3>
+                <p class="subtext">For statement of purpose, application bios and exam essays</p>
+                <div class="tool-form-group">
+                    <label for="textCounterInput">Paste or Type Text</label>
+                    <textarea id="textCounterInput" class="tool-input" rows="4" placeholder="Paste your essay or text here..." oninput="updateWordCount()"></textarea>
+                </div>
+                <div class="tool-result-box" id="wordCountResult">Words: 0 | Characters: 0 | Reading Time: 0 min</div></div></div>
+  <div class="vi-tool-footer"><button data-close-popup type="button">Done</button></div>
+ </div>
+</div>
+<script id="vi-tool-popups-script">
+(function(){
+ const ids={age:'viAgePopup',cgpa:'viCgpaPopup',word:'viWordPopup'};
+ let active=null;
+ function openTool(type){
+   const el=document.getElementById(ids[type]); if(!el)return;
+   active=el; el.classList.add('show'); el.setAttribute('aria-hidden','false');
+   document.body.style.overflow='hidden';
+   setTimeout(function(){const x=el.querySelector('input,textarea,select,button');if(x)x.focus()},220);
+ }
+ function closeTool(el){
+   el=el||active;if(!el)return;
+   el.classList.remove('show');el.setAttribute('aria-hidden','true');active=null;document.body.style.overflow='';
+ }
+ document.querySelectorAll('.vi-tool-launch-card').forEach(function(card){
+   const type=card.dataset.viPopup;
+   card.addEventListener('click',function(){openTool(type)});
+   card.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();openTool(type)}});
+ });
+ document.querySelectorAll('.vi-tool-overlay').forEach(function(el){
+   el.addEventListener('click',function(e){if(e.target===el||e.target.closest('[data-close-popup]'))closeTool(el)});
+ });
+ document.addEventListener('keydown',function(e){if(e.key==='Escape'&&active)closeTool()});
+})();
+
+</script>
+<script>
+function openCurrencyCounter() {
+    const overlay = document.getElementById("currencyCounterOverlay");
+
+    overlay.classList.add("active");
+    document.body.style.overflow = "hidden";
+
+    setTimeout(() => {
+        const firstInput = overlay.querySelector(".currency-qty");
+        if (firstInput) firstInput.focus();
+    }, 250);
+}
+
+function closeCurrencyCounter(event) {
+
+    if (event && event.target !== event.currentTarget) {
+        return;
+    }
+
+    const overlay = document.getElementById("currencyCounterOverlay");
+
+    overlay.classList.remove("active");
+    document.body.style.overflow = "";
+}
+
+function calculateCurrencyCounter() {
+
+    const inputs = document.querySelectorAll(".currency-qty");
+
+    let total = 0;
+
+    inputs.forEach(input => {
+
+        const value = Number(input.dataset.value) || 0;
+        const quantity = Math.max(0, Number(input.value) || 0);
+
+        total += value * quantity;
+    });
+
+    document.getElementById("currencyTotal").textContent =
+        "₹" + total.toLocaleString("en-IN");
+}
+
+function resetCurrencyCounter() {
+
+    document.querySelectorAll(".currency-qty").forEach(input => {
+        input.value = 0;
+    });
+
+    calculateCurrencyCounter();
+}
+
+/* ESC to close */
+
+document.addEventListener("keydown", function(event) {
+
+    if (event.key === "Escape") {
+        const overlay =
+            document.getElementById("currencyCounterOverlay");
+
+        if (overlay && overlay.classList.contains("active")) {
+            closeCurrencyCounter();
+        }
+    }
+
+});
+</script>
+
+</body>
+</html>
