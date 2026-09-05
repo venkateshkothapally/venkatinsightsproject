@@ -210,8 +210,8 @@
     // Attach click handlers
     groupsContainer.querySelectorAll('.service-card').forEach((el) => {
       el.addEventListener('click', () => {
-        const id = parseInt(el.dataset.id, 10);
-        const svc = SERVICES.find(s => s.id === id);
+        const rawId = el.dataset.id;
+        const svc = SERVICES.find(s => String(s.id) === String(rawId) || s.id === rawId || s.id === parseInt(rawId, 10));
         if (svc) openModal(svc);
       });
     });
@@ -337,8 +337,8 @@
 
     track.querySelectorAll('.latest-card').forEach((el) => {
       el.addEventListener('click', () => {
-        const id = parseInt(el.dataset.id, 10);
-        const svc = SERVICES.find(s => s.id === id);
+        const rawId = el.dataset.id;
+        const svc = SERVICES.find(s => String(s.id) === String(rawId) || s.id === rawId || s.id === parseInt(rawId, 10));
         if (svc) openModal(svc);
       });
     });
@@ -672,6 +672,8 @@
           if (cardEl && typeof window.pulseAndScrollToElement === 'function') {
             window.pulseAndScrollToElement(cardEl);
           }
+          // Pop open the service details modal
+          openModal(match);
         }, 300);
         return;
       }

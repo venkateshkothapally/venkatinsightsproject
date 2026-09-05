@@ -3892,7 +3892,7 @@ window.EDUCATION_SERVICES = [
     }
   },
   {
-    "id": "GATE IIT 2027",
+    "id": 2027,
     "page": "Education & Exams Portal",
     "category": "GATE 2027",
     "subCategory": "GATE 2027  — Graduate Aptitude Test in Engineering",

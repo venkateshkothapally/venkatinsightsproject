@@ -1512,12 +1512,12 @@ window.VI_MASTER_SEARCH_INDEX = [
     "desc": "Scholarships • INSPIRE Scholarship • Apply online through the official scholarship portal."
   },
   {
-    "id": "svc-edu-GATE IIT 2027",
+    "id": "svc-edu-2027",
     "title": "GATE 2027",
     "cat": "Education",
     "page": "education/education.html",
-    "target": "svc-edu-GATE IIT 2027",
-    "desc": "GATE 2027 • GATE 2027  — Graduate Aptitude Test in Engineering • GATE 2027 Online Application Registration Portal is LIVE now!."
+    "target": "svc-edu-2027",
+    "desc": "GATE 2027 • GATE 2027 — Graduate Aptitude Test in Engineering • Online Application Registration Portal"
   },
   {
     "id": "cat-edu-telangana-entrance-exams",
