@@ -596,8 +596,10 @@
     function resolveEduTarget(targetParam) {
       document.querySelectorAll('.vi-highlight-pulse').forEach(el => el.classList.remove('vi-highlight-pulse'));
       const params = new URLSearchParams(window.location.search);
-      const target = targetParam || params.get('target') || (window.location.hash ? window.location.hash.replace('#', '') : '');
-      if (!target) return;
+      const rawTarget = targetParam || params.get('target') || (window.location.hash ? window.location.hash.replace('#', '') : '');
+      if (!rawTarget) return;
+
+      const target = rawTarget.trim();
 
       try {
         const currentUrl = new URL(window.location.href);
@@ -605,7 +607,52 @@
         window.history.replaceState({}, '', currentUrl.toString());
       } catch (e) {}
 
-      const match = SERVICES.find(s => `svc-edu-${s.id}` === target || target.includes(String(s.id)));
+      // 1. Check if target is a category direct selector (e.g. cat-gate-2027 or cat-edu-gate-2027)
+      const cleanCat = target.replace(/^cat-edu-/, '').replace(/^cat-/, '').toLowerCase();
+      const allCategories = [...new Set(SERVICES.map(s => s.category))];
+      const matchedCat = allCategories.find(c =>
+        c.toLowerCase() === cleanCat ||
+        slugify(c) === cleanCat ||
+        c.toLowerCase().replace(/[^a-z0-9]+/g, '-') === cleanCat
+      );
+
+      if (target.startsWith('cat-') && matchedCat) {
+        state.activeCategory = matchedCat;
+        state.query = '';
+        renderCategoryList();
+        renderServices();
+        renderLatest();
+        setTimeout(() => {
+          const groupEl = document.getElementById(`group-${slugify(matchedCat)}`);
+          if (groupEl && typeof window.pulseAndScrollToElement === 'function') {
+            window.pulseAndScrollToElement(groupEl);
+          }
+        }, 250);
+        return;
+      }
+
+      // 2. Exact match on service ID or service name
+      const cleanId = target.replace(/^svc-edu-/, '').trim();
+      const cleanIdSlug = slugify(cleanId);
+      const cleanIdLower = cleanId.toLowerCase();
+
+      const match = SERVICES.find(s => {
+        const sid = String(s.id);
+        const sidSlug = slugify(sid);
+        const sNameSlug = slugify(s.serviceName);
+        const sNameLower = s.serviceName.toLowerCase();
+        
+        return sid === cleanId ||
+               `svc-edu-${sid}` === target ||
+               sid.toLowerCase() === cleanIdLower ||
+               sidSlug === cleanIdSlug ||
+               sNameSlug === cleanIdSlug ||
+               sNameLower === cleanIdLower ||
+               `svc-edu-${sidSlug}` === target ||
+               `svc-edu-${sNameSlug}` === target ||
+               (cleanIdSlug === '2027' && sNameSlug.includes('2027'));
+      });
+
       if (match) {
         state.activeCategory = match.category;
         state.query = '';
@@ -613,11 +660,35 @@
         renderServices();
         renderLatest();
         setTimeout(() => {
-          const cardEl = document.getElementById(`svc-edu-${match.id}`) || document.querySelector(`[data-id="${match.id}"]`);
+          const sid = String(match.id);
+          const cardEl = document.getElementById(`svc-edu-${sid}`) ||
+                         document.getElementById(target) ||
+                         Array.from(document.querySelectorAll('.service-card')).find(el =>
+                           el.dataset.id === sid ||
+                           el.id === `svc-edu-${sid}` ||
+                           el.getAttribute('data-target') === `svc-edu-${sid}` ||
+                           el.getAttribute('data-target') === target
+                         );
           if (cardEl && typeof window.pulseAndScrollToElement === 'function') {
             window.pulseAndScrollToElement(cardEl);
           }
         }, 300);
+        return;
+      }
+
+      // 3. Fallback category match if no service matched
+      if (matchedCat) {
+        state.activeCategory = matchedCat;
+        state.query = '';
+        renderCategoryList();
+        renderServices();
+        renderLatest();
+        setTimeout(() => {
+          const groupEl = document.getElementById(`group-${slugify(matchedCat)}`);
+          if (groupEl && typeof window.pulseAndScrollToElement === 'function') {
+            window.pulseAndScrollToElement(groupEl);
+          }
+        }, 250);
       }
     }
     window.resolveEduTarget = resolveEduTarget;

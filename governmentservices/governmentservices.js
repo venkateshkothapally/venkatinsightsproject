@@ -344,30 +344,35 @@
                 window.history.replaceState({}, '', currentUrl.toString());
             } catch (e) {}
 
-            // 1. Check if target is a category direct selector (e.g. cat-aadhaar, cat-pan, or aadhaar)
-            const catClean = target.replace(/^cat-/, '').replace(/^svc-gov-/, '').toLowerCase();
-            const matchedCategory = categoriesData.find(c =>
-                c.id.toLowerCase() === catClean ||
-                c.title.toLowerCase().replace(/[^a-z0-9]+/g, '-') === catClean ||
-                (catClean.length >= 3 && c.id.toLowerCase().includes(catClean))
-            );
+            const cleanTarget = target.trim();
+            const strippedSlug = cleanTarget.replace(/^svc-gov-/, '').replace(/^cat-/, '');
 
-            if (matchedCategory && matchedCategory.id !== 'all') {
-                activeCategoryId = matchedCategory.id;
-                const searchInput = document.getElementById('searchInput');
-                if (searchInput) searchInput.value = '';
-                renderSidebar();
-                renderServices();
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-                return;
+            // 1. If explicit category target (starts with cat-)
+            if (cleanTarget.startsWith('cat-')) {
+                const catSlug = cleanTarget.replace(/^cat-(gov-)?/, '').toLowerCase();
+                const matchedCategory = categoriesData.find(c =>
+                    c.id.toLowerCase() === catSlug ||
+                    c.title.toLowerCase().replace(/[^a-z0-9]+/g, '-') === catSlug
+                );
+                if (matchedCategory && matchedCategory.id !== 'all') {
+                    activeCategoryId = matchedCategory.id;
+                    const searchInput = document.getElementById('searchInput');
+                    if (searchInput) searchInput.value = '';
+                    renderSidebar();
+                    renderServices();
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                    return;
+                }
             }
 
-            // 2. Find matching service across categories
+            // 2. Find EXACT matching service across categories
             for (const cat of categoriesData) {
                 if (cat.services) {
                     const match = cat.services.find(s => {
-                        const slug = `svc-gov-${(s.id || s.name).toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
-                        return slug === target || target.includes((s.id || s.name).toLowerCase().replace(/[^a-z0-9]+/g, '-'));
+                        const sSlug = (s.id || s.name).toLowerCase().replace(/[^a-z0-9]+/g, '-');
+                        const sFullId = `svc-gov-${sSlug}`;
+                        const rawId = String(s.id || '').toLowerCase();
+                        return sFullId === cleanTarget || sSlug === strippedSlug || rawId === strippedSlug;
                     });
                     if (match) {
                         activeCategoryId = cat.id;
@@ -377,7 +382,7 @@
                         renderServices();
                         setTimeout(() => {
                             const targetSlug = `svc-gov-${(match.id || match.name).toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
-                            const el = document.getElementById(target) || document.getElementById(targetSlug) || document.querySelector(`[data-target="${target}"]`) || document.querySelector(`[data-target="${targetSlug}"]`);
+                            const el = document.getElementById(targetSlug) || document.getElementById(cleanTarget) || document.querySelector(`[data-target="${targetSlug}"]`) || document.querySelector(`[data-target="${cleanTarget}"]`);
                             if (el && typeof window.pulseAndScrollToElement === 'function') {
                                 window.pulseAndScrollToElement(el);
                             }
@@ -385,6 +390,21 @@
                         return;
                     }
                 }
+            }
+
+            // 3. Fallback: Category match by ID or slug if no service matched
+            const matchedCategory = categoriesData.find(c =>
+                c.id.toLowerCase() === strippedSlug.toLowerCase() ||
+                c.title.toLowerCase().replace(/[^a-z0-9]+/g, '-') === strippedSlug.toLowerCase()
+            );
+            if (matchedCategory && matchedCategory.id !== 'all') {
+                activeCategoryId = matchedCategory.id;
+                const searchInput = document.getElementById('searchInput');
+                if (searchInput) searchInput.value = '';
+                renderSidebar();
+                renderServices();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                return;
             }
         }
         window.resolveGovTarget = resolveGovTarget;

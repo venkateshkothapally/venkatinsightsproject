@@ -828,7 +828,7 @@
         const targetId = params.get('target') || (window.location.hash ? window.location.hash.replace('#', '') : null);
         const searchVal = params.get('search') || params.get('q');
 
-        if (searchVal) {
+        if (searchVal && !targetId) {
             const input = document.getElementById('searchInput');
             if (input) {
                 input.value = searchVal;
@@ -1015,7 +1015,7 @@
             grouped[cat].forEach(item => {
                 const pageUrl = resolvePageUrl(item.page);
                 const isCurrent = pageUrl === '';
-                const href = isCurrent ? `#${item.target}` : `${pageUrl}?target=${item.target}&search=${encodeURIComponent(trimmed)}`;
+                const href = isCurrent ? `#${item.target}` : `${pageUrl}?target=${item.target}`;
                 const iconClass = getCatClass(item.cat);
                 const iconText = getCatAbbr(item.cat);
 
@@ -1051,17 +1051,20 @@
                     // Clear any lingering pulse animations across the entire page
                     document.querySelectorAll('.vi-highlight-pulse').forEach(n => n.classList.remove('vi-highlight-pulse'));
 
-                    // If target is in another category, switch tab first
-                    if (typeof window.resolveGovTarget === 'function') window.resolveGovTarget(target);
-                    if (typeof window.resolveEduTarget === 'function') window.resolveEduTarget(target);
-                    if (typeof window.resolveCareerTarget === 'function') window.resolveCareerTarget(target);
-                    if (typeof window.resolveAiTarget === 'function') window.resolveAiTarget(target);
-                    if (typeof window.resolveNewsTarget === 'function') window.resolveNewsTarget(target);
-                    if (typeof window.resolveToolTarget === 'function') window.resolveToolTarget(target);
+                    // If target is handled by a page resolver, delegate to it
+                    let handled = false;
+                    if (typeof window.resolveGovTarget === 'function') { window.resolveGovTarget(target); handled = true; }
+                    if (typeof window.resolveEduTarget === 'function') { window.resolveEduTarget(target); handled = true; }
+                    if (typeof window.resolveCareerTarget === 'function') { window.resolveCareerTarget(target); handled = true; }
+                    if (typeof window.resolveAiTarget === 'function') { window.resolveAiTarget(target); handled = true; }
+                    if (typeof window.resolveNewsTarget === 'function') { window.resolveNewsTarget(target); handled = true; }
+                    if (typeof window.resolveToolTarget === 'function') { window.resolveToolTarget(target); handled = true; }
 
-                    const targetEl = document.getElementById(target) || document.querySelector(`[data-id="${target}"]`) || document.querySelector(`[data-target="${target}"]`);
-                    if (targetEl) {
-                        pulseAndScrollToElement(targetEl);
+                    if (!handled) {
+                        const targetEl = document.getElementById(target) || document.querySelector(`[data-id="${target}"]`) || document.querySelector(`[data-target="${target}"]`);
+                        if (targetEl) {
+                            pulseAndScrollToElement(targetEl);
+                        }
                     }
                 }
             });
@@ -1094,7 +1097,7 @@
             if (highlightedIndex >= 0 && items[highlightedIndex]) {
                 e.preventDefault();
                 items[highlightedIndex].click();
-            } else if (items.length === 1) {
+            } else if (items.length > 0) {
                 e.preventDefault();
                 items[0].click();
             }

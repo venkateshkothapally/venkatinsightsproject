@@ -522,13 +522,38 @@
 
         // Deep-link target resolution
         function resolveAiTarget(targetParam) {
+            document.querySelectorAll('.vi-highlight-pulse').forEach(el => el.classList.remove('vi-highlight-pulse'));
             const params = new URLSearchParams(window.location.search);
             const target = targetParam || params.get('target') || (window.location.hash ? window.location.hash.replace('#', '') : '');
             if (!target) return;
 
+            try {
+                const currentUrl = new URL(window.location.href);
+                if (targetParam) currentUrl.searchParams.set('target', targetParam);
+                window.history.replaceState({}, '', currentUrl.toString());
+            } catch (e) {}
+
+            const cleanTarget = target.trim();
+            const strippedSlug = cleanTarget.replace(/^svc-ai-/, '').replace(/^cat-/, '');
+
+            // Category match (e.g. cat-coding, cat-image)
+            const catMatch = Array.from(new Set(aiToolsData.map(t => t.category))).find(c => {
+                const cSlug = c.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+                return cSlug === strippedSlug || c.toLowerCase() === strippedSlug.toLowerCase();
+            });
+            if (cleanTarget.startsWith('cat-') && catMatch) {
+                selectedCategory = catMatch;
+                renderCategoryButtons();
+                filterTools();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                return;
+            }
+
+            // Exact tool match
             const match = aiToolsData.find(t => {
                 const slug = 'svc-ai-' + t.name.toLowerCase().replace(/[^a-z0-9]+/g, '-');
-                return slug === target || target.includes(t.name.toLowerCase().replace(/[^a-z0-9]+/g, '-'));
+                const rawSlug = t.name.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+                return slug === cleanTarget || rawSlug === strippedSlug;
             });
 
             if (match) {
@@ -536,11 +561,21 @@
                 renderCategoryButtons();
                 filterTools();
                 setTimeout(() => {
-                    const el = document.getElementById(target) || document.querySelector(`[data-target="${target}"]`);
+                    const elSlug = 'svc-ai-' + match.name.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+                    const el = document.getElementById(elSlug) || document.getElementById(cleanTarget) || document.querySelector(`[data-target="${elSlug}"]`);
                     if (el && typeof window.pulseAndScrollToElement === 'function') {
                         window.pulseAndScrollToElement(el);
                     }
                 }, 300);
+                return;
+            }
+
+            // Fallback category if tool wasn't found
+            if (catMatch) {
+                selectedCategory = catMatch;
+                renderCategoryButtons();
+                filterTools();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             }
         }
         window.resolveAiTarget = resolveAiTarget;

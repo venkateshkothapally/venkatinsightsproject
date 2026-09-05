@@ -1429,7 +1429,7 @@ window.VI_MASTER_SEARCH_INDEX = [
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-96",
-    "desc": "Research And Phd • Gate 2027 • Official student service portal for research and phd."
+    "desc": "Research And Phd • Gate 2026 • Official student service portal for research and phd."
   },
   {
     "id": "svc-edu-4",
@@ -1512,11 +1512,11 @@ window.VI_MASTER_SEARCH_INDEX = [
     "desc": "Scholarships • INSPIRE Scholarship • Apply online through the official scholarship portal."
   },
   {
-    "id": "svc-edu-2027",
+    "id": "svc-edu-GATE IIT 2027",
     "title": "GATE 2027",
     "cat": "Education",
     "page": "education/education.html",
-    "target": "svc-edu-2027",
+    "target": "svc-edu-GATE IIT 2027",
     "desc": "GATE 2027 • GATE 2027  — Graduate Aptitude Test in Engineering • GATE 2027 Online Application Registration Portal is LIVE now!."
   },
   {
@@ -1680,12 +1680,12 @@ window.VI_MASTER_SEARCH_INDEX = [
     "desc": "Browse all CCMT Counselling admissions, entrance exams, notifications and results"
   },
   {
-    "id": "cat-edu-gate-2027",
-    "title": "GATE 2027 (Education Category)",
+    "id": "cat-edu-gate-2026",
+    "title": "GATE 2026 (Education Category)",
     "cat": "Education",
     "page": "education/education.html",
-    "target": "cat-gate-2027",
-    "desc": "Browse all GATE 2027 admissions, entrance exams, notifications and results"
+    "target": "cat-gate-2026",
+    "desc": "Browse all GATE 2026 admissions, entrance exams, notifications and results"
   },
   {
     "id": "svc-job-RRB-NTPC-2026",

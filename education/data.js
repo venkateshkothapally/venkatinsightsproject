@@ -3598,7 +3598,7 @@ window.EDUCATION_SERVICES = [
     "id": 96,
     "page": "Education & Exams Portal",
     "category": "Research And Phd",
-    "subCategory": "Gate 2027",
+    "subCategory": "Gate 2026",
     "serviceName": "Graduate Aptitude Test in Engineering",
     "officialLink": "#VALUE!",
     "shortDescription": "Official student service portal for research and phd.",
@@ -3892,7 +3892,7 @@ window.EDUCATION_SERVICES = [
     }
   },
   {
-    "id": 2027,
+    "id": "GATE IIT 2027",
     "page": "Education & Exams Portal",
     "category": "GATE 2027",
     "subCategory": "GATE 2027  — Graduate Aptitude Test in Engineering",

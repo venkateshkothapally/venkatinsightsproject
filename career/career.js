@@ -262,9 +262,33 @@
             window.history.replaceState({}, '', currentUrl.toString());
         } catch (e) {}
 
+        const cleanTarget = target.trim();
+        const strippedTarget = cleanTarget.replace(/^svc-job-/, '').replace(/^cat-/, '');
+
+        // Category check
+        const allCats = [...new Set(jobs.map(j => j.category))];
+        const catMatch = allCats.find(c => {
+            const catSlug = c.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+            return cleanTarget === `cat-${catSlug}` || catSlug === strippedTarget.toLowerCase() || c.toLowerCase() === strippedTarget.toLowerCase();
+        });
+
+        if (cleanTarget.startsWith('cat-') && catMatch) {
+            activeCategory = catMatch;
+            isLatestUpdatesExpanded = false;
+            document.querySelectorAll('.category-item').forEach(el => {
+                el.classList.toggle('active', el.getAttribute('data-category') === catMatch);
+            });
+            renderDashboard();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            return;
+        }
+
+        // Exact job match
         const match = jobs.find(j => {
             const safeId = 'svc-job-' + (j.id || j.postName).replace(/[^a-zA-Z0-9_-]/g, '-');
-            return safeId === target || target.includes(String(j.id));
+            const rawId = String(j.id || '');
+            const postSlug = String(j.postName || '').replace(/[^a-zA-Z0-9_-]/g, '-');
+            return safeId === cleanTarget || rawId === cleanTarget || rawId === strippedTarget || postSlug === strippedTarget;
         });
 
         if (match) {
@@ -276,11 +300,23 @@
             renderDashboard();
 
             setTimeout(() => {
-                const rowEl = document.getElementById(target) || document.querySelector(`[data-target="${target}"]`);
+                const targetId = 'svc-job-' + (match.id || match.postName).replace(/[^a-zA-Z0-9_-]/g, '-');
+                const rowEl = document.getElementById(targetId) || document.getElementById(cleanTarget) || document.querySelector(`[data-target="${targetId}"]`) || document.querySelector(`[data-target="${cleanTarget}"]`);
                 if (rowEl && typeof window.pulseAndScrollToElement === 'function') {
                     window.pulseAndScrollToElement(rowEl);
                 }
             }, 300);
+            return;
+        }
+
+        if (catMatch) {
+            activeCategory = catMatch;
+            isLatestUpdatesExpanded = false;
+            document.querySelectorAll('.category-item').forEach(el => {
+                el.classList.toggle('active', el.getAttribute('data-category') === catMatch);
+            });
+            renderDashboard();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     }
     window.resolveCareerTarget = resolveCareerTarget;
