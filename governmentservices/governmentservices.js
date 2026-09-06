@@ -6,6 +6,8 @@
         const LOGO_TELANGANA = "https://upload.wikimedia.org/wikipedia/commons/3/30/Emblem_of_Telangana.svg";
         const LOGO_HEALTH = "https://esanjeevani.mohfw.gov.in/assets/images/logo.png";
         const LOGO_ELECTRICITY = "https://tgsouthernpower.org/assets/images/logo.png";
+        const LOGO_BHUBHARATHI = "../logos/governmentservices/bhubarathi.webp";
+        const LOGO_BHUBARATHI = "../logos/governmentservices/bhubharathi.png";
 
         const categoriesData = [
             {
@@ -92,11 +94,11 @@
             {
                 id: 'agri',
                 title: 'Agriculture & Land Services',
-                categoryLogo: LOGO_TELANGANA,
+                categoryLogo: LOGO_BHUBARATHI,
                 icon: `<svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v18m0-18C9 3 5 5 5 9c0 4 4 6 7 6m0-15c3 0 7 2 7 6 0 4-4 6-7 6m0 0c-3 0-7 2-7 6 0 2 2 3 4 3m3-9c3 0 7 2 7 6 0 2-2 3-4 3"></path></svg>`,
                 services: [
-                    { name: 'Bhu Bharati', desc: 'Land records portal', url: 'https://bhubharati.telangana.gov.in', logo: LOGO_TELANGANA },
-                    { name: 'IGRS Telangana', desc: 'Registration and stamps', url: 'https://registration.telangana.gov.in', logo: LOGO_TELANGANA }
+                    { name: 'Bhu Bharathi', desc: 'Land records portal', url: 'https://bhubharati.telangana.gov.in', logo: LOGO_BHUBHARATHI },
+                    { name: 'IGRS Telangana', desc: 'Registration and stamps', url: 'https://registration.telangana.gov.in', logo: LOGO_BHUBHARATHI }
                 ]
             },
             {
@@ -130,6 +132,9 @@
                 ]
             }
         ];
+
+        window.categoriesData = categoriesData;
+        window.VI_GOV_CATEGORIES = categoriesData;
 
         let activeCategoryId = 'all';
 

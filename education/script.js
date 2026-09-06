@@ -359,6 +359,12 @@
     collegeslist:   { label: 'Colleges List', icon: 'building',     sub: 'Participating colleges' },
     support:        { label: 'Support',     icon: 'headphones',   sub: 'Contact helpdesk' },
     answerKey:      { label: 'Answer Key', icon: 'file-text', sub: 'Check answers' },
+    downloadapplication: { label: 'Download Application', icon: 'download', sub: 'Get application form' },
+    admission: { label: 'Admission', icon: 'user-check', sub: 'click for admission' },
+    allotmentI: { label: 'Allotment', icon: 'user-check', sub: 'click for allotment Phase 1' },
+    allotmentII: { label: 'Allotment', icon: 'user-check', sub: 'click for allotment Phase 2' },
+    helpline: { label: 'Helpline', icon: 'headphones', sub: 'Contact support' },
+
     
   };
 

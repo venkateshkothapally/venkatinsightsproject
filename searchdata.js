@@ -1512,13 +1512,23 @@ window.VI_MASTER_SEARCH_INDEX = [
     "desc": "Scholarships • INSPIRE Scholarship • Apply online through the official scholarship portal."
   },
   {
-    "id": "svc-edu-2027",
+    "id": "svc-edu-GATE IIT 2027",
     "title": "GATE 2027",
     "cat": "Education",
     "page": "education/education.html",
     "target": "svc-edu-2027",
     "desc": "GATE 2027 • GATE 2027 — Graduate Aptitude Test in Engineering • Online Application Registration Portal"
   },
+{
+    "id": "svc-edu-TGSET 2026",
+    "title": "TG SET 2026",
+    "cat": "ENTRENCE EXAMS",
+    "page": "education/education.html",
+    "target": "svc-edu-TGSET 2026",
+    "desc": "The Telangana State Eligibility Test (TG SET) 2026 is scheduled to be conducted by Osmania University from September 28 to 30, 2026. Telangana State Eligibility Test Important Dates Application Deadline (Without Late Fee): Extended up to September 5, 2026 Application with Late Fee: Up to September 12, 2026 (varies by late fee tier up to ₹3,000) Admit Card Release: September 24, 2026 Exam Dates: September 28 to 30, 2026 :: APTOnline Limited :: Eligibility Criteria Educational Qualification: Master’s degree or equivalent with at least 55% marks for General/EWS candidates, and 50% marks for BC, SC, ST, PwD, and Transgender candidates. Age Limit: There is no upper age limit to apply for the exam. Application Portal: Eligible candidates can finish submissions via the TG SET Application Portal"
+  },
+
+
   {
     "id": "cat-edu-telangana-entrance-exams",
     "title": "Telangana Entrance Exams (Education Category)",

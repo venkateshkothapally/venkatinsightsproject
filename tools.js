@@ -9,15 +9,18 @@ const tools = [
   { name: 'Note Snapshot', category: 'Writing', description: 'Capture main points from articles, updates, and resources.' }
 ];
 
+window.tools = tools;
+
 const grid = document.getElementById('toolsGrid');
 const searchInput = document.getElementById('toolSearch');
 const themeBtn = document.querySelector('.theme-btn');
 const body = document.body;
 
 function renderTools(filter = '') {
+  if (!grid) return;
   const list = tools.filter((tool) => tool.name.toLowerCase().includes(filter.toLowerCase()) || tool.category.toLowerCase().includes(filter.toLowerCase()));
   grid.innerHTML = list.map((tool) => `
-    <article class="tool-card">
+    <article class="tool-card" id="tool-${tool.name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}">
       <h3>${tool.name}</h3>
       <p>${tool.description}</p>
       <div class="tool-meta">
@@ -29,14 +32,17 @@ function renderTools(filter = '') {
 }
 
 searchInput?.addEventListener('input', (event) => renderTools(event.target.value));
-renderTools();
+if (grid) renderTools();
 
-document.getElementById('year').textContent = new Date().getFullYear();
+const yr = document.getElementById('year');
+if (yr) yr.textContent = new Date().getFullYear();
 
 function applyTheme(theme) {
-  body.classList.toggle('dark', theme === 'dark');
-  localStorage.setItem('vi-theme', theme);
+  if (body) body.classList.toggle('dark', theme === 'dark');
+  try { localStorage.setItem('vi-theme', theme); } catch (e) {}
 }
-applyTheme(localStorage.getItem('vi-theme') || 'light');
+if (body && !document.documentElement?.getAttribute('data-theme')) {
+  try { applyTheme(localStorage.getItem('vi-theme') || 'light'); } catch (e) {}
+}
 
 themeBtn?.addEventListener('click', () => applyTheme(body.classList.contains('dark') ? 'light' : 'dark'));

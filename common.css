@@ -264,6 +264,8 @@ html[data-theme='dark'] body, html.dark body { background-color: #0b1120 !import
 .search-res-icon.ai { background: #f3e8ff; color: #7e22ce; }
 .search-res-icon.tool { background: #fef9c3; color: #a16207; }
 .search-res-icon.news { background: #ffe4e6; color: #e11d48; }
+.search-res-icon.category-icon { background: #ede9fe; color: #7c3aed; }
+.search-res-icon.page-icon { background: #ccfbf1; color: #0d9488; }
 
 .search-res-content { flex: 1; min-width: 0; }
 .search-res-title {
@@ -291,18 +293,50 @@ html[data-theme='dark'] body, html.dark body { background-color: #0b1120 !import
 }
 .search-badge-tag {
     font-size: .65rem;
-    padding: 2px 6px;
+    padding: 2px 7px;
     border-radius: 4px;
     background: var(--search-bg);
     color: var(--text-muted);
-    font-weight: 600;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
     flex-shrink: 0;
 }
+.search-badge-tag.badge-category {
+    background: rgba(124, 58, 237, 0.12);
+    color: #7c3aed;
+    border: 1px solid rgba(124, 58, 237, 0.25);
+}
+.search-badge-tag.badge-tool {
+    background: rgba(14, 165, 233, 0.12);
+    color: #0284c7;
+    border: 1px solid rgba(14, 165, 233, 0.25);
+}
+.search-badge-tag.badge-page {
+    background: rgba(16, 185, 129, 0.12);
+    color: #059669;
+    border: 1px solid rgba(16, 185, 129, 0.25);
+}
+.search-badge-tag.badge-service {
+    background: rgba(79, 70, 229, 0.1);
+    color: var(--vi-primary);
+    border: 1px solid rgba(79, 70, 229, 0.2);
+}
+
 .search-no-results {
-    padding: 1.5rem 1rem;
+    padding: 1.75rem 1.25rem;
     text-align: center;
     color: var(--text-muted);
-    font-size: .85rem;
+    font-size: .88rem;
+}
+.search-no-results strong {
+    color: var(--text-main);
+}
+.search-no-results-hint {
+    margin-top: 6px;
+    font-size: .78rem;
+    color: var(--text-light);
+    display: block;
 }
 
 /* Recent Searches & Quick Category Suggestions */
@@ -558,32 +592,70 @@ header.navbar > .nav-pills-container { max-width: none; }
     100% { opacity: 1; }
 }
 
-/* Target Element Highlight & Pulse Animation */
+/* ============================================================
+   TARGET SERVICE 3D ANIMATED HIGHLIGHT & GLOW
+   Stays active until user interacts, with 3D elevation & ambient gradient aura
+   ============================================================ */
+.vi-highlight-3d,
 .vi-highlight-pulse {
-    animation: viHighlightGlow 3s cubic-bezier(0.2, 0.8, 0.2, 1) forwards !important;
-    position: relative;
-    z-index: 50;
+    position: relative !important;
+    z-index: 60 !important;
+    transform: translateY(-8px) scale(1.025) translateZ(0) !important;
+    border-radius: var(--radius-lg, 16px) !important;
+    box-shadow: 
+        0 0 0 3px var(--vi-primary, #4f46e5),
+        0 0 28px 6px rgba(99, 102, 241, 0.55),
+        0 24px 48px -10px rgba(15, 23, 42, 0.4) !important;
+    animation: vi3dGradientGlow 2.4s ease-in-out infinite alternate !important;
+    transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.45s cubic-bezier(0.2, 0.8, 0.2, 1) !important;
 }
-@keyframes viHighlightGlow {
+
+/* Dark Mode 3D Glow tuning */
+[data-theme="dark"] .vi-highlight-3d,
+[data-theme="dark"] .vi-highlight-pulse,
+.dark .vi-highlight-3d,
+.dark .vi-highlight-pulse {
+    box-shadow: 
+        0 0 0 3px #818cf8,
+        0 0 36px 8px rgba(129, 140, 248, 0.65),
+        0 28px 56px -12px rgba(0, 0, 0, 0.85) !important;
+}
+
+@keyframes vi3dGradientGlow {
     0% {
-        outline: 0px solid rgba(99, 102, 241, 0.9);
-        box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.8), 0 10px 30px rgba(99, 102, 241, 0.35);
-        transform: scale(1.025);
+        box-shadow: 
+            0 0 0 3px #4f46e5,
+            0 0 20px 4px rgba(79, 70, 229, 0.5),
+            0 20px 40px -10px rgba(15, 23, 42, 0.35);
     }
-    30% {
-        outline: 3px solid rgba(99, 102, 241, 0.9);
-        box-shadow: 0 0 0 10px rgba(99, 102, 241, 0.25), 0 12px 35px rgba(99, 102, 241, 0.4);
-        transform: scale(1.025);
-    }
-    60% {
-        outline: 2px solid rgba(99, 102, 241, 0.7);
-        box-shadow: 0 0 0 5px rgba(99, 102, 241, 0.15), 0 8px 25px rgba(99, 102, 241, 0.25);
-        transform: scale(1.01);
+    50% {
+        box-shadow: 
+            0 0 0 3.5px #7c3aed,
+            0 0 32px 8px rgba(124, 58, 237, 0.6),
+            0 25px 50px -10px rgba(15, 23, 42, 0.45);
     }
     100% {
-        outline: 0px solid transparent;
-        box-shadow: var(--shadow-md);
-        transform: scale(1);
+        box-shadow: 
+            0 0 0 3px #06b6d4,
+            0 0 24px 6px rgba(6, 182, 212, 0.55),
+            0 22px 45px -10px rgba(15, 23, 42, 0.38);
+    }
+}
+
+/* Graceful dismissal transition when user interacts */
+.vi-highlight-diminish {
+    transform: translateY(0) scale(1) translateZ(0) !important;
+    box-shadow: var(--vi-shadow, 0 4px 20px rgba(0,0,0,0.04)) !important;
+    transition: transform 0.4s ease, box-shadow 0.4s ease !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .vi-highlight-3d,
+    .vi-highlight-pulse {
+        animation: none !important;
+        transform: none !important;
+        outline: 3px solid var(--vi-primary, #4f46e5) !important;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25) !important;
     }
 }
 

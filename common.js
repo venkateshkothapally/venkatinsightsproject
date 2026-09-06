@@ -244,6 +244,10 @@
         }
     }
 
+    // ============================================================
+    // UNIVERSAL SEARCH ENGINE ARCHITECTURE
+    // Auto-discovers services, categories, tools, and pages from JS datasets & DOM
+    // ============================================================
     window.VI_SEARCH = {
         index: (typeof window.VI_MASTER_SEARCH_INDEX !== 'undefined' && Array.isArray(window.VI_MASTER_SEARCH_INDEX)) 
             ? [...window.VI_MASTER_SEARCH_INDEX] 
@@ -251,6 +255,8 @@
         autoData: getStoredItemSafe(AUTO_SEARCH_DATA_KEY),
         recentSearches: getStoredItemSafe(RECENT_SEARCHES_KEY),
         _indexedIds: new Set(),
+        _hasPreloaded: false,
+        _harvestDebounceTimer: null,
 
         init: function () {
             this.index.forEach(item => {
@@ -260,6 +266,79 @@
                 this.register(this.autoData, false);
             }
             this.autoHarvest();
+            this.initDomObserver();
+            this.schedulePreload();
+        },
+
+        schedulePreload: function () {
+            if (this._hasPreloaded) return;
+            const preload = () => {
+                this._hasPreloaded = true;
+                const base = getBasePath();
+                let loadedAny = false;
+
+                if (typeof window.EDUCATION_SERVICES === 'undefined') {
+                    const s1 = document.createElement('script');
+                    s1.src = base + 'education/data.js';
+                    s1.defer = true;
+                    s1.onload = () => { window.VI_SEARCH.autoHarvest(); };
+                    document.head.appendChild(s1);
+                    loadedAny = true;
+                }
+                if (typeof window.VI_JOBS === 'undefined') {
+                    const s2 = document.createElement('script');
+                    s2.src = base + 'career/careerdata.js';
+                    s2.defer = true;
+                    s2.onload = () => { window.VI_SEARCH.autoHarvest(); };
+                    document.head.appendChild(s2);
+                    loadedAny = true;
+                }
+                if (typeof window.tools === 'undefined') {
+                    const s3 = document.createElement('script');
+                    s3.src = base + 'tools.js';
+                    s3.defer = true;
+                    s3.onload = () => { window.VI_SEARCH.autoHarvest(); };
+                    document.head.appendChild(s3);
+                    loadedAny = true;
+                }
+            };
+
+            if ('requestIdleCallback' in window) {
+                window.requestIdleCallback(preload, { timeout: 2500 });
+            } else {
+                setTimeout(preload, 1200);
+            }
+        },
+
+        initDomObserver: function () {
+            try {
+                if (typeof MutationObserver === 'undefined') return;
+                const observer = new MutationObserver((mutations) => {
+                    let shouldHarvest = false;
+                    for (const m of mutations) {
+                        if (m.addedNodes && m.addedNodes.length > 0) {
+                            for (const node of m.addedNodes) {
+                                if (node.nodeType === 1) {
+                                    if (node.matches && (node.matches('.service-card, .tool-card, .tool-widget-card, [data-target], [data-category]'))) {
+                                        shouldHarvest = true;
+                                        break;
+                                    }
+                                    if (node.querySelector && node.querySelector('.service-card, .tool-card, .tool-widget-card, [data-target], [data-category]')) {
+                                        shouldHarvest = true;
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                        if (shouldHarvest) break;
+                    }
+                    if (shouldHarvest) {
+                        clearTimeout(this._harvestDebounceTimer);
+                        this._harvestDebounceTimer = setTimeout(() => this.autoHarvest(), 250);
+                    }
+                });
+                observer.observe(document.documentElement || document.body, { childList: true, subtree: true });
+            } catch (e) {}
         },
 
         register: function (items, persist = false) {
@@ -267,6 +346,12 @@
             let addedNew = false;
             items.forEach(it => {
                 if (!it || !it.id) return;
+                if (!it.type) {
+                    if (it.id.startsWith('cat-')) it.type = 'category';
+                    else if (it.id.startsWith('tool-')) it.type = 'tool';
+                    else if (it.id.startsWith('page-')) it.type = 'page';
+                    else it.type = 'service';
+                }
                 if (!this._indexedIds.has(it.id)) {
                     this._indexedIds.add(it.id);
                     this.index.push(it);
@@ -276,18 +361,15 @@
                             addedNew = true;
                         }
                     }
+                } else {
+                    const existing = this.index.find(x => x.id === it.id);
+                    if (existing && it.type && existing.type !== it.type) {
+                        existing.type = it.type;
+                    }
                 }
             });
             if (addedNew) {
-                setStoredItemSafe(AUTO_SEARCH_DATA_KEY, this.autoData.slice(0, 300));
-            }
-        },
-
-        persistAutoItem: function (item) {
-            if (!item || !item.id) return;
-            if (!this.autoData.some(x => x.id === item.id)) {
-                this.autoData.push(item);
-                setStoredItemSafe(AUTO_SEARCH_DATA_KEY, this.autoData.slice(0, 300));
+                setStoredItemSafe(AUTO_SEARCH_DATA_KEY, this.autoData.slice(0, 400));
             }
         },
 
@@ -320,48 +402,88 @@
         autoHarvest: function () {
             const harvested = [];
 
-            // 1. Education data
+            // Helper for category slug
+            const catSlug = (name) => 'cat-' + String(name).toLowerCase().trim().replace(/[^a-z0-9]+/g, '-');
+
+            // 1. Education data & categories
             const eduList = window.EDUCATION_SERVICES || window.SERVICES;
             if (Array.isArray(eduList)) {
+                const eduCats = new Set();
                 eduList.forEach(s => {
+                    const sid = s.id;
+                    const safeId = `svc-edu-${sid}`;
                     harvested.push({
-                        id: `svc-edu-${s.id}`,
+                        id: safeId,
                         title: s.serviceName,
-                        cat: 'Education',
+                        cat: s.category || 'Education',
                         page: 'education/education.html',
-                        target: `svc-edu-${s.id}`,
+                        target: safeId,
+                        type: 'service',
                         desc: `${s.category || ''} • ${s.subCategory || ''} • ${s.shortDescription || ''}`.trim()
+                    });
+                    if (s.category) eduCats.add(s.category);
+                });
+
+                eduCats.forEach(catName => {
+                    const targetSlug = catSlug(catName);
+                    harvested.push({
+                        id: `cat-edu-${targetSlug}`,
+                        title: `${catName} (Category)`,
+                        cat: 'Education Categories',
+                        page: 'education/education.html',
+                        target: targetSlug,
+                        type: 'category',
+                        desc: `Browse all ${catName} entrance exams, admissions and results in Education`
                     });
                 });
             }
 
-            // 2. Career jobs
+            // 2. Career jobs & categories
             const jobList = window.VI_JOBS || window.jobs;
             if (Array.isArray(jobList)) {
+                const jobCats = new Set();
                 jobList.forEach(j => {
                     const safeId = 'svc-job-' + (j.id || j.postName).replace(/[^a-zA-Z0-9_-]/g, '-');
                     harvested.push({
                         id: safeId,
                         title: `${j.board} - ${j.postName}`,
-                        cat: 'Career',
+                        cat: j.category || 'Career',
                         page: 'career/career.html',
                         target: safeId,
+                        type: 'service',
                         desc: `${j.category || ''} • ${j.qualification || ''} • Last Date: ${j.lastDate || 'N/A'}`.trim()
+                    });
+                    if (j.category) jobCats.add(j.category);
+                });
+
+                jobCats.forEach(cName => {
+                    const targetSlug = catSlug(cName);
+                    harvested.push({
+                        id: `cat-career-${targetSlug}`,
+                        title: `${cName} (Jobs Category)`,
+                        cat: 'Career Categories',
+                        page: 'career/career.html',
+                        target: targetSlug,
+                        type: 'category',
+                        desc: `View all active recruitment notifications under ${cName}`
                     });
                 });
             }
 
-            // 3. Government Services
-            if (Array.isArray(window.categoriesData)) {
-                window.categoriesData.forEach(c => {
-                    if (c.id !== 'all') {
+            // 3. Government Services & categories
+            const govCats = window.categoriesData || window.VI_GOV_CATEGORIES;
+            if (Array.isArray(govCats)) {
+                govCats.forEach(c => {
+                    if (c.id && c.id !== 'all') {
+                        const targetId = `cat-${c.id}`;
                         harvested.push({
                             id: `cat-gov-${c.id}`,
-                            title: `${c.title} (All Services)`,
+                            title: `${c.title} (Government Category)`,
                             cat: 'Government Services',
                             page: 'governmentservices/governmentservices.html',
-                            target: `cat-${c.id}`,
-                            desc: `Browse all ${c.title} online portals and applications`
+                            target: targetId,
+                            type: 'category',
+                            desc: `Browse all ${c.title} official online portals and citizen services`
                         });
                     }
                     if (Array.isArray(c.services)) {
@@ -370,27 +492,44 @@
                             harvested.push({
                                 id: `svc-gov-${slug}`,
                                 title: `${s.name} - ${c.title}`,
-                                cat: 'Government Services',
+                                cat: c.title || 'Government Services',
                                 page: 'governmentservices/governmentservices.html',
                                 target: `svc-gov-${slug}`,
-                                desc: s.desc || `${c.title} portal`
+                                type: 'service',
+                                desc: s.desc || `${c.title} verified portal`
                             });
                         });
                     }
                 });
             }
 
-            // 4. 80+ AI Tools
+            // 4. 80+ AI Tools & categories
             if (Array.isArray(window.aiToolsData)) {
+                const aiCats = new Set();
                 window.aiToolsData.forEach(t => {
                     const slug = 'svc-ai-' + t.name.toLowerCase().replace(/[^a-z0-9]+/g, '-');
                     harvested.push({
                         id: slug,
                         title: t.name,
-                        cat: '80+ AI Tools',
+                        cat: t.category ? `${t.category} AI Tools` : '80+ AI Tools',
                         page: 'aitools.html',
                         target: slug,
-                        desc: `${t.category || ''} • ${t.description || ''}`.trim()
+                        type: 'tool',
+                        desc: `Category: ${t.category || ''} • AI powered tool for productivity`
+                    });
+                    if (t.category) aiCats.add(t.category);
+                });
+
+                aiCats.forEach(catName => {
+                    const targetSlug = catSlug(catName);
+                    harvested.push({
+                        id: `cat-ai-${targetSlug}`,
+                        title: `${catName} AI Tools (Category)`,
+                        cat: 'AI Tool Categories',
+                        page: 'aitools.html',
+                        target: targetSlug,
+                        type: 'category',
+                        desc: `Browse all curated ${catName} artificial intelligence tools`
                     });
                 });
             }
@@ -405,7 +544,8 @@
                         cat: 'News & Articles',
                         page: 'Newsandarticles/newsandarticles.html',
                         target: `svc-news-${slug}`,
-                        desc: `${n.language || ''} ${n.subcat || ''} • ${n.description || ''}`.trim()
+                        type: 'service',
+                        desc: `${n.language || ''} ${n.subcat || ''} • Daily ePaper edition`
                     });
                 });
             }
@@ -414,9 +554,10 @@
                     harvested.push({
                         id: `svc-art-${a.id}`,
                         title: a.title,
-                        cat: 'News & Articles',
+                        cat: 'Published Articles',
                         page: 'Newsandarticles/newsandarticles.html',
                         target: `svc-art-${a.id}`,
+                        type: 'service',
                         desc: `${a.category || ''} • By ${a.author || ''} • ${a.excerpt || ''}`.trim()
                     });
                 });
@@ -432,12 +573,26 @@
                         cat: 'Tools',
                         page: 'tools.html',
                         target: `tool-${slug}`,
+                        type: 'tool',
                         desc: `${t.category || ''} • ${t.description || ''}`.trim()
                     });
                 });
             }
 
-            // 7. Live DOM crawling on active page
+            // 7. Important Portal Pages
+            const importantPages = [
+                { id: 'page-home', title: 'Home Page', page: 'index.html', target: '', cat: 'Portal Page', type: 'page', desc: 'Venkat Insights central hub for jobs, education, govt services & tools' },
+                { id: 'page-gov', title: 'Government Services Portal', page: 'governmentservices/governmentservices.html', target: '', cat: 'Portal Page', type: 'page', desc: 'Telangana & National citizen services, Aadhaar, PAN, Passport, Ration' },
+                { id: 'page-edu', title: 'Education & Entrance Exams Portal', page: 'education/education.html', target: '', cat: 'Portal Page', type: 'page', desc: 'TS EAMCET, LAWCET, ICET, POLYCET, GATE 2027, results & scholarships' },
+                { id: 'page-career', title: 'Career & Govt Jobs Dashboard', page: 'career/career.html', target: '', cat: 'Portal Page', type: 'page', desc: 'Railway RRB, Banking IBPS/SBI, SSC, UPSC, Defence recruitment notifications' },
+                { id: 'page-ai', title: '80+ Best AI Tools Directory', page: 'aitools.html', target: '', cat: 'Portal Page', type: 'page', desc: 'Curated directory of top AI tools across text, image, video, audio and code' },
+                { id: 'page-tools', title: 'Online Student & Applicant Tools', page: 'tools.html', target: '', cat: 'Portal Page', type: 'page', desc: 'Exam age calculator, CGPA to percentage converter, word counter' },
+                { id: 'page-news', title: 'News, Articles & Daily ePapers', page: 'Newsandarticles/newsandarticles.html', target: '', cat: 'Portal Page', type: 'page', desc: 'Eenadu, Sakshi, The Hindu, Times of India daily digital papers' },
+                { id: 'page-about', title: 'About Venkat Insights & Developer', page: 'about.html', target: '', cat: 'Portal Page', type: 'page', desc: 'Mission, vision, developer profile (Venkatesh Kothapally) and contact info' }
+            ];
+            importantPages.forEach(p => harvested.push(p));
+
+            // 8. Live DOM crawling on active page for dynamic & custom user cards
             try {
                 const domCards = document.querySelectorAll(
                     '.service-card, .tool-widget-card, .tool-card, .newspaper-card, .article-feed-card, .featured-card, [data-target], [data-id]'
@@ -446,27 +601,30 @@
                 const curCat = getPageDefaultCategory();
 
                 domCards.forEach(el => {
-                    const targetId = el.id || el.getAttribute('data-target') || el.getAttribute('data-id');
-                    if (!targetId) return;
-
                     const titleEl = el.querySelector('h1, h2, h3, h4, .card-title, .post-title, .newspaper-name, strong');
                     const title = titleEl ? titleEl.textContent.trim() : '';
                     if (!title || title.length < 2) return;
 
+                    let targetId = el.id || el.getAttribute('data-target') || el.getAttribute('data-id');
+                    if (!targetId) {
+                        targetId = `svc-auto-${title.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
+                        el.id = targetId;
+                        el.setAttribute('data-target', targetId);
+                    }
+
                     const descEl = el.querySelector('.card-desc, p, .subtext, .newspaper-body p, .article-feed-excerpt');
                     const desc = descEl ? descEl.textContent.trim() : '';
 
-                    const tagEl = el.querySelector('.badge, .tag, .cat, .category, .newspaper-badge');
+                    const tagEl = el.querySelector('.badge, .tag, .cat, .category, .newspaper-badge, .card-cat-badge');
                     const cat = tagEl ? tagEl.textContent.trim() : curCat;
 
-                    const itemId = targetId.startsWith('svc-') || targetId.startsWith('tool-') || targetId.startsWith('cat-') ? targetId : `dom-${targetId}`;
-
                     harvested.push({
-                        id: itemId,
+                        id: targetId.startsWith('svc-') || targetId.startsWith('tool-') || targetId.startsWith('cat-') ? targetId : `dom-${targetId}`,
                         title: title,
                         cat: cat || curCat,
                         page: curPage,
                         target: targetId,
+                        type: el.classList.contains('tool-card') || el.classList.contains('tool-widget-card') ? 'tool' : 'service',
                         desc: desc
                     });
                 });
@@ -477,59 +635,107 @@
             }
         },
 
-        query: function (q, maxResults = 12) {
+        query: function (q, maxResults = 14) {
             this.autoHarvest();
             if (!q || !q.trim()) return [];
-            const term = q.toLowerCase().trim().replace(/adhar/g, 'aadhaar');
+
+            const rawTerm = q.trim();
+            const term = rawTerm.toLowerCase().replace(/adhar/g, 'aadhaar');
             const words = term.split(/\s+/).filter(Boolean);
 
-            // Live On-Search Addition: Scan active DOM for matching unindexed text elements
-            try {
-                const matchingElements = document.querySelectorAll('article, .card, .service-card, .tool-widget-card, .portal-card, .job-section-block tr, h2, h3');
-                const newFound = [];
-                matchingElements.forEach(el => {
-                    const text = el.textContent || '';
-                    if (text.toLowerCase().includes(term)) {
-                        const targetId = el.id || el.getAttribute('data-target') || el.getAttribute('data-id');
-                        if (targetId && !this._indexedIds.has(targetId) && !this._indexedIds.has(`auto-${targetId}`)) {
-                            const heading = el.querySelector('h1,h2,h3,h4,strong,.card-title,.title');
-                            const title = heading ? heading.textContent.trim() : text.trim().slice(0, 60);
-                            const desc = (el.querySelector('p,.subtext,.desc') || el).textContent.trim().slice(0, 140);
-                            newFound.push({
-                                id: `auto-${targetId}`,
-                                title: title,
-                                cat: getPageDefaultCategory(),
-                                page: getRelativePagePath(),
-                                target: targetId,
-                                desc: desc
-                            });
+            const scored = [];
+
+            this.index.forEach(item => {
+                if (!item || !item.title) return;
+
+                const title = String(item.title).toLowerCase().replace(/adhar/g, 'aadhaar');
+                const cat = String(item.cat || '').toLowerCase().replace(/adhar/g, 'aadhaar');
+                const desc = String(item.desc || '').toLowerCase().replace(/adhar/g, 'aadhaar');
+                const tags = Array.isArray(item.tags) ? item.tags.map(t => String(t).toLowerCase()) : [];
+                const itemType = item.type || (item.id && item.id.startsWith('cat-') ? 'category' : (item.id && item.id.startsWith('tool-') ? 'tool' : (item.id && item.id.startsWith('page-') ? 'page' : 'service')));
+
+                let score = 0;
+
+                // Priority 1: Exact service/category/page name match
+                if (title === term) {
+                    score += 650;
+                }
+                // Priority 2: Title starts with exact query (prefix match)
+                else if (title.startsWith(term)) {
+                    score += 380;
+                }
+                // Priority 3: Word in title starts with query (prefix match per word)
+                else if (title.split(/\s+/).some(w => w.startsWith(term))) {
+                    score += 260;
+                }
+                // Priority 4: Partial title match
+                else if (title.includes(term)) {
+                    score += 180;
+                }
+
+                // Priority 5: Category match
+                if (cat === term) {
+                    score += 240;
+                } else if (cat.startsWith(term)) {
+                    score += 160;
+                } else if (cat.includes(term)) {
+                    score += 110;
+                }
+
+                // Priority 6: Keyword / Tag match
+                if (tags.some(t => t === term)) {
+                    score += 150;
+                } else if (tags.some(t => t.startsWith(term))) {
+                    score += 110;
+                } else if (tags.some(t => t.includes(term))) {
+                    score += 70;
+                }
+
+                // Priority 7: Description / content match
+                if (desc.includes(term)) {
+                    score += 55;
+                }
+
+                // Multi-word token evaluation
+                if (words.length > 1) {
+                    let allWordsMatch = true;
+                    let tokenScore = 0;
+                    for (const w of words) {
+                        const inTitle = title.includes(w);
+                        const inCat = cat.includes(w);
+                        const inTag = tags.some(t => t.includes(w));
+                        const inDesc = desc.includes(w);
+
+                        if (inTitle) tokenScore += 45;
+                        else if (inCat) tokenScore += 30;
+                        else if (inTag) tokenScore += 25;
+                        else if (inDesc) tokenScore += 15;
+                        else {
+                            allWordsMatch = false;
                         }
                     }
-                });
-                if (newFound.length > 0) {
-                    this.register(newFound, true);
-                }
-            } catch (e) {}
-
-            return this.index
-                .map(item => {
-                    const text = `${item.title} ${item.cat} ${item.desc || ''}`.toLowerCase().replace(/adhar/g, 'aadhaar');
-                    let score = 0;
-                    if (item.title.toLowerCase().startsWith(term)) score += 120;
-                    else if (item.title.toLowerCase().includes(term)) score += 60;
-                    else if (text.includes(term)) score += 30;
-
-                    let allWordsMatch = true;
-                    for (const w of words) {
-                        if (text.includes(w)) score += 12;
-                        else allWordsMatch = false;
+                    if (allWordsMatch) {
+                        score += 160 + tokenScore;
                     }
-                    return { item, score: allWordsMatch ? score : 0 };
-                })
-                .filter(res => res.score > 0)
+                }
+
+                // Boost Categories when query mentions category or matches category term
+                if (itemType === 'category' && (cat.includes(term) || title.includes(term))) {
+                    score += 85;
+                }
+
+                if (score > 0) {
+                    scored.push({ item, score, itemType });
+                }
+            });
+
+            return scored
                 .sort((a, b) => b.score - a.score)
                 .slice(0, maxResults)
-                .map(res => res.item);
+                .map(res => ({
+                    ...res.item,
+                    type: res.itemType
+                }));
         }
     };
 
@@ -549,6 +755,7 @@
 
     // Helper: Build the correct relative link for a target page
     function resolvePageUrl(pagePath) {
+        if (!pagePath) return '';
         const inSub = isInSubfolder();
         const currentPath = window.location.pathname.replace(/\\/g, '/').toLowerCase();
 
@@ -559,7 +766,10 @@
         return inSub ? `../${pagePath}` : `./${pagePath}`;
     }
 
-    function getCatClass(cat) {
+    function getCatClass(cat, type) {
+        if (type === 'category') return 'category-icon';
+        if (type === 'tool') return 'tool';
+        if (type === 'page') return 'page-icon';
         const c = String(cat).toLowerCase();
         if (c.includes('gov')) return 'gov';
         if (c.includes('edu')) return 'edu';
@@ -569,7 +779,10 @@
         return 'news';
     }
 
-    function getCatAbbr(cat) {
+    function getCatAbbr(cat, type) {
+        if (type === 'category') return '📁';
+        if (type === 'tool') return '🧮';
+        if (type === 'page') return '🌐';
         const c = String(cat).toLowerCase();
         if (c.includes('gov')) return 'GOV';
         if (c.includes('edu')) return 'EDU';
@@ -579,11 +792,45 @@
         return 'NEWS';
     }
 
+    function getBadgeHTML(item) {
+        const type = item.type || 'service';
+        if (type === 'category') {
+            return '<span class="search-badge-tag badge-category">CATEGORY</span>';
+        }
+        if (type === 'tool') {
+            return '<span class="search-badge-tag badge-tool">TOOL</span>';
+        }
+        if (type === 'page') {
+            return '<span class="search-badge-tag badge-page">PAGE</span>';
+        }
+        return `<span class="search-badge-tag badge-service">${escapeHtml(getCatAbbr(item.cat))}</span>`;
+    }
+
+    function escapeHtml(str) {
+        if (!str) return '';
+        return String(str)
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#039;');
+    }
+
     function highlightMatch(text, query) {
-        if (!query) return text;
-        const qEscaped = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-        const regex = new RegExp(`(${qEscaped})`, 'gi');
-        return text.replace(regex, '<mark>$1</mark>');
+        if (!text) return '';
+        if (!query || !query.trim()) return escapeHtml(text);
+        const words = query.trim().split(/\s+/).filter(w => w.length > 0)
+            .map(w => w.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
+        if (words.length === 0) return escapeHtml(text);
+        const regex = new RegExp(`(${words.join('|')})`, 'gi');
+        const testRegex = new RegExp(`^(?:${words.join('|')})$`, 'i');
+        const parts = String(text).split(regex);
+        return parts.map(part => {
+            if (testRegex.test(part)) {
+                return `<mark>${escapeHtml(part)}</mark>`;
+            }
+            return escapeHtml(part);
+        }).join('');
     }
 
     // ============================================================
@@ -753,11 +1000,11 @@
                         </div>
                     </a>
                     
-                    <div class="nav-search-box" id="searchBox">
+                    <div class="nav-search-box" id="searchBox" role="combobox" aria-haspopup="listbox" aria-expanded="false" aria-owns="searchDropdown">
                         <svg class="search-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
-                        <input type="text" id="searchInput" placeholder="Search services, jobs, exams, AI tools..." autocomplete="off" aria-label="Search all services">
+                        <input type="text" id="searchInput" placeholder="Search services, jobs, exams, AI tools... (Ctrl+K)" autocomplete="off" aria-label="Search all services, categories and tools" aria-autocomplete="list" aria-controls="searchDropdown">
                         <button class="clear-btn" id="clearSearchBtn" type="button" aria-label="Clear Search">&times;</button>
-                        <div class="search-dropdown" id="searchDropdown" role="listbox"></div>
+                        <div class="search-dropdown" id="searchDropdown" role="listbox" aria-label="Search suggestions"></div>
                     </div>
                     
                     <div class="navbar-actions">
@@ -789,12 +1036,38 @@
     }
 
     // ============================================================
-    // 6. TARGET AUTO-SCROLL & PULSE HIGHLIGHT HANDLER
+    // 6. TARGET AUTO-SCROLL & 3D ANIMATED SERVICE HIGHLIGHT HANDLER
+    // Highlight remains active until user interacts with the card
     // ============================================================
+    let activeHighlightedCard = null;
+    let removeHighlightHandler = null;
+
+    function dismissCurrentHighlight() {
+        if (activeHighlightedCard) {
+            const card = activeHighlightedCard;
+            card.classList.add('vi-highlight-diminish');
+            setTimeout(() => {
+                card.classList.remove('vi-highlight-3d', 'vi-highlight-pulse', 'vi-highlight-diminish');
+            }, 500);
+            if (removeHighlightHandler) {
+                card.removeEventListener('click', removeHighlightHandler);
+                card.removeEventListener('touchstart', removeHighlightHandler);
+                card.removeEventListener('keydown', removeHighlightHandler);
+                document.removeEventListener('click', removeHighlightHandler);
+                removeHighlightHandler = null;
+            }
+            activeHighlightedCard = null;
+        }
+    }
+
     function pulseAndScrollToElement(el) {
         if (!el) return;
-        // Clean up any previously pulsing elements across the page
-        document.querySelectorAll('.vi-highlight-pulse').forEach(n => n.classList.remove('vi-highlight-pulse'));
+
+        // Clean up any previously pulsing or 3D highlighted elements
+        dismissCurrentHighlight();
+        document.querySelectorAll('.vi-highlight-3d, .vi-highlight-pulse, .vi-highlight-diminish').forEach(n => {
+            n.classList.remove('vi-highlight-3d', 'vi-highlight-pulse', 'vi-highlight-diminish');
+        });
 
         // If element is inside a collapsed section or requires category tab switch, try to make visible
         if (el.style.display === 'none') {
@@ -811,16 +1084,38 @@
             behavior: 'smooth'
         });
 
-        // Trigger pulse highlight
+        // Trigger 3D highlight effect
         void el.offsetWidth;
-        el.classList.add('vi-highlight-pulse');
+        el.classList.add('vi-highlight-3d');
+        activeHighlightedCard = el;
 
+        // Interactive dismissal: stays active until the user clicks, taps, or engages with the card
+        removeHighlightHandler = function () {
+            dismissCurrentHighlight();
+        };
+
+        // Attach listeners after brief delay so current click event doesn't prematurely trigger dismissal
         setTimeout(() => {
-            el.classList.remove('vi-highlight-pulse');
-        }, 3200);
+            if (activeHighlightedCard === el) {
+                el.addEventListener('click', removeHighlightHandler, { once: true });
+                el.addEventListener('touchstart', removeHighlightHandler, { passive: true, once: true });
+                el.addEventListener('keydown', removeHighlightHandler, { once: true });
+                // Also smoothly dismiss if user clicks anywhere else on the document
+                const outsideDismiss = function (evt) {
+                    if (!el.contains(evt.target)) {
+                        dismissCurrentHighlight();
+                        document.removeEventListener('click', outsideDismiss);
+                    }
+                };
+                setTimeout(() => {
+                    document.addEventListener('click', outsideDismiss, { once: true });
+                }, 400);
+            }
+        }, 300);
     }
 
     window.pulseAndScrollToElement = pulseAndScrollToElement;
+    window.dismissCurrentHighlight = dismissCurrentHighlight;
 
     // Check query params for deep-link targets (e.g. ?target=svc-gov-aadhaar or #svc-gov-aadhaar)
     function checkUrlTarget() {
@@ -965,6 +1260,7 @@
     }
 
     function handleSearchInput() {
+        const searchBox = document.getElementById('searchBox');
         const searchInput = document.getElementById('searchInput');
         const clearBtn = document.getElementById('clearSearchBtn');
         const dropdown = document.getElementById('searchDropdown');
@@ -983,50 +1279,57 @@
 
         if (trimmed.length === 0) {
             renderRecentAndQuickSearches();
+            if (searchBox) searchBox.setAttribute('aria-expanded', 'false');
             return;
         }
 
         const results = window.VI_SEARCH.query(trimmed, 14);
         highlightedIndex = -1;
+        searchInput.removeAttribute('aria-activedescendant');
 
         if (results.length === 0) {
             dropdown.innerHTML = `
                 <div class="search-no-results">
-                    No matching services found for "<strong>${trimmed.replace(/[<>&"]/g, '')}</strong>".<br>
-                    <small style="color: var(--vi-text-muted, #64748b); margin-top: 4px; display: inline-block;">Try searching for Aadhaar, PAN, EAMCET, Railway, or AI tools.</small>
+                    No matching services found for "<strong>${escapeHtml(trimmed)}</strong>".
+                    <div class="search-no-results-hint">Try searching for Aadhaar, PAN, EAMCET, Railway, or AI tools.</div>
                 </div>
             `;
             dropdown.classList.add('active');
+            if (searchBox) searchBox.setAttribute('aria-expanded', 'true');
             return;
         }
 
         // Group results by category
         const grouped = {};
         results.forEach(r => {
-            if (!grouped[r.cat]) grouped[r.cat] = [];
-            grouped[r.cat].push(r);
+            const catName = r.cat || 'General';
+            if (!grouped[catName]) grouped[catName] = [];
+            grouped[catName].push(r);
         });
 
         let html = '';
         let globalIdx = 0;
 
         for (const cat in grouped) {
-            html += `<div class="search-cat-header">${cat}</div>`;
+            html += `<div class="search-cat-header">${escapeHtml(cat)}</div>`;
             grouped[cat].forEach(item => {
                 const pageUrl = resolvePageUrl(item.page);
                 const isCurrent = pageUrl === '';
-                const href = isCurrent ? `#${item.target}` : `${pageUrl}?target=${item.target}`;
-                const iconClass = getCatClass(item.cat);
-                const iconText = getCatAbbr(item.cat);
+                const href = isCurrent ? `#${item.target}` : `${pageUrl}?target=${encodeURIComponent(item.target)}`;
+                const iconClass = getCatClass(item.cat, item.type);
+                const iconText = getCatAbbr(item.cat, item.type);
+                const badgeHtml = getBadgeHTML(item);
+                const optId = `search-opt-${globalIdx}`;
+                const subDesc = item.desc || (item.type === 'category' ? `Explore all ${item.title} services` : item.cat);
 
                 html += `
-                    <a href="${href}" class="search-result-item" data-index="${globalIdx}" data-target="${item.target}" data-current="${isCurrent}">
+                    <a href="${href}" class="search-result-item" id="${optId}" role="option" aria-selected="false" data-index="${globalIdx}" data-target="${escapeHtml(item.target)}" data-current="${isCurrent}">
                         <div class="search-res-icon ${iconClass}">${iconText}</div>
                         <div class="search-res-content">
                             <div class="search-res-title">${highlightMatch(item.title, trimmed)}</div>
-                            <div class="search-res-sub">${item.desc ? highlightMatch(item.desc, trimmed) : item.cat}</div>
+                            <div class="search-res-sub">${highlightMatch(subDesc, trimmed)}</div>
                         </div>
-                        <span class="search-badge-tag">${item.cat}</span>
+                        ${badgeHtml}
                     </a>
                 `;
                 globalIdx++;
@@ -1035,6 +1338,7 @@
 
         dropdown.innerHTML = html;
         dropdown.classList.add('active');
+        if (searchBox) searchBox.setAttribute('aria-expanded', 'true');
 
         // Attach click interceptors for items on the current page
         dropdown.querySelectorAll('.search-result-item').forEach(el => {
@@ -1047,9 +1351,10 @@
                 if (isCur && target) {
                     e.preventDefault();
                     dropdown.classList.remove('active');
+                    if (searchBox) searchBox.setAttribute('aria-expanded', 'false');
 
-                    // Clear any lingering pulse animations across the entire page
-                    document.querySelectorAll('.vi-highlight-pulse').forEach(n => n.classList.remove('vi-highlight-pulse'));
+                    // Dismiss any existing highlight
+                    dismissCurrentHighlight();
 
                     // If target is handled by a page resolver, delegate to it
                     let handled = false;
@@ -1072,6 +1377,7 @@
     }
 
     function handleSearchKeydown(e) {
+        const searchBox = document.getElementById('searchBox');
         const searchInput = document.getElementById('searchInput');
         const dropdown = document.getElementById('searchDropdown');
         if (!dropdown || !dropdown.classList.contains('active')) return;
@@ -1082,13 +1388,13 @@
             if (items.length > 0) {
                 e.preventDefault();
                 highlightedIndex = (highlightedIndex + 1) % items.length;
-                updateSearchHighlight(items);
+                updateSearchHighlight(items, searchInput);
             }
         } else if (e.key === 'ArrowUp') {
             if (items.length > 0) {
                 e.preventDefault();
                 highlightedIndex = (highlightedIndex - 1 + items.length) % items.length;
-                updateSearchHighlight(items);
+                updateSearchHighlight(items, searchInput);
             }
         } else if (e.key === 'Enter') {
             if (searchInput && searchInput.value.trim()) {
@@ -1103,14 +1409,23 @@
             }
         } else if (e.key === 'Escape') {
             dropdown.classList.remove('active');
+            if (searchBox) searchBox.setAttribute('aria-expanded', 'false');
+            if (searchInput) searchInput.removeAttribute('aria-activedescendant');
             highlightedIndex = -1;
         }
     }
 
-    function updateSearchHighlight(items) {
+    function updateSearchHighlight(items, searchInput) {
         items.forEach((it, idx) => {
-            it.classList.toggle('highlighted', idx === highlightedIndex);
-            if (idx === highlightedIndex) it.scrollIntoView({ block: 'nearest' });
+            const isHl = idx === highlightedIndex;
+            it.classList.toggle('highlighted', isHl);
+            it.setAttribute('aria-selected', isHl ? 'true' : 'false');
+            if (isHl) {
+                it.scrollIntoView({ block: 'nearest' });
+                if (searchInput && it.id) {
+                    searchInput.setAttribute('aria-activedescendant', it.id);
+                }
+            }
         });
     }
 
@@ -1176,6 +1491,20 @@
             const searchBox = document.getElementById('searchBox');
             if (searchBox && !searchBox.contains(e.target)) {
                 if (dropdown) dropdown.classList.remove('active');
+                searchBox.setAttribute('aria-expanded', 'false');
+                if (searchInput) searchInput.removeAttribute('aria-activedescendant');
+            }
+        });
+
+        // Global keyboard shortcut: Ctrl+K / Cmd+K to focus universal search
+        window.addEventListener('keydown', (e) => {
+            if ((e.ctrlKey || e.metaKey) && (e.key === 'k' || e.key === 'K')) {
+                const sInput = document.getElementById('searchInput');
+                if (sInput) {
+                    e.preventDefault();
+                    sInput.focus();
+                    sInput.select();
+                }
             }
         });
 
