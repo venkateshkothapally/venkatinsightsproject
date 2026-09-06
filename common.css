@@ -593,60 +593,111 @@ header.navbar > .nav-pills-container { max-width: none; }
 }
 
 /* ============================================================
-   TARGET SERVICE 3D ANIMATED HIGHLIGHT & GLOW
-   Stays active until user interacts, with 3D elevation & ambient gradient aura
+   TARGET SERVICE HIGHLIGHT & GLOW
+   Animates STRICTLY on the OUTSIDE of the card using outer box-shadow.
+   Inside of the card is 100% static and completely untouched.
    ============================================================ */
 .vi-highlight-3d,
 .vi-highlight-pulse {
     position: relative !important;
     z-index: 60 !important;
-    transform: translateY(-8px) scale(1.025) translateZ(0) !important;
-    border-radius: var(--radius-lg, 16px) !important;
-    box-shadow: 
-        0 0 0 3px var(--vi-primary, #4f46e5),
-        0 0 28px 6px rgba(99, 102, 241, 0.55),
-        0 24px 48px -10px rgba(15, 23, 42, 0.4) !important;
-    animation: vi3dGradientGlow 2.4s ease-in-out infinite alternate !important;
-    transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.45s cubic-bezier(0.2, 0.8, 0.2, 1) !important;
+    transform: none !important; /* Zero movement/scaling of card */
+    animation: viOutsideGradientGlow 3.2s ease-in-out infinite alternate !important;
+    transition: box-shadow 0.35s ease !important;
 }
 
-/* Dark Mode 3D Glow tuning */
+/* Ensure no pseudo-elements sit on top of or leak into the card */
+.vi-highlight-3d::before,
+.vi-highlight-pulse::before,
+.vi-highlight-3d::after,
+.vi-highlight-pulse::after {
+    display: none !important;
+    content: none !important;
+}
+
+/* 1px and 2px crisp gradient outline & glow strictly on the OUTSIDE of the card */
+@keyframes viOutsideGradientGlow {
+    0% {
+        box-shadow: 
+            0 0 0 1px rgba(79, 70, 229, 0.95),   /* 1px Indigo */
+            0 0 0 2px rgba(147, 51, 234, 0.85),  /* 2px Purple */
+            0 0 16px 3px rgba(99, 102, 241, 0.35); /* Soft outside aura */
+    }
+    25% {
+        box-shadow: 
+            0 0 0 1px rgba(147, 51, 234, 0.95),  /* 1px Purple */
+            0 0 0 2px rgba(236, 72, 153, 0.85),  /* 2px Rose */
+            0 0 20px 4px rgba(168, 85, 247, 0.55);
+    }
+    50% {
+        box-shadow: 
+            0 0 0 1px rgba(236, 72, 153, 0.95),  /* 1px Rose */
+            0 0 0 2px rgba(6, 182, 212, 0.85),   /* 2px Cyan */
+            0 0 22px 5px rgba(236, 72, 153, 0.60);
+    }
+    75% {
+        box-shadow: 
+            0 0 0 1px rgba(6, 182, 212, 0.95),   /* 1px Cyan */
+            0 0 0 2px rgba(16, 185, 129, 0.85),  /* 2px Emerald */
+            0 0 20px 4px rgba(6, 182, 212, 0.55);
+    }
+    100% {
+        box-shadow: 
+            0 0 0 1px rgba(16, 185, 129, 0.95),  /* 1px Emerald */
+            0 0 0 2px rgba(79, 70, 229, 0.85),   /* 2px Indigo */
+            0 0 16px 3px rgba(16, 185, 129, 0.35);
+    }
+}
+
+/* Dark mode outside glow tuning */
 [data-theme="dark"] .vi-highlight-3d,
 [data-theme="dark"] .vi-highlight-pulse,
 .dark .vi-highlight-3d,
 .dark .vi-highlight-pulse {
-    box-shadow: 
-        0 0 0 3px #818cf8,
-        0 0 36px 8px rgba(129, 140, 248, 0.65),
-        0 28px 56px -12px rgba(0, 0, 0, 0.85) !important;
+    animation: viOutsideGradientGlowDark 3.2s ease-in-out infinite alternate !important;
 }
 
-@keyframes vi3dGradientGlow {
+@keyframes viOutsideGradientGlowDark {
     0% {
         box-shadow: 
-            0 0 0 3px #4f46e5,
-            0 0 20px 4px rgba(79, 70, 229, 0.5),
-            0 20px 40px -10px rgba(15, 23, 42, 0.35);
+            0 0 0 1px rgba(129, 140, 248, 0.95),
+            0 0 0 2px rgba(192, 132, 252, 0.85),
+            0 0 20px 3px rgba(129, 140, 248, 0.45);
     }
     50% {
         box-shadow: 
-            0 0 0 3.5px #7c3aed,
-            0 0 32px 8px rgba(124, 58, 237, 0.6),
-            0 25px 50px -10px rgba(15, 23, 42, 0.45);
+            0 0 0 1px rgba(244, 114, 182, 0.95),
+            0 0 0 2px rgba(34, 211, 238, 0.85),
+            0 0 24px 4px rgba(244, 114, 182, 0.55);
     }
     100% {
         box-shadow: 
-            0 0 0 3px #06b6d4,
-            0 0 24px 6px rgba(6, 182, 212, 0.55),
-            0 22px 45px -10px rgba(15, 23, 42, 0.38);
+            0 0 0 1px rgba(52, 211, 153, 0.95),
+            0 0 0 2px rgba(129, 140, 248, 0.85),
+            0 0 20px 3px rgba(52, 211, 153, 0.45);
     }
+}
+
+/* Table row highlight for career jobs (borders only, zero inside background animation) */
+tr.vi-highlight-3d td,
+tr.vi-highlight-pulse td {
+    border-top: 2px solid #7c3aed !important;
+    border-bottom: 2px solid #06b6d4 !important;
+}
+tr.vi-highlight-3d td:first-child,
+tr.vi-highlight-pulse td:first-child {
+    border-left: 2px solid #7c3aed !important;
+}
+tr.vi-highlight-3d td:last-child,
+tr.vi-highlight-pulse td:last-child {
+    border-right: 2px solid #06b6d4 !important;
 }
 
 /* Graceful dismissal transition when user interacts */
 .vi-highlight-diminish {
-    transform: translateY(0) scale(1) translateZ(0) !important;
+    transform: none !important;
     box-shadow: var(--vi-shadow, 0 4px 20px rgba(0,0,0,0.04)) !important;
-    transition: transform 0.4s ease, box-shadow 0.4s ease !important;
+    transition: box-shadow 0.35s ease !important;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -654,8 +705,7 @@ header.navbar > .nav-pills-container { max-width: none; }
     .vi-highlight-pulse {
         animation: none !important;
         transform: none !important;
-        outline: 3px solid var(--vi-primary, #4f46e5) !important;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25) !important;
+        box-shadow: 0 0 0 1px #4f46e5, 0 0 0 2px #7c3aed, 0 4px 16px rgba(0, 0, 0, 0.15) !important;
     }
 }
 

@@ -675,11 +675,12 @@
                            el.getAttribute('data-target') === `svc-edu-${sid}` ||
                            el.getAttribute('data-target') === target
                          );
+          if (typeof closeModal === 'function') {
+            closeModal();
+          }
           if (cardEl && typeof window.pulseAndScrollToElement === 'function') {
             window.pulseAndScrollToElement(cardEl);
           }
-          // Pop open the service details modal
-          openModal(match);
         }, 300);
         return;
       }

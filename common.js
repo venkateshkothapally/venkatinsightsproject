@@ -1074,13 +1074,28 @@
             el.style.display = '';
         }
 
-        // Calculate offset to account for sticky header & ticker
-        const headerOffset = 115;
-        const elementPosition = el.getBoundingClientRect().top;
-        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+        // Dynamically compute sticky header + ticker height
+        const header = document.getElementById('navbarWrapper') || document.querySelector('header.navbar-wrapper') || document.querySelector('header');
+        const headerHeight = header ? (header.getBoundingClientRect().height || header.offsetHeight) : 145;
+
+        // Viewport visible space below the sticky header & ticker
+        const viewportHeight = window.innerHeight || (document.documentElement ? document.documentElement.clientHeight : 800);
+        const visibleHeightBelowHeader = Math.max(200, viewportHeight - headerHeight);
+        const cardRect = el.getBoundingClientRect();
+        const cardHeight = cardRect.height || 180;
+
+        let targetScrollTop;
+        if (cardHeight < visibleHeightBelowHeader * 0.75) {
+            // Position the service card comfortably centered in the visible window below the header
+            const centerSpacing = Math.max(35, (visibleHeightBelowHeader - cardHeight) / 2);
+            targetScrollTop = cardRect.top + window.pageYOffset - (headerHeight + centerSpacing);
+        } else {
+            // For taller cards or groups, provide generous 45px breathing room below the ticker
+            targetScrollTop = cardRect.top + window.pageYOffset - (headerHeight + 45);
+        }
 
         window.scrollTo({
-            top: Math.max(0, offsetPosition),
+            top: Math.max(0, Math.round(targetScrollTop)),
             behavior: 'smooth'
         });
 
