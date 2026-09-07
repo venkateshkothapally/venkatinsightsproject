@@ -120,6 +120,14 @@
     // ============================================================
     // High-coverage built-in index across Govt Services, Education, Career, AI Tools & News
     const DEFAULT_SEARCH_INDEX = [
+        // --- Portal Landing Pages ---
+        { id: 'page-gov', title: 'Government Services Portal', cat: 'Government Services', page: 'governmentservices/governmentservices.html', target: 'top', type: 'page', desc: 'Browse all 20+ Govt categories, Aadhaar, PAN, Passport, Ration, Transport, Land records', tags: ['government', 'govt', 'services', 'portal', 'meeseva', 'telangana', 'schemes'] },
+        { id: 'page-edu', title: 'Education & Entrance Exams Portal', cat: 'Education', page: 'education/education.html', target: 'top', type: 'page', desc: 'Telangana & National entrance tests, EAMCET, admissions, results, hall tickets, scholarships', tags: ['education', 'exams', 'entrance', 'eamcet', 'admissions', 'results', 'hall tickets'] },
+        { id: 'page-career', title: 'Career & Govt Jobs Dashboard', cat: 'Career', page: 'career/career.html', target: 'top', type: 'page', desc: 'Latest central & state job recruitment, Railway RRB NTPC, SSC, Banking, Police, Defence', tags: ['career', 'jobs', 'govt jobs', 'recruitment', 'railway', 'ssc', 'banking', 'rrb'] },
+        { id: 'page-ai', title: '80+ Best AI Tools Directory', cat: '80+ AI Tools', page: 'aitools.html', target: 'top', type: 'page', desc: 'Curated directory of 80+ AI tools, ChatGPT, Claude, Midjourney, Manus, video & image AI', tags: ['ai', 'ai tools', '80+ ai tools', 'artificial intelligence', 'chatgpt', 'claude', 'agents'] },
+        { id: 'page-news', title: 'Newspapers & Articles Portal', cat: 'News & Articles', page: 'Newsandarticles/newsandarticles.html', target: 'top', type: 'page', desc: 'Read Telugu & English daily ePapers, Eenadu, Sakshi, The Hindu, Times of India', tags: ['newspapers', 'epaper', 'news', 'articles', 'eenadu', 'sakshi', 'hindu'] },
+        { id: 'page-tools', title: 'Online Calculators & Tools', cat: 'Tools', page: 'tools.html', target: 'top', type: 'page', desc: 'Student & applicant utility tools, Exam age calculator, CGPA converter, word counter', tags: ['tools', 'calculators', 'calculator', 'age calculator', 'cgpa converter', 'word counter'] },
+
         // --- Government Services Categories & Portals ---
         { id: 'cat-gov-aadhaar', title: 'Aadhaar Services (All Services)', cat: 'Government Services', page: 'governmentservices/governmentservices.html', target: 'cat-aadhaar', desc: 'UIDAI, My Aadhaar, Download e-Aadhaar, Check Status, Lock/Unlock' },
         { id: 'cat-gov-pan', title: 'PAN Services (All Services)', cat: 'Government Services', page: 'governmentservices/governmentservices.html', target: 'cat-pan', desc: 'Apply New PAN, Download e-PAN, Reprint PAN, PAN Status Track' },
@@ -643,6 +651,32 @@
             const term = rawTerm.toLowerCase().replace(/adhar/g, 'aadhaar');
             const words = term.split(/\s+/).filter(Boolean);
 
+            const SYNONYMS = {
+                'job': ['career', 'recruitment', 'vacancy', 'vacancies', 'post', 'posts', 'rrb', 'ssc', 'ibps'],
+                'jobs': ['career', 'recruitment', 'vacancy', 'vacancies', 'post', 'posts', 'rrb', 'ssc', 'ibps'],
+                'career': ['jobs', 'job', 'recruitment', 'vacancy', 'rrb', 'ntpc', 'ssc', 'ibps'],
+                'newspaper': ['epaper', 'news', 'articles', 'eenadu', 'sakshi', 'hindu', 'times of india'],
+                'newspapers': ['epaper', 'news', 'articles', 'eenadu', 'sakshi', 'hindu', 'times of india'],
+                'epaper': ['newspaper', 'newspapers', 'news', 'daily', 'eenadu', 'sakshi'],
+                'epapers': ['newspaper', 'newspapers', 'news', 'daily', 'eenadu', 'sakshi'],
+                'calculator': ['calculators', 'tool', 'tools', 'cgpa', 'age', 'counter'],
+                'calculators': ['calculator', 'tool', 'tools', 'cgpa', 'age', 'counter'],
+                'tool': ['tools', 'calculator', 'calculators', 'converter', 'counter'],
+                'tools': ['tool', 'calculator', 'calculators', 'converter', 'counter'],
+                'entrance': ['entrance exams', 'exam', 'exams', 'eamcet', 'lawcet', 'ecet', 'polycet', 'admissions'],
+                'exams': ['exam', 'entrance', 'eamcet', 'lawcet', 'ecet', 'polycet', 'admissions'],
+                'exam': ['exams', 'entrance', 'eamcet', 'lawcet', 'ecet', 'polycet', 'admissions'],
+                'education': ['entrance', 'exams', 'admissions', 'counselling', 'results', 'scholarships', 'degree'],
+                'govt': ['government', 'services', 'aadhaar', 'pan', 'passport', 'ration', 'rta'],
+                'government': ['govt', 'services', 'aadhaar', 'pan', 'passport', 'ration', 'rta'],
+                'government services': ['govt', 'services', 'aadhaar', 'pan', 'passport', 'ration', 'transport', 'health', 'electricity'],
+                'ai': ['80+ ai tools', 'chatgpt', 'claude', 'midjourney', 'manus', 'flux', 'runway', 'elevenlabs', 'ai tools'],
+                'ai tools': ['80+ ai tools', 'chatgpt', 'claude', 'midjourney', 'manus', 'flux', 'runway', 'elevenlabs', 'ai'],
+                '80+ ai tools': ['ai tools', 'ai', 'chatgpt', 'claude', 'midjourney', 'manus', 'flux', 'runway']
+            };
+
+            const synonyms = SYNONYMS[term] || [];
+
             const scored = [];
 
             this.index.forEach(item => {
@@ -658,42 +692,52 @@
 
                 // Priority 1: Exact service/category/page name match
                 if (title === term) {
-                    score += 650;
+                    score += 700;
                 }
                 // Priority 2: Title starts with exact query (prefix match)
                 else if (title.startsWith(term)) {
-                    score += 380;
+                    score += 400;
                 }
                 // Priority 3: Word in title starts with query (prefix match per word)
                 else if (title.split(/\s+/).some(w => w.startsWith(term))) {
-                    score += 260;
+                    score += 280;
                 }
                 // Priority 4: Partial title match
                 else if (title.includes(term)) {
-                    score += 180;
+                    score += 200;
                 }
 
                 // Priority 5: Category match
                 if (cat === term) {
-                    score += 240;
+                    score += 280;
                 } else if (cat.startsWith(term)) {
-                    score += 160;
+                    score += 180;
                 } else if (cat.includes(term)) {
-                    score += 110;
+                    score += 130;
                 }
 
                 // Priority 6: Keyword / Tag match
                 if (tags.some(t => t === term)) {
-                    score += 150;
+                    score += 180;
                 } else if (tags.some(t => t.startsWith(term))) {
-                    score += 110;
+                    score += 120;
                 } else if (tags.some(t => t.includes(term))) {
-                    score += 70;
+                    score += 80;
                 }
 
                 // Priority 7: Description / content match
                 if (desc.includes(term)) {
-                    score += 55;
+                    score += 60;
+                }
+
+                // Priority 8: Synonyms matching
+                if (synonyms.length > 0) {
+                    for (const syn of synonyms) {
+                        if (title.includes(syn)) score += 120;
+                        else if (cat.includes(syn)) score += 90;
+                        else if (tags.some(t => t.includes(syn))) score += 70;
+                        else if (desc.includes(syn)) score += 45;
+                    }
                 }
 
                 // Multi-word token evaluation
@@ -715,13 +759,13 @@
                         }
                     }
                     if (allWordsMatch) {
-                        score += 160 + tokenScore;
+                        score += 180 + tokenScore;
                     }
                 }
 
-                // Boost Categories when query mentions category or matches category term
-                if (itemType === 'category' && (cat.includes(term) || title.includes(term))) {
-                    score += 85;
+                // Boost Categories & Pages when query matches category term or synonym
+                if ((itemType === 'category' || itemType === 'page') && (cat.includes(term) || title.includes(term) || synonyms.some(s => title.includes(s) || cat.includes(s)))) {
+                    score += 150;
                 }
 
                 if (score > 0) {
@@ -1037,18 +1081,23 @@
 
     // ============================================================
     // 6. TARGET AUTO-SCROLL & 3D ANIMATED SERVICE HIGHLIGHT HANDLER
-    // Highlight remains active until user interacts with the card
+    // Highlight animates for 5 seconds, positioned cleanly below ticker
     // ============================================================
     let activeHighlightedCard = null;
     let removeHighlightHandler = null;
+    let highlightTimeout = null;
 
     function dismissCurrentHighlight() {
+        if (highlightTimeout) {
+            clearTimeout(highlightTimeout);
+            highlightTimeout = null;
+        }
         if (activeHighlightedCard) {
             const card = activeHighlightedCard;
             card.classList.add('vi-highlight-diminish');
             setTimeout(() => {
                 card.classList.remove('vi-highlight-3d', 'vi-highlight-pulse', 'vi-highlight-diminish');
-            }, 500);
+            }, 800);
             if (removeHighlightHandler) {
                 card.removeEventListener('click', removeHighlightHandler);
                 card.removeEventListener('touchstart', removeHighlightHandler);
@@ -1074,59 +1123,57 @@
             el.style.display = '';
         }
 
-        // Dynamically compute sticky header + ticker height
-        const header = document.getElementById('navbarWrapper') || document.querySelector('header.navbar-wrapper') || document.querySelector('header');
-        const headerHeight = header ? (header.getBoundingClientRect().height || header.offsetHeight) : 145;
+        const executeScrollAndPulse = () => {
+            // Dynamically compute sticky header + ticker height
+            const header = document.getElementById('navbarWrapper') || document.querySelector('header.navbar-wrapper') || document.querySelector('header');
+            const headerHeight = header ? (header.getBoundingClientRect().height || header.offsetHeight) : 145;
 
-        // Viewport visible space below the sticky header & ticker
-        const viewportHeight = window.innerHeight || (document.documentElement ? document.documentElement.clientHeight : 800);
-        const visibleHeightBelowHeader = Math.max(200, viewportHeight - headerHeight);
-        const cardRect = el.getBoundingClientRect();
-        const cardHeight = cardRect.height || 180;
+            const cardRect = el.getBoundingClientRect();
+            // Position the service card cleanly max top right below the ticker with 16px comfortable breathing room
+            const targetScrollTop = Math.max(0, Math.round(cardRect.top + window.pageYOffset - (headerHeight + 16)));
 
-        let targetScrollTop;
-        if (cardHeight < visibleHeightBelowHeader * 0.75) {
-            // Position the service card comfortably centered in the visible window below the header
-            const centerSpacing = Math.max(35, (visibleHeightBelowHeader - cardHeight) / 2);
-            targetScrollTop = cardRect.top + window.pageYOffset - (headerHeight + centerSpacing);
-        } else {
-            // For taller cards or groups, provide generous 45px breathing room below the ticker
-            targetScrollTop = cardRect.top + window.pageYOffset - (headerHeight + 45);
-        }
+            window.scrollTo({
+                top: targetScrollTop,
+                behavior: 'smooth'
+            });
 
-        window.scrollTo({
-            top: Math.max(0, Math.round(targetScrollTop)),
-            behavior: 'smooth'
-        });
+            // Trigger 3D outside-only gradient highlight effect (5 seconds)
+            void el.offsetWidth;
+            el.classList.add('vi-highlight-3d');
+            activeHighlightedCard = el;
 
-        // Trigger 3D highlight effect
-        void el.offsetWidth;
-        el.classList.add('vi-highlight-3d');
-        activeHighlightedCard = el;
+            // Auto-dismiss smoothly after exactly 5 seconds
+            if (highlightTimeout) clearTimeout(highlightTimeout);
+            highlightTimeout = setTimeout(() => {
+                dismissCurrentHighlight();
+            }, 5000);
 
-        // Interactive dismissal: stays active until the user clicks, taps, or engages with the card
-        removeHighlightHandler = function () {
-            dismissCurrentHighlight();
+            // Interactive dismissal: stays active up to 5s or until the user clicks, taps, or engages with the card
+            removeHighlightHandler = function () {
+                dismissCurrentHighlight();
+            };
+
+            // Attach listeners after brief delay so current click event doesn't prematurely trigger dismissal
+            setTimeout(() => {
+                if (activeHighlightedCard === el) {
+                    el.addEventListener('click', removeHighlightHandler, { once: true });
+                    el.addEventListener('touchstart', removeHighlightHandler, { passive: true, once: true });
+                    el.addEventListener('keydown', removeHighlightHandler, { once: true });
+                    // Also smoothly dismiss if user clicks anywhere else on the document
+                    const outsideDismiss = function (evt) {
+                        if (!el.contains(evt.target)) {
+                            dismissCurrentHighlight();
+                            document.removeEventListener('click', outsideDismiss);
+                        }
+                    };
+                    setTimeout(() => {
+                        document.addEventListener('click', outsideDismiss, { once: true });
+                    }, 400);
+                }
+            }, 300);
         };
 
-        // Attach listeners after brief delay so current click event doesn't prematurely trigger dismissal
-        setTimeout(() => {
-            if (activeHighlightedCard === el) {
-                el.addEventListener('click', removeHighlightHandler, { once: true });
-                el.addEventListener('touchstart', removeHighlightHandler, { passive: true, once: true });
-                el.addEventListener('keydown', removeHighlightHandler, { once: true });
-                // Also smoothly dismiss if user clicks anywhere else on the document
-                const outsideDismiss = function (evt) {
-                    if (!el.contains(evt.target)) {
-                        dismissCurrentHighlight();
-                        document.removeEventListener('click', outsideDismiss);
-                    }
-                };
-                setTimeout(() => {
-                    document.addEventListener('click', outsideDismiss, { once: true });
-                }, 400);
-            }
-        }, 300);
+        requestAnimationFrame(executeScrollAndPulse);
     }
 
     window.pulseAndScrollToElement = pulseAndScrollToElement;
@@ -1210,23 +1257,59 @@
         }
 
         html += `
-            <div class="search-recent-header">
-                <span>Quick Categories</span>
-            </div>
-            <div class="search-pills-row">
-                <button class="search-pill-btn" type="button" data-fill="Aadhaar">🆔 Aadhaar</button>
-                <button class="search-pill-btn" type="button" data-fill="PAN">💳 PAN</button>
-                <button class="search-pill-btn" type="button" data-fill="Entrance Exams">🎓 Entrance Exams</button>
-                <button class="search-pill-btn" type="button" data-fill="Railway">🚆 Railway Jobs</button>
-                <button class="search-pill-btn" type="button" data-fill="AI Tools">🤖 80+ AI Tools</button>
-                <button class="search-pill-btn" type="button" data-fill="ePaper">📰 ePapers</button>
-                <button class="search-pill-btn" type="button" data-fill="Calculator">🧮 Calculators</button>
-            </div>
-        `;
+    <div class="search-recent-header">
+        <span>Quick Categories</span>
+    </div>
+    <div class="search-pills-row">
+        <!-- Notice we changed data-fill to data-page and data-target -->
+        <button class="search-pill-btn" type="button" data-page="/governmentservices/governmentservices.html?target=cat-aadhaar" data-target="cat-aadhaar">🆔 Aadhaar</button>
+        <button class="search-pill-btn" type="button" data-page="governmentservices/governmentservices.html?target=cat-pan#cat-pan" data-target="cat-pan">💳 PAN Services</button>
+        <button class="search-pill-btn" type="button" data-page="governmentservices/governmentservices.html" data-target="top">🏛️ Govt Services</button>
+        <button class="search-pill-btn" type="button" data-page="education/education.html" data-target="top">🎓 Education &amp; Exams</button>
+        <button class="search-pill-btn" type="button" data-page="career/career.html" data-target="top">💼 Govt Jobs</button>
+        <button class="search-pill-btn" type="button" data-page="career/career.html#cat-railway" data-target="cat-railway">🚆 Railway Jobs</button>
+        <button class="search-pill-btn" type="button" data-page="aitools.html" data-target="top">🤖 80+ AI Tools</button>
+        <button class="search-pill-btn" type="button" data-page="Newsandarticles/newsandarticles.html" data-target="top">📰 Newspapers &amp; ePapers</button>
+        <button class="search-pill-btn" type="button" data-page="tools.html" data-target="top">🧮 Calculators &amp; Tools</button>
+    </div>
+`;
 
-        dropdown.innerHTML = html;
-        dropdown.classList.add('active');
-        highlightedIndex = -1;
+// 1. Inject the HTML and show the dropdown
+dropdown.innerHTML = html;
+dropdown.classList.add('active');
+highlightedIndex = -1;
+
+// 2. Select the newly added buttons inside the dropdown
+const pillButtons = dropdown.querySelectorAll('.search-pill-btn');
+
+// 3. Attach click event listeners for DIRECT NAVIGATION
+pillButtons.forEach(button => {
+    button.addEventListener('click', function(e) {
+        e.preventDefault(); 
+        
+        // Grab the page and the specific ID target from the clicked button
+        const targetPage = this.getAttribute('data-page');
+        const targetHash = this.getAttribute('data-target');
+        
+        // Use the getBasePath() function from your common.js to ensure the link works 
+        // regardless of whether the user is on the home page or inside a subfolder
+        const basePath = (typeof getBasePath === 'function') ? getBasePath() : './';
+        
+        // Construct the final URL
+        let finalUrl = basePath + targetPage;
+        
+        // If it's targeting a specific section (like Aadhaar), append the hash to trigger the deep-link
+        if (targetHash && targetHash !== 'top') {
+            finalUrl += '#' + targetHash; 
+        }
+        
+        // Redirect the browser directly to the service
+        window.location.href = finalUrl;
+        
+        // Optional: Close the search dropdown after clicking
+        dropdown.classList.remove('active');
+    });
+});
 
         // Clear all recent searches
         const clearBtn = document.getElementById('clearRecentSearchesBtn');
@@ -1246,6 +1329,7 @@
                 const searchInput = document.getElementById('searchInput');
                 if (searchInput && q) {
                     searchInput.value = q;
+                    searchInput.focus();
                     handleSearchInput();
                 }
             });
@@ -1261,13 +1345,19 @@
             });
         });
 
-        // Quick category pill click
+        // Quick category pill click: retain focus and trigger instant search
         dropdown.querySelectorAll('.search-pill-btn').forEach(pill => {
-            pill.addEventListener('click', () => {
+            pill.addEventListener('mousedown', (e) => {
+                // Prevent searchInput from blurring when clicking pill
+                e.preventDefault();
+            });
+            pill.addEventListener('click', (e) => {
+                e.preventDefault();
                 const fill = pill.getAttribute('data-fill');
                 const searchInput = document.getElementById('searchInput');
                 if (searchInput && fill) {
                     searchInput.value = fill;
+                    searchInput.focus();
                     handleSearchInput();
                 }
             });

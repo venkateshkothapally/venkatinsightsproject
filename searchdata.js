@@ -1,5 +1,65 @@
 window.VI_MASTER_SEARCH_INDEX = [
   {
+    "id": "page-gov",
+    "title": "Government Services Portal",
+    "cat": "Government Services",
+    "page": "governmentservices/governmentservices.html",
+    "target": "top",
+    "type": "page",
+    "desc": "Browse all 20+ Govt categories, Aadhaar, PAN, Passport, Ration, Transport, Land records",
+    "tags": ["government", "govt", "services", "portal", "meeseva", "telangana", "schemes"]
+  },
+  {
+    "id": "page-edu",
+    "title": "Education & Entrance Exams Portal",
+    "cat": "Education",
+    "page": "education/education.html",
+    "target": "top",
+    "type": "page",
+    "desc": "Telangana & National entrance tests, EAMCET, admissions, results, hall tickets, scholarships",
+    "tags": ["education", "exams", "entrance", "eamcet", "admissions", "results", "hall tickets"]
+  },
+  {
+    "id": "page-career",
+    "title": "Career & Govt Jobs Dashboard",
+    "cat": "Career",
+    "page": "career/career.html",
+    "target": "top",
+    "type": "page",
+    "desc": "Latest central & state job recruitment, Railway RRB NTPC, SSC, Banking, Police, Defence",
+    "tags": ["career", "jobs", "govt jobs", "recruitment", "railway", "ssc", "banking", "rrb"]
+  },
+  {
+    "id": "page-ai",
+    "title": "80+ Best AI Tools Directory",
+    "cat": "80+ AI Tools",
+    "page": "aitools.html",
+    "target": "top",
+    "type": "page",
+    "desc": "Curated directory of 80+ AI tools, ChatGPT, Claude, Midjourney, Manus, video & image AI",
+    "tags": ["ai", "ai tools", "80+ ai tools", "artificial intelligence", "chatgpt", "claude", "agents"]
+  },
+  {
+    "id": "page-news",
+    "title": "Newspapers & Articles Portal",
+    "cat": "News & Articles",
+    "page": "Newsandarticles/newsandarticles.html",
+    "target": "top",
+    "type": "page",
+    "desc": "Read Telugu & English daily ePapers, Eenadu, Sakshi, The Hindu, Times of India",
+    "tags": ["newspapers", "epaper", "news", "articles", "eenadu", "sakshi", "hindu"]
+  },
+  {
+    "id": "page-tools",
+    "title": "Online Calculators & Tools",
+    "cat": "Tools",
+    "page": "tools.html",
+    "target": "top",
+    "type": "page",
+    "desc": "Student & applicant utility tools, Exam age calculator, CGPA converter, word counter",
+    "tags": ["tools", "calculators", "calculator", "age calculator", "cgpa converter", "word counter"]
+  },
+  {
     "id": "cat-gov-aadhaar",
     "title": "Aadhaar Services (All Services)",
     "cat": "Government Services",

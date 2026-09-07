@@ -8,6 +8,8 @@
         const LOGO_ELECTRICITY = "https://tgsouthernpower.org/assets/images/logo.png";
         const LOGO_BHUBHARATHI = "../logos/governmentservices/bhubarathi.webp";
         const LOGO_BHUBARATHI = "../logos/governmentservices/bhubharathi.png";
+        const LOGO_schemes = "../logos/governmentservices/schemes.png";
+        const LOGO_PM_SVANIDHI = "../logos/governmentservices/pm svanidhi.png";
 
         const categoriesData = [
             {
@@ -16,6 +18,35 @@
                 categoryLogo: null,
                 icon: `<svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>`
             },
+
+
+            {
+                id: 'Schemes',
+                title: 'Government Schemes',
+                categoryLogo: LOGO_schemes,
+                icon: `<svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"></rect><line x1="2" y1="10" x2="22" y2="10"></line></svg>`,
+                services: [
+                    
+                    { name: 'PM SVANidhi', desc: 'PM Street Vendor’s AtmaNirbhar Nidhi', url: '../schemes/pmsvanidhi.html', logo: LOGO_PM_SVANIDHI }
+                ]
+            },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            
             {
                 id: 'aadhaar',
                 title: 'Aadhaar Services',
