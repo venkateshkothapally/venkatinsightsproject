@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>VenkatInsights | Self Drive • Rental • Travel • Auto Services</title>
+  <meta name="description" content="Local self-drive, rental, travel and auto services in Bhupalpally, Warangal, Mataram, Gaddiganipally, and surrounding regions." />
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  
+  <link rel="stylesheet" href="drive.css" />
+</head>
+<body>
+
+  <!-- Sticky Top Navigation -->
+  <header class="top-nav">
+    <div class="nav-container">
+      <div class="brand-group" id="navBrand">
+        <h1 class="brand-name">VenkatInsights</h1>
+        <span class="brand-subtitle">Self Drive • Rental • Travel Services</span>
+      </div>
+
+      <button class="hamburger-btn" id="hamburgerBtn" aria-label="Toggle navigation menu">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+
+      <nav class="nav-links" id="navLinks">
+        <button class="back-button" role="button" type="button" class="filter-btn active" onclick="window.location.href='../index.html';"> 🏠︎ Mainpage (venkatinsights)</button>
+   
+        <button type="button" class="nav-btn" id="navHomeBtn"><i class="fa-solid fa-house"></i> Home</button>
+        <button type="button" class="nav-btn" id="navBackBtn"><i class="fa-solid fa-arrow-left"></i> Back</button>
+        <button type="button" class="nav-btn nav-btn-primary" id="navAddServiceBtn"><i class="fa-solid fa-plus"></i> Add New Service</button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="toast" role="alert" aria-live="polite"></div>
+
+  <main class="main-container">
+
+    <!-- VIEW 1: HOME PAGE -->
+    <section id="homeView" class="view-section active">
+      <header class="hero-header">
+        <h2 class="hero-title">Car &amp; Travel Services</h2>
+        <p class="hero-subtitle">Find Self Drive, Rental, Travel &amp; Auto Services near you.</p>
+      </header>
+
+      <!-- Global Search Box -->
+      <div class="search-box-wrapper">
+        <div class="search-input-group">
+          <i class="fa-solid fa-magnifying-glass search-icon"></i>
+          <input type="text" id="globalSearchInput" placeholder="Search cars, area (e.g. Gaddiganipally), model, owner..." autocomplete="off" />
+          <button type="button" id="clearSearchBtn" class="clear-btn" aria-label="Clear search"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+      </div>
+
+      <!-- Quick Location Hub Selection -->
+      <div class="section-title-wrap">
+        <h3><i class="fa-solid fa-map-location-dot"></i> Select Your Location</h3>
+      </div>
+      <div class="location-cards-grid" id="locationCardsContainer">
+        <!-- Dynamically rendered from locations array + "All Locations" -->
+      </div>
+    </section>
+
+    <!-- VIEW 2: SERVICE CATALOG PAGE -->
+    <section id="catalogView" class="view-section">
+      <div class="catalog-top-bar">
+        <button type="button" class="back-link-btn" id="catalogBackBtn">
+          <i class="fa-solid fa-arrow-left"></i> Back
+        </button>
+        
+        <!-- Top Location Selector Dropdown with "All" and Newly Added Places -->
+        <div class="catalog-location-indicator">
+          <span class="loc-pin"><i class="fa-solid fa-location-dot"></i> Location:</span>
+          <select id="locationSelectorDropdown" class="location-select">
+            <!-- Populated dynamically via JS: All, Bhupalpally, Warangal, Mataram, etc. -->
+          </select>
+        </div>
+      </div>
+
+      <!-- Main Service Filter Pills (Car types & Auto) -->
+      <div class="filter-wrapper">
+        <div class="filter-pills" id="mainServiceFilters">
+          <button type="button" class="filter-pill active" data-service="all">All Services</button>
+          <button type="button" class="filter-pill" data-service="self-drive">Self Drive</button>
+          <button type="button" class="filter-pill" data-service="rental">Rental</button>
+          <button type="button" class="filter-pill" data-service="travel">Travel</button>
+          <button type="button" class="filter-pill auto-pill" data-service="auto"><i class="fa-solid fa-taxi"></i> Auto</button>
+        </div>
+      </div>
+
+      <!-- Secondary Filters for Cars (Hidden when Auto is active) -->
+      <div class="secondary-filters-box" id="carFilterControls">
+        <div class="filter-row">
+          <span class="filter-label">Fuel Type:</span>
+          <div class="btn-group" id="fuelFilterGroup">
+            <button type="button" class="btn-filter-tag active" data-fuel="all">All</button>
+            <button type="button" class="btn-filter-tag" data-fuel="Petrol">Petrol</button>
+            <button type="button" class="btn-filter-tag" data-fuel="Diesel">Diesel</button>
+            <button type="button" class="btn-filter-tag" data-fuel="CNG">CNG</button>
+            <button type="button" class="btn-filter-tag" data-fuel="Electric">Electric</button>
+          </div>
+        </div>
+
+        <div class="filter-row">
+          <span class="filter-label">Transmission:</span>
+          <div class="btn-group" id="transmissionFilterGroup">
+            <button type="button" class="btn-filter-tag active" data-trans="all">All</button>
+            <button type="button" class="btn-filter-tag" data-trans="Automatic">Automatic</button>
+            <button type="button" class="btn-filter-tag" data-trans="Manual">Manual</button>
+          </div>
+        </div>
+
+        <div class="filter-row">
+          <span class="filter-label">Seater:</span>
+          <div class="btn-group" id="seaterFilterGroup">
+            <button type="button" class="btn-filter-tag active" data-seater="all">All</button>
+            <button type="button" class="btn-filter-tag" data-seater="5">5 Seater</button>
+            <button type="button" class="btn-filter-tag" data-seater="7">7 Seater</button>
+            <button type="button" class="btn-filter-tag" data-seater="more">More</button>
+          </div>
+        </div>
+
+        <div class="filter-actions-row">
+          <button type="button" class="btn-clear-filters" id="resetFiltersBtn"><i class="fa-solid fa-rotate-left"></i> Clear Filters</button>
+        </div>
+      </div>
+
+      <!-- Results Count Feedback -->
+      <div class="results-feedback" id="resultsCount">Loading services...</div>
+
+      <!-- Cars Grid -->
+      <div class="services-grid" id="carServicesGrid">
+        <!-- Rendered dynamically -->
+      </div>
+
+      <!-- Separate Auto Grid -->
+      <div class="services-grid auto-grid" id="autoServicesGrid" style="display: none;">
+        <!-- Rendered dynamically -->
+      </div>
+    </section>
+
+  </main>
+
+  <!-- MODAL 1: CAR BOOKING MODAL -->
+  <div id="carModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modalCarTitle">
+    <div class="modal-card">
+      <button type="button" class="modal-close-btn" id="closeCarModalBtn" aria-label="Close modal">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <div class="modal-scroll-area">
+        <!-- Selected Vehicle Header Preview -->
+        <div class="modal-header-preview">
+          <img id="modalCarImg" src="" alt="Car Image" class="modal-preview-img" />
+          <div class="modal-header-details">
+            <h3 id="modalCarTitle">Car Name</h3>
+            <p id="modalCarModel" class="muted-text">Model Details</p>
+            <div id="modalBadges" class="badges-row"></div>
+          </div>
+        </div>
+
+        <!-- Vehicle Specifications -->
+        <div class="specs-matrix">
+          <div class="spec-matrix-item">
+            <span class="lbl"><i class="fa-solid fa-gas-pump"></i> Fuel</span>
+            <span class="val" id="modalSpecFuel">--</span>
+          </div>
+          <div class="spec-matrix-item">
+            <span class="lbl"><i class="fa-solid fa-gears"></i> Transmission</span>
+            <span class="val" id="modalSpecTrans">--</span>
+          </div>
+          <div class="spec-matrix-item">
+            <span class="lbl"><i class="fa-solid fa-users"></i> Seater</span>
+            <span class="val" id="modalSpecSeater">--</span>
+          </div>
+          <div class="spec-matrix-item">
+            <span class="lbl"><i class="fa-solid fa-user-shield"></i> Owner</span>
+            <span class="val" id="modalSpecOwner">--</span>
+          </div>
+          <div class="spec-matrix-item">
+            <span class="lbl"><i class="fa-solid fa-id-card"></i> RC Number</span>
+            <span class="val" id="modalSpecRC">--</span>
+          </div>
+          <div class="spec-matrix-item">
+            <span class="lbl"><i class="fa-solid fa-map-pin"></i> City / Area</span>
+            <span class="val" id="modalSpecLocation">--</span>
+          </div>
+        </div>
+
+        <hr class="modal-separator" />
+
+        <!-- Customer Booking Form -->
+        <form id="carBookingForm" class="inquiry-form" novalidate>
+          <h4 class="form-title">Booking Information</h4>
+
+          <div class="form-group">
+            <label for="custName">Your Name <span class="req">*</span></label>
+            <input type="text" id="custName" placeholder="Enter your full name" required />
+            <span class="field-error" id="errCustName">Please enter your name.</span>
+          </div>
+
+          <div class="form-group">
+            <label for="custMobile">Mobile Number <span class="req">*</span></label>
+            <input type="tel" id="custMobile" placeholder="10-digit mobile number" maxlength="10" required />
+            <span class="field-error" id="errCustMobile">Please enter a valid 10-digit mobile number.</span>
+          </div>
+
+          <div class="form-group">
+            <label for="custServiceType">Select Service <span class="req">*</span></label>
+            <select id="custServiceType" required>
+              <!-- Dynamically populated according to vehicle.services -->
+            </select>
+            <span class="field-error" id="errCustServiceType">Please choose a service.</span>
+          </div>
+
+          <div class="form-row-2">
+            <div class="form-group">
+              <label for="bookingDateTime">Booking Time <span class="req">*</span></label>
+              <input type="datetime-local" id="bookingDateTime" required />
+            </div>
+            <div class="form-group" id="handoverGroup">
+              <label for="handoverDateTime">Handover Time <span class="req">*</span></label>
+              <input type="datetime-local" id="handoverDateTime" required />
+            </div>
+          </div>
+          <span class="field-error" id="errCarDates">Please specify valid booking and handover date/times.</span>
+
+          <!-- Real-Time Duration Display Card -->
+          <div id="durationDisplayCard" class="duration-highlight" style="display: none;">
+            <i class="fa-regular fa-clock"></i> <span id="durationCalcText">Required Duration: --</span>
+          </div>
+
+          <!-- GPS Fetch Location Row -->
+          <div class="form-group">
+            <div class="label-with-action">
+              <label for="custPickupLocation">Your Current Pickup Location (enter manually if GPS fails)</label>
+              <button type="button" class="btn-gps-action" id="btnDetectCarLocation">
+                <i class="fa-solid fa-crosshairs"></i> Get GPS Location
+              </button>
+            </div>
+            <div class="gps-input-wrap">
+              <input type="text" id="custPickupLocation" placeholder="Click GPS button or enter location..." />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="distanceRequirement">Distance Requirement</label>
+            <select id="distanceRequirement">
+              <option value="Unlimited">Unlimited</option>
+              <option value="Local">Local</option>
+              <option value="100 KM">100 KM</option>
+              <option value="200 KM">200 KM</option>
+              <option value="300 KM">300 KM</option>
+              <option value="500 KM">500 KM</option>
+              <option value="Other">Other (Specify Below)</option>
+            </select>
+          </div>
+
+          <div class="form-group" id="customDistanceGroup" style="display: none;">
+            <label for="customDistanceInput">Enter Required Distance in KM</label>
+            <input type="number" id="customDistanceInput" placeholder="e.g. 450" />
+          </div>
+
+          <div class="form-group">
+            <label for="custDestination">Destination <span class="req">*</span></label>
+            <input type="text" id="custDestination" placeholder="e.g. Hyderabad, Warangal, Karimnagar, Gaddiganipally..." required />
+            <span class="field-error" id="errCustDestination">Please enter your destination.</span>
+          </div>
+
+          <div class="form-group">
+            <label for="custAdditionalInfo">Additional Information</label>
+            <textarea id="custAdditionalInfo" rows="2" placeholder="e.g. Need pickup from Gaddiganipally junction, AC required..."></textarea>
+          </div>
+
+          <!-- Direct Owner Actions -->
+          <div class="booking-actions">
+            <button type="submit" class="btn-action-whatsapp" id="btnCarWhatsapp">
+              <i class="fa-brands fa-whatsapp"></i> Book Now on WhatsApp
+            </button>
+            <a href="#" id="btnCarCall" class="btn-action-call">
+              <i class="fa-solid fa-phone"></i> <span id="callButtonText">Call Owner</span>
+            </a>
+          </div>
+
+          <p class="booking-disclaimer">
+            <i class="fa-solid fa-circle-info"></i> Your request will be sent directly to the vehicle owner/driver through WhatsApp. Availability, fare and final terms will be confirmed directly with the owner/driver.
+          </p>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL 2: AUTO SERVICE MODAL -->
+  <div id="autoModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modalAutoTitle">
+    <div class="modal-card">
+      <button type="button" class="modal-close-btn" id="closeAutoModalBtn" aria-label="Close modal">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <div class="modal-scroll-area">
+        <div class="modal-header-preview auto-header-bg">
+          <div class="auto-badge-icon"><i class="fa-solid fa-taxi"></i></div>
+          <div class="modal-header-details">
+            <h3 id="modalAutoTitle">Auto Service Request</h3>
+            <p id="modalAutoDriverDetails" class="muted-text">Driver &amp; Vehicle Verification</p>
+          </div>
+        </div>
+
+        <div class="specs-matrix">
+          <div class="spec-matrix-item">
+            <span class="lbl"><i class="fa-solid fa-user"></i> Driver Name</span>
+            <span class="val" id="autoSpecDriver">--</span>
+          </div>
+          <div class="spec-matrix-item">
+            <span class="lbl"><i class="fa-solid fa-id-card"></i> RC Number</span>
+            <span class="val" id="autoSpecRC">--</span>
+          </div>
+          <div class="spec-matrix-item full-width">
+            <span class="lbl"><i class="fa-solid fa-location-dot"></i> Base Stand / Area</span>
+            <span class="val" id="autoSpecLocation">--</span>
+          </div>
+        </div>
+
+        <hr class="modal-separator" />
+
+        <form id="autoBookingForm" class="inquiry-form" novalidate>
+          <div class="form-group">
+            <label for="autoCustName">Your Name <span class="req">*</span></label>
+            <input type="text" id="autoCustName" placeholder="Enter your full name" required />
+            <span class="field-error" id="errAutoName">Please enter your name.</span>
+          </div>
+
+          <div class="form-group">
+            <label for="autoCustMobile">Mobile Number <span class="req">*</span></label>
+            <input type="tel" id="autoCustMobile" placeholder="10-digit mobile number" maxlength="10" required />
+            <span class="field-error" id="errAutoMobile">Please enter a valid 10-digit mobile number.</span>
+          </div>
+
+          <!-- GPS Auto Pickup Fetch -->
+          <div class="form-group">
+            <div class="label-with-action">
+              <label for="autoPickupLocation">Pickup Location</label>
+              <button type="button" class="btn-gps-action" id="btnDetectAutoLocation">
+                <i class="fa-solid fa-crosshairs"></i> Get GPS Location
+              </button>
+            </div>
+            <input type="text" id="autoPickupLocation" placeholder="Click GPS button or enter location..." />
+          </div>
+
+          <div class="form-group">
+            <label for="autoDestination">Destination Place <span class="req">*</span></label>
+            <input type="text" id="autoDestination" placeholder="e.g. Gaddiganipally, Bus Stand, Hospital..." required />
+            <span class="field-error" id="errAutoDestination">Please enter your destination.</span>
+          </div>
+
+          <div class="form-row-2">
+            <div class="form-group">
+              <label for="autoPickupTime">Pickup Date &amp; Time <span class="req">*</span></label>
+              <input type="datetime-local" id="autoPickupTime" required />
+            </div>
+            <div class="form-group">
+              <label for="autoDropTime">Drop Date &amp; Time</label>
+              <input type="datetime-local" id="autoDropTime" />
+            </div>
+          </div>
+          <span class="field-error" id="errAutoPickup">Please select pickup date &amp; time.</span>
+
+          <div class="form-group">
+            <label for="autoAdditionalInfo">Additional Info</label>
+            <textarea id="autoAdditionalInfo" rows="2" placeholder="e.g. 3 passengers, 2 bags, waiting required..."></textarea>
+          </div>
+
+          <div class="booking-actions">
+            <button type="submit" class="btn-action-whatsapp" id="btnAutoWhatsapp">
+              <i class="fa-brands fa-whatsapp"></i> Send
+            </button>
+            <a href="#" id="btnAutoCall" class="btn-action-call">
+              <i class="fa-solid fa-phone"></i> Call Driver
+            </a>
+          </div>
+
+          <p class="booking-disclaimer">
+            <i class="fa-solid fa-circle-info"></i> Availability and meter/fare negotiation will take place directly with the auto driver on WhatsApp or phone call.
+          </p>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL 3: ADD NEW SERVICE MODAL -->
+  <div id="addServiceModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="addServiceModalTitle">
+    <div class="modal-card">
+      <button type="button" class="modal-close-btn" id="closeAddServiceModalBtn" aria-label="Close modal">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <div class="modal-scroll-area">
+        <h3 id="addServiceModalTitle" class="form-title">Add New Service</h3>
+        <p class="form-subtitle">List your vehicle or auto on the VenkatInsights directory</p>
+
+        <!-- Category Tab: Car vs Auto -->
+        <div class="tab-switch-row">
+          <button type="button" class="tab-switch active" id="tabAddCar">Car Service</button>
+          <button type="button" class="tab-switch" id="tabAddAuto">Auto Service</button>
+        </div>
+
+        <!-- Add Car Form -->
+        <form id="newCarForm" class="inquiry-form">
+          <div class="form-row-2">
+            <div class="form-group">
+              <label for="newCarOwner">Owner Name *</label>
+              <input type="text" id="newCarOwner" placeholder="Owner Name" required />
+            </div>
+            <div class="form-group">
+              <label for="newCarMobile">Mobile *</label>
+              <input type="tel" id="newCarMobile" placeholder="10 Digits" maxlength="10" required />
+            </div>
+          </div>
+
+          <div class="form-row-2">
+            <div class="form-group">
+              <label for="newCarWhatsapp">WhatsApp *</label>
+              <input type="tel" id="newCarWhatsapp" placeholder="10 Digits" maxlength="10" required />
+            </div>
+            <div class="form-group">
+              <label for="newCarLocation">City / Hub *</label>
+              <select id="newCarLocation" required>
+                <!-- Populated dynamically -->
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="newCarArea">Area / Locality / Landmark * (e.g. Gaddiganipally, Bus Stand)</label>
+            <input type="text" id="newCarArea" placeholder="e.g. Gaddiganipally" required />
+          </div>
+
+          <div class="form-row-2">
+            <div class="form-group">
+              <label for="newCarName">Car Name *</label>
+              <input type="text" id="newCarName" placeholder="e.g. Maruti Suzuki Swift" required />
+            </div>
+            <div class="form-group">
+              <label for="newCarModel">Model *</label>
+              <input type="text" id="newCarModel" placeholder="e.g. VXi • 2024" required />
+            </div>
+          </div>
+
+          <div class="form-row-2">
+            <div class="form-group">
+              <label for="newCarRC">RC Number *</label>
+              <input type="text" id="newCarRC" placeholder="e.g. TS XX XX 0001" required />
+            </div>
+            <div class="form-group">
+              <label for="newCarPrice">Daily Price (Optional)</label>
+              <input type="text" id="newCarPrice" placeholder="e.g. ₹1,800/day" />
+            </div>
+          </div>
+
+          <div class="form-row-3">
+            <div class="form-group">
+              <label for="newCarFuel">Fuel Type *</label>
+              <select id="newCarFuel" required>
+                <option value="Petrol">Petrol</option>
+                <option value="Diesel">Diesel</option>
+                <option value="CNG">CNG</option>
+                <option value="Electric">Electric</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="newCarTransmission">Transmission *</label>
+              <select id="newCarTransmission" required>
+                <option value="Manual">Manual</option>
+                <option value="Automatic">Automatic</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="newCarSeater">Seater *</label>
+              <select id="newCarSeater" required>
+                <option value="5">5 Seater</option>
+                <option value="7">7 Seater</option>
+                <option value="8">8 Seater</option>
+                <option value="12">12 Seater</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Service Types Offered *</label>
+            <div class="checkbox-row">
+              <label class="chk-item"><input type="checkbox" name="newCarServices" value="self-drive" /> Self Drive</label>
+              <label class="chk-item"><input type="checkbox" name="newCarServices" value="rental" /> Rental</label>
+              <label class="chk-item"><input type="checkbox" name="newCarServices" value="travel" /> Travel</label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="newCarImg">Image URL (Optional)</label>
+            <input type="url" id="newCarImg" placeholder="https://..." />
+          </div>
+
+          <button type="submit" class="btn-submit-entity"><i class="fa-solid fa-plus"></i> Add Car to Directory</button>
+        </form>
+
+        <!-- Add Auto Form -->
+        <form id="newAutoForm" class="inquiry-form" style="display: none;">
+          <div class="form-group">
+            <label for="newAutoDriver">Driver Name *</label>
+            <input type="text" id="newAutoDriver" placeholder="e.g. Ramesh Auto" required />
+          </div>
+
+          <div class="form-row-2">
+            <div class="form-group">
+              <label for="newAutoMobile">Mobile *</label>
+              <input type="tel" id="newAutoMobile" placeholder="10 Digits" maxlength="10" required />
+            </div>
+            <div class="form-group">
+              <label for="newAutoWhatsapp">WhatsApp *</label>
+              <input type="tel" id="newAutoWhatsapp" placeholder="10 Digits" maxlength="10" required />
+            </div>
+          </div>
+
+          <div class="form-row-2">
+            <div class="form-group">
+              <label for="newAutoRC">RC Number *</label>
+              <input type="text" id="newAutoRC" placeholder="e.g. TS XX XX 0101" required />
+            </div>
+            <div class="form-group">
+              <label for="newAutoLocation">City / Hub *</label>
+              <select id="newAutoLocation" required>
+                <!-- Populated dynamically -->
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="newAutoArea">Stand / Area * (e.g. Gaddiganipally Center)</label>
+            <input type="text" id="newAutoArea" placeholder="e.g. Gaddiganipally Auto Stand" required />
+          </div>
+
+          <button type="submit" class="btn-submit-entity"><i class="fa-solid fa-plus"></i> Add Auto to Directory</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Feedback Section -->
+  <section class="feedback-section" aria-labelledby="feedbackTitle">
+    <div class="feedback-container">
+      <button type="button" class="feedback-toggle-btn" id="feedbackToggleBtn" aria-expanded="false" aria-controls="feedbackForm">
+        <i class="fa-regular fa-comment-dots"></i> Send Feedback
+      </button>
+
+      <form id="feedbackForm" class="feedback-form" hidden>
+        <label for="feedbackInput" id="feedbackTitle">How can we improve?</label>
+        <div class="feedback-input-row">
+          <textarea id="feedbackInput" rows="3" maxlength="1000" placeholder="Write your feedback here..." required></textarea>
+          <button type="submit" class="feedback-send-btn">
+            <i class="fa-brands fa-whatsapp"></i> Send on WhatsApp
+          </button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- Website Footer -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-brand-meta">
+        <h4 class="footer-brand">VenkatInsights</h4>
+        <p class="footer-tagline">Self Drive • Rental • Travel Services</p>
+      </div>
+
+      <nav class="footer-links">
+        <a href="#home" id="ftLinkHome">Home</a>
+        <a href="#catalog" id="ftLinkServices">Services</a>
+        <a href="#home" id="ftLinkLocations">Locations</a>
+        <a href="#add" id="ftLinkAddService">Add New Service</a>
+        <a href="mailto:venkateshkothapally308@gmail.com">Contact</a>
+      </nav>
+
+      <hr class="footer-separator" />
+
+      <div class="footer-credits">
+        <p>Designed &amp; Developed by <strong>Venkatesh Kothapally</strong></p>
+        <p>Please support <a href="https://venkatinsights.in" target="_blank" rel="noopener noreferrer" class="credit-link">Venkatinsights.in</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="drive.js
+  "></script>
+</body>
+</html>
