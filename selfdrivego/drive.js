@@ -1,6 +1,6 @@
 /**
  * Venkatinsights - Self Drive • Rental • Travel • Auto Services
- * Locations: All Locations | Bhupalpally | Warangal | Mataram | Gaddiganipally
+ * Locations: All Locations | Bhupalpally | Warangal | Kataram | Gaddiganipally
  * GPS Auto-Detection & Area-Specific Search Engine
  */
 
@@ -31,8 +31,8 @@ const locations = [
     servicesLine: "Self Drive • Rental • Travel • Auto"
   },
   {
-    id: "mataram",
-    name: "Mataram",
+    id: "Kataram",
+    name: "Kataram",
     servicesLine: "Self Drive • Rental • Travel • Auto"
   }
 ];
@@ -154,10 +154,10 @@ let vehicles = [
     image: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=700&q=80"
   },
 
-  // --- MATARAM CARS ---
+  // --- Kataram CARS ---
   {
     id: 7,
-    location: "Mataram",
+    location: "Kataram",
     area: "Center Chowrasta",
     type: "car",
     name: "Maruti Suzuki Dzire",
@@ -175,7 +175,7 @@ let vehicles = [
   },
   {
     id: 8,
-    location: "Mataram",
+    location: "Kataram",
     area: "Panchayat Road",
     type: "car",
     name: "Mahindra Bolero Neo",
@@ -200,39 +200,39 @@ let autos = [
   {
     id: 101,
     location: "Bhupalpally",
-    area: "Gaddiganipally Stand",
+    area: "Gaddiganipally",
     type: "auto",
-    driverName: "Sammayya (Gaddiganipally Auto)",
-    rcNumber: "TS 03 UA 0101",
-    phone: "919876543240",
-    whatsapp: "919876543240"
+    driverName: "Tharun Challuri (Gaddiganipally)",
+    rcNumber: "TS 03 UA XXXX",
+    phone: "918340066343",
+    whatsapp: "918340066343"
   },
   {
     id: 102,
     location: "Bhupalpally",
-    area: "Ambedkar Chowk",
+    area: "Ambedkar Chowk BhupalpallyA",
     type: "auto",
-    driverName: "Balaraju Auto (Demo)",
-    rcNumber: "TS 03 UA 0102",
-    phone: "919876543241",
-    whatsapp: "919876543241"
+    driverName: "Challuri KalyanPrasad",
+    rcNumber: "TS 03 UA XXXX",
+    phone: "917997709551",
+    whatsapp: "917997709551"
   },
   {
     id: 103,
-    location: "Warangal",
-    area: "Hanamkonda Bus Stand",
+    location: "Bhupalpally",
+    area: "Bhupalpally Main road",
     type: "auto",
-    driverName: "Kishore Warangal Auto (Demo)",
+    driverName: " UPDATES SOON",
     rcNumber: "TS 03 UA 0201",
     phone: "919876543242",
     whatsapp: "919876543242"
   },
   {
     id: 104,
-    location: "Mataram",
+    location: "Kataram",
     area: "Main Road Stand",
     type: "auto",
-    driverName: "Raju Mataram Auto (Demo)",
+    driverName: "UPDATES SOON",
     rcNumber: "TS 03 UA 0301",
     phone: "919876543243",
     whatsapp: "919876543243"
@@ -424,7 +424,7 @@ function fetchCurrentGPSLocation(targetInputElement) {
       const coords = {
         bhupalpally: { lat: 18.43, lon: 79.86, name: "Bhupalpally" },
         warangal: { lat: 17.97, lon: 79.60, name: "Warangal" },
-        mataram: { lat: 18.25, lon: 79.75, name: "Mataram" }
+        Kataram: { lat: 18.25, lon: 79.75, name: "Kataram" }
       };
 
       // Find closest city
