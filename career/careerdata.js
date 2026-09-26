@@ -80,7 +80,57 @@
 
         /* ---- Demo entries with LIVE dates (relative to today) ---- */
         { id: "NAVY-SSR", category: "Defence", board: "Indian Navy", postDate: daysFromNow(-2), postName: "SSR Agniveer – 1400 Posts", qualification: "12th (PCM)", advertisement: "Navy/02/2026", lastDate: daysFromNow(3), detailsUrl: "#" },
-        { id: "TSLPRB-CONST", category: "Police", board: "TSLPRB", postDate: daysFromNow(-3), postName: "Police Constable – 7112 Posts", qualification: "10th / 12th", advertisement: "TSLPRB/2026", lastDate: daysFromNow(5), detailsUrl: "#" },
+        
+        
+        
+        { id: "TGPLRB-CO",
+            category: "Police",
+            board: "TGPLRB",
+            postDate: "15/08/2026",
+            postName: "SCT PC Civil and / or Equivalent",
+            qualification: "10th / 12th", 
+            advertisement: "TGPLRB/2026", 
+            lastDate: daysFromNow(90), 
+            detailsUrl: "../careerpages/tgprb2026.html" },
+
+         {id: "TGPLRB-CO",
+            category: "Police",
+            board: "TGPLRB",
+            postDate: "15/08/2026",
+            postName: "SCT SI Civil and / or Equivalent",
+            qualification: "10th / 12th", 
+            advertisement: "TGPLRB/2026", 
+            lastDate: daysFromNow(90), 
+            detailsUrl: "../careerpages/tgprb2026.html" },
+
+        {id: "TGPLRB-CO",
+            category: "Police",
+            board: "TGPLRB",
+            postDate: "15/08/2026",
+            postName: "SCT PC Mechanic / Driver",
+            qualification: "10th / 12th", 
+            advertisement: "TGPLRB/2026", 
+            lastDate: daysFromNow(90), 
+            detailsUrl: "../careerpages/tgprb2026.html" },
+
+        {id: "TGPLRB-CO",
+            category: "Police",
+            board: "TGPLRB",
+            postDate: "15/08/2026",
+            postName: "SCT ASI FPB",
+            qualification: "10th / 12th", 
+            advertisement: "TGPLRB/2026", 
+            lastDate: daysFromNow(90), 
+            detailsUrl: "../careerpages/tgprb2026.html" },
+            
+
+    
+
+
+
+
+
+
         { id: "RRC-APP", category: "Railway", board: "RRC", postDate: daysFromNow(-1), postName: "Act Apprentice – 1853 Posts", qualification: "ITI / Diploma", advertisement: "RRC/2026", lastDate: daysFromNow(6), detailsUrl: "#" },
         { id: "SBI-JA", category: "Banking", board: "SBI", postDate: daysFromNow(-4), postName: "Junior Associate (Clerk) – 8773 Posts", qualification: "Degree", advertisement: "SBI/CRPD/2026", lastDate: daysFromNow(7), detailsUrl: "#" },
         { id: "SSC-MTS", category: "SSC", board: "SSC", postDate: daysFromNow(-2), postName: "Multi Tasking Staff (MTS)", qualification: "10th", advertisement: "SSC/MTS/2026", lastDate: daysFromNow(12), detailsUrl: "#" },

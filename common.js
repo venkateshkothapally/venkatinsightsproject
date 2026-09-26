@@ -16,7 +16,7 @@
     // Helper: Determine if the current page is inside a subfolder
     function isInSubfolder() {
         const path = window.location.pathname.replace(/\\/g, '/').toLowerCase();
-        return /\/(career|education|governmentservices|newsandarticles)\//.test(path);
+        return /\/(career|education|governmentservices|newsandarticles|careerpages|careerpage)\//.test(path);
     }
 
     function getBasePath() {
@@ -1078,6 +1078,100 @@
             </header>
         `;
     }
+
+    function getFooterHTML() {
+        const base = getBasePath();
+        const year = new Date().getFullYear();
+        return `
+    <footer class="vi-footer site-footer">
+        <div class="footer-main">
+            <div class="footer-container footer-grid">
+                <!-- Brand -->
+                <div class="footer-brand-col">
+                    <a href="${base}index.html" class="footer-brand-link" aria-label="Venkat Insights Home">
+                        <div class="logo-box">
+                            <img src="https://yt3.googleusercontent.com/4v1xmWtq6zF97zQKTMasxeUMAxjrAPD5cNlwp3bGLHzhPl82FtsydTCYlYoa2S2Ezmxjc5ckq0I=s88-c-k-c0x00ffffff-no-rj" alt="Vi Logo" onerror="this.onerror=null; this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 42 42%22><rect width=%2242%22 height=%2242%22 rx=%2210%22 fill=%22%234f46e5%22/><text x=%2221%22 y=%2228%22 text-anchor=%22middle%22 fill=%22white%22 font-size=%2218%22 font-weight=%22bold%22>Vi</text></svg>';">
+                        </div>
+                        <div class="brand-text">
+                            <h1>Venkat Insights</h1>
+                            <p class="tagline">Jobs &bull; Education &bull; Services &bull; Insights</p>
+                        </div>
+                    </a>
+                    <p class="footer-desc">
+                        Official government schemes, exam schedules, recruitment updates, and digital tools. Built by Venkatesh Kothapally.
+                    </p>
+                    <div class="footer-socials">
+                        <a href="https://www.youtube.com/venkyvenkat" target="_blank" rel="noopener noreferrer" class="social-btn social-yt" aria-label="YouTube" title="YouTube"><svg viewBox="0 0 24 24"><path fill="#FF0000" d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.8V8.2l6.5 3.8-6.5 3.8Z"/></svg></a>
+                        <a href="https://www.facebook.com/venkatinsights" target="_blank" rel="noopener noreferrer" class="social-btn social-fb" aria-label="Facebook" title="Facebook"><svg viewBox="0 0 24 24"><path fill="#1877F2" d="M24 12.1C24 5.5 18.6.1 12 .1S0 5.5 0 12.1c0 6 4.4 11 10.1 11.9v-8.4H7.1v-3.5h3V9.4c0-3 1.8-4.7 4.5-4.7 1.3 0 2.6.2 2.6.2v2.9h-1.5c-1.5 0-2 .9-2 1.9v2.3h3.4l-.5 3.5h-2.9V24C19.6 23.1 24 18.1 24 12.1Z"/></svg></a>
+                        <a href="https://www.instagram.com/venkatinsight" target="_blank" rel="noopener noreferrer" class="social-btn social-ig" aria-label="Instagram" title="Instagram"><svg viewBox="0 0 24 24"><defs><linearGradient id="ig-grad" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#F58529"/><stop offset=".5" stop-color="#DD2A7B"/><stop offset="1" stop-color="#8134AF"/></linearGradient></defs><path fill="url(#ig-grad)" fill-rule="evenodd" d="M7.2 0h9.6A7.2 7.2 0 0 1 24 7.2v9.6a7.2 7.2 0 0 1-7.2 7.2H7.2A7.2 7.2 0 0 1 0 16.8V7.2A7.2 7.2 0 0 1 7.2 0Zm0 2.4A4.8 4.8 0 0 0 2.4 7.2v9.6a4.8 4.8 0 0 0 4.8 4.8h9.6a4.8 4.8 0 0 0 4.8-4.8V7.2a4.8 4.8 0 0 0-4.8-4.8H7.2ZM12 6a6 6 0 1 1 0 12 6 6 0 0 1 0-12Zm0 2.4a3.6 3.6 0 1 0 0 7.2 3.6 3.6 0 0 0 0-7.2Zm6.3-3.2a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z"/></svg></a>
+                        <a href="https://x.com/venkatinsights" target="_blank" rel="noopener noreferrer" class="social-btn social-x" aria-label="X (Twitter)" title="X (Twitter)"><svg viewBox="0 0 24 24"><path fill="#ffffff" d="M18.2 2H22l-8.3 9.5L23.5 22h-7.6l-6-7.8L3.1 22H0l8.9-10.2L.5 2h7.8l5.4 7.1L18.2 2Zm-1.3 17.8h2.1L7.2 4H5l11.9 15.8Z"/></svg></a>
+                        <a href="https://whatsapp.com/channel/0029VawvrJQ1dAvxmlIxD72c" target="_blank" rel="noopener noreferrer" class="social-btn social-wa" aria-label="WhatsApp" title="WhatsApp"><svg viewBox="0 0 24 24"><path fill="#25D366" d="M20.5 3.5A11.9 11.9 0 0 0 12 0C5.4 0 .1 5.3.1 11.9c0 2.1.5 4.1 1.6 5.9L0 24l6.4-1.7c1.7.9 3.6 1.4 5.6 1.4h.1c6.5 0 11.8-5.3 11.8-11.9 0-3.2-1.2-6.1-3.4-8.3ZM12 21.2c-1.8 0-3.5-.5-5-1.3l-.4-.2-3.8 1 1-3.7-.2-.4a9.3 9.3 0 0 1-1.4-4.9C2.2 6.6 6.6 2.3 12 2.3c2.6 0 5 1 6.8 2.8a9.6 9.6 0 0 1 2.8 6.8c0 5.3-4.3 9.6-9.6 9.6Zm5.3-7.2c-.3-.2-1.8-.9-2.1-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-1.7-.8-2.8-1.5-3.9-3.3-.3-.5.3-.4.9-1.3.1-.2.1-.4 0-.6-.1-.2-.7-1.7-.9-2.3-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.1 1.1-1.1 2.6s1.1 3 1.3 3.2c.2.2 2.2 3.4 5.4 4.8 2 .9 2.8 1 3.8.8.6-.1 1.8-.7 2-1.4.3-.7.3-1.3.2-1.4-.2-.2-.4-.3-.7-.5Z"/></svg></a>
+                        <a href="https://t.me/Venkatinsights" target="_blank" rel="noopener noreferrer" class="social-btn social-tg" aria-label="Telegram" title="Telegram"><svg viewBox="0 0 24 24"><path fill="#229ED9" d="M21.9 3.2 2.8 10.6c-1.3.5-1.3 1.2-.2 1.5l4.9 1.5 1.9 5.8c.2.6.1.8.7.8.5 0 .7-.2 1-.9l2.4 1.8c.4.3.8.2 1-.4l1.4-4.5 5-9.1c.2-.4-.1-.7-.6-.4l-12.4 7.8-4.8-1.5 11.7-4.7c.5-.2 1-.1.6.2L21.9 3.2Z"/></svg></a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a class="footer-link" href="${base}index.html">Home</a></li>
+                        <li><a class="footer-link" href="${base}governmentservices/governmentservices.html">Govt Services</a></li>
+                        <li><a class="footer-link" href="${base}education/education.html">Education</a></li>
+                        <li><a class="footer-link" href="${base}Newsandarticles/newsandarticles.html">News &amp; Articles</a></li>
+                        <li><a class="footer-link" href="${base}career/career.html">Career / Jobs</a></li>
+                        <li><a class="footer-link" href="${base}tools.html">Tools</a></li>
+                        <li><a class="footer-link" href="${base}aitools.html">80+ AI Tools</a></li>
+                    </ul>
+                </div>
+
+                <!-- Job Categories -->
+                <div class="footer-col">
+                    <h4>Job Categories</h4>
+                    <ul>
+                        <li><a class="footer-link" href="${base}career/career.html?category=Railway">Railway Jobs</a></li>
+                        <li><a class="footer-link" href="${base}career/career.html?category=Banking">Banking Jobs</a></li>
+                        <li><a class="footer-link" href="${base}career/career.html?category=Defence">Defence Jobs</a></li>
+                        <li><a class="footer-link" href="${base}career/career.html?category=Police">Police Jobs</a></li>
+                        <li><a class="footer-link" href="${base}career/career.html?category=UPSC">UPSC</a></li>
+                        <li><a class="footer-link" href="${base}career/career.html?category=SSC">SSC</a></li>
+                    </ul>
+                </div>
+
+                <!-- Resources & Legal -->
+                <div class="footer-col">
+                    <h4>Resources &amp; Legal</h4>
+                    <ul>
+                        <li><a class="footer-link" href="${base}about.html">About Us</a></li>
+                        <li><a class="footer-link" href="${base}privacypolicy.html">Privacy Policy</a></li>
+                        <li><a class="footer-link" href="${base}termsofuse.html">Terms of Use</a></li>
+                        <li><a class="footer-link" href="${base}disclaimer.html">Disclaimer</a></li>
+                        <li><a class="footer-link" href="${base}about.html#upiIdText">Support Developer</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom bar -->
+        <div class="footer-bottom">
+            <div class="footer-container footer-bottom-inner">
+                <p>&copy; <span id="footerYear">${year}</span> Venkat Insights &bull; Developed by Venkatesh Kothapally</p>
+                <div class="footer-legal">
+                    <a href="${base}privacypolicy.html">Privacy Policy</a>
+                    <a href="${base}termsofuse.html">Terms of Use</a>
+                    <a href="${base}disclaimer.html">Disclaimer</a>
+                    <a href="mailto:venkateshkothapally308@gmail.com">Contact</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <button class="back-to-top" id="backToTop" aria-label="Back to top" title="Back to top">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7"/></svg>
+    </button>
+        `;
+    }
+
+    window.getFooterHTML = getFooterHTML;
+    window.getHeaderHTML = getHeaderHTML;
 
     // ============================================================
     // 6. TARGET AUTO-SCROLL & 3D ANIMATED SERVICE HIGHLIGHT HANDLER
