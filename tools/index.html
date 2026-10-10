@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#3157d5">
+  <title>Marks & Academic Calculator</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <main class="app-shell">
+    <header class="page-header">
+      <div>
+        <span class="eyebrow">STUDENT TOOLKIT</span>
+        <h1>Marks & Academic Calculator</h1>
+        <p class="subtitle">Calculate marks, percentages, semester results, SGPA and CGPA.</p>
+      </div>
+      <button class="button button-ghost" id="resetAll" type="button">Reset all</button>
+    </header>
+
+    <section id="basicView" class="panel basic-panel">
+      <div class="section-heading">
+        <div class="heading-icon" aria-hidden="true">％</div>
+        <div>
+          <h2>Marks Percentage Calculator</h2>
+          <p class="muted">Quick calculation</p>
+        </div>
+      </div>
+
+      <div class="form-grid">
+        <label>Marks obtained
+          <input id="basicObtained" type="number" min="0" step="any" placeholder="e.g. 450" inputmode="decimal">
+        </label>
+        <label>Maximum marks
+          <input id="basicMaximum" type="number" min="0.01" step="any" value="600" inputmode="decimal">
+        </label>
+      </div>
+
+      <div class="basic-result" aria-live="polite">
+        <span class="result-label">Your percentage</span>
+        <strong id="basicPercentage" class="big-result">—</strong>
+        <p id="basicSummary" class="result-caption">Enter valid marks to calculate.</p>
+        <p id="basicLost" class="result-caption"></p>
+      </div>
+
+      <div class="formula-note"><strong>Formula:</strong> (Marks obtained ÷ Maximum marks) × 100</div>
+      <button class="button button-primary button-wide" id="showAdvanced" type="button">Advanced Options <span aria-hidden="true">→</span></button>
+    </section>
+
+    <section id="advancedView" class="advanced-view hidden">
+      <div class="panel advanced-heading">
+        <div>
+          <h2>Advanced academic calculator</h2>
+          <p class="muted">Manage subjects, semesters and academic years.</p>
+        </div>
+        <button class="button button-ghost" id="showBasic" type="button">← Basic calculator</button>
+      </div>
+
+      <div class="summary-grid">
+        <article class="summary-card">
+          <span>Overall percentage</span>
+          <strong id="overallPercentage">—</strong>
+          <small id="overallMarks">0 / 0 entered marks</small>
+        </article>
+        <article class="summary-card summary-violet">
+          <span>Estimated CGPA</span>
+          <strong id="overallCgpa">—</strong>
+          <small>Credit-weighted estimate</small>
+        </article>
+        <article class="summary-card">
+          <span>Academic years</span>
+          <strong id="yearCount">1</strong>
+          <small id="semesterCount">2 semesters added</small>
+        </article>
+        <article class="summary-card">
+          <label for="gradeScale">Grade scale</label>
+          <select id="gradeScale">
+            <option value="10">10-point scale</option>
+            <option value="4">4-point scale</option>
+          </select>
+          <small>Used for estimated SGPA / CGPA</small>
+        </article>
+      </div>
+
+      <div class="notice"><strong>CGPA note:</strong> The estimate maps each subject's percentage linearly to the selected grade scale and weights it by credits. Institutions may use different grade bands and formulas. Configure your institution's official rules before relying on the result.</div>
+
+      <div id="yearsContainer" class="years-container"></div>
+      <button id="addYear" class="button button-primary button-wide" type="button">＋ Add another academic year</button>
+      <button id="printResults" class="button button-ghost print-button" type="button">Print / Save as PDF</button>
+    </section>
+
+    <footer>Check your institution’s official grading rules before using CGPA for applications.</footer>
+  </main>
+</body>
+</html>
