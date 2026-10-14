@@ -156,6 +156,16 @@
              lastDate: "13-10-2026",
              detailsUrl: "../careerpages/bhupalpally-nhm-recruitment-2026.html" },
 
+             { id: "NHM-HANAMKONDA",
+             category: "Healthcare",
+             board: "hanamkonda-nhm-recruitment-2026",
+             postDate: "03-10-2026",
+             postName: "51 Posts",
+             qualification: "BSC Nursing, MLT, ANM, GNM,MBA/PG IN MANAGEMENT, MPHW, MD PEDIATRICS, PARAMEDICAL",
+             advertisement: "PLG/53/DM&HO/2026",
+             lastDate: "15-10-2026",
+             detailsUrl: "../careerpages/hanamkonda_NHM.HTML" },
+
 
     
         { id: "NIC-SCIB", category: "Technical Jobs", board: "NIC", postDate: daysFromNow(-3), postName: "Scientist B & Scientific Officer", qualification: "B.E / B.Tech / MCA", advertisement: "NIC/2026", lastDate: daysFromNow(9), detailsUrl: "#" },
