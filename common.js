@@ -11,12 +11,26 @@
 (function () {
     'use strict';
 
+    function ensureThemeManager() {
+        if (window.VITheme && window.VITheme.__isGlobalThemeManager) return;
+        if (document.querySelector('script[data-vi-theme-manager="true"]')) return;
+
+        const isSubfolderPage = /\/(career|education|governmentservices|newsandarticles|careerpages|careerpage|tools)\//i.test(window.location.pathname.replace(/\\/g, '/'));
+        const script = document.createElement('script');
+        script.src = isSubfolderPage ? '../theme.js' : './theme.js';
+        script.async = false;
+        script.setAttribute('data-vi-theme-manager', 'true');
+        document.head.appendChild(script);
+    }
+
+    ensureThemeManager();
+
     const root = document.documentElement;
 
     // Helper: Determine if the current page is inside a subfolder
     function isInSubfolder() {
         const path = window.location.pathname.replace(/\\/g, '/').toLowerCase();
-        return /\/(career|education|governmentservices|newsandarticles|careerpages|careerpage)\//.test(path);
+        return /\/(career|education|governmentservices|newsandarticles|careerpages|careerpage|tools)\//.test(path);
     }
 
     function getBasePath() {
@@ -27,44 +41,8 @@
     // 1. THEME MANAGEMENT
     // ============================================================
     function syncThemeToggleIcons() {
-        const isDark = root.getAttribute('data-theme') === 'dark' || root.classList.contains('dark');
-        const buttons = document.querySelectorAll('.theme-btn, #themeBtn, #themeToggleBtn');
-
-        buttons.forEach(button => {
-            const moon = button.querySelector('.icon-moon');
-            const sun = button.querySelector('.icon-sun');
-
-            if (moon && sun) {
-                moon.style.display = isDark ? 'none' : 'block';
-                sun.style.display = isDark ? 'block' : 'none';
-            } else {
-                button.innerHTML = isDark
-                    ? '<svg class="icon-sun" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>'
-                    : '<svg class="icon-moon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>';
-            }
-
-            button.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
-            button.setAttribute('title', isDark ? 'Switch to light mode' : 'Switch to dark mode');
-        });
+        if (window.VITheme) window.VITheme.sync();
     }
-
-    function applyTheme(theme) {
-        const isDark = theme === 'dark';
-        root.setAttribute('data-theme', isDark ? 'dark' : 'light');
-        root.classList.toggle('dark', isDark);
-        if (document.body) {
-            document.body.classList.toggle('dark', isDark);
-            document.body.setAttribute('data-theme', isDark ? 'dark' : 'light');
-        }
-
-        try { localStorage.setItem('vi-theme', isDark ? 'dark' : 'light'); } catch (e) {}
-        syncThemeToggleIcons();
-    }
-
-    window.toggleTheme = function () {
-        const isDark = root.getAttribute('data-theme') === 'dark' || root.classList.contains('dark');
-        applyTheme(isDark ? 'light' : 'dark');
-    };
     window.syncThemeToggleIcons = syncThemeToggleIcons;
 
     // ============================================================
@@ -98,22 +76,6 @@
         if (path.includes('disclaimer')) return 'disclaimer';
         return 'home';
     }
-
-    window.toggleMobileMenu = function () {
-        const nav = document.getElementById('navPillsContainer') || document.querySelector('.nav-pills-wrapper');
-        const overlay = document.getElementById('mobileOverlay');
-        const menuBtn = document.querySelector('.mobile-menu-btn');
-
-        if (!nav) return;
-        const isOpen = nav.classList.toggle('mobile-open');
-
-        if (overlay) overlay.classList.toggle('active', isOpen);
-        if (menuBtn) {
-            menuBtn.classList.toggle('active', isOpen);
-            menuBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-        }
-        document.body.style.overflow = isOpen ? 'hidden' : '';
-    };
 
     // ============================================================
     // 3. UNIVERSAL CROSS-PAGE SEARCH ENGINE
@@ -451,7 +413,7 @@
             if (Array.isArray(jobList)) {
                 const jobCats = new Set();
                 jobList.forEach(j => {
-                    const safeId = 'svc-job-' + (j.id || j.postName).replace(/[^a-zA-Z0-9_-]/g, '-');
+                    const safeId = j.targetId || ('svc-job-' + (j.id || j.postName).replace(/[^a-zA-Z0-9_-]/g, '-'));
                     harvested.push({
                         id: safeId,
                         title: `${j.board} - ${j.postName}`,
@@ -1029,9 +991,7 @@
             return `<a href="${base}${link.url}" class="nav-pill ${isActive}" data-page="${link.id}">${link.label}</a>`;
         }).join('');
 
-        const isGov = currentPageId === 'government';
         return `
-            ${isGov ? '' : '<div class="mobile-overlay" id="mobileOverlay"></div>'}
             <header class="navbar-wrapper" id="navbarWrapper">
                 <div class="navbar-container">
                     <a href="${base}index.html" class="brand-logo" aria-label="Venkat Insights Home">
@@ -1039,7 +999,7 @@
                             <img src="https://yt3.googleusercontent.com/4v1xmWtq6zF97zQKTMasxeUMAxjrAPD5cNlwp3bGLHzhPl82FtsydTCYlYoa2S2Ezmxjc5ckq0I=s88-c-k-c0x00ffffff-no-rj" alt="Vi Logo" onerror="this.onerror=null; this.src='https://via.placeholder.com/42x42/4f46e5/ffffff?text=Vi';">
                         </div>
                         <div class="brand-text">
-                            <h1>Venkat Insights</h1>
+                            <span class="brand-name">Venkat Insights</span>
                             <p class="tagline">Jobs &bull; Education &bull; Services &bull; Insights</p>
                         </div>
                     </a>
@@ -1052,14 +1012,10 @@
                     </div>
                     
                     <div class="navbar-actions">
-                        <button class="icon-btn theme-btn" id="themeToggleBtn" type="button" aria-label="Toggle dark/light theme" title="Toggle theme">
+                        <button class="icon-btn theme-btn" id="themeToggleBtn" type="button" data-theme-toggle aria-label="Switch to dark mode" title="Switch to dark mode">
                             <svg class="icon-moon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
                             <svg class="icon-sun" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="display:none;"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
                         </button>
-                        ${isGov ? '' : `
-                        <button class="icon-btn mobile-menu-btn" id="mobileMenuBtn" type="button" aria-label="Toggle navigation menu" title="Menu">
-                            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"></path></svg>
-                        </button>`}
                     </div>
                 </div>
                 
@@ -1093,7 +1049,7 @@
                             <img src="https://yt3.googleusercontent.com/4v1xmWtq6zF97zQKTMasxeUMAxjrAPD5cNlwp3bGLHzhPl82FtsydTCYlYoa2S2Ezmxjc5ckq0I=s88-c-k-c0x00ffffff-no-rj" alt="Vi Logo" onerror="this.onerror=null; this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 42 42%22><rect width=%2242%22 height=%2242%22 rx=%2210%22 fill=%22%234f46e5%22/><text x=%2221%22 y=%2228%22 text-anchor=%22middle%22 fill=%22white%22 font-size=%2218%22 font-weight=%22bold%22>Vi</text></svg>';">
                         </div>
                         <div class="brand-text">
-                            <h1>Venkat Insights</h1>
+                            <span class="brand-name">Venkat Insights</span>
                             <p class="tagline">Jobs &bull; Education &bull; Services &bull; Insights</p>
                         </div>
                     </a>
@@ -1633,7 +1589,7 @@ pillButtons.forEach(button => {
     // ============================================================
     window.renderVISiteShell = function () {
         // Remove duplicate or legacy navbar elements
-        document.querySelectorAll('header.navbar-wrapper, header.navbar, .mobile-overlay').forEach(el => el.remove());
+        document.querySelectorAll('header.navbar-wrapper, header.navbar').forEach(el => el.remove());
 
         // Inject the unified header at start of body
         document.body.insertAdjacentHTML('afterbegin', getHeaderHTML());
@@ -1652,9 +1608,6 @@ pillButtons.forEach(button => {
         }
 
         // Attach Header Events
-        const themeBtn = document.getElementById('themeToggleBtn');
-        if (themeBtn) themeBtn.addEventListener('click', window.toggleTheme);
-
         const searchInput = document.getElementById('searchInput');
         const clearBtn = document.getElementById('clearSearchBtn');
         const dropdown = document.getElementById('searchDropdown');
@@ -1707,12 +1660,6 @@ pillButtons.forEach(button => {
             }
         });
 
-        const menuBtn = document.getElementById('mobileMenuBtn');
-        if (menuBtn) menuBtn.addEventListener('click', window.toggleMobileMenu);
-
-        const overlay = document.getElementById('mobileOverlay');
-        if (overlay) overlay.addEventListener('click', window.toggleMobileMenu);
-
         // Synchronize Footer Elements (Year + Back to Top)
         const yearEl = document.getElementById('footerYear');
         if (yearEl) yearEl.textContent = new Date().getFullYear();
@@ -1734,13 +1681,6 @@ pillButtons.forEach(button => {
     // ============================================================
     // 9. BOOTSTRAP ON LOAD
     // ============================================================
-    let savedTheme = null;
-    try { savedTheme = localStorage.getItem('vi-theme'); } catch (e) {}
-    if (!savedTheme && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        savedTheme = 'dark';
-    }
-    applyTheme(savedTheme === 'dark' ? 'dark' : 'light');
-
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', () => {
             window.renderVISiteShell();

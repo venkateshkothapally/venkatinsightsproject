@@ -267,43 +267,22 @@
     const track = document.getElementById('latest-track');
     if (!track) return;
 
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-
-    // Dynamic filtering based on postDate and applicationLastDate:
-    // Only display services whose application last date has not expired (today <= lastDate).
-    // Once last date has passed, automatically hide it!
-    const isCatActive = state.activeCategory && state.activeCategory !== 'All';
-    let candidates = SERVICES.filter(s => {
-      if (isCatActive && s.category !== state.activeCategory) return false;
-      const end = parseDate(s.applicationLastDate);
-      if (end && today > end) return false; // Hide expired services!
-      return getStatus(s) !== 'closed';
-    });
-
-    // If specific category has no currently open announcements, show latest open across all categories
-    if (candidates.length === 0 && isCatActive) {
-      candidates = SERVICES.filter(s => {
-        const end = parseDate(s.applicationLastDate);
-        if (end && today > end) return false;
-        return getStatus(s) !== 'closed';
-      });
-    }
+    // Keep every service in the updates strip until its application deadline has passed.
+    const candidates = SERVICES.filter(s => getStatus(s) !== 'closed');
 
     // Sort by postDate desc (latest added first)
-    const sorted = [...candidates].sort((a, b) => (b.postDate || '').localeCompare(a.postDate || ''));
-    const top = sorted.slice(0, 12);
+    const activeServices = [...candidates].sort((a, b) => (b.postDate || '').localeCompare(a.postDate || ''));
 
-    if (top.length === 0) {
+    if (activeServices.length === 0) {
       track.innerHTML = `
         <div style="padding: 18px; color: var(--text-muted); font-size: 14px;">
-          No active admission or entrance alerts currently open in this category.
+          No active admission or entrance alerts are currently open.
         </div>
       `;
       return;
     }
 
-    track.innerHTML = top.map((s) => {
+    track.innerHTML = activeServices.map((s) => {
       const meta = getMeta(s.category);
       const status = getStatus(s);
       return `
@@ -565,8 +544,7 @@
       document.getElementById('latest-track').scrollBy({ left: 300, behavior: 'smooth' });
     });
 
-    // Mobile categories toggle (the header's mobile-menu-btn toggles nav pills,
-    // so we provide a separate button for the categories sidebar)
+    // Keep the category sidebar toggle separate from the always-visible site navigation.
     const catToggle = document.getElementById('mobile-cat-toggle');
     if (catToggle) catToggle.addEventListener('click', openSidebar);
 
@@ -576,9 +554,6 @@
         closeModal();
       }
     });
-
-    // Restore theme preference on boot
-    applyStoredTheme();
 
     // Render
     renderLatest();
@@ -734,6 +709,11 @@
 
   // toggleTheme() — switches dark/light mode, persists in localStorage
   window.toggleTheme = function () {
+    if (window.VITheme && typeof window.VITheme.toggle === 'function') {
+      window.VITheme.toggle();
+      return;
+    }
+
     const root = document.documentElement;
     const nextTheme = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
     root.setAttribute('data-theme', nextTheme);
@@ -752,6 +732,17 @@
   };
 
   function applyStoredTheme() {
+    if (window.VITheme && typeof window.VITheme.get === 'function') {
+      const theme = window.VITheme.get();
+      const isDark = theme === 'dark';
+      document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
+      document.documentElement.classList.toggle('dark', isDark);
+      if (typeof window.syncThemeToggleIcons === 'function') {
+        window.syncThemeToggleIcons();
+      }
+      return;
+    }
+
     let theme = 'light';
     try { theme = localStorage.getItem('vi-theme') || 'light'; } catch (e) {}
     const isDark = theme === 'dark';

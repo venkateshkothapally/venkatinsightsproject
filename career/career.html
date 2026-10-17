@@ -17,6 +17,7 @@
     crossorigin="anonymous"></script>
 
     <meta name="google-adsense-account" content="ca-pub-3814432238208850">
+    <link rel="canonical" href="https://www.venkatinsights.in/career/career.html">
 </head>
 <body>
 
@@ -47,7 +48,7 @@
         <div class="hero-top">
             <div class="hero-text">
                 <span class="hero-eyebrow">⚡ Career Dashboard</span>
-                <h2>Government Job <span class="hero-grad">Portal</span></h2>
+                <h1>Government Job <span class="hero-grad">Portal</span></h1>
                 <p>Live notifications from Railway, Banking, UPSC, SSC, Defence &amp; more — track last dates and apply before they close.</p>
             </div>
             <button class="btn-latest" id="latestUpdatesBtn" type="button">
@@ -56,23 +57,27 @@
             </button>
         </div>
         <div class="hero-stats">
-            <div class="stat-item">
+            <button class="stat-item" type="button" data-stat-filter="active" aria-pressed="false">
                 <div class="stat-icon"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg></div>
                 <div><div class="stat-value" id="statTotal">0</div><div class="stat-label">Active Jobs</div></div>
-            </div>
-            <div class="stat-item">
+            </button>
+            <button class="stat-item" type="button" data-stat-filter="categories" aria-pressed="false">
                 <div class="stat-icon"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z"/></svg></div>
                 <div><div class="stat-value" id="statCats">0</div><div class="stat-label">Categories</div></div>
-            </div>
-            <div class="stat-item">
+            </button>
+            <button class="stat-item" type="button" data-stat-filter="closing" aria-pressed="false">
                 <div class="stat-icon"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 7v5l3 3"/></svg></div>
                 <div><div class="stat-value" id="statClosing">0</div><div class="stat-label">Closing This Week</div></div>
-            </div>
-            <div class="stat-item">
+            </button>
+            <button class="stat-item" type="button" data-stat-filter="new" aria-pressed="false">
                 <div class="stat-icon"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9L12 3z"/></svg></div>
                 <div><div class="stat-value" id="statFresh">0</div><div class="stat-label">New This Week</div></div>
-            </div>
+            </button>
         </div>
+    </section>
+
+    <section class="latest-updates-panel" id="latestUpdatesPanel" aria-label="Latest job applications" hidden>
+        <div class="latest-updates-table" id="latestUpdatesTable"></div>
     </section>
 
     <div class="main-layout">
@@ -193,7 +198,7 @@
                             <img src="https://yt3.googleusercontent.com/4v1xmWtq6zF97zQKTMasxeUMAxjrAPD5cNlwp3bGLHzhPl82FtsydTCYlYoa2S2Ezmxjc5ckq0I=s88-c-k-c0x00ffffff-no-rj" alt="Vi Logo" onerror="this.onerror=null; this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 42 42%22><rect width=%2242%22 height=%2242%22 rx=%2210%22 fill=%22%234f46e5%22/><text x=%2221%22 y=%2228%22 text-anchor=%22middle%22 fill=%22white%22 font-size=%2218%22 font-weight=%22bold%22>Vi</text></svg>';">
                         </div>
                         <div class="brand-text">
-                            <h1>Venkat Insights</h1>
+                            <span class="brand-name">Venkat Insights</span>
                             <p class="tagline">Jobs &bull; Education &bull; Services &bull; Insights</p>
                         </div>
                     </a>

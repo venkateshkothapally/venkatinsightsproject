@@ -265,8 +265,6 @@ const state = {
    ========================================================================== */
 const dom = {
   // Navigation
-  hamburgerBtn: document.getElementById("hamburgerBtn"),
-  navLinks: document.getElementById("navLinks"),
   navBrand: document.getElementById("navBrand"),
   navHomeBtn: document.getElementById("navHomeBtn"),
   navBackBtn: document.getElementById("navBackBtn"),
@@ -530,7 +528,6 @@ function populateLocationDropdowns() {
 function navigateToHome() {
   dom.catalogView.classList.remove("active");
   dom.homeView.classList.add("active");
-  dom.navLinks.classList.remove("open");
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
@@ -541,7 +538,6 @@ function navigateToCatalog(locationName) {
   }
   dom.homeView.classList.remove("active");
   dom.catalogView.classList.add("active");
-  dom.navLinks.classList.remove("open");
   window.scrollTo({ top: 0, behavior: "smooth" });
   renderCatalog();
 }
@@ -1145,11 +1141,6 @@ function clearFormErrors() {
    ========================================================================== */
 
 function setupEventListeners() {
-  // Mobile Hamburger Toggle
-  dom.hamburgerBtn.addEventListener("click", () => {
-    dom.navLinks.classList.toggle("open");
-  });
-
   // Navigation Links
   dom.navBrand.addEventListener("click", navigateToHome);
   dom.navHomeBtn.addEventListener("click", navigateToHome);
@@ -1272,7 +1263,6 @@ function setupEventListeners() {
 
   // Add Service Modal Controls
   dom.navAddServiceBtn.addEventListener("click", () => {
-    dom.navLinks.classList.remove("open");
     dom.addServiceModal.classList.add("open");
     document.body.style.overflow = "hidden";
   });

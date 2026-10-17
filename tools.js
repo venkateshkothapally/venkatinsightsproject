@@ -13,8 +13,6 @@ window.tools = tools;
 
 const grid = document.getElementById('toolsGrid');
 const searchInput = document.getElementById('toolSearch');
-const themeBtn = document.querySelector('.theme-btn');
-const body = document.body;
 
 function renderTools(filter = '') {
   if (!grid) return;
@@ -36,13 +34,3 @@ if (grid) renderTools();
 
 const yr = document.getElementById('year');
 if (yr) yr.textContent = new Date().getFullYear();
-
-function applyTheme(theme) {
-  if (body) body.classList.toggle('dark', theme === 'dark');
-  try { localStorage.setItem('vi-theme', theme); } catch (e) {}
-}
-if (body && !document.documentElement?.getAttribute('data-theme')) {
-  try { applyTheme(localStorage.getItem('vi-theme') || 'light'); } catch (e) {}
-}
-
-themeBtn?.addEventListener('click', () => applyTheme(body.classList.contains('dark') ? 'light' : 'dark'));

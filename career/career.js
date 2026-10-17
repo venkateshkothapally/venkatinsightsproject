@@ -9,6 +9,7 @@
     const jobs = window.VI_JOBS || [];
     let activeCategory = 'All Government Jobs';
     let isLatestUpdatesExpanded = false;
+    let activeStatFilter = null;
     let sortMode = 'posted';
 
     /* ---------- Date helpers ---------- */
@@ -32,9 +33,16 @@
         today.setHours(0, 0, 0, 0);
         return jobs.filter(job => {
             const d = parseDateString(job.lastDate);
-            if (!d) return true;
-            d.setHours(0, 0, 0, 0);
-            return d >= today;
+            if (d) {
+                d.setHours(0, 0, 0, 0);
+                if (d < today) return false;
+            }
+            const posted = parseDateString(job.postDate);
+            if (posted) {
+                posted.setHours(0, 0, 0, 0);
+                if (posted > today) return false;
+            }
+            return true;
         });
     }
 
@@ -70,22 +78,30 @@
         return daysLeftBadge(job.lastDate);
     }
 
+    function jobSourceNote(job) {
+        if (job.isDemo) return '<span class="job-source-note">Sample / unverified</span>';
+        if (!job.sourceAvailable) return '<span class="job-source-note">Source unavailable</span>';
+        return '';
+    }
+
     /* ---------- Table Row & Block Builders ---------- */
     function buildRow(job, showCategory) {
         const middleCell = showCategory
-            ? '<td><span class="cat-chip">' + job.category + '</span></td>'
-            : '<td class="cell-muted">' + (job.advertisement || '—') + '</td>';
-        
-        const safeId = 'svc-job-' + (job.id || job.postName).replace(/[^a-zA-Z0-9_-]/g, '-');
+        ? '<td><span class="cat-chip">' + job.category + '</span></td>'
+        : '<td class="cell-muted">' + (job.advertisement || '—') + '</td>';
+        const safeId = job.targetId || ('svc-job-' + String(job.id || job.postName).replace(/[^a-zA-Z0-9_-]/g, '-'));
+        const details = job.sourceAvailable
+        ? '<a href="' + job.detailsUrl + '" class="details-link" target="_blank" rel="noopener noreferrer">View / Apply</a>'
+        : '<span class="details-link details-link-disabled" aria-label="Application source unavailable">Unavailable</span>';
 
         return '<tr id="' + safeId + '" data-target="' + safeId + '" data-title="' + job.postName.replace(/"/g, '&quot;') + '">' +
-            '<td class="cell-muted">' + job.postDate + '</td>' +
-            '<td><strong>' + job.board + '</strong></td>' +
-            '<td class="cell-post">' + job.postName + '</td>' +
-            '<td class="cell-muted">' + job.qualification + '</td>' +
-            middleCell +
-            '<td><div class="last-date-cell"><span class="last-date">' + (job.lastDate || 'Not announced') + '</span>' + applicationStatus(job) + '</div></td>' +
-            '<td><a href="' + (job.detailsUrl || '#') + '" class="details-link" target="_blank" rel="noopener">Details</a></td>' +
+        '<td class="cell-muted">' + job.postDate + '</td>' +
+        '<td><strong>' + job.board + '</strong>' + jobSourceNote(job) + '</td>' +
+        '<td class="cell-post">' + job.postName + '</td>' +
+        '<td class="cell-muted">' + job.qualification + '</td>' +
+        middleCell +
+        '<td><div class="last-date-cell"><span class="last-date">' + (job.lastDate || 'Not announced') + '</span>' + applicationStatus(job) + '</div></td>' +
+        '<td>' + details + '</td>' +
         '</tr>';
     }
 
@@ -106,12 +122,41 @@
 
         const allJobs = jobs;
         const allActive = getActiveJobs();
+        const latestPanel = document.getElementById('latestUpdatesPanel');
+        const latestTable = document.getElementById('latestUpdatesTable');
+        const mainLayout = document.querySelector('.main-layout');
         const searchInput = document.getElementById('searchInput');
         const query = (searchInput ? searchInput.value : '').trim().toLowerCase();
 
-        let filtered = allJobs;
+        let sourceJobs = isLatestUpdatesExpanded ? allActive : allJobs;
+        let resultsTitle = '⚡ Latest Job Applications';
+        if (activeStatFilter) {
+            sourceJobs = allActive;
+            if (activeStatFilter === 'closing') {
+                sourceJobs = allActive.filter(job => {
+                    const days = daysLeft(job.lastDate);
+                    return days !== null && days >= 0 && days <= 7;
+                });
+                resultsTitle = '⏳ Jobs Closing This Week';
+            } else if (activeStatFilter === 'new') {
+                sourceJobs = allActive.filter(job => {
+                    const days = daysLeft(job.postDate);
+                    return days !== null && days >= -7 && days <= 0;
+                });
+                resultsTitle = '✨ New Jobs This Week';
+            } else if (activeStatFilter === 'categories') {
+                resultsTitle = '▦ Jobs by Category';
+            } else {
+                resultsTitle = '✓ Active Jobs';
+            }
+        }
+        let filtered = sourceJobs;
+        if (!isLatestUpdatesExpanded && !activeStatFilter && activeCategory !== 'All Government Jobs') {
+            filtered = filtered.filter(job => job.category === activeCategory);
+        }
+        const resultTotal = filtered.length;
         if (query) {
-            filtered = allActive.filter(j =>
+            filtered = filtered.filter(j =>
                 j.postName.toLowerCase().includes(query) ||
                 j.board.toLowerCase().includes(query) ||
                 j.qualification.toLowerCase().includes(query) ||
@@ -121,39 +166,67 @@
         }
         filtered = sortJobs(filtered);
 
-        updateCategoryCounts(allActive);
-        updateResultCount(filtered.length, allJobs.length, query);
-        updateBreadcrumb();
+        updateCategoryCounts(allJobs);
+        const isStatsView = Boolean(activeStatFilter);
+        const isResultsView = isLatestUpdatesExpanded || isStatsView;
+        updateResultCount(filtered.length, resultTotal, query);
+        updateBreadcrumb(isResultsView ? (activeStatFilter ? resultsTitle.replace(/^[^\w]+/u, '') : 'Latest Updates') : null);
+
+        if (latestPanel && latestTable) {
+            latestPanel.hidden = !isResultsView;
+            if (mainLayout) mainLayout.classList.toggle('is-latest-mode', isResultsView);
+            latestTable.innerHTML = '';
+            if (isResultsView && filtered.length) {
+                if (activeStatFilter === 'categories') {
+                    const grouped = [...new Set(filtered.map(job => job.category))];
+                    latestTable.innerHTML = grouped.map(category => {
+                        const categoryJobs = filtered.filter(job => job.category === category);
+                        const body = categoryJobs.map(job => buildRow(job, true)).join('');
+                        return tableBlock(category, categoryJobs.length,
+                            ['Post Date', 'Board', 'Post Name', 'Qualification', 'Category', 'Last Date', 'Apply'], body);
+                    }).join('');
+                } else {
+                    const body = filtered.map(j => buildRow(j, true)).join('');
+                    latestTable.innerHTML = tableBlock(resultsTitle, filtered.length,
+                        ['Post Date', 'Board', 'Post Name', 'Qualification', 'Category', 'Last Date', 'Apply'], body);
+                }
+            } else if (isResultsView) {
+                latestTable.innerHTML = '<div class="job-section-block"><div class="empty-state">' +
+                    '<p><strong>' + (query ? 'No matching job applications' : 'No jobs to show for this selection') + '</strong></p>' +
+                    '<p class="empty-hint">' + (query ? 'Try a different keyword.' : 'Check back for new notifications.') + '</p></div></div>';
+            }
+        } else if (mainLayout) {
+            mainLayout.classList.remove('is-latest-mode');
+        }
+
+        if (isResultsView) {
+            attachTableHoverInteractions();
+            return;
+        }
 
         if (filtered.length === 0) {
             container.innerHTML = '<div class="job-section-block"><div class="empty-state">' +
-                '<svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>' +
+                '<svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0 1 14 0z"/></svg>' +
                 '<p><strong>No matching job notifications</strong></p>' +
                 '<p class="empty-hint">Try a different keyword or category.</p></div></div>';
             return;
         }
 
-        if (isLatestUpdatesExpanded) {
-            const body = filtered.map(j => buildRow(j, true)).join('');
-            container.innerHTML = tableBlock('⚡ Latest Active Job Openings', filtered.length,
-                ['Post Date', 'Board', 'Job Title', 'Qualification', 'Category', 'Last Date', 'Action'], body);
-        } else {
-            const cats = activeCategory === 'All Government Jobs'
-                ? [...new Set(filtered.map(j => j.category))]
-                : [activeCategory];
+        const cats = activeCategory === 'All Government Jobs'
+            ? [...new Set(filtered.map(j => j.category))]
+            : [activeCategory];
 
-            let html = '';
-            cats.forEach(cat => {
-                const catJobs = filtered.filter(j => j.category === cat);
-                if (!catJobs.length) return;
-                const body = catJobs.map(j => buildRow(j, false)).join('');
-                html += tableBlock(cat, catJobs.length,
-                    ['Post Date', 'Board', 'Post Name', 'Qualification', 'Advt No', 'Last Date', 'Apply'], body);
-            });
+        let html = '';
+        cats.forEach(cat => {
+            const catJobs = filtered.filter(j => j.category === cat);
+            if (!catJobs.length) return;
+            const body = catJobs.map(j => buildRow(j, false)).join('');
+            html += tableBlock(cat, catJobs.length,
+                ['Post Date', 'Board', 'Post Name', 'Qualification', 'Advt No', 'Last Date', 'Apply'], body);
+        });
 
-            container.innerHTML = html || '<div class="job-section-block"><div class="empty-state">' +
-                '<p><strong>No jobs available in this category</strong></p></div></div>';
-        }
+        container.innerHTML = html || '<div class="job-section-block"><div class="empty-state">' +
+            '<p><strong>No jobs available in this category</strong></p></div></div>';
 
         attachTableHoverInteractions();
     }
@@ -177,9 +250,9 @@
             : 'Showing ' + shown + ' of ' + total + ' notifications';
     }
 
-    function updateBreadcrumb() {
+    function updateBreadcrumb(resultLabel) {
         const el = document.getElementById('crumbCurrent');
-        if (el) el.textContent = isLatestUpdatesExpanded ? 'Latest Updates' : activeCategory;
+        if (el) el.textContent = resultLabel || (isLatestUpdatesExpanded ? 'Latest Updates' : activeCategory);
     }
 
     function attachTableHoverInteractions() {
@@ -236,7 +309,7 @@
     function registerJobsWithSearch() {
         if (!window.VI_SEARCH || !Array.isArray(jobs)) return;
         const searchItems = jobs.map(j => {
-            const safeId = 'svc-job-' + (j.id || j.postName).replace(/[^a-zA-Z0-9_-]/g, '-');
+            const safeId = j.targetId || ('svc-job-' + String(j.id || j.postName).replace(/[^a-zA-Z0-9_-]/g, '-'));
             return {
                 id: safeId,
                 title: `${j.board} - ${j.postName}`,
@@ -275,6 +348,8 @@
         if (cleanTarget.startsWith('cat-') && catMatch) {
             activeCategory = catMatch;
             isLatestUpdatesExpanded = false;
+            activeStatFilter = null;
+            document.querySelectorAll('[data-stat-filter]').forEach(stat => stat.setAttribute('aria-pressed', 'false'));
             document.querySelectorAll('.category-item').forEach(el => {
                 el.classList.toggle('active', el.getAttribute('data-category') === catMatch);
             });
@@ -285,7 +360,7 @@
 
         // Exact job match
         const match = jobs.find(j => {
-            const safeId = 'svc-job-' + (j.id || j.postName).replace(/[^a-zA-Z0-9_-]/g, '-');
+            const safeId = j.targetId || ('svc-job-' + String(j.id || j.postName).replace(/[^a-zA-Z0-9_-]/g, '-'));
             const rawId = String(j.id || '');
             const postSlug = String(j.postName || '').replace(/[^a-zA-Z0-9_-]/g, '-');
             return safeId === cleanTarget || rawId === cleanTarget || rawId === strippedTarget || postSlug === strippedTarget;
@@ -294,13 +369,15 @@
         if (match) {
             activeCategory = match.category;
             isLatestUpdatesExpanded = false;
+            activeStatFilter = null;
+            document.querySelectorAll('[data-stat-filter]').forEach(stat => stat.setAttribute('aria-pressed', 'false'));
             document.querySelectorAll('.category-item').forEach(el => {
                 el.classList.toggle('active', el.getAttribute('data-category') === match.category);
             });
             renderDashboard();
 
             setTimeout(() => {
-                const targetId = 'svc-job-' + (match.id || match.postName).replace(/[^a-zA-Z0-9_-]/g, '-');
+                const targetId = match.targetId || ('svc-job-' + String(match.id || match.postName).replace(/[^a-zA-Z0-9_-]/g, '-'));
                 const rowEl = document.getElementById(targetId) || document.getElementById(cleanTarget) || document.querySelector(`[data-target="${targetId}"]`) || document.querySelector(`[data-target="${cleanTarget}"]`);
                 if (rowEl && typeof window.pulseAndScrollToElement === 'function') {
                     window.pulseAndScrollToElement(rowEl);
@@ -312,6 +389,8 @@
         if (catMatch) {
             activeCategory = catMatch;
             isLatestUpdatesExpanded = false;
+            activeStatFilter = null;
+            document.querySelectorAll('[data-stat-filter]').forEach(stat => stat.setAttribute('aria-pressed', 'false'));
             document.querySelectorAll('.category-item').forEach(el => {
                 el.classList.toggle('active', el.getAttribute('data-category') === catMatch);
             });
@@ -326,13 +405,36 @@
     if (latestBtn) {
         latestBtn.addEventListener('click', function () {
             isLatestUpdatesExpanded = !isLatestUpdatesExpanded;
+            activeStatFilter = null;
+            document.querySelectorAll('[data-stat-filter]').forEach(stat => stat.setAttribute('aria-pressed', 'false'));
             this.classList.toggle('is-active', isLatestUpdatesExpanded);
             this.querySelector('.btn-label').textContent = isLatestUpdatesExpanded ? 'Back to Categories' : 'Latest Updates';
             renderDashboard();
-            const toolbar = document.querySelector('.content-toolbar');
-            if (toolbar) toolbar.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            const target = isLatestUpdatesExpanded
+                ? document.getElementById('latestUpdatesPanel')
+                : document.querySelector('.content-toolbar');
+            if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
         });
     }
+
+    document.querySelectorAll('[data-stat-filter]').forEach(stat => {
+        stat.addEventListener('click', function () {
+            const filter = this.getAttribute('data-stat-filter');
+            activeStatFilter = activeStatFilter === filter ? null : filter;
+            isLatestUpdatesExpanded = false;
+            if (latestBtn) {
+                latestBtn.classList.remove('is-active');
+                latestBtn.querySelector('.btn-label').textContent = 'Latest Updates';
+            }
+            document.querySelectorAll('[data-stat-filter]').forEach(button => {
+                button.setAttribute('aria-pressed', String(button === this && activeStatFilter === filter));
+            });
+            renderDashboard();
+            if (activeStatFilter) {
+                document.getElementById('latestUpdatesPanel')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    });
 
     document.querySelectorAll('.category-item').forEach(item => {
         item.addEventListener('click', function () {
@@ -340,6 +442,8 @@
             this.classList.add('active');
             activeCategory = this.getAttribute('data-category');
             isLatestUpdatesExpanded = false;
+            activeStatFilter = null;
+            document.querySelectorAll('[data-stat-filter]').forEach(stat => stat.setAttribute('aria-pressed', 'false'));
             if (latestBtn) {
                 latestBtn.classList.remove('is-active');
                 latestBtn.querySelector('.btn-label').textContent = 'Latest Updates';

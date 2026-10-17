@@ -15,8 +15,6 @@ const tools = [
 
 const grid = document.getElementById('aiGrid');
 const searchInput = document.getElementById('aiSearch');
-const themeBtn = document.querySelector('.theme-btn');
-const body = document.body;
 
 function renderTools(filter = '') {
   const list = tools.filter((tool) => tool.name.toLowerCase().includes(filter.toLowerCase()) || tool.category.toLowerCase().includes(filter.toLowerCase()));
@@ -36,11 +34,3 @@ searchInput?.addEventListener('input', (event) => renderTools(event.target.value
 renderTools();
 
 document.getElementById('year').textContent = new Date().getFullYear();
-
-function applyTheme(theme) {
-  body.classList.toggle('dark', theme === 'dark');
-  localStorage.setItem('vi-theme', theme);
-}
-applyTheme(localStorage.getItem('vi-theme') || 'light');
-
-themeBtn?.addEventListener('click', () => applyTheme(body.classList.contains('dark') ? 'light' : 'dark'));
