@@ -65,6 +65,7 @@ input::placeholder { color: #9aa5b8; }
 .button-ghost { background: #fff; color: #34415b; }
 .button-ghost:hover { border-color: #b9c8f3; background: #f5f7ff; }
 .button-wide { width: 100%; margin-top: 20px; }
+.tools-directory-link { text-decoration: none; }
 .hidden { display: none !important; }
 .advanced-view { display: grid; gap: 20px; }
 .advanced-heading { display: flex; align-items: center; justify-content: space-between; gap: 18px; padding: 22px 24px; }

@@ -128,6 +128,37 @@
             transform: translateY(-1px);
         }
 
+        .tool-open-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            align-self: flex-start;
+            margin-top: 0.75rem;
+            padding: 0.65rem 1rem;
+            border: 1px solid var(--vi-primary, #4f46e5);
+            border-radius: 10px;
+            color: var(--vi-primary, #4f46e5);
+            font-size: 0.88rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: background-color 0.2s, color 0.2s, transform 0.2s;
+        }
+
+        .tool-open-btn:hover {
+            background: var(--vi-primary, #4f46e5);
+            color: #fff;
+            transform: translateY(-1px);
+        }
+
+        .tool-open-btn:focus-visible {
+            outline: 3px solid #818cf8;
+            outline-offset: 3px;
+        }
+
+        .tools-directory-link {
+            text-decoration: none;
+        }
+
         .tool-result-box {
             margin-top: 1.25rem;
             padding: 1rem;
@@ -204,10 +235,11 @@
                 </div>
                 <div class="tool-form-group">
                     <label for="calcCutoff">Notification Cutoff Date</label>
-                    <input type="date" id="calcCutoff" class="tool-input" value="2026-07-01">
+                    <input type="date" id="calcCutoff" class="tool-input">
                 </div>
-                <button class="tool-btn" onclick="calculateExamAge()">Calculate Exact Age</button>
+                <button class="tool-btn" type="button" onclick="calculateExamAge()">Calculate Exact Age</button>
                 <div class="tool-result-box" id="ageResult">Enter dates above to see your exact age.</div>
+                <a class="tool-open-btn" href="tools/end.html#tool-age-calc">Open age calculator page</a>
             </div>
 
             <!-- CGPA to Percentage Converter -->
@@ -226,8 +258,9 @@
                         <option value="7.1">AICTE ((CGPA - 0.75) × 10)</option>
                     </select>
                 </div>
-                <button class="tool-btn" onclick="convertCgpa()">Convert to Percentage</button>
+                <button class="tool-btn" type="button" onclick="convertCgpa()">Convert to Percentage</button>
                 <div class="tool-result-box" id="cgpaResult">Enter your CGPA to convert.</div>
+                <a class="tool-open-btn" href="tools/end.html#tool-cgpa-converter">Open CGPA converter page</a>
             </div>
 
             <!-- Word & Character Counter -->
@@ -239,6 +272,7 @@
                     <textarea id="textCounterInput" class="tool-input" rows="4" placeholder="Paste your essay or text here..." oninput="updateWordCount()"></textarea>
                 </div>
                 <div class="tool-result-box" id="wordCountResult">Words: 0 | Characters: 0 | Reading Time: 0 min</div>
+                <a class="tool-open-btn" href="tools/end.html#tool-word-counter">Open word counter page</a>
             </div>
         </div>
     </main>
@@ -279,6 +313,7 @@
 
       <div class="formula-note"><strong>Formula:</strong> (Marks obtained ÷ Maximum marks) × 100</div>
       <button class="button button-primary button-wide" id="showAdvanced" type="button">Advanced Options <span aria-hidden="true">→</span></button>
+      <a class="button button-ghost button-wide tools-directory-link" href="tools/index.html">Open full academic calculator</a>
     </section>
 
     <section id="advancedView" class="advanced-view hidden">
@@ -445,9 +480,17 @@
                 resBox.innerHTML = '<strong>Please select both Date of Birth and Cutoff Date.</strong>';
                 return;
             }
-            const dob = new Date(dobVal);
-            const cut = new Date(cutVal);
-            if (dob > cut) {
+            const [dobYear, dobMonth, dobDay] = dobVal.split('-').map(Number);
+            const [cutYear, cutMonth, cutDay] = cutVal.split('-').map(Number);
+            const dob = new Date(dobYear, dobMonth - 1, dobDay);
+            const cut = new Date(cutYear, cutMonth - 1, cutDay);
+            const validDob = dob.getFullYear() === dobYear && dob.getMonth() === dobMonth - 1 && dob.getDate() === dobDay;
+            const validCutoff = cut.getFullYear() === cutYear && cut.getMonth() === cutMonth - 1 && cut.getDate() === cutDay;
+            if (!validDob || !validCutoff) {
+                resBox.innerHTML = '<strong>Please enter valid dates.</strong>';
+                return;
+            }
+            if (dob.getTime() > cut.getTime()) {
                 resBox.innerHTML = '<strong>Cutoff date must be after your Date of Birth.</strong>';
                 return;
             }

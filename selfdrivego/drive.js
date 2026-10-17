@@ -1201,8 +1201,12 @@ function setupEventListeners() {
   // Main Service Filter Pills (All, Self Drive, Rental, Travel, Auto)
   dom.mainServiceFilters.querySelectorAll(".filter-pill").forEach((pill) => {
     pill.addEventListener("click", (e) => {
-      dom.mainServiceFilters.querySelectorAll(".filter-pill").forEach((p) => p.classList.remove("active"));
+      dom.mainServiceFilters.querySelectorAll(".filter-pill").forEach((p) => {
+        p.classList.remove("active");
+        p.setAttribute("aria-pressed", "false");
+      });
       pill.classList.add("active");
+      pill.setAttribute("aria-pressed", "true");
       state.selectedServiceFilter = pill.getAttribute("data-service");
       renderCatalog();
     });
@@ -1211,8 +1215,12 @@ function setupEventListeners() {
   // Secondary Filters
   dom.fuelFilterGroup.querySelectorAll(".btn-filter-tag").forEach((btn) => {
     btn.addEventListener("click", () => {
-      dom.fuelFilterGroup.querySelectorAll(".btn-filter-tag").forEach((b) => b.classList.remove("active"));
+      dom.fuelFilterGroup.querySelectorAll(".btn-filter-tag").forEach((b) => {
+        b.classList.remove("active");
+        b.setAttribute("aria-pressed", "false");
+      });
       btn.classList.add("active");
+      btn.setAttribute("aria-pressed", "true");
       state.fuelFilter = btn.getAttribute("data-fuel");
       renderCarCatalog();
     });
@@ -1220,8 +1228,12 @@ function setupEventListeners() {
 
   dom.transmissionFilterGroup.querySelectorAll(".btn-filter-tag").forEach((btn) => {
     btn.addEventListener("click", () => {
-      dom.transmissionFilterGroup.querySelectorAll(".btn-filter-tag").forEach((b) => b.classList.remove("active"));
+      dom.transmissionFilterGroup.querySelectorAll(".btn-filter-tag").forEach((b) => {
+        b.classList.remove("active");
+        b.setAttribute("aria-pressed", "false");
+      });
       btn.classList.add("active");
+      btn.setAttribute("aria-pressed", "true");
       state.transmissionFilter = btn.getAttribute("data-trans");
       renderCarCatalog();
     });
@@ -1229,8 +1241,12 @@ function setupEventListeners() {
 
   dom.seaterFilterGroup.querySelectorAll(".btn-filter-tag").forEach((btn) => {
     btn.addEventListener("click", () => {
-      dom.seaterFilterGroup.querySelectorAll(".btn-filter-tag").forEach((b) => b.classList.remove("active"));
+      dom.seaterFilterGroup.querySelectorAll(".btn-filter-tag").forEach((b) => {
+        b.classList.remove("active");
+        b.setAttribute("aria-pressed", "false");
+      });
       btn.classList.add("active");
+      btn.setAttribute("aria-pressed", "true");
       state.seaterFilter = btn.getAttribute("data-seater");
       renderCarCatalog();
     });
@@ -1241,9 +1257,21 @@ function setupEventListeners() {
     state.transmissionFilter = "all";
     state.seaterFilter = "all";
 
-    dom.fuelFilterGroup.querySelectorAll(".btn-filter-tag").forEach((b) => b.classList.toggle("active", b.getAttribute("data-fuel") === "all"));
-    dom.transmissionFilterGroup.querySelectorAll(".btn-filter-tag").forEach((b) => b.classList.toggle("active", b.getAttribute("data-trans") === "all"));
-    dom.seaterFilterGroup.querySelectorAll(".btn-filter-tag").forEach((b) => b.classList.toggle("active", b.getAttribute("data-seater") === "all"));
+    dom.fuelFilterGroup.querySelectorAll(".btn-filter-tag").forEach((b) => {
+      const selected = b.getAttribute("data-fuel") === "all";
+      b.classList.toggle("active", selected);
+      b.setAttribute("aria-pressed", String(selected));
+    });
+    dom.transmissionFilterGroup.querySelectorAll(".btn-filter-tag").forEach((b) => {
+      const selected = b.getAttribute("data-trans") === "all";
+      b.classList.toggle("active", selected);
+      b.setAttribute("aria-pressed", String(selected));
+    });
+    dom.seaterFilterGroup.querySelectorAll(".btn-filter-tag").forEach((b) => {
+      const selected = b.getAttribute("data-seater") === "all";
+      b.classList.toggle("active", selected);
+      b.setAttribute("aria-pressed", String(selected));
+    });
 
     renderCarCatalog();
   });

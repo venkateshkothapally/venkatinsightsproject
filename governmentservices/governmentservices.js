@@ -322,6 +322,11 @@
             if (searchEl) searchEl.value = '';
             renderSidebar();
             renderServices();
+            const grid = document.getElementById('servicesGrid');
+            if (grid) {
+                const top = grid.getBoundingClientRect().top + window.scrollY - 120;
+                window.scrollTo({ top, behavior: 'smooth' });
+            }
         }
         window.selectCategory = selectCategory;
 

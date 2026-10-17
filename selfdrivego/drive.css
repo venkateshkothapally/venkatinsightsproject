@@ -359,8 +359,8 @@ button {
 
 /* Main Service Filter Pills */
 .filter-wrapper {
-  overflow-x: auto;
-  white-space: nowrap;
+  overflow: visible;
+  white-space: normal;
   -webkit-overflow-scrolling: touch;
   margin-bottom: 14px;
   padding-bottom: 4px;
@@ -371,11 +371,13 @@ button {
 }
 
 .filter-pills {
-  display: inline-flex;
+  display: flex;
+  flex-wrap: wrap;
   gap: 8px;
 }
 
 .filter-pill {
+  min-height: 40px;
   padding: 8px 16px;
   border-radius: 999px;
   background: var(--color-surface);
@@ -396,6 +398,12 @@ button {
   background-color: #fefce8;
   color: #854d0e;
   border-color: #fef08a;
+}
+
+.filter-pill:focus-visible,
+.btn-filter-tag:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 2px;
 }
 
 .filter-pill.auto-pill.active {
@@ -439,6 +447,7 @@ button {
 }
 
 .btn-filter-tag {
+  min-height: 36px;
   font-size: 0.75rem;
   padding: 4px 10px;
   border-radius: var(--radius-sm);
@@ -450,10 +459,27 @@ button {
 }
 
 .btn-filter-tag.active {
-  background-color: #e0f2fe;
-  color: var(--color-primary);
+  background-color: var(--color-primary);
+  color: #ffffff;
   border-color: var(--color-primary);
   font-weight: 700;
+}
+
+html[data-theme="dark"] .filter-pill.auto-pill:not(.active) {
+  background-color: #422006;
+  color: #fde68a;
+  border-color: #854d0e;
+}
+
+html[data-theme="dark"] .filter-pill.auto-pill.active {
+  background-color: #eab308;
+  color: #111827;
+  border-color: #eab308;
+}
+
+html[data-theme="dark"] .location-select option {
+  background-color: var(--color-surface);
+  color: var(--color-text-main);
 }
 
 .filter-actions-row {

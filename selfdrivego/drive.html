@@ -36,7 +36,7 @@
       </div>
 
       <nav class="nav-links" id="navLinks">
-        <button class="back-button" role="button" type="button" class="filter-btn active" onclick="window.location.href='../index.html';"> 🏠︎ Mainpage (venkatinsights)</button>
+        <button class="back-button" type="button" onclick="window.location.href='../index.html';"> 🏠︎ Mainpage (venkatinsights)</button>
    
         <button type="button" class="nav-btn" id="navHomeBtn"><i class="fa-solid fa-house"></i> Home</button>
         <button type="button" class="nav-btn" id="navBackBtn"><i class="fa-solid fa-arrow-left"></i> Back</button>
@@ -94,11 +94,11 @@
       <!-- Main Service Filter Pills (Car types & Auto) -->
       <div class="filter-wrapper">
         <div class="filter-pills" id="mainServiceFilters">
-          <button type="button" class="filter-pill active" data-service="all">All Services</button>
-          <button type="button" class="filter-pill" data-service="self-drive">Self Drive</button>
-          <button type="button" class="filter-pill" data-service="rental">Rental</button>
-          <button type="button" class="filter-pill" data-service="travel">Travel</button>
-          <button type="button" class="filter-pill auto-pill" data-service="auto"><i class="fa-solid fa-taxi"></i> Auto</button>
+          <button type="button" class="filter-pill active" data-service="all" aria-pressed="true">All Services</button>
+          <button type="button" class="filter-pill" data-service="self-drive" aria-pressed="false">Self Drive</button>
+          <button type="button" class="filter-pill" data-service="rental" aria-pressed="false">Rental</button>
+          <button type="button" class="filter-pill" data-service="travel" aria-pressed="false">Travel</button>
+          <button type="button" class="filter-pill auto-pill" data-service="auto" aria-pressed="false"><i class="fa-solid fa-taxi"></i> Auto</button>
         </div>
       </div>
 
@@ -106,31 +106,31 @@
       <div class="secondary-filters-box" id="carFilterControls">
         <div class="filter-row">
           <span class="filter-label">Fuel Type:</span>
-          <div class="btn-group" id="fuelFilterGroup">
-            <button type="button" class="btn-filter-tag active" data-fuel="all">All</button>
-            <button type="button" class="btn-filter-tag" data-fuel="Petrol">Petrol</button>
-            <button type="button" class="btn-filter-tag" data-fuel="Diesel">Diesel</button>
-            <button type="button" class="btn-filter-tag" data-fuel="CNG">CNG</button>
-            <button type="button" class="btn-filter-tag" data-fuel="Electric">Electric</button>
+          <div class="btn-group" id="fuelFilterGroup" role="group" aria-label="Filter by fuel type">
+            <button type="button" class="btn-filter-tag active" data-fuel="all" aria-pressed="true">All</button>
+            <button type="button" class="btn-filter-tag" data-fuel="Petrol" aria-pressed="false">Petrol</button>
+            <button type="button" class="btn-filter-tag" data-fuel="Diesel" aria-pressed="false">Diesel</button>
+            <button type="button" class="btn-filter-tag" data-fuel="CNG" aria-pressed="false">CNG</button>
+            <button type="button" class="btn-filter-tag" data-fuel="Electric" aria-pressed="false">Electric</button>
           </div>
         </div>
 
         <div class="filter-row">
           <span class="filter-label">Transmission:</span>
-          <div class="btn-group" id="transmissionFilterGroup">
-            <button type="button" class="btn-filter-tag active" data-trans="all">All</button>
-            <button type="button" class="btn-filter-tag" data-trans="Automatic">Automatic</button>
-            <button type="button" class="btn-filter-tag" data-trans="Manual">Manual</button>
+          <div class="btn-group" id="transmissionFilterGroup" role="group" aria-label="Filter by transmission">
+            <button type="button" class="btn-filter-tag active" data-trans="all" aria-pressed="true">All</button>
+            <button type="button" class="btn-filter-tag" data-trans="Automatic" aria-pressed="false">Automatic</button>
+            <button type="button" class="btn-filter-tag" data-trans="Manual" aria-pressed="false">Manual</button>
           </div>
         </div>
 
         <div class="filter-row">
           <span class="filter-label">Seater:</span>
-          <div class="btn-group" id="seaterFilterGroup">
-            <button type="button" class="btn-filter-tag active" data-seater="all">All</button>
-            <button type="button" class="btn-filter-tag" data-seater="5">5 Seater</button>
-            <button type="button" class="btn-filter-tag" data-seater="7">7 Seater</button>
-            <button type="button" class="btn-filter-tag" data-seater="more">More</button>
+          <div class="btn-group" id="seaterFilterGroup" role="group" aria-label="Filter by seat capacity">
+            <button type="button" class="btn-filter-tag active" data-seater="all" aria-pressed="true">All</button>
+            <button type="button" class="btn-filter-tag" data-seater="5" aria-pressed="false">5 Seater</button>
+            <button type="button" class="btn-filter-tag" data-seater="7" aria-pressed="false">7 Seater</button>
+            <button type="button" class="btn-filter-tag" data-seater="more" aria-pressed="false">More</button>
           </div>
         </div>
 

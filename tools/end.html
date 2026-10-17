@@ -204,9 +204,9 @@
                 </div>
                 <div class="tool-form-group">
                     <label for="calcCutoff">Notification Cutoff Date</label>
-                    <input type="date" id="calcCutoff" class="tool-input" value="2026-07-01">
+                    <input type="date" id="calcCutoff" class="tool-input">
                 </div>
-                <button class="tool-btn" onclick="calculateExamAge()">Calculate Exact Age</button>
+                <button class="tool-btn" type="button" onclick="calculateExamAge()">Calculate Exact Age</button>
                 <div class="tool-result-box" id="ageResult">Enter dates above to see your exact age.</div>
             </div>
 
@@ -226,7 +226,7 @@
                         <option value="7.1">AICTE ((CGPA - 0.75) × 10)</option>
                     </select>
                 </div>
-                <button class="tool-btn" onclick="convertCgpa()">Convert to Percentage</button>
+                <button class="tool-btn" type="button" onclick="convertCgpa()">Convert to Percentage</button>
                 <div class="tool-result-box" id="cgpaResult">Enter your CGPA to convert.</div>
             </div>
 
@@ -445,9 +445,17 @@
                 resBox.innerHTML = '<strong>Please select both Date of Birth and Cutoff Date.</strong>';
                 return;
             }
-            const dob = new Date(dobVal);
-            const cut = new Date(cutVal);
-            if (dob > cut) {
+            const [dobYear, dobMonth, dobDay] = dobVal.split('-').map(Number);
+            const [cutYear, cutMonth, cutDay] = cutVal.split('-').map(Number);
+            const dob = new Date(dobYear, dobMonth - 1, dobDay);
+            const cut = new Date(cutYear, cutMonth - 1, cutDay);
+            const validDob = dob.getFullYear() === dobYear && dob.getMonth() === dobMonth - 1 && dob.getDate() === dobDay;
+            const validCutoff = cut.getFullYear() === cutYear && cut.getMonth() === cutMonth - 1 && cut.getDate() === cutDay;
+            if (!validDob || !validCutoff) {
+                resBox.innerHTML = '<strong>Please enter valid dates.</strong>';
+                return;
+            }
+            if (dob.getTime() > cut.getTime()) {
                 resBox.innerHTML = '<strong>Cutoff date must be after your Date of Birth.</strong>';
                 return;
             }
