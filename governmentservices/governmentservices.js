@@ -322,9 +322,15 @@
             if (searchEl) searchEl.value = '';
             renderSidebar();
             renderServices();
-            const grid = document.getElementById('servicesGrid');
-            if (grid) {
-                const top = grid.getBoundingClientRect().top + window.scrollY - 120;
+            const categoryHeader = document.querySelector('.content-header');
+            if (categoryHeader) {
+                const stickyHeader = document.getElementById('navbarWrapper')
+                    || document.querySelector('.navbar-wrapper')
+                    || document.querySelector('header.navbar');
+                const stickyHeaderHeight = stickyHeader
+                    ? stickyHeader.getBoundingClientRect().height
+                    : 0;
+                const top = categoryHeader.getBoundingClientRect().top + window.scrollY - stickyHeaderHeight - 16;
                 window.scrollTo({ top, behavior: 'smooth' });
             }
         }
