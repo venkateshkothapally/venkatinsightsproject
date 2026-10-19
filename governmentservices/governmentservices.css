@@ -64,7 +64,9 @@
             border: 1px solid var(--border-color);
             border-radius: var(--radius-lg);
             padding: 20px 16px;
-            height: fit-content;
+            display: flex;
+            flex-direction: column;
+            max-height: calc(100vh - 180px);
             box-shadow: var(--shadow-sm);
         }
 
@@ -81,7 +83,22 @@
         .sidebar-menu {
             display: flex;
             flex-direction: column;
+            flex: 1 1 auto;
             gap: 4px;
+            min-height: 0;
+            overflow-y: auto;
+            overscroll-behavior: contain;
+            scrollbar-width: thin;
+            scrollbar-color: var(--text-muted) transparent;
+        }
+
+        .sidebar-menu::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        .sidebar-menu::-webkit-scrollbar-thumb {
+            background: var(--text-muted);
+            border-radius: 999px;
         }
 
         .menu-item {
@@ -290,6 +307,9 @@ f
         @media (max-width: 992px) {
             .app-container {
                 grid-template-columns: 1fr;
+            }
+            aside.sidebar {
+                max-height: min(45vh, 360px);
             }
             .services-grid {
                 grid-template-columns: repeat(2, 1fr);
