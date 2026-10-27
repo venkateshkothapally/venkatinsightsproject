@@ -10,6 +10,10 @@
         const LOGO_BHUBARATHI = "../logos/governmentservices/bhubharathi.png";
         const LOGO_schemes = "../logos/governmentservices/schemes.png";
         const LOGO_PM_SVANIDHI = "../logos/governmentservices/pm svanidhi.png";
+        const LOGO_ELECTION = "https://ceotelangana.nic.in/images/eci.png";
+        const LOGO_ECI = "../logos/governmentservices/ECI.png";
+
+
 
         const categoriesData = [
             {
@@ -74,6 +78,46 @@
                     { name: 'PAN Status', desc: 'Track PAN application', url: 'https://tin.tin.proteantech.in/pantan/StatusTrack.html', logo: LOGO_PAN }
                 ]
             },
+
+
+{
+                id: 'Election',
+                title: 'Voter Id & Election Services',
+                categoryLogo: LOGO_ELECTION,
+                icon: `<svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 17h8M8 17a2 2 0 11-4 0 2 2 0 014 0zm8 0a2 2 0 104 0 2 2 0 00-4 0zM3 9l2-4h14l2 4M3 9h18v6H3V9z"></path></svg>`,
+                services: [
+
+                    
+                    { name: 'Apply for MLC GRADUATE ELECTIONS', desc: 'Apply for Member of Legislative Council', url: "../governmentservices/applyformlc.html", logo: "https://www.eci.gov.in/newimg/eci-net-logo.png" },
+                    { name: 'Voter Id', desc: 'Search & info', url: 'https://voters.eci.gov.in/', logo: LOGO_ECI },
+                    { name: 'Election Commission of india', desc: 'Book election slots', url: 'https://ceotelangana.nic.in/home.html', logo: LOGO_ECI },
+                    { name: 'Election Commission of india', desc: 'Official website', url: 'https://www.eci.gov.in/', logo: "https://www.eci.gov.in/newimg/eci-net-logo.png" },
+                    { name: 'Election Commission of india', desc: 'Search your name in SIR', url: 'https://voters.eci.gov.in/searchInSIR/S2UA4DPDF-JK4QWODSE', logo: "https://www.eci.gov.in/newimg/eci-net-logo.png" },
+                    { name: 'Search Your name in Electoral Roll', desc: 'search your name in electoral roll', url: 'https://electoralsearch.eci.gov.in/', logo: "https://www.eci.gov.in/newimg/eci-net-logo.png" },
+                    { name: 'Telengana Election Commission', desc: 'TSEC Official website', url: 'https://tsec.gov.in/home.do', logo: "https://www.eci.gov.in/newimg/eci-net-logo.png" }
+                    
+                    
+                    
+
+
+                ]
+            },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             {
                 id: 'passport',
                 title: 'Passport Services',
